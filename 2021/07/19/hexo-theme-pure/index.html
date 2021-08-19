@@ -1,0 +1,347 @@
+<!DOCTYPE html><html lang="zh-CN"><head><!-- hexo injector head_begin start --><link href="https://cdn.jsdelivr.net/npm/hexo-widget-tree@0.1.1/css/index.css" rel="stylesheet"/><!-- hexo injector head_begin end --><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="theme-color" content="#0078E7"><meta name="author" content="ZR"><meta name="copyright" content="ZR"><meta name="generator" content="Hexo 5.4.0"><meta name="theme" content="hexo-theme-yun"><title>hexo-theme-pure | ZR的小站</title><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@900&amp;display=swap" media="print" onload="this.media='all'"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/star-markdown-css@0.1.25/dist/yun/yun-markdown.min.css"><script src="//at.alicdn.com/t/font_1140697_dxory92pb0h.js" async></script><script src="https://cdn.jsdelivr.net/npm/scrollreveal/dist/scrollreveal.min.js" defer></script><script>document.addEventListener("DOMContentLoaded", () => {
+  [".post-card",".post-content img"].forEach((target)=> {
+    ScrollReveal().reveal(target);
+  })
+});
+</script><script src="https://cdn.jsdelivr.net/npm/pjax@latest/pjax.min.js" defer></script><script src="/js/pjax.js" defer></script><script src="https://cdn.jsdelivr.net/npm/vue@2.6.11"></script><link id="light-prism-css" rel="stylesheet" href="https://cdn.jsdelivr.net/npm/prismjs@latest/themes/prism.css" media="(prefers-color-scheme: light)"><link id="dark-prism-css" rel="stylesheet" href="https://cdn.jsdelivr.net/npm/prismjs@latest/themes/prism-tomorrow.css" media="(prefers-color-scheme: dark)"><link rel="icon" href="/yun.svg"><link rel="mask-icon" href="/yun.svg" color="#0078E7"><link rel="alternate icon" href="/yun.ico"><link rel="preload" href="/css/hexo-theme-yun.css" as="style"><link rel="preload" href="/js/utils.js" as="script"><link rel="preload" href="/js/hexo-theme-yun.js" as="script"><link rel="prefetch" href="/js/sidebar.js" as="script"><link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin><script id="yun-config">
+    const Yun = window.Yun || {};
+    window.CONFIG = {"hostname":"zr-java.github.io","root":"/","title":["ZR","的","垃","圾","场"],"version":"1.6.1","mode":"auto","copycode":true,"page":{"isPost":true},"i18n":{"placeholder":"搜索...","empty":"找不到您查询的内容: ${query}","hits":"找到 ${hits} 条结果","hits_time":"找到 ${hits} 条结果（用时 ${time} 毫秒）"},"anonymous_image":"https://cdn.jsdelivr.net/gh/YunYouJun/cdn/img/avatar/none.jpg","say":{"api":"https://v1.hitokoto.cn","hitokoto":true},"local_search":{"path":"/search.xml"},"fireworks":{"colors":["102, 167, 221","62, 131, 225","33, 78, 194"]}};
+  </script><link rel="stylesheet" href="/css/hexo-theme-yun.css"><script src="/js/utils.js"></script><script src="/js/hexo-theme-yun.js"></script><meta name="description" content="hexo+github搭建博客服务器  csdn,简书,有道笔记 - 广告比较多 hexo+github[比较慢,翻墙]&#x2F;gitee[Git pages服务器 - 维护]&#x2F;阿里云服务器   安装nodejs  非中文的非特殊字符的目录中[目录中不要出现空格或者带有特殊符号的] D:&#x2F;node-v14.17.3-win-x64   环境变量的配置  桌面计算机 - 右击 - 属性 - 高级系统设置">
+<meta property="og:type" content="article">
+<meta property="og:title" content="hexo-theme-pure">
+<meta property="og:url" content="https://zr-java.github.io/2021/07/19/hexo-theme-pure/index.html">
+<meta property="og:site_name" content="ZR的小站">
+<meta property="og:description" content="hexo+github搭建博客服务器  csdn,简书,有道笔记 - 广告比较多 hexo+github[比较慢,翻墙]&#x2F;gitee[Git pages服务器 - 维护]&#x2F;阿里云服务器   安装nodejs  非中文的非特殊字符的目录中[目录中不要出现空格或者带有特殊符号的] D:&#x2F;node-v14.17.3-win-x64   环境变量的配置  桌面计算机 - 右击 - 属性 - 高级系统设置">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://zr-java.github.io/2021/07/19/hexo-theme-pure/01.png">
+<meta property="article:published_time" content="2021-07-19T09:29:29.000Z">
+<meta property="article:modified_time" content="2021-07-22T05:16:48.016Z">
+<meta property="article:author" content="ZR">
+<meta property="article:tag" content="tools">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://zr-java.github.io/2021/07/19/hexo-theme-pure/01.png"><script src="/js/ui/mode.js"></script></head><body><script defer src="https://cdn.jsdelivr.net/npm/animejs@latest"></script><script defer src="/js/ui/fireworks.js"></script><canvas class="fireworks"></canvas><div class="container"><a class="sidebar-toggle hty-icon-button" id="menu-btn"><div class="hamburger hamburger--spin" type="button"><span class="hamburger-box"><span class="hamburger-inner"></span></span></div></a><div class="sidebar-toggle sidebar-overlay"></div><aside class="sidebar"><script src="/js/sidebar.js"></script><ul class="sidebar-nav"><li class="sidebar-nav-item sidebar-nav-toc hty-icon-button sidebar-nav-active" data-target="post-toc-wrap" title="文章目录"><svg class="icon" aria-hidden="true"><use xlink:href="#icon-list-ordered"></use></svg></li><li class="sidebar-nav-item sidebar-nav-overview hty-icon-button" data-target="site-overview-wrap" title="站点概览"><svg class="icon" aria-hidden="true"><use xlink:href="#icon-passport-line"></use></svg></li></ul><div class="sidebar-panel" id="site-overview-wrap"><div class="site-info fix-top"><a class="site-author-avatar" href="/about/" title="ZR"><img width="96" loading="lazy" src="/images/avatar.jpg" alt="ZR"><span class="site-author-status" title="不想上学">😭</span></a><div class="site-author-name"><a href="/about/">ZR</a></div><span class="site-name">ZR的小站</span><sub class="site-subtitle"></sub><div class="site-desciption">高级打字员</div></div><nav class="site-state"><a class="site-state-item hty-icon-button icon-home" href="/" title="我的主页"><span class="site-state-item-icon"><svg class="icon" aria-hidden="true"><use xlink:href="#icon-home-4-line"></use></svg></span></a><div class="site-state-item"><a href="/archives/" title="归档"><span class="site-state-item-icon"><svg class="icon" aria-hidden="true"><use xlink:href="#icon-archive-line"></use></svg></span><span class="site-state-item-count">20</span></a></div><div class="site-state-item"><a href="/categories/" title="分类"><span class="site-state-item-icon"><svg class="icon" aria-hidden="true"><use xlink:href="#icon-folder-2-line"></use></svg></span><span class="site-state-item-count">3</span></a></div><div class="site-state-item"><a href="/tags/" title="标签"><span class="site-state-item-icon"><svg class="icon" aria-hidden="true"><use xlink:href="#icon-price-tag-3-line"></use></svg></span><span class="site-state-item-count">3</span></a></div><a class="site-state-item hty-icon-button" target="_blank" rel="noopener" href="https://yun.yunyoujun.cn" title="文档"><span class="site-state-item-icon"><svg class="icon" aria-hidden="true"><use xlink:href="#icon-settings-line"></use></svg></span></a></nav><hr style="margin-bottom:0.5rem"><div class="links-of-author"><a class="links-of-author-item hty-icon-button" rel="noopener" href="mailto:247132084@qq.com" title="E-Mail" target="_blank" style="color:#8E71C1"><svg class="icon" aria-hidden="true"><use xlink:href="#icon-mail-line"></use></svg></a><a class="links-of-author-item hty-icon-button" rel="noopener" href="https://github.com/ZR-java" title="GitHub" target="_blank" style="color:#181717"><svg class="icon" aria-hidden="true"><use xlink:href="#icon-github-line"></use></svg></a></div><hr style="margin:0.5rem 1rem"><div class="links"><a class="links-item hty-icon-button" href="/links/" title="我的小伙伴们" style="color:dodgerblue"><svg class="icon" aria-hidden="true"><use xlink:href="#icon-genderless-line"></use></svg></a></div><br><a class="links-item hty-icon-button" id="toggle-mode-btn" href="javascript:;" title="Mode" style="color: #f1cb64"><svg class="icon" aria-hidden="true"><use xlink:href="#icon-contrast-2-line"></use></svg></a></div><div class="sidebar-panel sidebar-panel-active" id="post-toc-wrap"><div class="post-toc"><div class="post-toc-content"><ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#hexo-github%E6%90%AD%E5%BB%BA%E5%8D%9A%E5%AE%A2%E6%9C%8D%E5%8A%A1%E5%99%A8"><span class="toc-number">1.</span> <span class="toc-text">hexo+github搭建博客服务器</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%AE%89%E8%A3%85nodejs"><span class="toc-number">2.</span> <span class="toc-text">安装nodejs</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%8E%AF%E5%A2%83%E5%8F%98%E9%87%8F%E7%9A%84%E9%85%8D%E7%BD%AE"><span class="toc-number">2.1.</span> <span class="toc-text">环境变量的配置</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%AE%80%E5%8D%95%E8%AE%A4%E8%AF%86npm"><span class="toc-number">2.2.</span> <span class="toc-text">简单认识npm</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#npm%E7%AE%80%E5%8D%95%E4%BD%BF%E7%94%A8"><span class="toc-number">2.3.</span> <span class="toc-text">npm简单使用</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%BF%AE%E6%94%B9%E9%95%9C%E5%83%8F"><span class="toc-number">2.3.1.</span> <span class="toc-text">修改镜像</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%AE%80%E5%8D%95%E4%BD%BF%E7%94%A8-%E4%B8%8D%E9%9C%80%E8%A6%81%E6%93%8D%E4%BD%9C"><span class="toc-number">2.4.</span> <span class="toc-text">简单使用 - 不需要操作</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#Hexo%E5%AE%98%E7%BD%91"><span class="toc-number">3.</span> <span class="toc-text">Hexo官网</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%AE%89%E8%A3%85"><span class="toc-number">3.1.</span> <span class="toc-text">安装</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%88%9B%E5%BB%BA%E7%9C%9F%E6%AD%A3%E7%9A%84%E5%8D%9A%E5%AE%A2%E7%9B%AE%E5%BD%95"><span class="toc-number">3.2.</span> <span class="toc-text">创建真正的博客目录</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%B5%8B%E8%AF%95-%E5%90%AF%E5%8A%A8%E5%8D%9A%E5%AE%A2%E6%9C%8D%E5%8A%A1%E5%99%A8"><span class="toc-number">3.3.</span> <span class="toc-text">测试 - 启动博客服务器</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%B8%B8%E7%94%A8%E4%B8%BB%E9%A2%98%E6%A8%A1%E6%9D%BF"><span class="toc-number">3.4.</span> <span class="toc-text">常用主题模板</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%B3%A8%E5%86%8C%E7%A0%81%E4%BA%91%E8%B4%A6%E5%8F%B7"><span class="toc-number">3.5.</span> <span class="toc-text">注册码云账号</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%AE%89%E8%A3%85%E6%A8%A1%E6%9D%BF"><span class="toc-number">3.6.</span> <span class="toc-text">安装模板</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E6%9B%B4%E6%96%B0%E4%B8%BB%E9%A2%98%E9%85%8D%E7%BD%AE"><span class="toc-number">4.</span> <span class="toc-text">更新主题配置</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E4%B8%AA%E4%BA%BA%E4%BF%A1%E6%81%AF"><span class="toc-number">5.</span> <span class="toc-text">个人信息</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#Markdown%E8%AF%AD%E6%B3%95"><span class="toc-number">6.</span> <span class="toc-text">Markdown语法</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E6%96%B0%E5%BB%BA%E5%8D%9A%E6%96%87"><span class="toc-number">7.</span> <span class="toc-text">新建博文</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E4%B8%BB%E9%A2%98%E7%9A%84%E4%BE%A7%E8%BE%B9%E6%A0%8F"><span class="toc-number">8.</span> <span class="toc-text">主题的侧边栏</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E6%96%87%E7%AB%A0%E7%9A%84%E5%88%86%E7%B1%BB%E5%92%8C%E6%A0%87%E7%AD%BE"><span class="toc-number">9.</span> <span class="toc-text">文章的分类和标签</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%8D%9A%E5%AE%A2%E7%9A%84%E8%AF%AD%E8%A8%80%E7%8E%AF%E5%A2%83%E8%AE%BE%E7%BD%AE"><span class="toc-number">10.</span> <span class="toc-text">博客的语言环境设置</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%9B%BE%E7%89%87%E6%98%BE%E7%A4%BA%E9%97%AE%E9%A2%98"><span class="toc-number">11.</span> <span class="toc-text">图片显示问题</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%86%85%E7%BD%AE%E6%90%9C%E7%B4%A2%E7%9A%84%E5%8A%9F%E8%83%BD"><span class="toc-number">12.</span> <span class="toc-text">内置搜索的功能</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E8%AF%84%E8%AE%BA"><span class="toc-number">13.</span> <span class="toc-text">评论</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E9%99%84%E4%BB%B6-%E4%BC%98%E7%A7%80%E6%8F%92%E4%BB%B6"><span class="toc-number">14.</span> <span class="toc-text">附件-优秀插件</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#github%E6%B3%A8%E5%86%8C%E4%B8%80%E4%B8%8B"><span class="toc-number">15.</span> <span class="toc-text">github注册一下</span></a></li></ol></div></div></div></aside><main class="sidebar-translate" id="content"><div id="post"><article class="hty-card post-block" itemscope itemtype="https://schema.org/Article"><link itemprop="mainEntityOfPage" href="https://ZR-java.github.io/2021/07/19/hexo-theme-pure/"><span hidden itemprop="author" itemscope itemtype="https://schema.org/Person"><meta itemprop="name" content="ZR"><meta itemprop="description"></span><span hidden itemprop="publisher" itemscope itemtype="https://schema.org/Organization"><meta itemprop="name" content="ZR的小站"></span><header class="post-header"><h1 class="post-title" itemprop="name headline">hexo-theme-pure</h1><div class="post-meta"><div class="post-time" style="display:block"><span class="post-meta-item-icon"><svg class="icon" aria-hidden="true"><use xlink:href="#icon-calendar-line"></use></svg></span> <time title="创建时间：2021-07-19 17:29:29" itemprop="dateCreated datePublished" datetime="2021-07-19T17:29:29+08:00">2021-07-19</time><span class="post-meta-divider">-</span><span class="post-meta-item-icon"><svg class="icon" aria-hidden="true"><use xlink:href="#icon-calendar-2-line"></use></svg></span> <time title="修改时间：2021-07-22 13:16:48" itemprop="dateModified" datetime="2021-07-22T13:16:48+08:00">2021-07-22</time></div><span class="post-count"><span class="post-symbolcount"><span class="post-meta-item-icon" title="本文字数"><svg class="icon" aria-hidden="true"><use xlink:href="#icon-file-word-line"></use></svg></span> <span title="本文字数">1.7k</span><span class="post-meta-divider">-</span><span class="post-meta-item-icon" title="阅读时长"><svg class="icon" aria-hidden="true"><use xlink:href="#icon-timer-line"></use></svg></span> <span title="阅读时长">7m</span></span></span><div class="post-classify"><span class="post-category"> <span class="post-meta-item-icon" style="margin-right:3px;"><svg class="icon" aria-hidden="true"><use xlink:href="#icon-folder-line"></use></svg></span><span itemprop="about" itemscope itemtype="https://schema.org/Thing"><a class="category-item" href="/categories/tools/" style="--text-color:var(--hty-text-color)" itemprop="url" rel="index"><span itemprop="text">tools</span></a></span></span><span class="post-tag"><span class="post-meta-divider">-</span><a class="tag-item" href="/tags/tools/" style="--text-color:var(--hty-text-color)"><span class="post-meta-item-icon"><svg class="icon" aria-hidden="true"><use xlink:href="#icon-price-tag-3-line"></use></svg></span><span class="tag-name">tools</span></a></span></div></div></header><section class="post-body" itemprop="articleBody"><div class="post-content markdown-body" style="--smc-primary:#0078E7;"><h1 id="hexo-github搭建博客服务器"><a href="#hexo-github搭建博客服务器" class="headerlink" title="hexo+github搭建博客服务器"></a>hexo+github搭建博客服务器</h1><blockquote>
+<ol>
+<li>csdn,简书,有道笔记 - <strong>广告比较多</strong></li>
+<li>hexo+github[比较慢,翻墙]/gitee[Git pages服务器 - 维护]/<strong>阿里云服务器</strong></li>
+</ol>
+</blockquote>
+<h1 id="安装nodejs"><a href="#安装nodejs" class="headerlink" title="安装nodejs"></a>安装nodejs</h1><blockquote>
+<ol>
+<li>非中文的非特殊字符的目录中[目录中不要出现空格或者带有特殊符号的]</li>
+<li>D:/node-v14.17.3-win-x64</li>
+</ol>
+</blockquote>
+<h2 id="环境变量的配置"><a href="#环境变量的配置" class="headerlink" title="环境变量的配置"></a>环境变量的配置</h2><blockquote>
+<ol>
+<li><p>桌面计算机 - 右击 - 属性 - 高级系统设置 - 环境变量(N)</p>
+</li>
+<li><p>定位到下方的系统变量</p>
+</li>
+<li><p>定位到变量名 - Path - 编辑 - 新建</p>
+</li>
+<li><p>D:/node-v14.17.3-win-x64</p>
+</li>
+<li><p>一定要关闭所有的环境变量配置的窗口 - 确定</p>
+</li>
+<li><p>打开终端[如果终端已经打开了,关闭 - 重新打开]</p>
+<p>win[微软图标]+r - 输入cmd - 输入如下指令检测nodejs是否配置成功</p>
+<pre class="language-none"><code class="language-none">npm -v
+6.14.5 出现版本号,则说明配置成功
+            
+如果出现了不是内部或者外部的命令的同学,请检查自己的nodejs解压缩之后的路径是否
+成功配置到了path中</code></pre></li>
+</ol>
+</blockquote>
+<h2 id="简单认识npm"><a href="#简单认识npm" class="headerlink" title="简单认识npm"></a>简单认识npm</h2><blockquote>
+<p>npm是javascript的一个**包[前端框架]**管理工具,并且是nodejs平台默认的包管理工具.</p>
+<p>通过npm可以安装,共享,分发代码,管理项目依赖关系.</p>
+<p>类似于java中的maven或者gradle[强大的项目构建工具以及项目依赖管理工具]</p>
+</blockquote>
+<h2 id="npm简单使用"><a href="#npm简单使用" class="headerlink" title="npm简单使用"></a>npm简单使用</h2><h3 id="修改镜像"><a href="#修改镜像" class="headerlink" title="修改镜像"></a>修改镜像</h3><blockquote>
+<p>为了下载速度变快,修改npm的镜像</p>
+<pre class="language-none"><code class="language-none">npm config set registry https:&#x2F;&#x2F;registry.npm.taobao.org</code></pre>
+
+<p>验证一下,镜像是否成功修改了</p>
+<pre class="language-none"><code class="language-none">npm config get registry
+
+https:&#x2F;&#x2F;registry.npm.taobao.org&#x2F;</code></pre>
+</blockquote>
+<h2 id="简单使用-不需要操作"><a href="#简单使用-不需要操作" class="headerlink" title="简单使用 - 不需要操作"></a>简单使用 - 不需要操作</h2><blockquote>
+<ol>
+<li><p>下载bootstrap</p>
+<p>npm install 框架名称 - 默认下载的是最新的版本</p>
+<pre class="language-none"><code class="language-none">npm install bootstrap@3</code></pre></li>
+</ol>
+</blockquote>
+<h1 id="Hexo官网"><a href="#Hexo官网" class="headerlink" title="Hexo官网"></a>Hexo官网</h1><blockquote>
+<p><a target="_blank" rel="noopener" href="https://hexo.io/zh-cn/docs/">https://hexo.io/zh-cn/docs/</a></p>
+</blockquote>
+<h2 id="安装"><a href="#安装" class="headerlink" title="安装"></a>安装</h2><blockquote>
+<ol>
+<li><p>假设你在D盘根目录下新建了一个文件夹hello-hexo[博客项目的根目录]</p>
+</li>
+<li><p>win+r - 打开终端</p>
+</li>
+<li><p>通过dos命令进入到hello-hexo目录中</p>
+<pre class="language-none"><code class="language-none">C:&#x2F;User&#x2F;admin&gt;d:
+D:&gt;cd hello-hexo
+D:&#x2F;hello-hexo&gt;npm install hexo-cli -g</code></pre></li>
+</ol>
+</blockquote>
+<h2 id="创建真正的博客目录"><a href="#创建真正的博客目录" class="headerlink" title="创建真正的博客目录"></a>创建真正的博客目录</h2><pre class="language-none"><code class="language-none">D:&#x2F;hello-hexo&gt;hexo init hello-blog
+cd hello-blog
+D:&#x2F;hello-hexo&#x2F;hello-blog&gt;npm install</code></pre>
+
+<h2 id="测试-启动博客服务器"><a href="#测试-启动博客服务器" class="headerlink" title="测试 - 启动博客服务器"></a>测试 - 启动博客服务器</h2><pre class="language-none"><code class="language-none">D:&#x2F;hello-hexo&#x2F;hello-blog&gt;hexo s
+关闭服务器
+ctrl+c</code></pre>
+
+<p><em><strong>打开浏览器输入:localhost:4000</strong></em></p>
+<h2 id="常用主题模板"><a href="#常用主题模板" class="headerlink" title="常用主题模板"></a>常用主题模板</h2><blockquote>
+<p><a target="_blank" rel="noopener" href="https://blog.csdn.net/zgd826237710/article/details/99671027">https://blog.csdn.net/zgd826237710/article/details/99671027</a></p>
+<p>使用git命令来进行克隆,需要提前安装好git,检测git是否安装成功,<strong>重新打开终端</strong></p>
+<pre class="language-none"><code class="language-none">git --version</code></pre>
+</blockquote>
+<h2 id="注册码云账号"><a href="#注册码云账号" class="headerlink" title="注册码云账号"></a>注册码云账号</h2><blockquote>
+<p>推荐用QQ注册一下</p>
+<p>本地配置码云账号信息 - 配置文件 - 位置windows的用户主目录下</p>
+<p>C:/User/计算机用户名 - 观察是否存在**.gitconfig**文件,添加如下内容</p>
+<pre class="language-none"><code class="language-none">[user]
+	email &#x3D; 码云的QQ邮箱
+	name &#x3D; 用户名</code></pre>
+</blockquote>
+<h2 id="安装模板"><a href="#安装模板" class="headerlink" title="安装模板"></a>安装模板</h2><blockquote>
+<p>通过cmd进入到hello-blog目录中的themes目录中</p>
+<pre class="language-none"><code class="language-none">D:&#x2F;hello-hexo&#x2F;hello-blog&gt;cd themes
+D:&#x2F;&#x2F;hello-hexo&#x2F;hello-blog&#x2F;themes&gt;git clone https:&#x2F;&#x2F;gitee.com&#x2F;guancg&#x2F;hexo-theme-pure.git</code></pre>
+</blockquote>
+<p>或者直接从github上直接clone</p>
+<pre class="language-none"><code class="language-none">git clone https:&#x2F;&#x2F;github.com&#x2F;cofess&#x2F;hexo-theme-pure.git</code></pre>
+
+<h1 id="更新主题配置"><a href="#更新主题配置" class="headerlink" title="更新主题配置"></a>更新主题配置</h1><blockquote>
+<ol>
+<li><p>指定新的主题</p>
+<p>hello-blog目录下的_config.yml文件</p>
+<pre class="language-none"><code class="language-none">theme: hexo-theme-pure</code></pre></li>
+</ol>
+</blockquote>
+<blockquote>
+<ol>
+<li>重启服务器hexo s</li>
+</ol>
+</blockquote>
+<h1 id="个人信息"><a href="#个人信息" class="headerlink" title="个人信息"></a>个人信息</h1><p>hexo-theme-pure/_config.yml文件</p>
+<pre class="language-none"><code class="language-none">overriden
+  author: 亲爱的
+  author_title: 高级打字员
+  author_description: 个人简介。
+  location: SuZhou, China</code></pre>
+
+<h1 id="Markdown语法"><a href="#Markdown语法" class="headerlink" title="Markdown语法"></a>Markdown语法</h1><blockquote>
+<p>语法的编辑器 - <a target="_blank" rel="noopener" href="https://typora.io/">https://typora.io/</a></p>
+<p>文件的后缀是md</p>
+<pre class="language-none"><code class="language-none">常用语法如下:
+
+1. 标题的语法:
+1~6标题 - # 一级标题    ## 二级标题   
+
+2. 代码块 - java,js,mysql...
+
+~~~java 敲enter键
+
+3. 列表
+3-1. 无序列表
+     * 列表名称
+
+     有序列表
+     1. 列表名称
+
+4. 高亮显示
+   &#96;高亮显示内容&#96;
+
+5. 加粗字体
+   **粗体**
+
+6. 斜体
+   *斜体*
+
+7. 粗+斜
+   ***粗斜***
+
+8. 段落
+   &gt; 空格
+
+9. 引入外部图片
+   ![](xx.png)
+
+10. 表格</code></pre>
+</blockquote>
+<h1 id="新建博文"><a href="#新建博文" class="headerlink" title="新建博文"></a>新建博文</h1><pre class="language-none"><code class="language-none">D:&#x2F;&#x2F;hello-hexo&#x2F;hello-blog&gt;hexo n java</code></pre>
+
+<p>效果:hello-blog目录下的source/_ports/自动生成一个java.md文件</p>
+<p>重启blog服务器</p>
+<pre class="language-none"><code class="language-none">D:&#x2F;&#x2F;hello-hexo&#x2F;hello-blog&gt;hexo s</code></pre>
+
+<h1 id="主题的侧边栏"><a href="#主题的侧边栏" class="headerlink" title="主题的侧边栏"></a>主题的侧边栏</h1><blockquote>
+<p>侧边栏的链接生效</p>
+<p>将/hello-blog/themes/hexo-theme-pure/_source/下的除了_data文件夹,其余文件夹</p>
+<p>拷贝一份放入到hello-blog目录下的source目录中即可</p>
+</blockquote>
+<h1 id="文章的分类和标签"><a href="#文章的分类和标签" class="headerlink" title="文章的分类和标签"></a>文章的分类和标签</h1><blockquote>
+<p>只需要在文章的.md文件的自动生成的头部添加</p>
+<pre class="language-none"><code class="language-none">title: java
+date: 2021-07-13 08:44:42
+categories: java
+tags: java</code></pre>
+</blockquote>
+<h1 id="博客的语言环境设置"><a href="#博客的语言环境设置" class="headerlink" title="博客的语言环境设置"></a>博客的语言环境设置</h1><blockquote>
+<p>设置中文</p>
+<p>hello-blog下的_config.yml文件中</p>
+<p>language: zh-CN</p>
+</blockquote>
+<h1 id="图片显示问题"><a href="#图片显示问题" class="headerlink" title="图片显示问题"></a>图片显示问题</h1><blockquote>
+<ol>
+<li><p>安装插件 - npm install <a target="_blank" rel="noopener" href="https://gitee.com/guancg/hexo-asset-image.git">https://gitee.com/guancg/hexo-asset-image.git</a> –save 或者 </p>
+<p>npm install <a target="_blank" rel="noopener" href="https://github.com/CodeFalling/hexo-asset-image">https://github.com/CodeFalling/hexo-asset-image</a> –save  </p>
+</li>
+<li><p>需要到hello-blog/_config.yml文件中进行配置</p>
+<pre class="language-none"><code class="language-none">post_asset_folder: true</code></pre></li>
+<li><p>hexo n 机器学习</p>
+<p><code>效果就是除了生成了机器学习.md还有一个机器学习文件夹,那么这篇文章的所有的图片就可以存储在机器学习文件夹中</code></p>
+</li>
+<li><p>hexo s</p>
+</li>
+<li><p>设置typora图像路径</p>
+<p><img src="/2021/07/19/hexo-theme-pure/01.png" loading="lazy"></p>
+<p>以后直接粘贴图片就可以自动保存到 hexo 配置的 post_asset_folder 文件夹里,自动渲染了</p>
+<p><strong>注意修改图片路径中的 \ 为 / ,并且不带 <code>.</code>或者<code>./</code> 直接写<code>目录/图片</code></strong></p>
+</li>
+</ol>
+</blockquote>
+<h1 id="内置搜索的功能"><a href="#内置搜索的功能" class="headerlink" title="内置搜索的功能"></a>内置搜索的功能</h1><blockquote>
+<pre class="language-none"><code class="language-none"># Search
+search:
+insight: true # you need to install &#96;hexo-generator-json-content&#96; before using Insight Search
+baidu: false # you need to disable other search engines to use Baidu search</code></pre>
+
+<p>安装内置搜索插件</p>
+<p>npm i -S hexo-generator-json-content</p>
+</blockquote>
+<h1 id="评论"><a href="#评论" class="headerlink" title="评论"></a>评论</h1><blockquote>
+<p>不需要本地数据库进行存储的,用的是第三方的.</p>
+<p>LeanCloud - 官网地址 - <a target="_blank" rel="noopener" href="https://www.leancloud.cn/">https://www.leancloud.cn/</a></p>
+<p>注册 - 登录 - 控制台 - 创建应用 - 右下设置 - 应用凭证</p>
+<p>appId - sljUq97vUAdLAo7XQdf13aFR-gzGzoHsz</p>
+<p>appKey - 3hn4ijEgSzJeRV4nkmXThmGV</p>
+</blockquote>
+<pre class="language-none"><code class="language-none">在hexo-theme-pure\_config.yml文件中配置</code></pre>
+
+<blockquote>
+<pre class="language-none"><code class="language-none">valine: # Valine. https:&#x2F;&#x2F;valine.js.org
+appid: sljUq97vUAdLAo7XQdf13aFR-gzGzoHsz  # your leancloud application appid
+appkey: 3hn4ijEgSzJeRV4nkmXThmGV# your leancloud application appkey
+notify: false # mail notifier , https:&#x2F;&#x2F;github.com&#x2F;xCss&#x2F;Valine&#x2F;wiki
+verify: false # Verification code
+placeholder: Just go go # comment box placeholder
+avatar: mm # gravatar style
+meta: nick,mail,link # custom comment header
+pageSize: 10 # pagination size
+visitor: true # Article reading statistic https:&#x2F;&#x2F;valine.js.org&#x2F;visitor.html</code></pre>
+</blockquote>
+<p>#字数统计&amp;阅读时长</p>
+<blockquote>
+<ol>
+<li><p>npm i -S hexo-wordcount</p>
+</li>
+<li><p>hexo-theme-pure_config.yml文件中配置</p>
+<pre class="language-none"><code class="language-none">postCount:  enable: true  wordcount: true  # 文章字数统计  min2read: true  # 阅读时长预计 </code></pre></li>
+</ol>
+</blockquote>
+<h1 id="附件-优秀插件"><a href="#附件-优秀插件" class="headerlink" title="附件-优秀插件"></a>附件-优秀插件</h1><blockquote>
+<ol>
+<li><p>显示图片</p>
+<pre class="language-none"><code class="language-none">npm install https:&#x2F;&#x2F;gitee.com&#x2F;guancg&#x2F;hexo-asset-image.git --save</code></pre></li>
+<li><p>内置搜索</p>
+<pre class="language-none"><code class="language-none">npm i -S hexo-generator-json-content</code></pre></li>
+<li><p>字数统计&amp;阅读时长</p>
+<pre class="language-none"><code class="language-none">npm i -S hexo-wordcount</code></pre></li>
+</ol>
+</blockquote>
+<blockquote>
+<ol>
+<li><p>github部署</p>
+<pre class="language-none"><code class="language-none">npm install hexo-deployer-git --save</code></pre></li>
+</ol>
+</blockquote>
+<h1 id="github注册一下"><a href="#github注册一下" class="headerlink" title="github注册一下"></a>github注册一下</h1><blockquote>
+<p>github.com</p>
+</blockquote>
+<blockquote>
+<p>chrome浏览器 + iguge - <a target="_blank" rel="noopener" href="https://iguge.app/">https://iguge.app/</a></p>
+</blockquote>
+<blockquote>
+<p>新建的仓库的名称必须是<strong>zr-java.github.io</strong></p>
+<p>仓库地址 - <a target="_blank" rel="noopener" href="https://github.com/ZR-java/zr-java.github.io.git">https://github.com/ZR-java/zr-java.github.io.git</a></p>
+</blockquote>
+<blockquote>
+<p>安装github部署插件</p>
+<p>npm install hexo-deployer-git –save</p>
+</blockquote>
+<blockquote>
+<p>hello-blog/_config.yml文件</p>
+<pre class="language-none"><code class="language-none">deploy:
+type: &#39;git&#39;
+repo: &#39;https:&#x2F;&#x2F;github.com&#x2F;ZR-java&#x2F;zr-java.github.io.git&#39;
+branch: &#39;master&#39;</code></pre>
+</blockquote>
+<pre class="language-none"><code class="language-none">hexo三连操作
+hexo clean：清除本地缓存
+hexo g：生成新的静态文件
+hexo s：本地查看效果（如果正常，使用 hexo d 重新部署）</code></pre>
+
+<p>浏览器输入 - zr-java.github.io</p>
+</div><ul class="post-copyright"><li class="post-copyright-author"><strong>本文作者：</strong>ZR</li><li class="post-copyright-link"><strong>本文链接：</strong><a href="https://zr-java.github.io/2021/07/19/hexo-theme-pure/" title="hexo-theme-pure">https://zr-java.github.io/2021/07/19/hexo-theme-pure/</a></li><li class="post-copyright-license"><strong>版权声明：</strong>本博客所有文章除特别声明外，均默认采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh" target="_blank" rel="noopener" title="CC BY-NC-SA 4.0 "><svg class="icon"><use xlink:href="#icon-creative-commons-line"></use></svg><svg class="icon"><use xlink:href="#icon-creative-commons-by-line"></use></svg><svg class="icon"><use xlink:href="#icon-creative-commons-nc-line"></use></svg><svg class="icon"><use xlink:href="#icon-creative-commons-sa-line"></use></svg></a> 许可协议。</li></ul></section></article><div class="post-nav"><div class="post-nav-item"><a class="post-nav-prev" href="/2021/07/19/Markdown%E8%8F%9C%E9%B8%9F%E7%AC%94%E8%AE%B0/" rel="prev" title="Markdown菜鸟笔记"><svg class="icon" aria-hidden="true"><use xlink:href="#icon-arrow-left-s-line"></use></svg><span class="post-nav-text">Markdown菜鸟笔记</span></a></div><div class="post-nav-item"></div></div></div><div class="hty-card" id="comment"><div class="comment-tooltip text-center"><span>要不要和我说些什么？</span><br></div></div></main><footer class="sidebar-translate" id="footer"><div class="copyright"><span>&copy; 2021 </span><span class="with-love" id="animate" title="敲啊敲,点啊点就是没有用"><svg class="icon" aria-hidden="true"><use xlink:href="#icon-cloud-line"></use></svg></span><span class="author"> ZR</span></div><div class="powered"><span>由 <a href="https://hexo.io" target="_blank" rel="noopener">Hexo</a> 驱动 v5.4.0</span><span class="footer-separator">|</span><span>主题 - <a rel="noopener" href="https://github.com/YunYouJun/hexo-theme-yun" target="_blank"><span>Yun</span></a> v1.6.1</span></div><div class="live_time"><span>本博客已萌萌哒地运行</span><span id="display_live_time"></span><span class="moe-text">(●'◡'●)</span><script>function blog_live_time() {
+  setTimeout(blog_live_time, 1000);
+  const start = new Date('2021-07-19T00:00:00');
+  const now = new Date();
+  const timeDiff = (now.getTime() - start.getTime());
+  const msPerMinute = 60 * 1000;
+  const msPerHour = 60 * msPerMinute;
+  const msPerDay = 24 * msPerHour;
+  const passDay = Math.floor(timeDiff / msPerDay);
+  const passHour = Math.floor((timeDiff % msPerDay) / 60 / 60 / 1000);
+  const passMinute = Math.floor((timeDiff % msPerHour) / 60 / 1000);
+  const passSecond = Math.floor((timeDiff % msPerMinute) / 1000);
+  display_live_time.innerHTML = " " + passDay + " 天 " + passHour + " 小时 " + passMinute + " 分 " + passSecond + " 秒";
+}
+blog_live_time();
+</script></div></footer><a class="hty-icon-button" id="back-to-top" aria-label="back-to-top" href="#"><svg class="icon" aria-hidden="true"><use xlink:href="#icon-arrow-up-s-line"></use></svg><svg class="progress-circle-container" viewBox="0 0 100 100"><circle class="progress-circle" id="progressCircle" cx="50" cy="50" r="48" fill="none" stroke="#0078E7" stroke-width="2" stroke-linecap="round"></circle></svg></a><a class="popup-trigger hty-icon-button icon-search" id="search" href="javascript:;" title="搜索"><span class="site-state-item-icon"><svg class="icon" aria-hidden="true"><use xlink:href="#icon-search-line"></use></svg></span></a><script>window.addEventListener("DOMContentLoaded", () => {
+  // Handle and trigger popup window
+  document.querySelector(".popup-trigger").addEventListener("click", () => {
+    document.querySelector(".popup").classList.add("show");
+    setTimeout(() => {
+      document.querySelector(".search-input").focus();
+    }, 100);
+  });
+
+  // Monitor main search box
+  const onPopupClose = () => {
+    document.querySelector(".popup").classList.remove("show");
+  };
+
+  document.querySelector(".popup-btn-close").addEventListener("click", () => {
+    onPopupClose();
+  });
+
+  window.addEventListener("keyup", event => {
+    if (event.key === "Escape") {
+      onPopupClose();
+    }
+  });
+});
+</script><script src="/js/search/local-search.js" defer></script><div class="popup search-popup"><div class="search-header"><span class="popup-btn-close close-icon hty-icon-button"><svg class="icon" aria-hidden="true"><use xlink:href="#icon-close-line"></use></svg></span></div><div class="search-input-container"><input class="search-input" id="local-search-input" type="text" placeholder="搜索..." value=""></div><div id="local-search-result"></div></div></div><!-- hexo injector body_end start --><script src="https://cdn.jsdelivr.net/npm/hexo-widget-tree@0.1.1/js/index.js"></script><div id="widget-tree">
+      <ul><li class="tree-list-item"><i class="toggle-post-icon gg-folder-add"></i><a class="tree-list-link" href="/categories/Markdown/">Markdown</a><ul class="tree-list-children"><li class="tree-list-item"><a class="tree-list-post-link" href="/2021/07/19/Markdown%E8%8F%9C%E9%B8%9F%E7%AC%94%E8%AE%B0/" title="Markdown菜鸟笔记"><i class="post-icon gg-file-document"></i>Markdown菜鸟笔记</a></li><li class="tree-list-item"><a class="tree-list-post-link" href="/2021/08/02/Markdown%E9%A2%9C%E8%89%B2%E5%AD%97%E4%BD%93/" title="Markdown颜色字体"><i class="post-icon gg-file-document"></i>Markdown颜色字体</a></li><li class="tree-list-item"><a class="tree-list-post-link" href="/2021/07/19/Mermaid%E6%B5%81%E7%A8%8B%E5%9B%BE%E5%BF%AB%E9%80%9F%E5%85%A5%E9%97%A8/" title="Mermaid流程图快速入门"><i class="post-icon gg-file-document"></i>Mermaid流程图快速入门</a></li></ul></li><li class="tree-list-item"><i class="toggle-post-icon gg-folder-add"></i><a class="tree-list-link" href="/categories/javaSE/">javaSE</a><ul class="tree-list-children"><li class="tree-list-item"><a class="tree-list-post-link" href="/2021/07/19/01-Java%E8%AF%AD%E8%A8%80%E4%BB%8B%E7%BB%8D%E5%8F%8A%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA/" title="01-Java语言介绍及环境搭建"><i class="post-icon gg-file-document"></i>01-Java语言介绍及环境搭建</a></li><li class="tree-list-item"><a class="tree-list-post-link" href="/2021/07/19/02-%E5%9F%BA%E6%9C%AC%E8%AF%AD%E6%B3%95%E5%8D%95%E4%BD%8D/" title="02-基本语法单位"><i class="post-icon gg-file-document"></i>02-基本语法单位</a></li><li class="tree-list-item"><a class="tree-list-post-link" href="/2021/07/19/03-Java%E5%9F%BA%E6%9C%AC%E6%95%B0%E6%8D%AE%E7%B1%BB%E5%9E%8B/" title="03-Java基本数据类型"><i class="post-icon gg-file-document"></i>03-Java基本数据类型</a></li><li class="tree-list-item"><a class="tree-list-post-link" href="/2021/07/19/04-Java%E8%A1%A8%E8%BE%BE%E5%BC%8F/" title="04-Java表达式"><i class="post-icon gg-file-document"></i>04-Java表达式</a></li><li class="tree-list-item"><a class="tree-list-post-link" href="/2021/07/19/05-%E9%9D%A2%E5%90%91%E5%AF%B9%E8%B1%A1%E7%9A%84%E6%A6%82%E8%BF%B0/" title="05-面向对象的概述"><i class="post-icon gg-file-document"></i>05-面向对象的概述</a></li><li class="tree-list-item"><a class="tree-list-post-link" href="/2021/07/19/06-%E8%87%AA%E5%AE%9A%E4%B9%89%E7%B1%BB%E5%92%8C%E5%AF%B9%E8%B1%A1%E7%9A%84%E5%88%9B%E5%BB%BA/" title="06-自定义类和对象的创建"><i class="post-icon gg-file-document"></i>06-自定义类和对象的创建</a></li><li class="tree-list-item"><a class="tree-list-post-link" href="/2021/07/22/07-%E6%95%B0%E7%BB%84/" title="07-数组"><i class="post-icon gg-file-document"></i>07-数组</a></li><li class="tree-list-item"><a class="tree-list-post-link" href="/2021/07/31/08-String%E5%B8%B8%E7%94%A8%E6%96%B9%E6%B3%95%E8%AE%B2%E8%A7%A3/" title="08-String常用方法讲解"><i class="post-icon gg-file-document"></i>08-String常用方法讲解</a></li><li class="tree-list-item"><a class="tree-list-post-link" href="/2021/08/05/09-%E5%88%A4%E6%96%AD%E5%BE%AA%E7%8E%AF%E4%BD%9C%E4%B8%9A/" title="09-判断循环作业"><i class="post-icon gg-file-document"></i>09-判断循环作业</a></li><li class="tree-list-item"><a class="tree-list-post-link" href="/2021/08/08/10-%E4%BA%8C%E7%BB%B4%E6%95%B0%E7%BB%84/" title="10-二维数组"><i class="post-icon gg-file-document"></i>10-二维数组</a></li><li class="tree-list-item"><a class="tree-list-post-link" href="/2021/08/08/11-%E5%AF%B9%E8%B1%A1%E7%9A%84%E7%94%9F%E5%91%BD%E5%91%A8%E6%9C%9F/" title="11-对象的生命周期"><i class="post-icon gg-file-document"></i>11-对象的生命周期</a></li><li class="tree-list-item"><a class="tree-list-post-link" href="/2021/08/11/12-PowerDesigner%E7%94%BB%E7%B1%BB%E5%9B%BE/" title="12-PowerDesigner画类图"><i class="post-icon gg-file-document"></i>12-PowerDesigner画类图</a></li><li class="tree-list-item"><a class="tree-list-post-link" href="/2021/08/11/13-%E4%BD%BF%E7%94%A8%E7%8E%B0%E6%9C%89%E7%B1%BB%E5%92%8C%E8%87%AA%E5%AE%9A%E4%B9%89%E7%B1%BB/" title="13-使用现有类和自定义类"><i class="post-icon gg-file-document"></i>13-使用现有类和自定义类</a></li><li class="tree-list-item"><a class="tree-list-post-link" href="/2021/08/16/14-%E6%95%B0%E7%BB%84%E4%BD%9C%E4%B8%9A/" title="14-数组作业"><i class="post-icon gg-file-document"></i>14-数组作业</a></li></ul></li><li class="tree-list-item"><i class="toggle-post-icon gg-folder-add"></i><a class="tree-list-link" href="/categories/tools/">tools</a><ul class="tree-list-children"><li class="tree-list-item"><a class="tree-list-post-link" href="/2021/08/02/ASCll%E5%AF%B9%E7%85%A7%E8%A1%A8/" title="ASCll对照表"><i class="post-icon gg-file-document"></i>ASCll对照表</a></li><li class="tree-list-item"><a class="tree-list-post-link" href="/2021/07/19/Aplayer%E6%92%AD%E6%94%BE%E5%99%A8/" title="Aplayer播放器"><i class="post-icon gg-file-document"></i>Aplayer播放器</a></li><li class="tree-list-item"><a class="tree-list-post-link" href="/2021/07/19/hexo-theme-pure/" title="hexo-theme-pure"><i class="post-icon gg-file-document"></i>hexo-theme-pure</a></li></ul></li></ul>
+        <div id="widget-tree-button">
+          <i class="gg-chevron-right"></i>
+        </div>
+      </div><!-- hexo injector body_end end --></body></html>

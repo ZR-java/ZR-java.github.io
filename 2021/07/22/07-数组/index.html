@@ -1,0 +1,478 @@
+<!DOCTYPE html><html lang="zh-CN"><head><!-- hexo injector head_begin start --><link href="https://cdn.jsdelivr.net/npm/hexo-widget-tree@0.1.1/css/index.css" rel="stylesheet"/><!-- hexo injector head_begin end --><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="theme-color" content="#0078E7"><meta name="author" content="ZR"><meta name="copyright" content="ZR"><meta name="generator" content="Hexo 5.4.0"><meta name="theme" content="hexo-theme-yun"><title>07-数组 | ZR的小站</title><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@900&amp;display=swap" media="print" onload="this.media='all'"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/star-markdown-css@0.1.25/dist/yun/yun-markdown.min.css"><script src="//at.alicdn.com/t/font_1140697_dxory92pb0h.js" async></script><script src="https://cdn.jsdelivr.net/npm/scrollreveal/dist/scrollreveal.min.js" defer></script><script>document.addEventListener("DOMContentLoaded", () => {
+  [".post-card",".post-content img"].forEach((target)=> {
+    ScrollReveal().reveal(target);
+  })
+});
+</script><script src="https://cdn.jsdelivr.net/npm/pjax@latest/pjax.min.js" defer></script><script src="/js/pjax.js" defer></script><script src="https://cdn.jsdelivr.net/npm/vue@2.6.11"></script><link id="light-prism-css" rel="stylesheet" href="https://cdn.jsdelivr.net/npm/prismjs@latest/themes/prism.css" media="(prefers-color-scheme: light)"><link id="dark-prism-css" rel="stylesheet" href="https://cdn.jsdelivr.net/npm/prismjs@latest/themes/prism-tomorrow.css" media="(prefers-color-scheme: dark)"><link rel="icon" href="/yun.svg"><link rel="mask-icon" href="/yun.svg" color="#0078E7"><link rel="alternate icon" href="/yun.ico"><link rel="preload" href="/css/hexo-theme-yun.css" as="style"><link rel="preload" href="/js/utils.js" as="script"><link rel="preload" href="/js/hexo-theme-yun.js" as="script"><link rel="prefetch" href="/js/sidebar.js" as="script"><link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin><script id="yun-config">
+    const Yun = window.Yun || {};
+    window.CONFIG = {"hostname":"zr-java.github.io","root":"/","title":["ZR","的","垃","圾","场"],"version":"1.6.1","mode":"auto","copycode":true,"page":{"isPost":true},"i18n":{"placeholder":"搜索...","empty":"找不到您查询的内容: ${query}","hits":"找到 ${hits} 条结果","hits_time":"找到 ${hits} 条结果（用时 ${time} 毫秒）"},"anonymous_image":"https://cdn.jsdelivr.net/gh/YunYouJun/cdn/img/avatar/none.jpg","say":{"api":"https://v1.hitokoto.cn","hitokoto":true},"local_search":{"path":"/search.xml"},"fireworks":{"colors":["102, 167, 221","62, 131, 225","33, 78, 194"]}};
+  </script><link rel="stylesheet" href="/css/hexo-theme-yun.css"><script src="/js/utils.js"></script><script src="/js/hexo-theme-yun.js"></script><meta name="description" content="数组的基本操作常见的数据结构  数组(Array):管理多个数据 栈(Stack):先进后出(后进先出) 队列(Queue):先进先出 链表(Linked List):查询效率低，增加、删除效率高 单向链表 双向链表 环形链表   二叉数等………..    数组概述  数组也是对象 数组中保存着多个相同类型的元素 数组中的每一个元素都是变量    定义数组    (基本类型的数组)创建TestAr">
+<meta property="og:type" content="article">
+<meta property="og:title" content="07-数组">
+<meta property="og:url" content="https://zr-java.github.io/2021/07/22/07-%E6%95%B0%E7%BB%84/index.html">
+<meta property="og:site_name" content="ZR的小站">
+<meta property="og:description" content="数组的基本操作常见的数据结构  数组(Array):管理多个数据 栈(Stack):先进后出(后进先出) 队列(Queue):先进先出 链表(Linked List):查询效率低，增加、删除效率高 单向链表 双向链表 环形链表   二叉数等………..    数组概述  数组也是对象 数组中保存着多个相同类型的元素 数组中的每一个元素都是变量    定义数组    (基本类型的数组)创建TestAr">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://zr-java.github.io/2021/07/22/07-%E6%95%B0%E7%BB%84/image-20210724155545943.png">
+<meta property="og:image" content="https://zr-java.github.io/2021/07/22/07-%E6%95%B0%E7%BB%84/image-20210729204356010.png">
+<meta property="og:image" content="https://zr-java.github.io/2021/07/22/07-%E6%95%B0%E7%BB%84/image-20210729204758552.png">
+<meta property="og:image" content="https://zr-java.github.io/2021/07/22/07-%E6%95%B0%E7%BB%84/image-20210730194407428.png">
+<meta property="article:published_time" content="2021-07-22T06:34:30.000Z">
+<meta property="article:modified_time" content="2021-08-18T09:27:10.394Z">
+<meta property="article:author" content="ZR">
+<meta property="article:tag" content="java">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://zr-java.github.io/2021/07/22/07-%E6%95%B0%E7%BB%84/image-20210724155545943.png"><script src="/js/ui/mode.js"></script></head><body><script defer src="https://cdn.jsdelivr.net/npm/animejs@latest"></script><script defer src="/js/ui/fireworks.js"></script><canvas class="fireworks"></canvas><div class="container"><a class="sidebar-toggle hty-icon-button" id="menu-btn"><div class="hamburger hamburger--spin" type="button"><span class="hamburger-box"><span class="hamburger-inner"></span></span></div></a><div class="sidebar-toggle sidebar-overlay"></div><aside class="sidebar"><script src="/js/sidebar.js"></script><ul class="sidebar-nav"><li class="sidebar-nav-item sidebar-nav-toc hty-icon-button sidebar-nav-active" data-target="post-toc-wrap" title="文章目录"><svg class="icon" aria-hidden="true"><use xlink:href="#icon-list-ordered"></use></svg></li><li class="sidebar-nav-item sidebar-nav-overview hty-icon-button" data-target="site-overview-wrap" title="站点概览"><svg class="icon" aria-hidden="true"><use xlink:href="#icon-passport-line"></use></svg></li></ul><div class="sidebar-panel" id="site-overview-wrap"><div class="site-info fix-top"><a class="site-author-avatar" href="/about/" title="ZR"><img width="96" loading="lazy" src="/images/avatar.jpg" alt="ZR"><span class="site-author-status" title="不想上学">😭</span></a><div class="site-author-name"><a href="/about/">ZR</a></div><span class="site-name">ZR的小站</span><sub class="site-subtitle"></sub><div class="site-desciption">高级打字员</div></div><nav class="site-state"><a class="site-state-item hty-icon-button icon-home" href="/" title="我的主页"><span class="site-state-item-icon"><svg class="icon" aria-hidden="true"><use xlink:href="#icon-home-4-line"></use></svg></span></a><div class="site-state-item"><a href="/archives/" title="归档"><span class="site-state-item-icon"><svg class="icon" aria-hidden="true"><use xlink:href="#icon-archive-line"></use></svg></span><span class="site-state-item-count">20</span></a></div><div class="site-state-item"><a href="/categories/" title="分类"><span class="site-state-item-icon"><svg class="icon" aria-hidden="true"><use xlink:href="#icon-folder-2-line"></use></svg></span><span class="site-state-item-count">3</span></a></div><div class="site-state-item"><a href="/tags/" title="标签"><span class="site-state-item-icon"><svg class="icon" aria-hidden="true"><use xlink:href="#icon-price-tag-3-line"></use></svg></span><span class="site-state-item-count">3</span></a></div><a class="site-state-item hty-icon-button" target="_blank" rel="noopener" href="https://yun.yunyoujun.cn" title="文档"><span class="site-state-item-icon"><svg class="icon" aria-hidden="true"><use xlink:href="#icon-settings-line"></use></svg></span></a></nav><hr style="margin-bottom:0.5rem"><div class="links-of-author"><a class="links-of-author-item hty-icon-button" rel="noopener" href="mailto:247132084@qq.com" title="E-Mail" target="_blank" style="color:#8E71C1"><svg class="icon" aria-hidden="true"><use xlink:href="#icon-mail-line"></use></svg></a><a class="links-of-author-item hty-icon-button" rel="noopener" href="https://github.com/ZR-java" title="GitHub" target="_blank" style="color:#181717"><svg class="icon" aria-hidden="true"><use xlink:href="#icon-github-line"></use></svg></a></div><hr style="margin:0.5rem 1rem"><div class="links"><a class="links-item hty-icon-button" href="/links/" title="我的小伙伴们" style="color:dodgerblue"><svg class="icon" aria-hidden="true"><use xlink:href="#icon-genderless-line"></use></svg></a></div><br><a class="links-item hty-icon-button" id="toggle-mode-btn" href="javascript:;" title="Mode" style="color: #f1cb64"><svg class="icon" aria-hidden="true"><use xlink:href="#icon-contrast-2-line"></use></svg></a></div><div class="sidebar-panel sidebar-panel-active" id="post-toc-wrap"><div class="post-toc"><div class="post-toc-content"><ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#%E6%95%B0%E7%BB%84%E7%9A%84%E5%9F%BA%E6%9C%AC%E6%93%8D%E4%BD%9C"><span class="toc-number">1.</span> <span class="toc-text">数组的基本操作</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%B8%B8%E8%A7%81%E7%9A%84%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84"><span class="toc-number">1.0.1.</span> <span class="toc-text">常见的数据结构</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%95%B0%E7%BB%84%E6%A6%82%E8%BF%B0"><span class="toc-number">1.0.2.</span> <span class="toc-text">数组概述</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%AE%9A%E4%B9%89%E6%95%B0%E7%BB%84-%E5%9F%BA%E6%9C%AC%E7%B1%BB%E5%9E%8B%E7%9A%84%E6%95%B0%E7%BB%84"><span class="toc-number">1.0.3.</span> <span class="toc-text">定义数组    (基本类型的数组)</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%95%B0%E7%BB%84%E7%B1%BB%E5%9E%8B%E7%9A%84%E9%BB%98%E8%AE%A4%E5%80%BC"><span class="toc-number">1.0.4.</span> <span class="toc-text">数组类型的默认值</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%BC%95%E7%94%A8%E7%B1%BB%E5%9E%8B%E7%9A%84%E6%95%B0%E7%BB%84"><span class="toc-number">1.0.5.</span> <span class="toc-text">引用类型的数组</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Java%E8%AF%AD%E8%A8%80%E6%B3%A8%E9%87%8D%E7%B1%BB%E5%9E%8B"><span class="toc-number">1.0.6.</span> <span class="toc-text">Java语言注重类型</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%95%B0%E7%BB%84%E7%9A%84%E9%81%8D%E5%8E%86"><span class="toc-number">1.0.7.</span> <span class="toc-text">数组的遍历</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#for-each-%E5%BE%AA%E7%8E%AF"><span class="toc-number">1.0.7.1.</span> <span class="toc-text">for each 循环</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%95%B0%E7%BB%84%E7%9A%84%E6%8B%B7%E8%B4%9D-%E6%89%A9%E5%AE%B9"><span class="toc-number">1.0.8.</span> <span class="toc-text">数组的拷贝(扩容)</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%95%B0%E7%BB%84%E6%8E%92%E5%BA%8F"><span class="toc-number">1.0.9.</span> <span class="toc-text">数组排序</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%86%92%E6%B3%A1%E6%8E%92%E5%BA%8F-%E6%95%88%E7%8E%87%E6%9C%80%E4%BD%8E"><span class="toc-number">1.0.9.1.</span> <span class="toc-text">冒泡排序    (效率最低):</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E6%8F%92%E5%85%A5%E6%8E%92%E5%BA%8F"><span class="toc-number">1.0.9.2.</span> <span class="toc-text">插入排序:</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E9%80%89%E6%8B%A9%E6%8E%92%E5%BA%8F"><span class="toc-number">1.0.9.3.</span> <span class="toc-text">选择排序:</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%BF%AB%E9%80%9F%E6%8E%92%E5%BA%8F"><span class="toc-number">1.0.9.4.</span> <span class="toc-text">快速排序:</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%BD%BF%E7%94%A8Arrays%E7%B1%BB%E5%B8%AE%E5%8A%A9%E6%8E%92%E5%BA%8F"><span class="toc-number">1.0.10.</span> <span class="toc-text">使用Arrays类帮助排序</span></a></li></ol></li></ol></li></ol></div></div></div></aside><main class="sidebar-translate" id="content"><div id="post"><article class="hty-card post-block" itemscope itemtype="https://schema.org/Article"><link itemprop="mainEntityOfPage" href="https://ZR-java.github.io/2021/07/22/07-%E6%95%B0%E7%BB%84/"><span hidden itemprop="author" itemscope itemtype="https://schema.org/Person"><meta itemprop="name" content="ZR"><meta itemprop="description"></span><span hidden itemprop="publisher" itemscope itemtype="https://schema.org/Organization"><meta itemprop="name" content="ZR的小站"></span><header class="post-header"><h1 class="post-title" itemprop="name headline">07-数组</h1><div class="post-meta"><div class="post-time" style="display:block"><span class="post-meta-item-icon"><svg class="icon" aria-hidden="true"><use xlink:href="#icon-calendar-line"></use></svg></span> <time title="创建时间：2021-07-22 14:34:30" itemprop="dateCreated datePublished" datetime="2021-07-22T14:34:30+08:00">2021-07-22</time><span class="post-meta-divider">-</span><span class="post-meta-item-icon"><svg class="icon" aria-hidden="true"><use xlink:href="#icon-calendar-2-line"></use></svg></span> <time title="修改时间：2021-08-18 17:27:10" itemprop="dateModified" datetime="2021-08-18T17:27:10+08:00">2021-08-18</time></div><span class="post-count"><span class="post-symbolcount"><span class="post-meta-item-icon" title="本文字数"><svg class="icon" aria-hidden="true"><use xlink:href="#icon-file-word-line"></use></svg></span> <span title="本文字数">2k</span><span class="post-meta-divider">-</span><span class="post-meta-item-icon" title="阅读时长"><svg class="icon" aria-hidden="true"><use xlink:href="#icon-timer-line"></use></svg></span> <span title="阅读时长">9m</span></span></span><div class="post-classify"><span class="post-category"> <span class="post-meta-item-icon" style="margin-right:3px;"><svg class="icon" aria-hidden="true"><use xlink:href="#icon-folder-line"></use></svg></span><span itemprop="about" itemscope itemtype="https://schema.org/Thing"><a class="category-item" href="/categories/javaSE/" style="--text-color:var(--hty-text-color)" itemprop="url" rel="index"><span itemprop="text">javaSE</span></a></span></span><span class="post-tag"><span class="post-meta-divider">-</span><a class="tag-item" href="/tags/java/" style="--text-color:var(--hty-text-color)"><span class="post-meta-item-icon"><svg class="icon" aria-hidden="true"><use xlink:href="#icon-price-tag-3-line"></use></svg></span><span class="tag-name">java</span></a></span></div></div></header><section class="post-body" itemprop="articleBody"><div class="post-content markdown-body" style="--smc-primary:#0078E7;"><h1 id="数组的基本操作"><a href="#数组的基本操作" class="headerlink" title="数组的基本操作"></a>数组的基本操作</h1><h3 id="常见的数据结构"><a href="#常见的数据结构" class="headerlink" title="常见的数据结构"></a>常见的数据结构</h3><blockquote>
+<ul>
+<li>数组(Array):管理多个数据</li>
+<li>栈(Stack):先进后出(后进先出)</li>
+<li>队列(Queue):先进先出</li>
+<li>链表(Linked List):查询效率低，增加、删除效率高<ul>
+<li>单向链表</li>
+<li>双向链表</li>
+<li>环形链表</li>
+</ul>
+</li>
+<li>二叉数等………..</li>
+</ul>
+</blockquote>
+<hr>
+<h3 id="数组概述"><a href="#数组概述" class="headerlink" title="数组概述"></a>数组概述</h3><blockquote>
+<ul>
+<li>数组也是<strong>对象</strong></li>
+<li>数组中保存着多个相同类型的元素</li>
+<li>数组中的每一个元素都是<strong>变量</strong></li>
+</ul>
+</blockquote>
+<hr>
+<h3 id="定义数组-基本类型的数组"><a href="#定义数组-基本类型的数组" class="headerlink" title="定义数组    (基本类型的数组)"></a>定义数组    (基本类型的数组)</h3><p><strong>创建TestArray1.java</strong></p>
+<pre class="language-java" data-language="java"><code class="language-java"><span class="token keyword">public</span> <span class="token keyword">class</span> <span class="token class-name">TestArray1</span><span class="token punctuation">&#123;</span>
+	
+	<span class="token keyword">public</span> <span class="token keyword">static</span> <span class="token keyword">void</span> <span class="token function">main</span><span class="token punctuation">(</span><span class="token class-name">String</span><span class="token punctuation">[</span><span class="token punctuation">]</span> args<span class="token punctuation">)</span><span class="token punctuation">&#123;</span>
+        
+		<span class="token keyword">int</span> a <span class="token operator">=</span> <span class="token number">10</span><span class="token punctuation">;</span>
+        
+        <span class="token comment">//数组的定义和赋值</span>
+        <span class="token keyword">int</span><span class="token punctuation">[</span><span class="token punctuation">]</span> numberArray <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token keyword">int</span><span class="token punctuation">[</span><span class="token number">5</span><span class="token punctuation">]</span><span class="token punctuation">;</span> <span class="token comment">//numberArray是引用类型,引用数组对象</span>
+        <span class="token comment">//数组元素的赋值</span>
+        numberArray<span class="token punctuation">[</span><span class="token number">0</span><span class="token punctuation">]</span> <span class="token operator">=</span> <span class="token number">10</span><span class="token punctuation">;</span>
+        numberArray<span class="token punctuation">[</span><span class="token number">1</span><span class="token punctuation">]</span> <span class="token operator">=</span> <span class="token number">20</span><span class="token punctuation">;</span>
+        numberArray<span class="token punctuation">[</span><span class="token number">2</span><span class="token punctuation">]</span> <span class="token operator">=</span> <span class="token number">30</span><span class="token punctuation">;</span>
+        numberArray<span class="token punctuation">[</span><span class="token number">3</span><span class="token punctuation">]</span> <span class="token operator">=</span> <span class="token number">40</span><span class="token punctuation">;</span>
+        numberArray<span class="token punctuation">[</span><span class="token number">4</span><span class="token punctuation">]</span> <span class="token operator">=</span> <span class="token number">50</span><span class="token punctuation">;</span>
+            
+        <span class="token class-name">System</span><span class="token punctuation">.</span>out<span class="token punctuation">.</span><span class="token function">println</span><span class="token punctuation">(</span>numberArray<span class="token punctuation">)</span><span class="token punctuation">;</span>
+        
+        <span class="token comment">//数组的遍历:一个一个地看一下</span>
+        <span class="token keyword">for</span><span class="token punctuation">(</span><span class="token keyword">int</span> i<span class="token operator">=</span><span class="token number">0</span><span class="token punctuation">;</span>i<span class="token operator">&lt;</span>numberArray<span class="token punctuation">.</span>length<span class="token punctuation">;</span>i<span class="token operator">++</span><span class="token punctuation">)</span><span class="token punctuation">&#123;</span>
+            <span class="token class-name">System</span><span class="token punctuation">.</span>out<span class="token punctuation">.</span><span class="token function">println</span><span class="token punctuation">(</span><span class="token string">"numberArray["</span><span class="token operator">+</span>i<span class="token operator">+</span><span class="token string">"]="</span><span class="token operator">+</span>numberArray<span class="token punctuation">[</span>i<span class="token punctuation">]</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token punctuation">&#125;</span>
+	<span class="token punctuation">&#125;</span>
+
+<span class="token punctuation">&#125;</span></code></pre>
+
+<blockquote>
+<p>数组本身:System.out.println(numberArray);</p>
+<p><img src="/2021/07/22/07-%E6%95%B0%E7%BB%84/image-20210724155545943.png" loading="lazy"></p>
+</blockquote>
+<p><font color="red">java.lang.ArrayIndexOutOfBoundsException</font>:数组越界异常</p>
+<p><strong>创建TestArray2.java</strong></p>
+<pre class="language-java" data-language="java"><code class="language-java"><span class="token keyword">public</span> <span class="token keyword">class</span> <span class="token class-name">TestArray2</span><span class="token punctuation">&#123;</span>
+    <span class="token keyword">public</span> <span class="token keyword">static</span> <span class="token keyword">void</span> <span class="token function">main</span><span class="token punctuation">(</span><span class="token class-name">String</span><span class="token punctuation">[</span><span class="token punctuation">]</span> args<span class="token punctuation">)</span><span class="token punctuation">&#123;</span>
+        <span class="token keyword">int</span><span class="token punctuation">[</span><span class="token punctuation">]</span> numberArray1 <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token keyword">int</span><span class="token punctuation">[</span><span class="token number">5</span><span class="token punctuation">]</span><span class="token punctuation">;</span>
+        numberArray1<span class="token punctuation">[</span><span class="token number">0</span><span class="token punctuation">]</span> <span class="token operator">=</span> <span class="token number">10</span><span class="token punctuation">;</span>
+        numberArray1<span class="token punctuation">[</span><span class="token number">2</span><span class="token punctuation">]</span> <span class="token operator">=</span> <span class="token number">40</span><span class="token punctuation">;</span>
+        numberArray1<span class="token punctuation">[</span><span class="token number">4</span><span class="token punctuation">]</span> <span class="token operator">=</span> <span class="token number">60</span><span class="token punctuation">;</span>
+        
+        <span class="token keyword">for</span><span class="token punctuation">(</span><span class="token keyword">int</span> i<span class="token operator">=</span><span class="token number">0</span><span class="token punctuation">;</span>i<span class="token operator">&lt;</span>numberArray1<span class="token punctuation">.</span>length<span class="token punctuation">;</span>i<span class="token operator">++</span><span class="token punctuation">)</span><span class="token punctuation">&#123;</span>
+            <span class="token class-name">System</span><span class="token punctuation">.</span>out<span class="token punctuation">.</span><span class="token function">println</span><span class="token punctuation">(</span><span class="token string">"numberArray1["</span><span class="token operator">+</span>i<span class="token operator">+</span><span class="token string">"]="</span><span class="token operator">+</span>numberArray1<span class="token punctuation">[</span>i<span class="token punctuation">]</span><span class="token punctuation">)</span><span class="token punctuation">;</span>	
+        <span class="token punctuation">&#125;</span>
+		<span class="token class-name">System</span><span class="token punctuation">.</span>out<span class="token punctuation">.</span><span class="token function">println</span><span class="token punctuation">(</span><span class="token string">"================"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token comment">//数组的其他定义方法</span>
+        <span class="token keyword">int</span><span class="token punctuation">[</span><span class="token punctuation">]</span> numberArray2 <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token keyword">int</span><span class="token punctuation">[</span><span class="token punctuation">]</span><span class="token punctuation">&#123;</span><span class="token number">1</span><span class="token punctuation">,</span><span class="token number">2</span><span class="token punctuation">,</span><span class="token number">3</span><span class="token punctuation">,</span><span class="token number">4</span><span class="token punctuation">,</span><span class="token number">5</span><span class="token punctuation">,</span><span class="token number">6</span><span class="token punctuation">,</span><span class="token number">7</span><span class="token punctuation">,</span><span class="token number">8</span><span class="token punctuation">,</span><span class="token number">9</span><span class="token punctuation">,</span><span class="token number">10</span><span class="token punctuation">&#125;</span><span class="token punctuation">;</span>
+        
+         <span class="token keyword">for</span><span class="token punctuation">(</span><span class="token keyword">int</span> i<span class="token operator">=</span><span class="token number">0</span><span class="token punctuation">;</span>i<span class="token operator">&lt;</span>numberArray2<span class="token punctuation">.</span>length<span class="token punctuation">;</span>i<span class="token operator">++</span><span class="token punctuation">)</span><span class="token punctuation">&#123;</span>
+            <span class="token class-name">System</span><span class="token punctuation">.</span>out<span class="token punctuation">.</span><span class="token function">println</span><span class="token punctuation">(</span><span class="token string">"numberArray2["</span><span class="token operator">+</span>i<span class="token operator">+</span><span class="token string">"]="</span><span class="token operator">+</span>numberArray2<span class="token punctuation">[</span>i<span class="token punctuation">]</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token punctuation">&#125;</span>
+        
+        <span class="token comment">//该种方式不建议使用</span>
+        <span class="token keyword">int</span><span class="token punctuation">[</span><span class="token punctuation">]</span> numberArray3 <span class="token operator">=</span> <span class="token punctuation">&#123;</span><span class="token number">1</span><span class="token punctuation">,</span><span class="token number">2</span><span class="token punctuation">,</span><span class="token number">3</span><span class="token punctuation">,</span><span class="token number">4</span><span class="token punctuation">,</span><span class="token number">5</span><span class="token punctuation">&#125;</span><span class="token punctuation">;</span>
+    <span class="token punctuation">&#125;</span>
+<span class="token punctuation">&#125;</span></code></pre>
+
+<hr>
+<h3 id="数组类型的默认值"><a href="#数组类型的默认值" class="headerlink" title="数组类型的默认值"></a>数组类型的默认值</h3><blockquote>
+<ul>
+<li>byte、short、int、long为0</li>
+<li>float、double为0.0</li>
+<li>char为’\u0000’</li>
+<li>boolean为false</li>
+<li>引用类型为null</li>
+</ul>
+</blockquote>
+<hr>
+<h3 id="引用类型的数组"><a href="#引用类型的数组" class="headerlink" title="引用类型的数组"></a>引用类型的数组</h3><p><strong>创建TestArray3.java    (引用上一个person类)</strong></p>
+<pre class="language-java" data-language="java"><code class="language-java"><span class="token keyword">public</span> <span class="token keyword">class</span> <span class="token class-name">TestArray3</span><span class="token punctuation">&#123;</span>
+    
+	<span class="token keyword">public</span> <span class="token keyword">static</span> <span class="token keyword">void</span> <span class="token function">main</span><span class="token punctuation">(</span><span class="token class-name">String</span><span class="token punctuation">[</span><span class="token punctuation">]</span> args<span class="token punctuation">)</span><span class="token punctuation">&#123;</span>
+        
+		<span class="token class-name">Person</span><span class="token punctuation">[</span><span class="token punctuation">]</span> personArray <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">Person</span><span class="token punctuation">[</span><span class="token number">5</span><span class="token punctuation">]</span><span class="token punctuation">;</span>
+		
+        personArray<span class="token punctuation">[</span><span class="token number">0</span><span class="token punctuation">]</span> <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">Person</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+		personArray<span class="token punctuation">[</span><span class="token number">1</span><span class="token punctuation">]</span> <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">Person</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+		personArray<span class="token punctuation">[</span><span class="token number">2</span><span class="token punctuation">]</span> <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">Person</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+		personArray<span class="token punctuation">[</span><span class="token number">3</span><span class="token punctuation">]</span> <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">Person</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+		personArray<span class="token punctuation">[</span><span class="token number">4</span><span class="token punctuation">]</span> <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">Person</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+		
+		personArray<span class="token punctuation">[</span><span class="token number">0</span><span class="token punctuation">]</span><span class="token punctuation">.</span>name <span class="token operator">=</span> <span class="token string">"张三"</span><span class="token punctuation">;</span>
+		personArray<span class="token punctuation">[</span><span class="token number">0</span><span class="token punctuation">]</span><span class="token punctuation">.</span>age <span class="token operator">=</span> <span class="token number">25</span><span class="token punctuation">;</span>
+		personArray<span class="token punctuation">[</span><span class="token number">0</span><span class="token punctuation">]</span><span class="token punctuation">.</span>gender <span class="token operator">=</span> <span class="token boolean">true</span><span class="token punctuation">;</span>
+		
+		<span class="token keyword">for</span><span class="token punctuation">(</span><span class="token keyword">int</span> i<span class="token operator">=</span><span class="token number">0</span><span class="token punctuation">;</span>i<span class="token operator">&lt;</span>personArray<span class="token punctuation">.</span>length<span class="token punctuation">;</span>i<span class="token operator">++</span><span class="token punctuation">)</span><span class="token punctuation">&#123;</span>
+			<span class="token class-name">System</span><span class="token punctuation">.</span>out<span class="token punctuation">.</span><span class="token function">println</span><span class="token punctuation">(</span><span class="token string">"personArray["</span><span class="token operator">+</span>i<span class="token operator">+</span><span class="token string">"]="</span><span class="token operator">+</span>personArray<span class="token punctuation">[</span>i<span class="token punctuation">]</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+			personArray<span class="token punctuation">[</span>i<span class="token punctuation">]</span><span class="token punctuation">.</span><span class="token function">printInfo</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+		<span class="token punctuation">&#125;</span>
+        
+        <span class="token class-name">System</span><span class="token punctuation">.</span>out<span class="token punctuation">.</span><span class="token function">println</span><span class="token punctuation">(</span><span class="token string">"==============="</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+		
+		<span class="token keyword">for</span><span class="token punctuation">(</span><span class="token class-name">Person</span> person<span class="token operator">:</span>personArray<span class="token punctuation">)</span><span class="token punctuation">&#123;</span>
+			<span class="token class-name">System</span><span class="token punctuation">.</span>out<span class="token punctuation">.</span><span class="token function">println</span><span class="token punctuation">(</span>person<span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token punctuation">&#125;</span>
+        
+    <span class="token punctuation">&#125;</span>
+	
+<span class="token punctuation">&#125;</span></code></pre>
+
+<p><img src="/2021/07/22/07-%E6%95%B0%E7%BB%84/image-20210729204356010.png" loading="lazy"></p>
+<p>测试结果:</p>
+<p><img src="/2021/07/22/07-%E6%95%B0%E7%BB%84/image-20210729204758552.png" loading="lazy"></p>
+<hr>
+<h3 id="Java语言注重类型"><a href="#Java语言注重类型" class="headerlink" title="Java语言注重类型"></a>Java语言注重类型</h3><blockquote>
+<ul>
+<li>一旦数组被声明出来,你就只能够装入所声明类型的元素</li>
+<li>数组元素的初始化分为两种<ul>
+<li>基本类型元素的初始化就是直接将数据放入数组元素中</li>
+<li>引用类型的元素的初始化需要去指向另外一个对象</li>
+</ul>
+</li>
+</ul>
+</blockquote>
+<h3 id="数组的遍历"><a href="#数组的遍历" class="headerlink" title="数组的遍历"></a>数组的遍历</h3><blockquote>
+<ul>
+<li>数组的遍历就是依次访问数组元素的值</li>
+<li>通常情况下使用for循环</li>
+<li>JDK1.5以后，更加便利的for each循环</li>
+<li>数组的length属性</li>
+</ul>
+</blockquote>
+<h4 id="for-each-循环"><a href="#for-each-循环" class="headerlink" title="for each 循环"></a><strong>for each 循环</strong></h4><p>好处:简化遍历</p>
+<p>缺点:只能全部遍历</p>
+<blockquote>
+<p>for(类型 元素:被遍历的容器对象){</p>
+<p>}</p>
+</blockquote>
+<pre class="language-java" data-language="java"><code class="language-java">例子<span class="token operator">:</span>
+<span class="token keyword">int</span><span class="token punctuation">[</span><span class="token punctuation">]</span> array <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token keyword">int</span><span class="token punctuation">[</span><span class="token punctuation">]</span><span class="token punctuation">&#123;</span><span class="token number">1</span><span class="token punctuation">,</span><span class="token number">2</span><span class="token punctuation">,</span><span class="token number">3</span><span class="token punctuation">,</span><span class="token number">4</span><span class="token punctuation">,</span><span class="token number">5</span><span class="token punctuation">&#125;</span><span class="token punctuation">;</span>
+<span class="token keyword">for</span><span class="token punctuation">(</span><span class="token keyword">int</span> xxx<span class="token operator">:</span>array<span class="token punctuation">)</span><span class="token punctuation">&#123;</span>
+	<span class="token class-name">System</span><span class="token punctuation">.</span>out<span class="token punctuation">.</span><span class="token function">println</span><span class="token punctuation">(</span>xxx<span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">&#125;</span></code></pre>
+
+<hr>
+<h3 id="数组的拷贝-扩容"><a href="#数组的拷贝-扩容" class="headerlink" title="数组的拷贝(扩容)"></a>数组的拷贝(扩容)</h3><blockquote>
+<p>System.arraycopy();              (java.lang下的)</p>
+<p>arraycopy(Object src, int srcPos, Object dest, int  destPos, int length)</p>
+<ul>
+<li>src - 源数组</li>
+<li>srcPos - 源数组中的起始位置</li>
+<li>dest - 目标数组</li>
+<li>destPos - 目标数据中的起始位置</li>
+<li>length - 要复制的数组元素的数量</li>
+</ul>
+</blockquote>
+<p><strong>创建TestArraycopy</strong></p>
+<pre class="language-java" data-language="java"><code class="language-java"><span class="token keyword">public</span> <span class="token keyword">class</span> <span class="token class-name">TestArraycopy</span><span class="token punctuation">&#123;</span>
+	
+	<span class="token keyword">public</span> <span class="token keyword">static</span> <span class="token keyword">void</span> <span class="token function">main</span><span class="token punctuation">(</span><span class="token class-name">String</span><span class="token punctuation">[</span><span class="token punctuation">]</span> args<span class="token punctuation">)</span><span class="token punctuation">&#123;</span>
+		
+		<span class="token keyword">int</span><span class="token punctuation">[</span><span class="token punctuation">]</span> array1 <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token keyword">int</span><span class="token punctuation">[</span><span class="token punctuation">]</span><span class="token punctuation">&#123;</span><span class="token number">1</span><span class="token punctuation">,</span><span class="token number">2</span><span class="token punctuation">,</span><span class="token number">3</span><span class="token punctuation">,</span><span class="token number">4</span><span class="token punctuation">,</span><span class="token number">5</span><span class="token punctuation">,</span><span class="token number">6</span><span class="token punctuation">,</span><span class="token number">7</span><span class="token punctuation">,</span><span class="token number">8</span><span class="token punctuation">,</span><span class="token number">9</span><span class="token punctuation">,</span><span class="token number">10</span><span class="token punctuation">&#125;</span><span class="token punctuation">;</span>
+		<span class="token keyword">int</span><span class="token punctuation">[</span><span class="token punctuation">]</span> array2 <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token keyword">int</span><span class="token punctuation">[</span>array1<span class="token punctuation">.</span>length<span class="token operator">*</span><span class="token number">2</span><span class="token punctuation">]</span><span class="token punctuation">;</span><span class="token comment">//一般扩容两倍</span>
+		<span class="token comment">/*
+		for(int i=0;i&lt;array1.length;i++)&#123; 		//拷贝
+			array2[i] = array1[i];
+		&#125;
+		*/</span>
+		<span class="token class-name">System</span><span class="token punctuation">.</span><span class="token function">arraycopy</span><span class="token punctuation">(</span>array1<span class="token punctuation">,</span><span class="token number">0</span><span class="token punctuation">,</span>array2<span class="token punctuation">,</span><span class="token number">0</span><span class="token punctuation">,</span>array1<span class="token punctuation">.</span>length<span class="token punctuation">)</span><span class="token punctuation">;</span>
+		
+		<span class="token keyword">for</span><span class="token punctuation">(</span><span class="token keyword">int</span> i<span class="token operator">=</span><span class="token number">0</span><span class="token punctuation">;</span>i<span class="token operator">&lt;</span>array2<span class="token punctuation">.</span>length<span class="token punctuation">;</span>i<span class="token operator">++</span><span class="token punctuation">)</span><span class="token punctuation">&#123;</span>
+			<span class="token class-name">System</span><span class="token punctuation">.</span>out<span class="token punctuation">.</span><span class="token function">println</span><span class="token punctuation">(</span><span class="token string">"array2["</span><span class="token operator">+</span>i<span class="token operator">+</span><span class="token string">"]="</span><span class="token operator">+</span>array2<span class="token punctuation">[</span>i<span class="token punctuation">]</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+		<span class="token punctuation">&#125;</span>
+	<span class="token punctuation">&#125;</span>	
+	
+<span class="token punctuation">&#125;</span></code></pre>
+
+<hr>
+<h3 id="数组排序"><a href="#数组排序" class="headerlink" title="数组排序"></a><font color="red">数组排序</font></h3><h4 id="冒泡排序-效率最低"><a href="#冒泡排序-效率最低" class="headerlink" title="冒泡排序    (效率最低):"></a>冒泡排序    (效率最低):</h4><ol>
+<li>比较相邻的元素。如果第一个比第二个小，就交换他们两个。</li>
+<li>对每一对相邻元素作同样的工作，从开始第一对到结尾的最后一对。在这一点，最后的元素应该会是最小的数。</li>
+<li>针对所有的元素重复以上的步骤，除了最后一个。</li>
+<li>持续每次对越来越少的元素重复上面的步骤，直到没有任何一对数字需要比较。</li>
+</ol>
+<p><strong>创建TestBubbleSort</strong></p>
+<pre class="language-java" data-language="java"><code class="language-java"><span class="token comment">//冒泡排序</span>
+<span class="token keyword">import</span> <span class="token namespace">java<span class="token punctuation">.</span>util<span class="token punctuation">.</span></span><span class="token class-name">Random</span><span class="token punctuation">;</span>   <span class="token comment">//随机数</span>
+
+<span class="token keyword">public</span> <span class="token keyword">class</span> <span class="token class-name">TestBubbleSort</span><span class="token punctuation">&#123;</span>
+	
+	<span class="token keyword">public</span> <span class="token keyword">static</span> <span class="token keyword">void</span> <span class="token function">main</span><span class="token punctuation">(</span><span class="token class-name">String</span><span class="token punctuation">[</span><span class="token punctuation">]</span> args<span class="token punctuation">)</span><span class="token punctuation">&#123;</span>
+		
+		<span class="token class-name">Random</span> random <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">Random</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+		<span class="token keyword">int</span><span class="token punctuation">[</span><span class="token punctuation">]</span> array <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token keyword">int</span><span class="token punctuation">[</span><span class="token number">10</span><span class="token punctuation">]</span><span class="token punctuation">;</span>
+		<span class="token comment">//使用随机数为数组元素赋值</span>
+		<span class="token keyword">for</span><span class="token punctuation">(</span><span class="token keyword">int</span> i<span class="token operator">=</span><span class="token number">0</span><span class="token punctuation">;</span>i<span class="token operator">&lt;</span>array<span class="token punctuation">.</span>length<span class="token punctuation">;</span>i<span class="token operator">++</span><span class="token punctuation">)</span><span class="token punctuation">&#123;</span>
+			array<span class="token punctuation">[</span>i<span class="token punctuation">]</span> <span class="token operator">=</span> random<span class="token punctuation">.</span><span class="token function">nextInt</span><span class="token punctuation">(</span><span class="token number">100</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+		<span class="token punctuation">&#125;</span>
+		<span class="token comment">//遍历原始数组</span>
+		<span class="token class-name">System</span><span class="token punctuation">.</span>out<span class="token punctuation">.</span><span class="token function">print</span><span class="token punctuation">(</span><span class="token string">"遍历原始数组:"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+		<span class="token keyword">for</span><span class="token punctuation">(</span><span class="token keyword">int</span> n<span class="token operator">:</span>array<span class="token punctuation">)</span><span class="token punctuation">&#123;</span>
+			<span class="token class-name">System</span><span class="token punctuation">.</span>out<span class="token punctuation">.</span><span class="token function">print</span><span class="token punctuation">(</span>n<span class="token operator">+</span><span class="token string">" "</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+		<span class="token punctuation">&#125;</span>
+		<span class="token comment">//排序</span>
+		<span class="token keyword">int</span> temp<span class="token punctuation">;</span>
+		<span class="token keyword">for</span><span class="token punctuation">(</span><span class="token keyword">int</span> i<span class="token operator">=</span><span class="token number">0</span><span class="token punctuation">;</span>i<span class="token operator">&lt;</span>array<span class="token punctuation">.</span>length<span class="token punctuation">;</span>i<span class="token operator">++</span><span class="token punctuation">)</span><span class="token punctuation">&#123;</span>
+			<span class="token keyword">for</span><span class="token punctuation">(</span><span class="token keyword">int</span> j<span class="token operator">=</span><span class="token number">0</span><span class="token punctuation">;</span>j<span class="token operator">&lt;</span>array<span class="token punctuation">.</span>length<span class="token operator">-</span><span class="token number">1</span><span class="token operator">-</span>i<span class="token punctuation">;</span>j<span class="token operator">++</span><span class="token punctuation">)</span><span class="token punctuation">&#123;</span>	<span class="token comment">//-i步骤优化了程序,</span>
+													<span class="token comment">//冒泡排序一趟下来最后两位不要动了</span>
+				<span class="token keyword">if</span><span class="token punctuation">(</span>array<span class="token punctuation">[</span>j<span class="token punctuation">]</span> <span class="token operator">></span> array<span class="token punctuation">[</span>j<span class="token operator">+</span><span class="token number">1</span><span class="token punctuation">]</span><span class="token punctuation">)</span><span class="token punctuation">&#123;</span>
+					temp <span class="token operator">=</span> array<span class="token punctuation">[</span>j<span class="token punctuation">]</span><span class="token punctuation">;</span>
+					array<span class="token punctuation">[</span>j<span class="token punctuation">]</span> <span class="token operator">=</span> array<span class="token punctuation">[</span>j<span class="token operator">+</span><span class="token number">1</span><span class="token punctuation">]</span><span class="token punctuation">;</span>
+					array<span class="token punctuation">[</span>j<span class="token operator">+</span><span class="token number">1</span><span class="token punctuation">]</span> <span class="token operator">=</span> temp<span class="token punctuation">;</span>
+				<span class="token punctuation">&#125;</span>
+			<span class="token punctuation">&#125;</span>
+		<span class="token punctuation">&#125;</span>
+		<span class="token comment">//遍历排序后的数组</span>
+		<span class="token class-name">System</span><span class="token punctuation">.</span>out<span class="token punctuation">.</span><span class="token function">print</span><span class="token punctuation">(</span><span class="token string">"\r\遍历排序后数组:"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+		<span class="token keyword">for</span><span class="token punctuation">(</span><span class="token keyword">int</span> n<span class="token operator">:</span>array<span class="token punctuation">)</span><span class="token punctuation">&#123;</span>
+			<span class="token class-name">System</span><span class="token punctuation">.</span>out<span class="token punctuation">.</span><span class="token function">print</span><span class="token punctuation">(</span>n<span class="token operator">+</span><span class="token string">" "</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+		<span class="token punctuation">&#125;</span>
+		
+	<span class="token punctuation">&#125;</span>	
+	
+<span class="token punctuation">&#125;</span>
+</code></pre>
+
+<p><img src="/2021/07/22/07-%E6%95%B0%E7%BB%84/image-20210730194407428.png" loading="lazy"></p>
+<h4 id="插入排序"><a href="#插入排序" class="headerlink" title="插入排序:"></a>插入排序:</h4><ol>
+<li>从第一个元素开始，该元素可以认为已经被排序 </li>
+<li>取出下一个元素，在已经排序的元素序列中从后向前扫描  </li>
+<li>如果该元素（已排序）大于新元素，将该元素移到下一位置  </li>
+<li>重复步骤3，直到找到已排序的元素小于或者等于新元素的位置  </li>
+<li>将新元素插入到该位置中  </li>
+<li>重复步骤2 </li>
+</ol>
+<pre class="language-java" data-language="java"><code class="language-java"><span class="token keyword">import</span> <span class="token namespace">java<span class="token punctuation">.</span>util<span class="token punctuation">.</span></span><span class="token class-name">Random</span><span class="token punctuation">;</span>
+
+<span class="token keyword">public</span> <span class="token keyword">class</span> <span class="token class-name">TestInsertSort</span><span class="token punctuation">&#123;</span>
+    
+    <span class="token keyword">public</span> <span class="token keyword">static</span> <span class="token keyword">void</span> <span class="token function">main</span><span class="token punctuation">(</span><span class="token class-name">String</span><span class="token punctuation">[</span><span class="token punctuation">]</span> args<span class="token punctuation">)</span><span class="token punctuation">&#123;</span>
+        
+		<span class="token class-name">Random</span> random <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">Random</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+		<span class="token keyword">int</span><span class="token punctuation">[</span><span class="token punctuation">]</span> array <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token keyword">int</span><span class="token punctuation">[</span><span class="token number">10</span><span class="token punctuation">]</span><span class="token punctuation">;</span>
+		<span class="token comment">//使用随机数为数组元素赋值</span>
+		<span class="token keyword">for</span><span class="token punctuation">(</span><span class="token keyword">int</span> i<span class="token operator">=</span><span class="token number">0</span><span class="token punctuation">;</span>i<span class="token operator">&lt;</span>array<span class="token punctuation">.</span>length<span class="token punctuation">;</span>i<span class="token operator">++</span><span class="token punctuation">)</span><span class="token punctuation">&#123;</span>
+			array<span class="token punctuation">[</span>i<span class="token punctuation">]</span> <span class="token operator">=</span> random<span class="token punctuation">.</span><span class="token function">nextInt</span><span class="token punctuation">(</span><span class="token number">100</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+		<span class="token punctuation">&#125;</span>
+		<span class="token comment">//遍历原始数组</span>
+		<span class="token class-name">System</span><span class="token punctuation">.</span>out<span class="token punctuation">.</span><span class="token function">print</span><span class="token punctuation">(</span><span class="token string">"遍历原始数组:"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+		<span class="token keyword">for</span><span class="token punctuation">(</span><span class="token keyword">int</span> n<span class="token operator">:</span>array<span class="token punctuation">)</span><span class="token punctuation">&#123;</span>
+			<span class="token class-name">System</span><span class="token punctuation">.</span>out<span class="token punctuation">.</span><span class="token function">print</span><span class="token punctuation">(</span>n<span class="token operator">+</span><span class="token string">" "</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+		<span class="token punctuation">&#125;</span>
+		<span class="token comment">//排序</span>
+		<span class="token keyword">int</span> size <span class="token operator">=</span> array<span class="token punctuation">.</span>length<span class="token punctuation">;</span>
+		<span class="token keyword">int</span> temp<span class="token punctuation">;</span>
+		<span class="token keyword">for</span><span class="token punctuation">(</span><span class="token keyword">int</span> i<span class="token operator">=</span><span class="token number">1</span><span class="token punctuation">;</span>i<span class="token operator">&lt;</span>size<span class="token punctuation">;</span>i<span class="token operator">++</span><span class="token punctuation">)</span><span class="token punctuation">&#123;</span>
+			temp <span class="token operator">=</span> array<span class="token punctuation">[</span>i<span class="token punctuation">]</span><span class="token punctuation">;</span>
+			<span class="token keyword">int</span> j<span class="token operator">=</span>i<span class="token punctuation">;</span>
+			<span class="token comment">//找到位置往后挪</span>
+			<span class="token keyword">while</span><span class="token punctuation">(</span>j<span class="token operator">></span><span class="token number">0</span><span class="token punctuation">)</span><span class="token punctuation">&#123;</span>
+				<span class="token keyword">if</span><span class="token punctuation">(</span>temp <span class="token operator">&lt;</span> array<span class="token punctuation">[</span>j<span class="token operator">-</span><span class="token number">1</span><span class="token punctuation">]</span><span class="token punctuation">)</span><span class="token punctuation">&#123;</span>
+					array<span class="token punctuation">[</span>j<span class="token punctuation">]</span> <span class="token operator">=</span> array<span class="token punctuation">[</span>j<span class="token operator">-</span><span class="token number">1</span><span class="token punctuation">]</span><span class="token punctuation">;</span>
+				<span class="token punctuation">&#125;</span><span class="token keyword">else</span><span class="token punctuation">&#123;</span>
+					<span class="token keyword">break</span><span class="token punctuation">;</span>
+				<span class="token punctuation">&#125;</span>
+				j<span class="token operator">--</span><span class="token punctuation">;</span>
+			<span class="token punctuation">&#125;</span>
+			<span class="token comment">//插入数据</span>
+			array<span class="token punctuation">[</span>j<span class="token punctuation">]</span><span class="token operator">=</span>temp<span class="token punctuation">;</span>
+		<span class="token punctuation">&#125;</span>
+		
+		<span class="token comment">//遍历排序后的数组</span>
+		<span class="token class-name">System</span><span class="token punctuation">.</span>out<span class="token punctuation">.</span><span class="token function">print</span><span class="token punctuation">(</span><span class="token string">"\r\n遍历排序后数组:"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+		<span class="token keyword">for</span><span class="token punctuation">(</span><span class="token keyword">int</span> n<span class="token operator">:</span>array<span class="token punctuation">)</span><span class="token punctuation">&#123;</span>
+			<span class="token class-name">System</span><span class="token punctuation">.</span>out<span class="token punctuation">.</span><span class="token function">print</span><span class="token punctuation">(</span>n<span class="token operator">+</span><span class="token string">" "</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+		<span class="token punctuation">&#125;</span>
+		
+    <span class="token punctuation">&#125;</span>
+    
+<span class="token punctuation">&#125;</span></code></pre>
+
+<h4 id="选择排序"><a href="#选择排序" class="headerlink" title="选择排序:"></a>选择排序:</h4><ol>
+<li>在未排序序列中找到最小的元素,存放到排序序列的起始位置</li>
+<li>再从剩余未排序元素中继续寻找最小元素,然后放到排序序列起始位置</li>
+<li>以此类推,直到所有元素均排序完毕</li>
+</ol>
+<p><strong>创建TestSelectSort</strong></p>
+<pre class="language-java" data-language="java"><code class="language-java"><span class="token keyword">import</span> <span class="token namespace">java<span class="token punctuation">.</span>util<span class="token punctuation">.</span></span><span class="token class-name">Random</span><span class="token punctuation">;</span>
+
+<span class="token keyword">public</span> <span class="token keyword">class</span> <span class="token class-name">TestSelectSort</span><span class="token punctuation">&#123;</span>
+    
+    <span class="token keyword">public</span> <span class="token keyword">static</span> <span class="token keyword">void</span> <span class="token function">main</span><span class="token punctuation">(</span><span class="token class-name">String</span><span class="token punctuation">[</span><span class="token punctuation">]</span> args<span class="token punctuation">)</span><span class="token punctuation">&#123;</span>
+        
+		<span class="token class-name">Random</span> random <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">Random</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+		<span class="token keyword">int</span><span class="token punctuation">[</span><span class="token punctuation">]</span> array <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token keyword">int</span><span class="token punctuation">[</span><span class="token number">10</span><span class="token punctuation">]</span><span class="token punctuation">;</span>
+		<span class="token comment">//使用随机数为数组元素赋值</span>
+		<span class="token keyword">for</span><span class="token punctuation">(</span><span class="token keyword">int</span> i<span class="token operator">=</span><span class="token number">0</span><span class="token punctuation">;</span>i<span class="token operator">&lt;</span>array<span class="token punctuation">.</span>length<span class="token punctuation">;</span>i<span class="token operator">++</span><span class="token punctuation">)</span><span class="token punctuation">&#123;</span>
+			array<span class="token punctuation">[</span>i<span class="token punctuation">]</span> <span class="token operator">=</span> random<span class="token punctuation">.</span><span class="token function">nextInt</span><span class="token punctuation">(</span><span class="token number">100</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+		<span class="token punctuation">&#125;</span>
+		<span class="token comment">//遍历原始数组</span>
+		<span class="token class-name">System</span><span class="token punctuation">.</span>out<span class="token punctuation">.</span><span class="token function">print</span><span class="token punctuation">(</span><span class="token string">"遍历原始数组:"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+		<span class="token keyword">for</span><span class="token punctuation">(</span><span class="token keyword">int</span> n<span class="token operator">:</span>array<span class="token punctuation">)</span><span class="token punctuation">&#123;</span>
+			<span class="token class-name">System</span><span class="token punctuation">.</span>out<span class="token punctuation">.</span><span class="token function">print</span><span class="token punctuation">(</span>n<span class="token operator">+</span><span class="token string">" "</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+		<span class="token punctuation">&#125;</span>
+		
+		<span class="token comment">//排序</span>
+		<span class="token keyword">int</span> temp<span class="token punctuation">;</span>
+		<span class="token keyword">int</span> size <span class="token operator">=</span> array<span class="token punctuation">.</span>length<span class="token punctuation">;</span>
+		<span class="token keyword">for</span><span class="token punctuation">(</span><span class="token keyword">int</span> i<span class="token operator">=</span><span class="token number">0</span><span class="token punctuation">;</span>i<span class="token operator">&lt;</span>size<span class="token punctuation">;</span>i<span class="token operator">++</span><span class="token punctuation">)</span><span class="token punctuation">&#123;</span>
+			<span class="token keyword">int</span> k<span class="token operator">=</span>i<span class="token punctuation">;</span>
+			<span class="token keyword">for</span><span class="token punctuation">(</span><span class="token keyword">int</span> j<span class="token operator">=</span>size<span class="token operator">-</span><span class="token number">1</span><span class="token punctuation">;</span>j<span class="token operator">></span>i<span class="token punctuation">;</span>j<span class="token operator">--</span><span class="token punctuation">)</span><span class="token punctuation">&#123;</span>
+				<span class="token keyword">if</span><span class="token punctuation">(</span>array<span class="token punctuation">[</span>j<span class="token punctuation">]</span> <span class="token operator">&lt;</span> array<span class="token punctuation">[</span>k<span class="token punctuation">]</span><span class="token punctuation">)</span><span class="token punctuation">&#123;</span>
+					k <span class="token operator">=</span> j<span class="token punctuation">;</span>
+				<span class="token punctuation">&#125;</span>
+			<span class="token punctuation">&#125;</span>
+			temp <span class="token operator">=</span> array<span class="token punctuation">[</span>i<span class="token punctuation">]</span><span class="token punctuation">;</span>
+			array<span class="token punctuation">[</span>i<span class="token punctuation">]</span> <span class="token operator">=</span> array<span class="token punctuation">[</span>k<span class="token punctuation">]</span><span class="token punctuation">;</span>
+			array<span class="token punctuation">[</span>k<span class="token punctuation">]</span> <span class="token operator">=</span> temp<span class="token punctuation">;</span>
+		<span class="token punctuation">&#125;</span>
+		
+		<span class="token comment">//遍历排序后的数组</span>
+		<span class="token class-name">System</span><span class="token punctuation">.</span>out<span class="token punctuation">.</span><span class="token function">print</span><span class="token punctuation">(</span><span class="token string">"\r\n遍历排序后数组:"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+		<span class="token keyword">for</span><span class="token punctuation">(</span><span class="token keyword">int</span> n<span class="token operator">:</span>array<span class="token punctuation">)</span><span class="token punctuation">&#123;</span>
+			<span class="token class-name">System</span><span class="token punctuation">.</span>out<span class="token punctuation">.</span><span class="token function">print</span><span class="token punctuation">(</span>n<span class="token operator">+</span><span class="token string">" "</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+		<span class="token punctuation">&#125;</span>
+		
+    <span class="token punctuation">&#125;</span>
+    
+<span class="token punctuation">&#125;</span></code></pre>
+
+<h4 id="快速排序"><a href="#快速排序" class="headerlink" title="快速排序:"></a>快速排序:</h4><ol>
+<li>从数列中挑出一个元素，称为“基准”(pivot)  </li>
+<li>重新排序数列，所有元素比基准值小的摆放在基准前面，所有元素比基准值大的摆在基准的后面（相同的数可以到任一边）。在这 个分割之后，  </li>
+<li>该基准是它的最后位置。这个称为分割（partition）操作。  </li>
+<li>递归地把小于基准值元素的子数列和大于基准值元素的子数列排序。</li>
+</ol>
+<pre class="language-java" data-language="java"><code class="language-java"><span class="token keyword">public</span> <span class="token keyword">class</span> <span class="token class-name">TestQuickSort</span><span class="token punctuation">&#123;</span>
+	<span class="token keyword">public</span> <span class="token keyword">static</span> <span class="token keyword">void</span> <span class="token class-name">QuickSort</span><span class="token punctuation">(</span><span class="token keyword">int</span> arr<span class="token punctuation">[</span><span class="token punctuation">]</span><span class="token punctuation">,</span><span class="token keyword">int</span> <span class="token class-name">L</span><span class="token punctuation">,</span><span class="token keyword">int</span> <span class="token class-name">R</span><span class="token punctuation">)</span>
+	<span class="token punctuation">&#123;</span>
+		<span class="token keyword">if</span><span class="token punctuation">(</span><span class="token class-name">L</span><span class="token operator">>=</span><span class="token class-name">R</span><span class="token punctuation">)</span>
+			<span class="token keyword">return</span><span class="token punctuation">;</span>
+		<span class="token keyword">int</span> left<span class="token operator">=</span><span class="token class-name">L</span><span class="token punctuation">,</span>right<span class="token operator">=</span><span class="token class-name">R</span><span class="token punctuation">;</span>
+		<span class="token keyword">int</span> pivot <span class="token operator">=</span> arr<span class="token punctuation">&#123;</span>left<span class="token punctuation">]</span><span class="token punctuation">;</span>
+		<span class="token keyword">while</span><span class="token punctuation">(</span>left<span class="token operator">&lt;</span>right<span class="token punctuation">)</span><span class="token punctuation">&#123;</span>
+			<span class="token keyword">while</span><span class="token punctuation">&#123;</span>left<span class="token operator">&lt;</span>right <span class="token operator">&amp;&amp;</span> arr<span class="token punctuation">[</span>right<span class="token punctuation">]</span><span class="token operator">>=</span>pivot<span class="token punctuation">)</span><span class="token punctuation">&#123;</span>
+				right<span class="token operator">--</span><span class="token punctuation">;</span>
+			<span class="token punctuation">&#125;</span>
+			<span class="token keyword">if</span><span class="token punctuation">(</span>left<span class="token operator">&lt;</span>right<span class="token punctuation">)</span><span class="token punctuation">&#123;</span>
+				arr<span class="token punctuation">[</span>left<span class="token punctuation">]</span> <span class="token operator">=</span> arr<span class="token punctuation">[</span>right<span class="token punctuation">]</span><span class="token punctuation">;</span>
+			<span class="token punctuation">&#125;</span>
+			<span class="token keyword">while</span><span class="token punctuation">(</span>left<span class="token operator">&lt;</span>right <span class="token operator">&amp;&amp;</span> arr<span class="token punctuation">[</span>left<span class="token punctuation">]</span><span class="token operator">&lt;=</span>pivot<span class="token punctuation">)</span><span class="token punctuation">&#123;</span>
+				left<span class="token operator">++</span><span class="token punctuation">;</span>
+			<span class="token punctuation">&#125;</span>
+			<span class="token keyword">if</span><span class="token punctuation">(</span>left<span class="token operator">&lt;</span>right<span class="token punctuation">)</span><span class="token punctuation">&#123;</span>
+				arr<span class="token punctuation">[</span>right<span class="token punctuation">]</span> <span class="token operator">=</span> arr<span class="token punctuation">[</span>left<span class="token punctuation">]</span><span class="token punctuation">;</span>
+			<span class="token punctuation">&#125;</span>
+			<span class="token keyword">if</span><span class="token punctuation">(</span>left<span class="token operator">>=</span>right<span class="token punctuation">)</span><span class="token punctuation">&#123;</span>
+				arr<span class="token punctuation">[</span>left<span class="token punctuation">]</span> <span class="token operator">=</span> pivot<span class="token punctuation">;</span>
+			<span class="token punctuation">&#125;</span>
+		<span class="token punctuation">&#125;</span>
+		<span class="token class-name">QuickSort</span><span class="token punctuation">(</span>arr<span class="token punctuation">,</span><span class="token class-name">L</span><span class="token punctuation">,</span>right<span class="token operator">-</span><span class="token number">1</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+		<span class="token class-name">QuickSort</span><span class="token punctuation">(</span>arr<span class="token punctuation">,</span>right<span class="token operator">+</span><span class="token number">1</span><span class="token punctuation">,</span><span class="token class-name">R</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+	<span class="token punctuation">&#125;</span>
+<span class="token punctuation">&#125;</span></code></pre>
+
+<h3 id="使用Arrays类帮助排序"><a href="#使用Arrays类帮助排序" class="headerlink" title="使用Arrays类帮助排序"></a><strong><font color="red">使用Arrays类帮助排序</font></strong></h3><p><strong>java.util.Arrays</strong></p>
+<pre class="language-java" data-language="java"><code class="language-java"><span class="token keyword">import</span> <span class="token namespace">java<span class="token punctuation">.</span>util<span class="token punctuation">.</span></span><span class="token class-name">Random</span><span class="token punctuation">;</span>   <span class="token comment">//随机数</span>
+<span class="token keyword">import</span> <span class="token namespace">java<span class="token punctuation">.</span>util<span class="token punctuation">.</span></span><span class="token class-name">Arrays</span><span class="token punctuation">;</span>
+
+<span class="token keyword">public</span> <span class="token keyword">class</span> <span class="token class-name">TestBubbleSort</span><span class="token punctuation">&#123;</span>
+	
+	<span class="token keyword">public</span> <span class="token keyword">static</span> <span class="token keyword">void</span> <span class="token function">main</span><span class="token punctuation">(</span><span class="token class-name">String</span><span class="token punctuation">[</span><span class="token punctuation">]</span> args<span class="token punctuation">)</span><span class="token punctuation">&#123;</span>
+		
+		<span class="token class-name">Random</span> random <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">Random</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+		<span class="token keyword">int</span><span class="token punctuation">[</span><span class="token punctuation">]</span> array <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token keyword">int</span><span class="token punctuation">[</span><span class="token number">10</span><span class="token punctuation">]</span><span class="token punctuation">;</span>
+		<span class="token comment">//使用随机数为数组元素赋值</span>
+		<span class="token keyword">for</span><span class="token punctuation">(</span><span class="token keyword">int</span> i<span class="token operator">=</span><span class="token number">0</span><span class="token punctuation">;</span>i<span class="token operator">&lt;</span>array<span class="token punctuation">.</span>length<span class="token punctuation">;</span>i<span class="token operator">++</span><span class="token punctuation">)</span><span class="token punctuation">&#123;</span>
+			array<span class="token punctuation">[</span>i<span class="token punctuation">]</span> <span class="token operator">=</span> random<span class="token punctuation">.</span><span class="token function">nextInt</span><span class="token punctuation">(</span><span class="token number">100</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+		<span class="token punctuation">&#125;</span>
+		<span class="token comment">//遍历原始数组</span>
+		<span class="token class-name">System</span><span class="token punctuation">.</span>out<span class="token punctuation">.</span><span class="token function">print</span><span class="token punctuation">(</span><span class="token string">"遍历原始数组:"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+		<span class="token keyword">for</span><span class="token punctuation">(</span><span class="token keyword">int</span> n<span class="token operator">:</span>array<span class="token punctuation">)</span><span class="token punctuation">&#123;</span>
+			<span class="token class-name">System</span><span class="token punctuation">.</span>out<span class="token punctuation">.</span><span class="token function">print</span><span class="token punctuation">(</span>n<span class="token operator">+</span><span class="token string">" "</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+		<span class="token punctuation">&#125;</span>
+		<span class="token comment">//使用Arrays类排序</span>
+		<span class="token class-name">Arrays</span><span class="token punctuation">.</span><span class="token function">sort</span><span class="token punctuation">(</span>array<span class="token punctuation">)</span><span class="token punctuation">;</span>
+        
+		<span class="token comment">//遍历排序后的数组</span>
+		<span class="token class-name">System</span><span class="token punctuation">.</span>out<span class="token punctuation">.</span><span class="token function">print</span><span class="token punctuation">(</span><span class="token string">"\r\n遍历排序后数组:"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+		<span class="token keyword">for</span><span class="token punctuation">(</span><span class="token keyword">int</span> n<span class="token operator">:</span>array<span class="token punctuation">)</span><span class="token punctuation">&#123;</span>
+			<span class="token class-name">System</span><span class="token punctuation">.</span>out<span class="token punctuation">.</span><span class="token function">print</span><span class="token punctuation">(</span>n<span class="token operator">+</span><span class="token string">" "</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+		<span class="token punctuation">&#125;</span>
+		
+	<span class="token punctuation">&#125;</span>	
+	
+<span class="token punctuation">&#125;</span>
+</code></pre>
+
+</div><ul class="post-copyright"><li class="post-copyright-author"><strong>本文作者：</strong>ZR</li><li class="post-copyright-link"><strong>本文链接：</strong><a href="https://zr-java.github.io/2021/07/22/07-%E6%95%B0%E7%BB%84/" title="07-数组">https://zr-java.github.io/2021/07/22/07-%E6%95%B0%E7%BB%84/</a></li><li class="post-copyright-license"><strong>版权声明：</strong>本博客所有文章除特别声明外，均默认采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh" target="_blank" rel="noopener" title="CC BY-NC-SA 4.0 "><svg class="icon"><use xlink:href="#icon-creative-commons-line"></use></svg><svg class="icon"><use xlink:href="#icon-creative-commons-by-line"></use></svg><svg class="icon"><use xlink:href="#icon-creative-commons-nc-line"></use></svg><svg class="icon"><use xlink:href="#icon-creative-commons-sa-line"></use></svg></a> 许可协议。</li></ul></section></article><div class="post-nav"><div class="post-nav-item"><a class="post-nav-prev" href="/2021/07/31/08-String%E5%B8%B8%E7%94%A8%E6%96%B9%E6%B3%95%E8%AE%B2%E8%A7%A3/" rel="prev" title="08-String常用方法讲解"><svg class="icon" aria-hidden="true"><use xlink:href="#icon-arrow-left-s-line"></use></svg><span class="post-nav-text">08-String常用方法讲解</span></a></div><div class="post-nav-item"><a class="post-nav-next" href="/2021/07/19/Aplayer%E6%92%AD%E6%94%BE%E5%99%A8/" rel="next" title="Aplayer播放器"><span class="post-nav-text">Aplayer播放器</span><svg class="icon" aria-hidden="true"><use xlink:href="#icon-arrow-right-s-line"></use></svg></a></div></div></div><div class="hty-card" id="comment"><div class="comment-tooltip text-center"><span>要不要和我说些什么？</span><br></div></div></main><footer class="sidebar-translate" id="footer"><div class="copyright"><span>&copy; 2021 </span><span class="with-love" id="animate" title="敲啊敲,点啊点就是没有用"><svg class="icon" aria-hidden="true"><use xlink:href="#icon-cloud-line"></use></svg></span><span class="author"> ZR</span></div><div class="powered"><span>由 <a href="https://hexo.io" target="_blank" rel="noopener">Hexo</a> 驱动 v5.4.0</span><span class="footer-separator">|</span><span>主题 - <a rel="noopener" href="https://github.com/YunYouJun/hexo-theme-yun" target="_blank"><span>Yun</span></a> v1.6.1</span></div><div class="live_time"><span>本博客已萌萌哒地运行</span><span id="display_live_time"></span><span class="moe-text">(●'◡'●)</span><script>function blog_live_time() {
+  setTimeout(blog_live_time, 1000);
+  const start = new Date('2021-07-19T00:00:00');
+  const now = new Date();
+  const timeDiff = (now.getTime() - start.getTime());
+  const msPerMinute = 60 * 1000;
+  const msPerHour = 60 * msPerMinute;
+  const msPerDay = 24 * msPerHour;
+  const passDay = Math.floor(timeDiff / msPerDay);
+  const passHour = Math.floor((timeDiff % msPerDay) / 60 / 60 / 1000);
+  const passMinute = Math.floor((timeDiff % msPerHour) / 60 / 1000);
+  const passSecond = Math.floor((timeDiff % msPerMinute) / 1000);
+  display_live_time.innerHTML = " " + passDay + " 天 " + passHour + " 小时 " + passMinute + " 分 " + passSecond + " 秒";
+}
+blog_live_time();
+</script></div></footer><a class="hty-icon-button" id="back-to-top" aria-label="back-to-top" href="#"><svg class="icon" aria-hidden="true"><use xlink:href="#icon-arrow-up-s-line"></use></svg><svg class="progress-circle-container" viewBox="0 0 100 100"><circle class="progress-circle" id="progressCircle" cx="50" cy="50" r="48" fill="none" stroke="#0078E7" stroke-width="2" stroke-linecap="round"></circle></svg></a><a class="popup-trigger hty-icon-button icon-search" id="search" href="javascript:;" title="搜索"><span class="site-state-item-icon"><svg class="icon" aria-hidden="true"><use xlink:href="#icon-search-line"></use></svg></span></a><script>window.addEventListener("DOMContentLoaded", () => {
+  // Handle and trigger popup window
+  document.querySelector(".popup-trigger").addEventListener("click", () => {
+    document.querySelector(".popup").classList.add("show");
+    setTimeout(() => {
+      document.querySelector(".search-input").focus();
+    }, 100);
+  });
+
+  // Monitor main search box
+  const onPopupClose = () => {
+    document.querySelector(".popup").classList.remove("show");
+  };
+
+  document.querySelector(".popup-btn-close").addEventListener("click", () => {
+    onPopupClose();
+  });
+
+  window.addEventListener("keyup", event => {
+    if (event.key === "Escape") {
+      onPopupClose();
+    }
+  });
+});
+</script><script src="/js/search/local-search.js" defer></script><div class="popup search-popup"><div class="search-header"><span class="popup-btn-close close-icon hty-icon-button"><svg class="icon" aria-hidden="true"><use xlink:href="#icon-close-line"></use></svg></span></div><div class="search-input-container"><input class="search-input" id="local-search-input" type="text" placeholder="搜索..." value=""></div><div id="local-search-result"></div></div></div><!-- hexo injector body_end start --><script src="https://cdn.jsdelivr.net/npm/hexo-widget-tree@0.1.1/js/index.js"></script><div id="widget-tree">
+      <ul><li class="tree-list-item"><i class="toggle-post-icon gg-folder-add"></i><a class="tree-list-link" href="/categories/Markdown/">Markdown</a><ul class="tree-list-children"><li class="tree-list-item"><a class="tree-list-post-link" href="/2021/07/19/Markdown%E8%8F%9C%E9%B8%9F%E7%AC%94%E8%AE%B0/" title="Markdown菜鸟笔记"><i class="post-icon gg-file-document"></i>Markdown菜鸟笔记</a></li><li class="tree-list-item"><a class="tree-list-post-link" href="/2021/08/02/Markdown%E9%A2%9C%E8%89%B2%E5%AD%97%E4%BD%93/" title="Markdown颜色字体"><i class="post-icon gg-file-document"></i>Markdown颜色字体</a></li><li class="tree-list-item"><a class="tree-list-post-link" href="/2021/07/19/Mermaid%E6%B5%81%E7%A8%8B%E5%9B%BE%E5%BF%AB%E9%80%9F%E5%85%A5%E9%97%A8/" title="Mermaid流程图快速入门"><i class="post-icon gg-file-document"></i>Mermaid流程图快速入门</a></li></ul></li><li class="tree-list-item"><i class="toggle-post-icon gg-folder-add"></i><a class="tree-list-link" href="/categories/javaSE/">javaSE</a><ul class="tree-list-children"><li class="tree-list-item"><a class="tree-list-post-link" href="/2021/07/19/01-Java%E8%AF%AD%E8%A8%80%E4%BB%8B%E7%BB%8D%E5%8F%8A%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA/" title="01-Java语言介绍及环境搭建"><i class="post-icon gg-file-document"></i>01-Java语言介绍及环境搭建</a></li><li class="tree-list-item"><a class="tree-list-post-link" href="/2021/07/19/02-%E5%9F%BA%E6%9C%AC%E8%AF%AD%E6%B3%95%E5%8D%95%E4%BD%8D/" title="02-基本语法单位"><i class="post-icon gg-file-document"></i>02-基本语法单位</a></li><li class="tree-list-item"><a class="tree-list-post-link" href="/2021/07/19/03-Java%E5%9F%BA%E6%9C%AC%E6%95%B0%E6%8D%AE%E7%B1%BB%E5%9E%8B/" title="03-Java基本数据类型"><i class="post-icon gg-file-document"></i>03-Java基本数据类型</a></li><li class="tree-list-item"><a class="tree-list-post-link" href="/2021/07/19/04-Java%E8%A1%A8%E8%BE%BE%E5%BC%8F/" title="04-Java表达式"><i class="post-icon gg-file-document"></i>04-Java表达式</a></li><li class="tree-list-item"><a class="tree-list-post-link" href="/2021/07/19/05-%E9%9D%A2%E5%90%91%E5%AF%B9%E8%B1%A1%E7%9A%84%E6%A6%82%E8%BF%B0/" title="05-面向对象的概述"><i class="post-icon gg-file-document"></i>05-面向对象的概述</a></li><li class="tree-list-item"><a class="tree-list-post-link" href="/2021/07/19/06-%E8%87%AA%E5%AE%9A%E4%B9%89%E7%B1%BB%E5%92%8C%E5%AF%B9%E8%B1%A1%E7%9A%84%E5%88%9B%E5%BB%BA/" title="06-自定义类和对象的创建"><i class="post-icon gg-file-document"></i>06-自定义类和对象的创建</a></li><li class="tree-list-item"><a class="tree-list-post-link" href="/2021/07/22/07-%E6%95%B0%E7%BB%84/" title="07-数组"><i class="post-icon gg-file-document"></i>07-数组</a></li><li class="tree-list-item"><a class="tree-list-post-link" href="/2021/07/31/08-String%E5%B8%B8%E7%94%A8%E6%96%B9%E6%B3%95%E8%AE%B2%E8%A7%A3/" title="08-String常用方法讲解"><i class="post-icon gg-file-document"></i>08-String常用方法讲解</a></li><li class="tree-list-item"><a class="tree-list-post-link" href="/2021/08/05/09-%E5%88%A4%E6%96%AD%E5%BE%AA%E7%8E%AF%E4%BD%9C%E4%B8%9A/" title="09-判断循环作业"><i class="post-icon gg-file-document"></i>09-判断循环作业</a></li><li class="tree-list-item"><a class="tree-list-post-link" href="/2021/08/08/10-%E4%BA%8C%E7%BB%B4%E6%95%B0%E7%BB%84/" title="10-二维数组"><i class="post-icon gg-file-document"></i>10-二维数组</a></li><li class="tree-list-item"><a class="tree-list-post-link" href="/2021/08/08/11-%E5%AF%B9%E8%B1%A1%E7%9A%84%E7%94%9F%E5%91%BD%E5%91%A8%E6%9C%9F/" title="11-对象的生命周期"><i class="post-icon gg-file-document"></i>11-对象的生命周期</a></li><li class="tree-list-item"><a class="tree-list-post-link" href="/2021/08/11/12-PowerDesigner%E7%94%BB%E7%B1%BB%E5%9B%BE/" title="12-PowerDesigner画类图"><i class="post-icon gg-file-document"></i>12-PowerDesigner画类图</a></li><li class="tree-list-item"><a class="tree-list-post-link" href="/2021/08/11/13-%E4%BD%BF%E7%94%A8%E7%8E%B0%E6%9C%89%E7%B1%BB%E5%92%8C%E8%87%AA%E5%AE%9A%E4%B9%89%E7%B1%BB/" title="13-使用现有类和自定义类"><i class="post-icon gg-file-document"></i>13-使用现有类和自定义类</a></li><li class="tree-list-item"><a class="tree-list-post-link" href="/2021/08/16/14-%E6%95%B0%E7%BB%84%E4%BD%9C%E4%B8%9A/" title="14-数组作业"><i class="post-icon gg-file-document"></i>14-数组作业</a></li></ul></li><li class="tree-list-item"><i class="toggle-post-icon gg-folder-add"></i><a class="tree-list-link" href="/categories/tools/">tools</a><ul class="tree-list-children"><li class="tree-list-item"><a class="tree-list-post-link" href="/2021/08/02/ASCll%E5%AF%B9%E7%85%A7%E8%A1%A8/" title="ASCll对照表"><i class="post-icon gg-file-document"></i>ASCll对照表</a></li><li class="tree-list-item"><a class="tree-list-post-link" href="/2021/07/19/Aplayer%E6%92%AD%E6%94%BE%E5%99%A8/" title="Aplayer播放器"><i class="post-icon gg-file-document"></i>Aplayer播放器</a></li><li class="tree-list-item"><a class="tree-list-post-link" href="/2021/07/19/hexo-theme-pure/" title="hexo-theme-pure"><i class="post-icon gg-file-document"></i>hexo-theme-pure</a></li></ul></li></ul>
+        <div id="widget-tree-button">
+          <i class="gg-chevron-right"></i>
+        </div>
+      </div><!-- hexo injector body_end end --></body></html>
