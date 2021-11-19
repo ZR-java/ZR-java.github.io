@@ -1,0 +1,526 @@
+<!DOCTYPE html><html lang="zh-CN"><head><!-- hexo injector head_begin start --><link href="https://cdn.jsdelivr.net/npm/hexo-widget-tree@0.1.1/css/index.css" rel="stylesheet"/><!-- hexo injector head_begin end --><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="theme-color" content="#0078E7"><meta name="author" content="ZR"><meta name="copyright" content="ZR"><meta name="generator" content="Hexo 5.4.0"><meta name="theme" content="hexo-theme-yun"><title>23-Java常用类 | ZR的小站</title><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@900&amp;display=swap" media="print" onload="this.media='all'"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/star-markdown-css@0.1.25/dist/yun/yun-markdown.min.css"><script src="//at.alicdn.com/t/font_1140697_dxory92pb0h.js" async></script><script src="https://cdn.jsdelivr.net/npm/scrollreveal/dist/scrollreveal.min.js" defer></script><script>document.addEventListener("DOMContentLoaded", () => {
+  [".post-card",".post-content img"].forEach((target)=> {
+    ScrollReveal().reveal(target);
+  })
+});
+</script><script src="https://cdn.jsdelivr.net/npm/pjax@latest/pjax.min.js" defer></script><script src="/js/pjax.js" defer></script><script src="https://cdn.jsdelivr.net/npm/vue@2.6.11"></script><link id="light-prism-css" rel="stylesheet" href="https://cdn.jsdelivr.net/npm/prismjs@latest/themes/prism.css" media="(prefers-color-scheme: light)"><link id="dark-prism-css" rel="stylesheet" href="https://cdn.jsdelivr.net/npm/prismjs@latest/themes/prism-tomorrow.css" media="(prefers-color-scheme: dark)"><link rel="icon" href="/yun.svg"><link rel="mask-icon" href="/yun.svg" color="#0078E7"><link rel="alternate icon" href="/yun.ico"><link rel="preload" href="/css/hexo-theme-yun.css" as="style"><link rel="preload" href="/js/utils.js" as="script"><link rel="preload" href="/js/hexo-theme-yun.js" as="script"><link rel="prefetch" href="/js/sidebar.js" as="script"><link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin><script id="yun-config">
+    const Yun = window.Yun || {};
+    window.CONFIG = {"hostname":"zr-java.github.io","root":"/","title":["ZR","的","垃","圾","场"],"version":"1.6.1","mode":"auto","copycode":true,"page":{"isPost":true},"i18n":{"placeholder":"搜索...","empty":"找不到您查询的内容: ${query}","hits":"找到 ${hits} 条结果","hits_time":"找到 ${hits} 条结果（用时 ${time} 毫秒）"},"anonymous_image":"https://cdn.jsdelivr.net/gh/YunYouJun/cdn/img/avatar/none.jpg","say":{"api":"https://v1.hitokoto.cn","hitokoto":true},"local_search":{"path":"/search.xml"},"fireworks":{"colors":["102, 167, 221","62, 131, 225","33, 78, 194"]}};
+  </script><link rel="stylesheet" href="/css/hexo-theme-yun.css"><script src="/js/utils.js"></script><script src="/js/hexo-theme-yun.js"></script><meta name="description" content="系统相关类java.lang.SystemSystem也是我们经常用的类，目前为止，我们用的最多的就是它下面out属性对象的println方法，项目其实用得最多的还是它的一些可以获取系统信息的一些方法。 import java.util.*; import java.io.*;  public class TestSystem&amp;#123; 	 	public static void main(St">
+<meta property="og:type" content="article">
+<meta property="og:title" content="23-Java常用类">
+<meta property="og:url" content="https://zr-java.github.io/2021/10/09/23-Java%E5%B8%B8%E7%94%A8%E7%B1%BB/index.html">
+<meta property="og:site_name" content="ZR的小站">
+<meta property="og:description" content="系统相关类java.lang.SystemSystem也是我们经常用的类，目前为止，我们用的最多的就是它下面out属性对象的println方法，项目其实用得最多的还是它的一些可以获取系统信息的一些方法。 import java.util.*; import java.io.*;  public class TestSystem&amp;#123; 	 	public static void main(St">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://zr-java.github.io/2021/10/09/23-Java%E5%B8%B8%E7%94%A8%E7%B1%BB/image-20211010110339447.png">
+<meta property="og:image" content="https://zr-java.github.io/2021/10/09/23-Java%E5%B8%B8%E7%94%A8%E7%B1%BB/image-20211010110951017.png">
+<meta property="og:image" content="https://zr-java.github.io/2021/10/09/23-Java%E5%B8%B8%E7%94%A8%E7%B1%BB/image-20211010111742758.png">
+<meta property="article:published_time" content="2021-10-09T01:33:27.000Z">
+<meta property="article:modified_time" content="2021-10-28T09:10:49.358Z">
+<meta property="article:author" content="ZR">
+<meta property="article:tag" content="java">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://zr-java.github.io/2021/10/09/23-Java%E5%B8%B8%E7%94%A8%E7%B1%BB/image-20211010110339447.png"><script src="/js/ui/mode.js"></script></head><body><script defer src="https://cdn.jsdelivr.net/npm/animejs@latest"></script><script defer src="/js/ui/fireworks.js"></script><canvas class="fireworks"></canvas><div class="container"><a class="sidebar-toggle hty-icon-button" id="menu-btn"><div class="hamburger hamburger--spin" type="button"><span class="hamburger-box"><span class="hamburger-inner"></span></span></div></a><div class="sidebar-toggle sidebar-overlay"></div><aside class="sidebar"><script src="/js/sidebar.js"></script><ul class="sidebar-nav"><li class="sidebar-nav-item sidebar-nav-toc hty-icon-button sidebar-nav-active" data-target="post-toc-wrap" title="文章目录"><svg class="icon" aria-hidden="true"><use xlink:href="#icon-list-ordered"></use></svg></li><li class="sidebar-nav-item sidebar-nav-overview hty-icon-button" data-target="site-overview-wrap" title="站点概览"><svg class="icon" aria-hidden="true"><use xlink:href="#icon-passport-line"></use></svg></li></ul><div class="sidebar-panel" id="site-overview-wrap"><div class="site-info fix-top"><a class="site-author-avatar" href="/about/" title="ZR"><img width="96" loading="lazy" src="/images/avatar.jpg" alt="ZR"><span class="site-author-status" title="不想上学">😭</span></a><div class="site-author-name"><a href="/about/">ZR</a></div><span class="site-name">ZR的小站</span><sub class="site-subtitle"></sub><div class="site-desciption">高级打字员</div></div><nav class="site-state"><a class="site-state-item hty-icon-button icon-home" href="/" title="我的主页"><span class="site-state-item-icon"><svg class="icon" aria-hidden="true"><use xlink:href="#icon-home-4-line"></use></svg></span></a><div class="site-state-item"><a href="/archives/" title="归档"><span class="site-state-item-icon"><svg class="icon" aria-hidden="true"><use xlink:href="#icon-archive-line"></use></svg></span><span class="site-state-item-count">34</span></a></div><div class="site-state-item"><a href="/categories/" title="分类"><span class="site-state-item-icon"><svg class="icon" aria-hidden="true"><use xlink:href="#icon-folder-2-line"></use></svg></span><span class="site-state-item-count">4</span></a></div><div class="site-state-item"><a href="/tags/" title="标签"><span class="site-state-item-icon"><svg class="icon" aria-hidden="true"><use xlink:href="#icon-price-tag-3-line"></use></svg></span><span class="site-state-item-count">3</span></a></div><a class="site-state-item hty-icon-button" target="_blank" rel="noopener" href="https://yun.yunyoujun.cn" title="文档"><span class="site-state-item-icon"><svg class="icon" aria-hidden="true"><use xlink:href="#icon-settings-line"></use></svg></span></a></nav><hr style="margin-bottom:0.5rem"><div class="links-of-author"><a class="links-of-author-item hty-icon-button" rel="noopener" href="mailto:247132084@qq.com" title="E-Mail" target="_blank" style="color:#8E71C1"><svg class="icon" aria-hidden="true"><use xlink:href="#icon-mail-line"></use></svg></a><a class="links-of-author-item hty-icon-button" rel="noopener" href="https://github.com/ZR-java" title="GitHub" target="_blank" style="color:#181717"><svg class="icon" aria-hidden="true"><use xlink:href="#icon-github-line"></use></svg></a></div><hr style="margin:0.5rem 1rem"><div class="links"><a class="links-item hty-icon-button" href="/links/" title="我的小伙伴们" style="color:dodgerblue"><svg class="icon" aria-hidden="true"><use xlink:href="#icon-genderless-line"></use></svg></a></div><br><a class="links-item hty-icon-button" id="toggle-mode-btn" href="javascript:;" title="Mode" style="color: #f1cb64"><svg class="icon" aria-hidden="true"><use xlink:href="#icon-contrast-2-line"></use></svg></a></div><div class="sidebar-panel sidebar-panel-active" id="post-toc-wrap"><div class="post-toc"><div class="post-toc-content"><ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%B3%BB%E7%BB%9F%E7%9B%B8%E5%85%B3%E7%B1%BB"><span class="toc-number">1.</span> <span class="toc-text">系统相关类</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#java-lang-System"><span class="toc-number">1.1.</span> <span class="toc-text">java.lang.System</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%94%A8%E6%88%B7%E4%BA%A4%E4%BA%92%E7%B1%BB"><span class="toc-number">2.</span> <span class="toc-text">用户交互类</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#java-util-Scanner"><span class="toc-number">2.1.</span> <span class="toc-text">java.util.Scanner</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%AD%97%E7%AC%A6%E4%B8%B2%E7%9B%B8%E5%85%B3%E7%B1%BB"><span class="toc-number">3.</span> <span class="toc-text">字符串相关类</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#String%E3%80%81StringBuffer%E3%80%81StringBuilder"><span class="toc-number">3.1.</span> <span class="toc-text">String、StringBuffer、StringBuilder</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Math%E7%B1%BB"><span class="toc-number">4.</span> <span class="toc-text">Math类</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#java-lang-Math"><span class="toc-number">4.1.</span> <span class="toc-text">java.lang.Math</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Random%E7%B1%BB"><span class="toc-number">5.</span> <span class="toc-text">Random类</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#java-util-Random"><span class="toc-number">5.1.</span> <span class="toc-text">java.util.Random</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%97%A5%E6%9C%9F%E5%A4%84%E7%90%86%E7%B1%BB"><span class="toc-number">6.</span> <span class="toc-text">日期处理类</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#java-util-Date"><span class="toc-number">6.1.</span> <span class="toc-text">java.util.Date</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#java-util-Calendar"><span class="toc-number">6.2.</span> <span class="toc-text">java.util.Calendar</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#java-text-SimpleDateFormat"><span class="toc-number">6.3.</span> <span class="toc-text">java.text.SimpleDateFormat</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Java%E7%A8%8B%E5%BA%8F%E7%9A%84%E5%9B%BD%E9%99%85%E5%8C%96%EF%BC%88I18N%EF%BC%89"><span class="toc-number">7.</span> <span class="toc-text">Java程序的国际化（I18N）</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%9B%BD%E9%99%85%E5%8C%96%E7%9B%B8%E5%85%B3%E7%9A%84Java%E7%B1%BB"><span class="toc-number">7.1.</span> <span class="toc-text">国际化相关的Java类</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%9B%BD%E9%99%85%E5%8C%96%E8%B5%84%E6%BA%90%E6%96%87%E4%BB%B6"><span class="toc-number">7.2.</span> <span class="toc-text">国际化资源文件</span></a></li></ol></li></ol></div></div></div></aside><main class="sidebar-translate" id="content"><div id="post"><article class="hty-card post-block" itemscope itemtype="https://schema.org/Article"><link itemprop="mainEntityOfPage" href="https://ZR-java.github.io/2021/10/09/23-Java%E5%B8%B8%E7%94%A8%E7%B1%BB/"><span hidden itemprop="author" itemscope itemtype="https://schema.org/Person"><meta itemprop="name" content="ZR"><meta itemprop="description"></span><span hidden itemprop="publisher" itemscope itemtype="https://schema.org/Organization"><meta itemprop="name" content="ZR的小站"></span><header class="post-header"><h1 class="post-title" itemprop="name headline">23-Java常用类</h1><div class="post-meta"><div class="post-time" style="display:block"><span class="post-meta-item-icon"><svg class="icon" aria-hidden="true"><use xlink:href="#icon-calendar-line"></use></svg></span> <time title="创建时间：2021-10-09 09:33:27" itemprop="dateCreated datePublished" datetime="2021-10-09T09:33:27+08:00">2021-10-09</time><span class="post-meta-divider">-</span><span class="post-meta-item-icon"><svg class="icon" aria-hidden="true"><use xlink:href="#icon-calendar-2-line"></use></svg></span> <time title="修改时间：2021-10-28 17:10:49" itemprop="dateModified" datetime="2021-10-28T17:10:49+08:00">2021-10-28</time></div><span class="post-count"><span class="post-symbolcount"><span class="post-meta-item-icon" title="本文字数"><svg class="icon" aria-hidden="true"><use xlink:href="#icon-file-word-line"></use></svg></span> <span title="本文字数">2.9k</span><span class="post-meta-divider">-</span><span class="post-meta-item-icon" title="阅读时长"><svg class="icon" aria-hidden="true"><use xlink:href="#icon-timer-line"></use></svg></span> <span title="阅读时长">12m</span></span></span><div class="post-classify"><span class="post-category"> <span class="post-meta-item-icon" style="margin-right:3px;"><svg class="icon" aria-hidden="true"><use xlink:href="#icon-folder-line"></use></svg></span><span itemprop="about" itemscope itemtype="https://schema.org/Thing"><a class="category-item" href="/categories/javaSE/" style="--text-color:var(--hty-text-color)" itemprop="url" rel="index"><span itemprop="text">javaSE</span></a></span></span><span class="post-tag"><span class="post-meta-divider">-</span><a class="tag-item" href="/tags/java/" style="--text-color:var(--hty-text-color)"><span class="post-meta-item-icon"><svg class="icon" aria-hidden="true"><use xlink:href="#icon-price-tag-3-line"></use></svg></span><span class="tag-name">java</span></a></span></div></div></header><section class="post-body" itemprop="articleBody"><div class="post-content markdown-body" style="--smc-primary:#0078E7;"><h2 id="系统相关类"><a href="#系统相关类" class="headerlink" title="系统相关类"></a>系统相关类</h2><h3 id="java-lang-System"><a href="#java-lang-System" class="headerlink" title="java.lang.System"></a>java.lang.System</h3><p>System也是我们经常用的类，目前为止，我们用的最多的就是它下面out属性对象的println方法，项目其实用得最多的还是它的一些可以获取系统信息的一些方法。</p>
+<pre class="language-java" data-language="java"><code class="language-java"><span class="token keyword">import</span> <span class="token namespace">java<span class="token punctuation">.</span>util<span class="token punctuation">.</span></span><span class="token operator">*</span><span class="token punctuation">;</span>
+<span class="token keyword">import</span> <span class="token namespace">java<span class="token punctuation">.</span>io<span class="token punctuation">.</span></span><span class="token operator">*</span><span class="token punctuation">;</span>
+
+<span class="token keyword">public</span> <span class="token keyword">class</span> <span class="token class-name">TestSystem</span><span class="token punctuation">&#123;</span>
+	
+	<span class="token keyword">public</span> <span class="token keyword">static</span> <span class="token keyword">void</span> <span class="token function">main</span><span class="token punctuation">(</span><span class="token class-name">String</span><span class="token punctuation">[</span><span class="token punctuation">]</span> args<span class="token punctuation">)</span> <span class="token keyword">throws</span> <span class="token class-name">Exception</span><span class="token punctuation">&#123;</span>
+		
+		<span class="token class-name">Map</span><span class="token generics"><span class="token punctuation">&lt;</span><span class="token class-name">String</span><span class="token punctuation">,</span><span class="token class-name">String</span><span class="token punctuation">></span></span> envMap <span class="token operator">=</span> <span class="token class-name">System</span><span class="token punctuation">.</span><span class="token function">getenv</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token comment">//static Map&lt;String,String>	getenv() 返回当前系统环境的不可修改的字符串映射视图。</span>
+		<span class="token class-name">Set</span><span class="token generics"><span class="token punctuation">&lt;</span><span class="token class-name">Map<span class="token punctuation">.</span>Entry</span><span class="token punctuation">&lt;</span><span class="token class-name">String</span><span class="token punctuation">,</span><span class="token class-name">String</span><span class="token punctuation">></span><span class="token punctuation">></span></span> entrySet <span class="token operator">=</span> envMap<span class="token punctuation">.</span><span class="token function">entrySet</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+		<span class="token keyword">for</span><span class="token punctuation">(</span><span class="token class-name">Map<span class="token punctuation">.</span>Entry</span><span class="token generics"><span class="token punctuation">&lt;</span><span class="token class-name">String</span><span class="token punctuation">,</span><span class="token class-name">String</span><span class="token punctuation">></span></span> element<span class="token operator">:</span>entrySet<span class="token punctuation">)</span><span class="token punctuation">&#123;</span>
+			<span class="token class-name">System</span><span class="token punctuation">.</span>out<span class="token punctuation">.</span><span class="token function">println</span><span class="token punctuation">(</span><span class="token string">"key="</span><span class="token operator">+</span>element<span class="token punctuation">.</span><span class="token function">getKey</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token operator">+</span><span class="token string">",value="</span><span class="token operator">+</span>element<span class="token punctuation">.</span><span class="token function">getValue</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+		<span class="token punctuation">&#125;</span>
+		
+		<span class="token class-name">System</span><span class="token punctuation">.</span>out<span class="token punctuation">.</span><span class="token function">println</span><span class="token punctuation">(</span><span class="token string">"=============="</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+		
+		<span class="token class-name">System</span><span class="token punctuation">.</span>out<span class="token punctuation">.</span><span class="token function">println</span><span class="token punctuation">(</span><span class="token class-name">System</span><span class="token punctuation">.</span><span class="token function">currentTimeMillis</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span><span class="token comment">//返回当前时间（以毫秒为单位）。</span>
+		
+		<span class="token class-name">System</span><span class="token punctuation">.</span>out<span class="token punctuation">.</span><span class="token function">println</span><span class="token punctuation">(</span><span class="token class-name">System</span><span class="token punctuation">.</span><span class="token function">getenv</span><span class="token punctuation">(</span><span class="token string">"JAVA_HOME"</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+		
+		<span class="token comment">//获取所有的系统属性</span>
+		<span class="token class-name">Properties</span> props <span class="token operator">=</span> <span class="token class-name">System</span><span class="token punctuation">.</span><span class="token function">getProperties</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+		<span class="token comment">//将所有系统属性保存到props.txt文件中</span>
+		props<span class="token punctuation">.</span><span class="token function">store</span><span class="token punctuation">(</span><span class="token keyword">new</span> <span class="token class-name">FileOutputStream</span><span class="token punctuation">(</span><span class="token class-name">System</span><span class="token punctuation">.</span><span class="token function">getProperty</span><span class="token punctuation">(</span><span class="token string">"user.home"</span><span class="token punctuation">)</span><span class="token operator">+</span><span class="token string">"/props.txt"</span><span class="token punctuation">)</span> <span class="token punctuation">,</span> <span class="token string">"System Properties"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+		<span class="token comment">//props.store(new FileOutputStream("C:\\workspace\\01.JavaSE\\day09\\props.txt") , "System Properties");</span>
+		<span class="token comment">//输出特定的系统属性</span>
+		<span class="token class-name">System</span><span class="token punctuation">.</span>out<span class="token punctuation">.</span><span class="token function">println</span><span class="token punctuation">(</span><span class="token class-name">System</span><span class="token punctuation">.</span><span class="token function">getProperty</span><span class="token punctuation">(</span><span class="token string">"os.name"</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+	<span class="token punctuation">&#125;</span>
+	
+<span class="token punctuation">&#125;</span></code></pre>
+
+
+
+<h2 id="用户交互类"><a href="#用户交互类" class="headerlink" title="用户交互类"></a>用户交互类</h2><blockquote>
+<p>main方法参数 </p>
+<p>public static void main(String[] args){ </p>
+<p>​        for(String s:args){ </p>
+<p>​                System.out.println(s); </p>
+<p>​        } </p>
+<p>} </p>
+<p>args参数对应了JVM的参数，可以在运行之前指定 </p>
+<p>运行命令：</p>
+<p>java HelloWorld hello world hehe~</p>
+</blockquote>
+<pre class="language-java" data-language="java"><code class="language-java"><span class="token keyword">public</span> <span class="token keyword">static</span> <span class="token keyword">void</span> <span class="token function">main</span><span class="token punctuation">(</span><span class="token class-name">String</span><span class="token punctuation">[</span><span class="token punctuation">]</span> args<span class="token punctuation">)</span><span class="token punctuation">&#123;</span>
+    <span class="token comment">//这个方法运行后面直接写输入,可以显示</span>
+    <span class="token keyword">for</span><span class="token punctuation">(</span><span class="token class-name">String</span> arg<span class="token operator">:</span>args<span class="token punctuation">)</span><span class="token punctuation">&#123;</span>
+       	<span class="token class-name">System</span><span class="token punctuation">.</span>out<span class="token punctuation">.</span><span class="token function">println</span><span class="token punctuation">(</span>arg<span class="token punctuation">)</span><span class="token punctuation">;</span>
+	<span class="token punctuation">&#125;</span>
+<span class="token punctuation">&#125;</span></code></pre>
+
+<p><img src="/2021/10/09/23-Java%E5%B8%B8%E7%94%A8%E7%B1%BB/image-20211010110339447.png" loading="lazy"></p>
+<hr>
+<h3 id="java-util-Scanner"><a href="#java-util-Scanner" class="headerlink" title="java.util.Scanner"></a>java.util.Scanner</h3><blockquote>
+<p>通过运行java程序时，只能在程序运行之前预规定好参数， 稍微再复杂一点的程序，这种获取参数的方式就显得有点 太简单了，我们希望能够通过键盘输入的方式获取一些参 数信息，这里的Scanner类就能满足我们的要求</p>
+<p> Scanner主要提供了两个方法来扫描输入</p>
+<ul>
+<li><p>hasNextXxx()：</p>
+<p>判断是否还有下一个输入项，其中Xxx可以是Int、Long等代表的基本数据类型字符串，如果需要判断是否有下一个字符串，则可以直接使用hasNext() </p>
+</li>
+<li><p>nextXxx()：</p>
+<p>获取下一个输入的值。Xxx的意思跟上面的一 样。</p>
+</li>
+</ul>
+</blockquote>
+<pre class="language-java" data-language="java"><code class="language-java"><span class="token keyword">import</span> <span class="token namespace">java<span class="token punctuation">.</span>util<span class="token punctuation">.</span></span><span class="token class-name">Scanner</span><span class="token punctuation">;</span>
+
+<span class="token keyword">public</span> <span class="token keyword">class</span> <span class="token class-name">TestScanner</span><span class="token punctuation">&#123;</span>
+	
+	<span class="token keyword">public</span> <span class="token keyword">static</span> <span class="token keyword">void</span> <span class="token function">main</span><span class="token punctuation">(</span><span class="token class-name">String</span><span class="token punctuation">[</span><span class="token punctuation">]</span> args<span class="token punctuation">)</span><span class="token punctuation">&#123;</span>
+		
+		<span class="token keyword">for</span><span class="token punctuation">(</span><span class="token class-name">String</span> arg<span class="token operator">:</span>args<span class="token punctuation">)</span><span class="token punctuation">&#123;</span>
+			<span class="token class-name">System</span><span class="token punctuation">.</span>out<span class="token punctuation">.</span><span class="token function">println</span><span class="token punctuation">(</span>arg<span class="token punctuation">)</span><span class="token punctuation">;</span>
+		<span class="token punctuation">&#125;</span>
+	
+        <span class="token comment">//构造从键盘获取值的Scanner对象</span>
+		<span class="token class-name">Scanner</span> scanner <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">Scanner</span><span class="token punctuation">(</span><span class="token class-name">System</span><span class="token punctuation">.</span>in<span class="token punctuation">)</span><span class="token punctuation">;</span>
+		scanner<span class="token punctuation">.</span><span class="token function">useDelimiter</span><span class="token punctuation">(</span><span class="token string">"\r\n"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token comment">//Scanner	useDelimiter(String pattern) 将此扫描器的分隔模式设置为从指定的构造的模式 String 。</span>
+		<span class="token class-name">String</span> oneline <span class="token operator">=</span> scanner<span class="token punctuation">.</span><span class="token function">next</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+		<span class="token class-name">System</span><span class="token punctuation">.</span>out<span class="token punctuation">.</span><span class="token function">println</span><span class="token punctuation">(</span>oneline<span class="token punctuation">)</span><span class="token punctuation">;</span>
+	
+	<span class="token punctuation">&#125;</span>
+	
+<span class="token punctuation">&#125;</span></code></pre>
+
+<p><font size="5" color="red">注意：Scanner默认使用空白（空格、Tab制表、回车） 作为多个输入项之间的分隔符</font></p>
+<p>使用Scanner之后,输入一串字符，却只拿到了hello,因为默认是以<strong>空格，回车，Tab键</strong>作为分隔符。所以一行被分为三个字符串。</p>
+<p><img src="/2021/10/09/23-Java%E5%B8%B8%E7%94%A8%E7%B1%BB/image-20211010110951017.png" loading="lazy"></p>
+<p>我们可以使用<strong>回车\r和换行\n</strong>作为分隔符。</p>
+<p><code>scanner.useDelimiter(&quot;\r\n&quot;);</code></p>
+<p><img src="/2021/10/09/23-Java%E5%B8%B8%E7%94%A8%E7%B1%BB/image-20211010111742758.png" loading="lazy"></p>
+<p>以上是键盘扫描输入，Scanner还可以扫描文件来输入</p>
+<blockquote>
+<ul>
+<li><p>Scanner类不仅仅只能读取单个字符、数字等，还可以读取一行 </p>
+</li>
+<li><p>Scanner也提供了两个方法来逐行读取 </p>
+<p>boolean hasNextLine()：输入源中是否还有下一行 </p>
+<p>String nextList()：返回输入源中下一行的字符串</p>
+</li>
+</ul>
+</blockquote>
+<pre class="language-java" data-language="java"><code class="language-java"><span class="token keyword">import</span> <span class="token namespace">java<span class="token punctuation">.</span>util<span class="token punctuation">.</span></span><span class="token class-name">Scanner</span><span class="token punctuation">;</span>
+<span class="token keyword">import</span> <span class="token namespace">java<span class="token punctuation">.</span>io<span class="token punctuation">.</span></span><span class="token operator">*</span><span class="token punctuation">;</span>  <span class="token comment">//后面需要输入输出流,先*上</span>
+
+<span class="token keyword">public</span> <span class="token keyword">class</span> <span class="token class-name">TestScanner</span><span class="token punctuation">&#123;</span>
+	
+	<span class="token keyword">public</span> <span class="token keyword">static</span> <span class="token keyword">void</span> <span class="token function">main</span><span class="token punctuation">(</span><span class="token class-name">String</span><span class="token punctuation">[</span><span class="token punctuation">]</span> args<span class="token punctuation">)</span> <span class="token keyword">throws</span> <span class="token class-name">Exception</span><span class="token punctuation">&#123;</span>
+		
+		<span class="token keyword">for</span><span class="token punctuation">(</span><span class="token class-name">String</span> arg<span class="token operator">:</span>args<span class="token punctuation">)</span><span class="token punctuation">&#123;</span>
+			<span class="token class-name">System</span><span class="token punctuation">.</span>out<span class="token punctuation">.</span><span class="token function">println</span><span class="token punctuation">(</span>arg<span class="token punctuation">)</span><span class="token punctuation">;</span>
+		<span class="token punctuation">&#125;</span>
+		
+		<span class="token class-name">File</span> file <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">File</span><span class="token punctuation">(</span><span class="token string">"D:\\workspace\\JavaStudy\\JavaSE\\17.Java常用类\\1.txt"</span><span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment">//正斜杠/就不要转义了,\反斜杠就需要转义.</span>
+		<span class="token class-name">Scanner</span> scanner <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">Scanner</span><span class="token punctuation">(</span>file<span class="token punctuation">)</span><span class="token punctuation">;</span>
+		<span class="token keyword">while</span><span class="token punctuation">(</span>scanner<span class="token punctuation">.</span><span class="token function">hasNextLine</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">&#123;</span>
+			<span class="token class-name">System</span><span class="token punctuation">.</span>out<span class="token punctuation">.</span><span class="token function">println</span><span class="token punctuation">(</span>scanner<span class="token punctuation">.</span><span class="token function">nextLine</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+		<span class="token punctuation">&#125;</span>
+		
+	<span class="token punctuation">&#125;</span>
+	
+<span class="token punctuation">&#125;</span></code></pre>
+
+
+
+<h2 id="字符串相关类"><a href="#字符串相关类" class="headerlink" title="字符串相关类"></a>字符串相关类</h2><h3 id="String、StringBuffer、StringBuilder"><a href="#String、StringBuffer、StringBuilder" class="headerlink" title="String、StringBuffer、StringBuilder"></a>String、StringBuffer、StringBuilder</h3><blockquote>
+<ul>
+<li>String：<font color="red">String是不可变类</font>，即一旦一个String对象被创建后，包含在 这个对象中的字符序列是<font color="red">不允许改变的</font>，一旦想改变，只有创建新的 对象，直到这个对象被JVM垃圾回收销毁 </li>
+<li>StringBuffer：StringBuffer对象代表一个可以改变的字符序列，当一 个StringBuffer对象被创建后，可以通过append、insert、reverse、 setCharAt、setLength等一些方法来改变这个字符串的值，直到最后 通过调用toString方法再变成String类型的值 </li>
+<li>StringBuilder：StringBuilder与StringBuffer之间很类似，唯一的不 同，就是StringBuilder是线程不安全的，而StringBuffer是线程安全 的，所以由此可以知道StringBuilder的效率还要比StringBuffer高</li>
+</ul>
+</blockquote>
+<pre class="language-java" data-language="java"><code class="language-java"><span class="token keyword">import</span> <span class="token namespace">java<span class="token punctuation">.</span>util<span class="token punctuation">.</span></span><span class="token class-name">Scanner</span><span class="token punctuation">;</span>
+
+<span class="token keyword">public</span> <span class="token keyword">class</span> <span class="token class-name">TestString</span><span class="token punctuation">&#123;</span>
+	
+	<span class="token keyword">public</span> <span class="token keyword">static</span> <span class="token keyword">void</span> <span class="token function">main</span><span class="token punctuation">(</span><span class="token class-name">String</span><span class="token punctuation">[</span><span class="token punctuation">]</span> args<span class="token punctuation">)</span><span class="token punctuation">&#123;</span>
+		
+		<span class="token class-name">String</span> str <span class="token operator">=</span> <span class="token string">"name="</span><span class="token operator">+</span><span class="token string">"张三"</span><span class="token operator">+</span><span class="token string">",gender="</span><span class="token operator">+</span><span class="token string">"男"</span><span class="token operator">+</span><span class="token string">",age="</span><span class="token operator">+</span><span class="token string">"24"</span><span class="token punctuation">;</span>
+		<span class="token comment">/*
+		一共11个对象
+		中间过渡的字符串,浪费
+		name=张三
+		name=张三,gender=
+		name=张三,gender=男
+		name=张三,gender=男,age=
+		*/</span>
+		
+		<span class="token class-name">StringBuffer</span> sb <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">StringBuffer</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+		sb<span class="token punctuation">.</span><span class="token function">append</span><span class="token punctuation">(</span><span class="token string">"name="</span><span class="token punctuation">)</span>
+		  <span class="token punctuation">.</span><span class="token function">append</span><span class="token punctuation">(</span><span class="token string">"张三"</span><span class="token punctuation">)</span>
+		  <span class="token punctuation">.</span><span class="token function">append</span><span class="token punctuation">(</span><span class="token string">",gender="</span><span class="token punctuation">)</span>
+		  <span class="token punctuation">.</span><span class="token function">append</span><span class="token punctuation">(</span><span class="token string">"男"</span><span class="token punctuation">)</span>
+		  <span class="token punctuation">.</span><span class="token function">append</span><span class="token punctuation">(</span><span class="token string">",age="</span><span class="token punctuation">)</span>
+		  <span class="token punctuation">.</span><span class="token function">append</span><span class="token punctuation">(</span><span class="token string">"24"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>		<span class="token comment">//此时还不是字符串</span>
+		<span class="token comment">//用这个方法只有六个对象</span>
+		<span class="token class-name">String</span> str2 <span class="token operator">=</span> sb<span class="token punctuation">.</span><span class="token function">toString</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+		
+	<span class="token punctuation">&#125;</span>
+	
+<span class="token punctuation">&#125;</span></code></pre>
+
+<p><font color="red">经典面试题 </font>&#x2B50;&#x2B50;&#x2B50;</p>
+<p>String s = new String(“12”+”34”); </p>
+<p>上述代码创建了几个String对象？<font color="red"><strong>三个</strong></font></p>
+<h2 id="Math类"><a href="#Math类" class="headerlink" title="Math类"></a>Math类</h2><h3 id="java-lang-Math"><a href="#java-lang-Math" class="headerlink" title="java.lang.Math"></a>java.lang.Math</h3><blockquote>
+<p>Java已经提供了基本的+、-、 * 、/、%等一系列的数学操 作符，但是更为复杂的操作符，如三角函数、对数运算则无能为力了。这个时候的java.lang.Math类就有作用了</p>
+<p>查看java.lang.Math的API文档</p>
+</blockquote>
+<pre class="language-java" data-language="java"><code class="language-java"><span class="token keyword">public</span> <span class="token keyword">class</span> <span class="token class-name">TestMath</span><span class="token punctuation">&#123;</span>
+	
+	<span class="token keyword">public</span> <span class="token keyword">static</span> <span class="token keyword">void</span> <span class="token function">main</span><span class="token punctuation">(</span><span class="token class-name">String</span><span class="token punctuation">[</span><span class="token punctuation">]</span> args<span class="token punctuation">)</span><span class="token punctuation">&#123;</span>
+		
+		<span class="token class-name">System</span><span class="token punctuation">.</span>out<span class="token punctuation">.</span><span class="token function">println</span><span class="token punctuation">(</span><span class="token string">"Math.E = "</span><span class="token operator">+</span><span class="token class-name">Math<span class="token punctuation">.</span>E</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+		<span class="token comment">//E 自然对数的底数e</span>
+		<span class="token class-name">System</span><span class="token punctuation">.</span>out<span class="token punctuation">.</span><span class="token function">println</span><span class="token punctuation">(</span><span class="token string">"Math.PI = "</span><span class="token operator">+</span><span class="token class-name">Math</span><span class="token punctuation">.</span>PI<span class="token punctuation">)</span><span class="token punctuation">;</span>
+		<span class="token comment">//圆周率</span>
+		<span class="token class-name">System</span><span class="token punctuation">.</span>out<span class="token punctuation">.</span><span class="token function">println</span><span class="token punctuation">(</span><span class="token string">"Math.random = "</span><span class="token operator">+</span><span class="token class-name">Math</span><span class="token punctuation">.</span><span class="token function">random</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+		<span class="token comment">//static double	random() 返回值为 double值为正号，大于等于 0.0 ，小于 1.0 。</span>
+		<span class="token class-name">System</span><span class="token punctuation">.</span>out<span class="token punctuation">.</span><span class="token function">println</span><span class="token punctuation">(</span><span class="token string">"Math.round(3.45) = "</span><span class="token operator">+</span><span class="token class-name">Math</span><span class="token punctuation">.</span><span class="token function">round</span><span class="token punctuation">(</span><span class="token number">3.45</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+		<span class="token class-name">System</span><span class="token punctuation">.</span>out<span class="token punctuation">.</span><span class="token function">println</span><span class="token punctuation">(</span><span class="token string">"Math.round(3.65) = "</span><span class="token operator">+</span><span class="token class-name">Math</span><span class="token punctuation">.</span><span class="token function">round</span><span class="token punctuation">(</span><span class="token number">3.65</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+		<span class="token comment">//四舍五入</span>
+		<span class="token comment">//static long	round(double a) 返回参数中最接近的 long ，其中 long四舍五入为正无穷大。</span>
+		<span class="token class-name">System</span><span class="token punctuation">.</span>out<span class="token punctuation">.</span><span class="token function">println</span><span class="token punctuation">(</span><span class="token string">"Math.rint(3.65) = "</span><span class="token operator">+</span><span class="token class-name">Math</span><span class="token punctuation">.</span><span class="token function">rint</span><span class="token punctuation">(</span><span class="token number">3.65</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+		<span class="token class-name">System</span><span class="token punctuation">.</span>out<span class="token punctuation">.</span><span class="token function">println</span><span class="token punctuation">(</span><span class="token string">"Math.rint(3.45) = "</span><span class="token operator">+</span><span class="token class-name">Math</span><span class="token punctuation">.</span><span class="token function">rint</span><span class="token punctuation">(</span><span class="token number">3.45</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+		<span class="token comment">//static double	rint(double a) 返回与参数最接近值的 double值，并且等于数学整数。</span>
+		<span class="token class-name">System</span><span class="token punctuation">.</span>out<span class="token punctuation">.</span><span class="token function">println</span><span class="token punctuation">(</span><span class="token string">"(int)3.45 = "</span><span class="token operator">+</span><span class="token punctuation">(</span><span class="token keyword">int</span><span class="token punctuation">)</span><span class="token number">3.45</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+		<span class="token comment">//直接强转,特点:精度丢失</span>
+		
+	
+	<span class="token punctuation">&#125;</span>
+	
+<span class="token punctuation">&#125;</span></code></pre>
+
+
+
+<h2 id="Random类"><a href="#Random类" class="headerlink" title="Random类"></a>Random类</h2><h3 id="java-util-Random"><a href="#java-util-Random" class="headerlink" title="java.util.Random"></a>java.util.Random</h3><blockquote>
+<ul>
+<li>Random类专门用于生成一个伪随机数</li>
+<li>构造器<ul>
+<li> 使用默认种子构造一个随机数类 </li>
+<li>使用指定的long类型的值作为种子生成一个随机数类</li>
+</ul>
+</li>
+<li>灵活度要比Math类的random方法高</li>
+</ul>
+</blockquote>
+<pre class="language-java" data-language="java"><code class="language-java"><span class="token keyword">import</span> <span class="token namespace">java<span class="token punctuation">.</span>util<span class="token punctuation">.</span></span><span class="token class-name">Random</span><span class="token punctuation">;</span>
+
+<span class="token keyword">public</span> <span class="token keyword">class</span> <span class="token class-name">TestRandom</span><span class="token punctuation">&#123;</span>
+	
+	<span class="token keyword">public</span> <span class="token keyword">static</span> <span class="token keyword">void</span> <span class="token function">main</span><span class="token punctuation">(</span><span class="token class-name">String</span><span class="token punctuation">[</span><span class="token punctuation">]</span> args<span class="token punctuation">)</span><span class="token punctuation">&#123;</span>
+		
+		<span class="token comment">//该方法有参(种子),只有第一次调用才生成伪随机数</span>
+		<span class="token comment">//一个种子对应一套序列,种子一样,序列一样.</span>
+		<span class="token class-name">Random</span> random1 <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">Random</span><span class="token punctuation">(</span><span class="token number">1000L</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+		<span class="token keyword">for</span><span class="token punctuation">(</span><span class="token keyword">int</span> i<span class="token operator">=</span><span class="token number">0</span><span class="token punctuation">;</span>i<span class="token operator">&lt;</span><span class="token number">10</span><span class="token punctuation">;</span>i<span class="token operator">++</span><span class="token punctuation">)</span><span class="token punctuation">&#123;</span>
+			<span class="token class-name">System</span><span class="token punctuation">.</span>out<span class="token punctuation">.</span><span class="token function">println</span><span class="token punctuation">(</span>random1<span class="token punctuation">.</span><span class="token function">nextInt</span><span class="token punctuation">(</span><span class="token number">100</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+		<span class="token punctuation">&#125;</span>
+		
+		<span class="token class-name">System</span><span class="token punctuation">.</span>out<span class="token punctuation">.</span><span class="token function">println</span><span class="token punctuation">(</span><span class="token string">"===================="</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+		
+		<span class="token comment">//该无参方法,随着系统纳秒时间的变化而种子(seed)变化,</span>
+		<span class="token comment">//所以没调用一次生成的伪随机数都不一样.</span>
+		<span class="token class-name">Random</span> random2 <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">Random</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+		<span class="token keyword">for</span><span class="token punctuation">(</span><span class="token keyword">int</span> i<span class="token operator">=</span><span class="token number">0</span><span class="token punctuation">;</span>i<span class="token operator">&lt;</span><span class="token number">10</span><span class="token punctuation">;</span>i<span class="token operator">++</span><span class="token punctuation">)</span><span class="token punctuation">&#123;</span>
+			<span class="token class-name">System</span><span class="token punctuation">.</span>out<span class="token punctuation">.</span><span class="token function">println</span><span class="token punctuation">(</span>random2<span class="token punctuation">.</span><span class="token function">nextInt</span><span class="token punctuation">(</span><span class="token number">100</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+		<span class="token punctuation">&#125;</span>
+		
+	<span class="token punctuation">&#125;</span>
+	
+<span class="token punctuation">&#125;</span></code></pre>
+
+<p>推荐：</p>
+<p>使用当前的系统时间来作为随机数的种子，或者使用默认的构造器。（无参构造器）</p>
+<h2 id="日期处理类"><a href="#日期处理类" class="headerlink" title="日期处理类"></a>日期处理类</h2><h3 id="java-util-Date"><a href="#java-util-Date" class="headerlink" title="java.util.Date"></a>java.util.Date</h3><blockquote>
+<ul>
+<li>Java提供了java.util.Date类来处理日期</li>
+<li>由于该类存在的时间比较长，从JDK1.0开始就存在了，好多构造器已经被标识为已过时，剩下了两个构造器 <ul>
+<li>Date() ：构造一个代表当前时间的Date对象 </li>
+<li>Date(long)：根据指定的long值来生成一个Date对象。long值指 的是从公元1970.1.1 00:00:00时间点所经过的毫秒数</li>
+</ul>
+</li>
+</ul>
+</blockquote>
+<blockquote>
+<p>java.util.Date类的主要方法</p>
+<ul>
+<li>boolean after(Date when) <ul>
+<li>测试该日期是否在指定日期when之后</li>
+</ul>
+</li>
+<li>boolean before(Date when) <ul>
+<li>测试该日期是否在指定日期when之前</li>
+</ul>
+</li>
+<li>int compareTo(Date anotherDate) <ul>
+<li>比较两个日期的大小，该日期大于后面的就返回正数，相等返回0 ，小于就返回负数</li>
+</ul>
+</li>
+<li>boolean equals(Object obj) <ul>
+<li>当前两个时间表示同一时刻时就放回true</li>
+</ul>
+</li>
+<li>long getTime() <ul>
+<li>返回毫秒数</li>
+</ul>
+</li>
+<li>void setTime(long time) <ul>
+<li>设置该Date对象的时间</li>
+</ul>
+</li>
+</ul>
+</blockquote>
+<p><font color="red">Date - &gt; Calendar    用void setTime(Date date)</font>使用给定的 <code>Date</code>设置此日历的时间。</p>
+<p><font color="red">Calendar - &gt; Date</font>   用Date    getTime()    返回一个表示此 <code>Calendar</code> 时间值（从<a href="#Epoch">历元</a>至现在的毫秒偏移量）的  <code>Date</code> 对象。</p>
+<h3 id="java-util-Calendar"><a href="#java-util-Calendar" class="headerlink" title="java.util.Calendar"></a>java.util.Calendar</h3><blockquote>
+<ul>
+<li>因为Date类型很多的构造器与方法都不推荐再使用，所以在此不再推荐使用Date类型，而是使用Calendar类</li>
+<li>Calendar是一个抽象类，表示特定环境下的日历</li>
+<li>获取Calendar实例的方法 <ul>
+<li>Calendar cal = Calendar.getInstance();</li>
+</ul>
+</li>
+</ul>
+</blockquote>
+<blockquote>
+<p>java.util.Calendar类的常用方法</p>
+<ul>
+<li>void add(int field,int amount)<ul>
+<li>根据日历的规则，将指定的时间量添加或减去给定的日历字段。</li>
+</ul>
+</li>
+<li>void roll(int field,int amount)<ul>
+<li>向指定日历字段添加指定（有符号的）时间量，不更改更大的字段。</li>
+</ul>
+</li>
+<li>int get(int field)<ul>
+<li>返回给定日历字段的值。</li>
+</ul>
+</li>
+<li>int getActualMaximum(int field)<ul>
+<li>给定此 <code>Calendar</code>的时间值，返回指定日历字段可能具有的 <code>Calendar</code> 。</li>
+</ul>
+</li>
+<li>int getActualMinimum(int field)<ul>
+<li>给定此 <code>Calendar</code>的时间值，返回指定的日历字段可以具有的 <code>Calendar</code> 。</li>
+</ul>
+</li>
+<li>void set(int field,int value)<ul>
+<li>将给定的日历字段设置为给定的值。</li>
+</ul>
+</li>
+<li>void set(int year,int month,int date)<ul>
+<li>设置日历字段中的值 <code>YEAR</code> ， <code>MONTH</code>和 <code>DAY_OF_MONTH</code> 。</li>
+</ul>
+</li>
+<li>void set(int year,int month,int date,int hourOfDay,int minute,int second)<ul>
+<li>设置字段中的值 <code>YEAR</code> ， <code>MONTH</code> ， <code>DAY_OF_MONTH</code> ， <code>HOUR_OF_DAY</code> ， <code>MINUTE</code>和 <code>SECOND</code> 。</li>
+</ul>
+</li>
+</ul>
+</blockquote>
+<pre class="language-java" data-language="java"><code class="language-java"><span class="token keyword">import</span> <span class="token namespace">java<span class="token punctuation">.</span>util<span class="token punctuation">.</span></span><span class="token class-name">Calendar</span><span class="token punctuation">;</span>
+<span class="token keyword">import</span> <span class="token namespace">java<span class="token punctuation">.</span>util<span class="token punctuation">.</span></span><span class="token class-name">Date</span><span class="token punctuation">;</span>
+<span class="token keyword">import</span> <span class="token namespace">java<span class="token punctuation">.</span>text<span class="token punctuation">.</span></span><span class="token class-name">SimpleDateFormat</span><span class="token punctuation">;</span>
+
+<span class="token keyword">public</span> <span class="token keyword">class</span> <span class="token class-name">TestCalendar</span><span class="token punctuation">&#123;</span>
+	
+	<span class="token keyword">public</span> <span class="token keyword">static</span> <span class="token keyword">void</span> <span class="token function">main</span><span class="token punctuation">(</span><span class="token class-name">String</span><span class="token punctuation">[</span><span class="token punctuation">]</span> args<span class="token punctuation">)</span><span class="token punctuation">&#123;</span>
+		
+		<span class="token class-name">String</span> pattern <span class="token operator">=</span> <span class="token string">"yyyy-MM-dd HH:mm:ss"</span><span class="token punctuation">;</span>
+		<span class="token class-name">SimpleDateFormat</span> sdf <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">SimpleDateFormat</span><span class="token punctuation">(</span>pattern<span class="token punctuation">)</span><span class="token punctuation">;</span>
+		
+		<span class="token class-name">Date</span> date <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">Date</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+		<span class="token comment">//System.out.println(date);//不符合国人习惯</span>
+		<span class="token class-name">System</span><span class="token punctuation">.</span>out<span class="token punctuation">.</span><span class="token function">println</span><span class="token punctuation">(</span>sdf<span class="token punctuation">.</span><span class="token function">format</span><span class="token punctuation">(</span>date<span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+		
+		<span class="token class-name">Calendar</span> cal <span class="token operator">=</span> <span class="token class-name">Calendar</span><span class="token punctuation">.</span><span class="token function">getInstance</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+		<span class="token keyword">int</span> year <span class="token operator">=</span> cal<span class="token punctuation">.</span><span class="token function">get</span><span class="token punctuation">(</span><span class="token class-name">Calendar</span><span class="token punctuation">.</span>YEAR<span class="token punctuation">)</span><span class="token punctuation">;</span>
+		<span class="token keyword">int</span> month <span class="token operator">=</span> cal<span class="token punctuation">.</span><span class="token function">get</span><span class="token punctuation">(</span><span class="token class-name">Calendar</span><span class="token punctuation">.</span>MONTH<span class="token punctuation">)</span><span class="token punctuation">;</span>
+		<span class="token keyword">int</span> day <span class="token operator">=</span> cal<span class="token punctuation">.</span><span class="token function">get</span><span class="token punctuation">(</span><span class="token class-name">Calendar</span><span class="token punctuation">.</span>DAY_OF_MONTH<span class="token punctuation">)</span><span class="token punctuation">;</span>
+		<span class="token keyword">int</span> hour <span class="token operator">=</span> cal<span class="token punctuation">.</span><span class="token function">get</span><span class="token punctuation">(</span><span class="token class-name">Calendar</span><span class="token punctuation">.</span>HOUR_OF_DAY<span class="token punctuation">)</span><span class="token punctuation">;</span>
+		<span class="token keyword">int</span> minute <span class="token operator">=</span> cal<span class="token punctuation">.</span><span class="token function">get</span><span class="token punctuation">(</span><span class="token class-name">Calendar</span><span class="token punctuation">.</span>MINUTE<span class="token punctuation">)</span><span class="token punctuation">;</span>
+		<span class="token keyword">int</span> second <span class="token operator">=</span> cal<span class="token punctuation">.</span><span class="token function">get</span><span class="token punctuation">(</span><span class="token class-name">Calendar</span><span class="token punctuation">.</span>SECOND<span class="token punctuation">)</span><span class="token punctuation">;</span>
+		
+		<span class="token comment">//System.out.println(year+"-"+(month+1)+"-"+day+" "+hour+":"+minute+":"+second);</span>
+		<span class="token comment">//以上注释的都是废话,应该用SimpleDateFormat</span>
+		
+	<span class="token punctuation">&#125;</span>
+	
+<span class="token punctuation">&#125;</span></code></pre>
+
+
+
+<blockquote>
+<p>Date表示日期</p>
+<p>Calendar对日期进行运算</p>
+<p>SimpleDateFormat对日期进行格式化输出</p>
+</blockquote>
+<h3 id="java-text-SimpleDateFormat"><a href="#java-text-SimpleDateFormat" class="headerlink" title="java.text.SimpleDateFormat"></a>java.text.SimpleDateFormat</h3><ul>
+<li>SimpleDateFormat是DateFormat的子类，可以更简单、 更直观地格式化和解析日期对象 SimpleDateFormat sdf = new SimpleDateFormat(“yyyy年MM月dd日 HH时 mm分ss秒”); System.out.println(sdf.format(new Date()));</li>
+</ul>
+<pre class="language-java" data-language="java"><code class="language-java"><span class="token keyword">import</span> <span class="token namespace">java<span class="token punctuation">.</span>util<span class="token punctuation">.</span></span><span class="token class-name">Calendar</span><span class="token punctuation">;</span>
+<span class="token keyword">import</span> <span class="token namespace">java<span class="token punctuation">.</span>util<span class="token punctuation">.</span></span><span class="token class-name">Date</span><span class="token punctuation">;</span>
+<span class="token keyword">import</span> <span class="token namespace">java<span class="token punctuation">.</span>text<span class="token punctuation">.</span></span><span class="token class-name">SimpleDateFormat</span><span class="token punctuation">;</span>
+
+<span class="token keyword">public</span> <span class="token keyword">class</span> <span class="token class-name">TestCalendar2</span><span class="token punctuation">&#123;</span>
+	
+	<span class="token keyword">public</span> <span class="token keyword">static</span> <span class="token keyword">void</span> <span class="token function">main</span><span class="token punctuation">(</span><span class="token class-name">String</span><span class="token punctuation">[</span><span class="token punctuation">]</span> args<span class="token punctuation">)</span> <span class="token keyword">throws</span> <span class="token class-name">Exception</span><span class="token punctuation">&#123;</span>
+		
+		<span class="token class-name">String</span> pattern <span class="token operator">=</span> <span class="token string">"yyyy-MM-dd HH:mm:ss"</span><span class="token punctuation">;</span>
+		<span class="token class-name">SimpleDateFormat</span> sdf <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">SimpleDateFormat</span><span class="token punctuation">(</span>pattern<span class="token punctuation">)</span><span class="token punctuation">;</span>
+		
+		<span class="token class-name">Date</span> date <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">Date</span><span class="token punctuation">(</span><span class="token number">2008</span><span class="token operator">-</span><span class="token number">1900</span><span class="token punctuation">,</span><span class="token number">7</span><span class="token punctuation">,</span><span class="token number">8</span><span class="token punctuation">,</span><span class="token number">20</span><span class="token punctuation">,</span><span class="token number">8</span><span class="token punctuation">,</span><span class="token number">8</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+		
+		<span class="token class-name">Calendar</span> cal <span class="token operator">=</span> <span class="token class-name">Calendar</span><span class="token punctuation">.</span><span class="token function">getInstance</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+		cal<span class="token punctuation">.</span><span class="token function">setTime</span><span class="token punctuation">(</span>date<span class="token punctuation">)</span><span class="token punctuation">;</span><span class="token comment">//Date->Calendar</span>
+		cal<span class="token punctuation">.</span><span class="token function">add</span><span class="token punctuation">(</span><span class="token class-name">Calendar</span><span class="token punctuation">.</span>MONTH<span class="token punctuation">,</span><span class="token number">1</span><span class="token punctuation">)</span><span class="token punctuation">;</span><span class="token comment">//往后加一个月,会自动进位</span>
+		<span class="token comment">//cal.roll(Calendar.MONTH,1);//不进位</span>
+		
+		<span class="token comment">//获得对应域的最大值</span>
+		<span class="token class-name">System</span><span class="token punctuation">.</span>out<span class="token punctuation">.</span><span class="token function">println</span><span class="token punctuation">(</span>cal<span class="token punctuation">.</span><span class="token function">getActualMaximum</span><span class="token punctuation">(</span><span class="token class-name">Calendar</span><span class="token punctuation">.</span>DAY_OF_MONTH<span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+		
+		<span class="token class-name">System</span><span class="token punctuation">.</span>out<span class="token punctuation">.</span><span class="token function">println</span><span class="token punctuation">(</span>sdf<span class="token punctuation">.</span><span class="token function">format</span><span class="token punctuation">(</span>cal<span class="token punctuation">.</span><span class="token function">getTime</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+		<span class="token comment">//Calendar转成Date后用format格式化</span>
+		
+		<span class="token class-name">String</span> dateString <span class="token operator">=</span> <span class="token string">"1999-01-09 12:12:12"</span><span class="token punctuation">;</span><span class="token comment">//这个date字符串必须满足sdf定义的pattern</span>
+		<span class="token class-name">Date</span> date2 <span class="token operator">=</span> sdf<span class="token punctuation">.</span><span class="token function">parse</span><span class="token punctuation">(</span>dateString<span class="token punctuation">)</span><span class="token punctuation">;</span>
+		<span class="token class-name">System</span><span class="token punctuation">.</span>out<span class="token punctuation">.</span><span class="token function">println</span><span class="token punctuation">(</span>date2<span class="token punctuation">)</span><span class="token punctuation">;</span>
+		
+	<span class="token punctuation">&#125;</span>
+	
+<span class="token punctuation">&#125;</span></code></pre>
+
+
+
+<p><strong><font color="orange">一般情况下先使用Calendar处理日期，再转换成Date 类，再由SimpleDateFormat类格式化输出</font></strong></p>
+<h2 id="Java程序的国际化（I18N）"><a href="#Java程序的国际化（I18N）" class="headerlink" title="Java程序的国际化（I18N）"></a>Java程序的国际化（I18N）</h2><h3 id="国际化相关的Java类"><a href="#国际化相关的Java类" class="headerlink" title="国际化相关的Java类"></a>国际化相关的Java类</h3><blockquote>
+<p>java.util.ResourceBundle</p>
+<ul>
+<li>用于加载一个资源包</li>
+</ul>
+<p>java.util.Locale</p>
+<ul>
+<li>对应一个特定的国家/区域、语言环境</li>
+</ul>
+<p>java.text.MessageFormat</p>
+<ul>
+<li>用于将消息格式化</li>
+</ul>
+</blockquote>
+<h3 id="国际化资源文件"><a href="#国际化资源文件" class="headerlink" title="国际化资源文件"></a>国际化资源文件</h3><blockquote>
+<ul>
+<li>为实现程序的国际化，必须提供程序所需要的资源文件。 资源文件的内容由key-value对组成</li>
+<li>资源文件的命名可以有3种格式<ul>
+<li>basename_language_country.properties</li>
+<li>basename_language.properties</li>
+<li>basename.properties</li>
+</ul>
+</li>
+</ul>
+<p>如:</p>
+<p>msg_zh_CN.properties简体中文资源文件</p>
+<p>msg_en_US.properties美式英文资源文件</p>
+<p>msg_en.properties英文资源文件</p>
+<p>msg.properties默认的资源文件</p>
+</blockquote>
+<blockquote>
+<p><font color="red">若资源文件包含非西方字符，则需要用JDK自带的工具来处理，native2ascii，这个工具的语法格式如下</font>。</p>
+<ul>
+<li>native2ascii    资源文件名    目标资源文件名</li>
+</ul>
+</blockquote>
+<pre class="language-java" data-language="java"><code class="language-java"><span class="token keyword">import</span> <span class="token namespace">java<span class="token punctuation">.</span>util<span class="token punctuation">.</span></span><span class="token operator">*</span><span class="token punctuation">;</span>
+<span class="token keyword">import</span> <span class="token namespace">java<span class="token punctuation">.</span>text<span class="token punctuation">.</span></span><span class="token class-name">MessageFormat</span><span class="token punctuation">;</span>
+
+<span class="token keyword">public</span> <span class="token keyword">class</span> <span class="token class-name">TestI18N</span><span class="token punctuation">&#123;</span>
+	
+	<span class="token keyword">public</span> <span class="token keyword">static</span> <span class="token keyword">void</span> <span class="token function">main</span><span class="token punctuation">(</span><span class="token class-name">String</span><span class="token punctuation">[</span><span class="token punctuation">]</span> args<span class="token punctuation">)</span><span class="token punctuation">&#123;</span>
+		
+		<span class="token comment">//获得系统默认的国家/语言环境</span>
+		<span class="token class-name">Locale</span> myLocale <span class="token operator">=</span> <span class="token class-name">Locale</span><span class="token punctuation">.</span><span class="token function">getDefault</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+		<span class="token comment">//根据指定的国家/语言环境加载对应的资源环境</span>
+		<span class="token class-name">ResourceBundle</span> bundle <span class="token operator">=</span> <span class="token class-name">ResourceBundle</span><span class="token punctuation">.</span><span class="token function">getBundle</span><span class="token punctuation">(</span><span class="token string">"msg"</span><span class="token punctuation">,</span>myLocale<span class="token punctuation">)</span><span class="token punctuation">;</span>
+		
+		<span class="token comment">//获得本地化字符串</span>
+		<span class="token class-name">String</span> name <span class="token operator">=</span> bundle<span class="token punctuation">.</span><span class="token function">getString</span><span class="token punctuation">(</span><span class="token string">"name"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+		<span class="token class-name">System</span><span class="token punctuation">.</span>out<span class="token punctuation">.</span><span class="token function">println</span><span class="token punctuation">(</span>name<span class="token punctuation">)</span><span class="token punctuation">;</span>
+		
+		<span class="token class-name">String</span> msg <span class="token operator">=</span> bundle<span class="token punctuation">.</span><span class="token function">getString</span><span class="token punctuation">(</span><span class="token string">"msg"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+		<span class="token class-name">System</span><span class="token punctuation">.</span>out<span class="token punctuation">.</span><span class="token function">println</span><span class="token punctuation">(</span><span class="token class-name">MessageFormat</span><span class="token punctuation">.</span><span class="token function">format</span><span class="token punctuation">(</span>msg<span class="token punctuation">,</span><span class="token string">"zhurui"</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+	<span class="token punctuation">&#125;</span>
+	
+<span class="token punctuation">&#125;</span></code></pre>
+
+</div><ul class="post-copyright"><li class="post-copyright-author"><strong>本文作者：</strong>ZR</li><li class="post-copyright-link"><strong>本文链接：</strong><a href="https://zr-java.github.io/2021/10/09/23-Java%E5%B8%B8%E7%94%A8%E7%B1%BB/" title="23-Java常用类">https://zr-java.github.io/2021/10/09/23-Java%E5%B8%B8%E7%94%A8%E7%B1%BB/</a></li><li class="post-copyright-license"><strong>版权声明：</strong>本博客所有文章除特别声明外，均默认采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh" target="_blank" rel="noopener" title="CC BY-NC-SA 4.0 "><svg class="icon"><use xlink:href="#icon-creative-commons-line"></use></svg><svg class="icon"><use xlink:href="#icon-creative-commons-by-line"></use></svg><svg class="icon"><use xlink:href="#icon-creative-commons-nc-line"></use></svg><svg class="icon"><use xlink:href="#icon-creative-commons-sa-line"></use></svg></a> 许可协议。</li></ul></section></article><div class="post-nav"><div class="post-nav-item"><a class="post-nav-prev" href="/2021/10/28/24-%E6%8E%A5%E5%8F%A3/" rel="prev" title="24-接口"><svg class="icon" aria-hidden="true"><use xlink:href="#icon-arrow-left-s-line"></use></svg><span class="post-nav-text">24-接口</span></a></div><div class="post-nav-item"><a class="post-nav-next" href="/2021/09/28/22-%E5%8C%85%E8%A3%85%E7%B1%BB%E5%92%8CObject%E7%B1%BB/" rel="next" title="22-包装类和Object类"><span class="post-nav-text">22-包装类和Object类</span><svg class="icon" aria-hidden="true"><use xlink:href="#icon-arrow-right-s-line"></use></svg></a></div></div></div><div class="hty-card" id="comment"><div class="comment-tooltip text-center"><span>要不要和我说些什么？</span><br></div></div></main><footer class="sidebar-translate" id="footer"><div class="copyright"><span>&copy; 2021 </span><span class="with-love" id="animate" title="敲啊敲,点啊点就是没有用"><svg class="icon" aria-hidden="true"><use xlink:href="#icon-cloud-line"></use></svg></span><span class="author"> ZR</span></div><div class="powered"><span>由 <a href="https://hexo.io" target="_blank" rel="noopener">Hexo</a> 驱动 v5.4.0</span><span class="footer-separator">|</span><span>主题 - <a rel="noopener" href="https://github.com/YunYouJun/hexo-theme-yun" target="_blank"><span>Yun</span></a> v1.6.1</span></div><div class="live_time"><span>本博客已萌萌哒地运行</span><span id="display_live_time"></span><span class="moe-text">(●'◡'●)</span><script>function blog_live_time() {
+  setTimeout(blog_live_time, 1000);
+  const start = new Date('2021-07-19T00:00:00');
+  const now = new Date();
+  const timeDiff = (now.getTime() - start.getTime());
+  const msPerMinute = 60 * 1000;
+  const msPerHour = 60 * msPerMinute;
+  const msPerDay = 24 * msPerHour;
+  const passDay = Math.floor(timeDiff / msPerDay);
+  const passHour = Math.floor((timeDiff % msPerDay) / 60 / 60 / 1000);
+  const passMinute = Math.floor((timeDiff % msPerHour) / 60 / 1000);
+  const passSecond = Math.floor((timeDiff % msPerMinute) / 1000);
+  display_live_time.innerHTML = " " + passDay + " 天 " + passHour + " 小时 " + passMinute + " 分 " + passSecond + " 秒";
+}
+blog_live_time();
+</script></div></footer><a class="hty-icon-button" id="back-to-top" aria-label="back-to-top" href="#"><svg class="icon" aria-hidden="true"><use xlink:href="#icon-arrow-up-s-line"></use></svg><svg class="progress-circle-container" viewBox="0 0 100 100"><circle class="progress-circle" id="progressCircle" cx="50" cy="50" r="48" fill="none" stroke="#0078E7" stroke-width="2" stroke-linecap="round"></circle></svg></a><a class="popup-trigger hty-icon-button icon-search" id="search" href="javascript:;" title="搜索"><span class="site-state-item-icon"><svg class="icon" aria-hidden="true"><use xlink:href="#icon-search-line"></use></svg></span></a><script>window.addEventListener("DOMContentLoaded", () => {
+  // Handle and trigger popup window
+  document.querySelector(".popup-trigger").addEventListener("click", () => {
+    document.querySelector(".popup").classList.add("show");
+    setTimeout(() => {
+      document.querySelector(".search-input").focus();
+    }, 100);
+  });
+
+  // Monitor main search box
+  const onPopupClose = () => {
+    document.querySelector(".popup").classList.remove("show");
+  };
+
+  document.querySelector(".popup-btn-close").addEventListener("click", () => {
+    onPopupClose();
+  });
+
+  window.addEventListener("keyup", event => {
+    if (event.key === "Escape") {
+      onPopupClose();
+    }
+  });
+});
+</script><script src="/js/search/local-search.js" defer></script><div class="popup search-popup"><div class="search-header"><span class="popup-btn-close close-icon hty-icon-button"><svg class="icon" aria-hidden="true"><use xlink:href="#icon-close-line"></use></svg></span></div><div class="search-input-container"><input class="search-input" id="local-search-input" type="text" placeholder="搜索..." value=""></div><div id="local-search-result"></div></div></div><!-- hexo injector body_end start --><script src="https://cdn.jsdelivr.net/npm/hexo-widget-tree@0.1.1/js/index.js"></script><div id="widget-tree">
+      <ul><li class="tree-list-item"><i class="toggle-post-icon gg-folder-add"></i><a class="tree-list-link" href="/categories/Homework/">Homework</a><ul class="tree-list-children"><li class="tree-list-item"><a class="tree-list-post-link" href="/2021/08/05/%E5%88%A4%E6%96%AD%E5%BE%AA%E7%8E%AF%E4%BD%9C%E4%B8%9A/" title="判断循环作业"><i class="post-icon gg-file-document"></i>判断循环作业</a></li><li class="tree-list-item"><a class="tree-list-post-link" href="/2021/08/16/%E6%95%B0%E7%BB%84%E4%BD%9C%E4%B8%9A/" title="数组作业"><i class="post-icon gg-file-document"></i>数组作业</a></li></ul></li><li class="tree-list-item"><i class="toggle-post-icon gg-folder-add"></i><a class="tree-list-link" href="/categories/Markdown/">Markdown</a><ul class="tree-list-children"><li class="tree-list-item"><a class="tree-list-post-link" href="/2021/07/19/Markdown%E8%8F%9C%E9%B8%9F%E7%AC%94%E8%AE%B0/" title="Markdown菜鸟笔记"><i class="post-icon gg-file-document"></i>Markdown菜鸟笔记</a></li><li class="tree-list-item"><a class="tree-list-post-link" href="/2021/08/02/Markdown%E9%A2%9C%E8%89%B2%E5%AD%97%E4%BD%93/" title="Markdown颜色字体"><i class="post-icon gg-file-document"></i>Markdown颜色字体</a></li><li class="tree-list-item"><a class="tree-list-post-link" href="/2021/07/19/Mermaid%E6%B5%81%E7%A8%8B%E5%9B%BE%E5%BF%AB%E9%80%9F%E5%85%A5%E9%97%A8/" title="Mermaid流程图快速入门"><i class="post-icon gg-file-document"></i>Mermaid流程图快速入门</a></li></ul></li><li class="tree-list-item"><i class="toggle-post-icon gg-folder-add"></i><a class="tree-list-link" href="/categories/javaSE/">javaSE</a><ul class="tree-list-children"><li class="tree-list-item"><a class="tree-list-post-link" href="/2021/07/19/01-Java%E8%AF%AD%E8%A8%80%E4%BB%8B%E7%BB%8D%E5%8F%8A%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA/" title="01-Java语言介绍及环境搭建"><i class="post-icon gg-file-document"></i>01-Java语言介绍及环境搭建</a></li><li class="tree-list-item"><a class="tree-list-post-link" href="/2021/07/19/02-%E5%9F%BA%E6%9C%AC%E8%AF%AD%E6%B3%95%E5%8D%95%E4%BD%8D/" title="02-基本语法单位"><i class="post-icon gg-file-document"></i>02-基本语法单位</a></li><li class="tree-list-item"><a class="tree-list-post-link" href="/2021/07/19/03-Java%E5%9F%BA%E6%9C%AC%E6%95%B0%E6%8D%AE%E7%B1%BB%E5%9E%8B/" title="03-Java基本数据类型"><i class="post-icon gg-file-document"></i>03-Java基本数据类型</a></li><li class="tree-list-item"><a class="tree-list-post-link" href="/2021/07/19/05-%E9%9D%A2%E5%90%91%E5%AF%B9%E8%B1%A1%E7%9A%84%E6%A6%82%E8%BF%B0/" title="05-面向对象的概述"><i class="post-icon gg-file-document"></i>05-面向对象的概述</a></li><li class="tree-list-item"><a class="tree-list-post-link" href="/2021/07/19/06-%E8%87%AA%E5%AE%9A%E4%B9%89%E7%B1%BB%E5%92%8C%E5%AF%B9%E8%B1%A1%E7%9A%84%E5%88%9B%E5%BB%BA/" title="06-自定义类和对象的创建"><i class="post-icon gg-file-document"></i>06-自定义类和对象的创建</a></li><li class="tree-list-item"><a class="tree-list-post-link" href="/2021/07/19/04-Java%E8%A1%A8%E8%BE%BE%E5%BC%8F/" title="04-Java表达式"><i class="post-icon gg-file-document"></i>04-Java表达式</a></li><li class="tree-list-item"><a class="tree-list-post-link" href="/2021/07/22/07-%E6%95%B0%E7%BB%84/" title="07-数组"><i class="post-icon gg-file-document"></i>07-数组</a></li><li class="tree-list-item"><a class="tree-list-post-link" href="/2021/07/31/08-String%E5%B8%B8%E7%94%A8%E6%96%B9%E6%B3%95%E8%AE%B2%E8%A7%A3/" title="08-String常用方法讲解"><i class="post-icon gg-file-document"></i>08-String常用方法讲解</a></li><li class="tree-list-item"><a class="tree-list-post-link" href="/2021/08/08/09-%E4%BA%8C%E7%BB%B4%E6%95%B0%E7%BB%84/" title="09-二维数组"><i class="post-icon gg-file-document"></i>09-二维数组</a></li><li class="tree-list-item"><a class="tree-list-post-link" href="/2021/08/11/11-PowerDesigner%E7%94%BB%E7%B1%BB%E5%9B%BE/" title="11-PowerDesigner画类图"><i class="post-icon gg-file-document"></i>11-PowerDesigner画类图</a></li><li class="tree-list-item"><a class="tree-list-post-link" href="/2021/08/08/10-%E5%AF%B9%E8%B1%A1%E7%9A%84%E7%94%9F%E5%91%BD%E5%91%A8%E6%9C%9F/" title="10-对象的生命周期"><i class="post-icon gg-file-document"></i>10-对象的生命周期</a></li><li class="tree-list-item"><a class="tree-list-post-link" href="/2021/08/28/13-%E5%AF%B9%E8%B1%A1%E6%9E%84%E9%80%A0%E5%92%8C%E6%88%90%E5%91%98%E5%8F%98%E9%87%8F%E3%80%81%E5%B1%80%E9%83%A8%E5%8F%98%E9%87%8F/" title="13-对象构造和成员变量、局部变量"><i class="post-icon gg-file-document"></i>13-对象构造和成员变量、局部变量</a></li><li class="tree-list-item"><a class="tree-list-post-link" href="/2021/08/11/12-%E4%BD%BF%E7%94%A8%E7%8E%B0%E6%9C%89%E7%B1%BB%E5%92%8C%E8%87%AA%E5%AE%9A%E4%B9%89%E7%B1%BB/" title="12-使用现有类和自定义类"><i class="post-icon gg-file-document"></i>12-使用现有类和自定义类</a></li><li class="tree-list-item"><a class="tree-list-post-link" href="/2021/09/23/15-%E6%96%B9%E6%B3%95%E7%9A%84%E9%87%8D%E8%BD%BD%E5%92%8C%E9%80%92%E5%BD%92/" title="15-方法的重载和递归"><i class="post-icon gg-file-document"></i>15-方法的重载和递归</a></li><li class="tree-list-item"><a class="tree-list-post-link" href="/2021/09/07/14-%E6%96%B9%E6%B3%95%E7%9A%84%E5%8F%AF%E5%8F%98%E9%95%BF%E5%8F%82%E6%95%B0/" title="14-方法的可变长参数"><i class="post-icon gg-file-document"></i>14-方法的可变长参数</a></li><li class="tree-list-item"><a class="tree-list-post-link" href="/2021/09/24/16-this%E5%92%8Cstatic%E5%85%B3%E9%94%AE%E5%AD%97/" title="16-this和static关键字"><i class="post-icon gg-file-document"></i>16-this和static关键字</a></li><li class="tree-list-item"><a class="tree-list-post-link" href="/2021/09/25/17-package/" title="17-package"><i class="post-icon gg-file-document"></i>17-package</a></li><li class="tree-list-item"><a class="tree-list-post-link" href="/2021/09/25/18-%E5%8D%95%E4%BE%8B%E6%A8%A1%E5%BC%8F/" title="18-单例模式"><i class="post-icon gg-file-document"></i>18-单例模式</a></li><li class="tree-list-item"><a class="tree-list-post-link" href="/2021/09/26/19-%E5%B0%81%E8%A3%85%E4%B8%8E%E7%BB%A7%E6%89%BF/" title="19-封装与继承"><i class="post-icon gg-file-document"></i>19-封装与继承</a></li><li class="tree-list-item"><a class="tree-list-post-link" href="/2021/09/26/20-%E6%96%B9%E6%B3%95%E7%9A%84%E8%A6%86%E7%9B%96(%E9%87%8D%E5%86%99)/" title="20-方法的覆盖(重写)"><i class="post-icon gg-file-document"></i>20-方法的覆盖(重写)</a></li><li class="tree-list-item"><a class="tree-list-post-link" href="/2021/09/27/21-Java%E7%9A%84%E6%8A%BD%E8%B1%A1%E7%B1%BB/" title="21-Java的抽象类"><i class="post-icon gg-file-document"></i>21-Java的抽象类</a></li><li class="tree-list-item"><a class="tree-list-post-link" href="/2021/09/28/22-%E5%8C%85%E8%A3%85%E7%B1%BB%E5%92%8CObject%E7%B1%BB/" title="22-包装类和Object类"><i class="post-icon gg-file-document"></i>22-包装类和Object类</a></li><li class="tree-list-item"><a class="tree-list-post-link" href="/2021/10/09/23-Java%E5%B8%B8%E7%94%A8%E7%B1%BB/" title="23-Java常用类"><i class="post-icon gg-file-document"></i>23-Java常用类</a></li><li class="tree-list-item"><a class="tree-list-post-link" href="/2021/10/28/24-%E6%8E%A5%E5%8F%A3/" title="24-接口"><i class="post-icon gg-file-document"></i>24-接口</a></li><li class="tree-list-item"><a class="tree-list-post-link" href="/2021/11/19/25-%E5%A4%9A%E6%80%81/" title="25-多态"><i class="post-icon gg-file-document"></i>25-多态</a></li></ul></li><li class="tree-list-item"><i class="toggle-post-icon gg-folder-add"></i><a class="tree-list-link" href="/categories/tools/">tools</a><ul class="tree-list-children"><li class="tree-list-item"><a class="tree-list-post-link" href="/2021/08/02/ASCll%E5%AF%B9%E7%85%A7%E8%A1%A8/" title="ASCll对照表"><i class="post-icon gg-file-document"></i>ASCll对照表</a></li><li class="tree-list-item"><a class="tree-list-post-link" href="/2021/07/19/Aplayer%E6%92%AD%E6%94%BE%E5%99%A8/" title="Aplayer播放器"><i class="post-icon gg-file-document"></i>Aplayer播放器</a></li><li class="tree-list-item"><a class="tree-list-post-link" href="/2021/07/19/hexo-theme-pure/" title="hexo-theme-pure"><i class="post-icon gg-file-document"></i>hexo-theme-pure</a></li></ul></li></ul>
+        <div id="widget-tree-button">
+          <i class="gg-chevron-right"></i>
+        </div>
+      </div><!-- hexo injector body_end end --></body></html>
