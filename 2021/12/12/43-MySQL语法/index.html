@@ -1,0 +1,2167 @@
+<!DOCTYPE html><html lang="zh-CN"><head><!-- hexo injector head_begin start --><link href="https://cdn.jsdelivr.net/npm/hexo-widget-tree@0.1.1/css/index.css" rel="stylesheet"/><!-- hexo injector head_begin end --><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="theme-color" content="#0078E7"><meta name="author" content="ZR"><meta name="copyright" content="ZR"><meta name="generator" content="Hexo 5.4.0"><meta name="theme" content="hexo-theme-yun"><title>43-MySQL语法 | ZR的小站</title><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@900&amp;display=swap" media="print" onload="this.media='all'"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/star-markdown-css@0.1.25/dist/yun/yun-markdown.min.css"><script src="//at.alicdn.com/t/font_1140697_dxory92pb0h.js" async></script><script src="https://cdn.jsdelivr.net/npm/scrollreveal/dist/scrollreveal.min.js" defer></script><script>document.addEventListener("DOMContentLoaded", () => {
+  [".post-card",".post-content img"].forEach((target)=> {
+    ScrollReveal().reveal(target);
+  })
+});
+</script><script src="https://cdn.jsdelivr.net/npm/pjax@latest/pjax.min.js" defer></script><script src="/js/pjax.js" defer></script><script src="https://cdn.jsdelivr.net/npm/vue@2.6.11"></script><link id="light-prism-css" rel="stylesheet" href="https://cdn.jsdelivr.net/npm/prismjs@latest/themes/prism.css" media="(prefers-color-scheme: light)"><link id="dark-prism-css" rel="stylesheet" href="https://cdn.jsdelivr.net/npm/prismjs@latest/themes/prism-tomorrow.css" media="(prefers-color-scheme: dark)"><link rel="icon" href="/yun.svg"><link rel="mask-icon" href="/yun.svg" color="#0078E7"><link rel="alternate icon" href="/yun.ico"><link rel="preload" href="/css/hexo-theme-yun.css" as="style"><link rel="preload" href="/js/utils.js" as="script"><link rel="preload" href="/js/hexo-theme-yun.js" as="script"><link rel="prefetch" href="/js/sidebar.js" as="script"><link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin><script id="yun-config">
+    const Yun = window.Yun || {};
+    window.CONFIG = {"hostname":"zr-java.github.io","root":"/","title":["ZR","的","垃","圾","场"],"version":"1.6.1","mode":"auto","copycode":true,"page":{"isPost":true},"i18n":{"placeholder":"搜索...","empty":"找不到您查询的内容: ${query}","hits":"找到 ${hits} 条结果","hits_time":"找到 ${hits} 条结果（用时 ${time} 毫秒）"},"anonymous_image":"https://cdn.jsdelivr.net/gh/YunYouJun/cdn/img/avatar/none.jpg","say":{"api":"https://v1.hitokoto.cn","hitokoto":true},"local_search":{"path":"/search.xml"},"fireworks":{"colors":["102, 167, 221","62, 131, 225","33, 78, 194"]}};
+  </script><link rel="stylesheet" href="/css/hexo-theme-yun.css"><script src="/js/utils.js"></script><script src="/js/hexo-theme-yun.js"></script><meta name="description" content="SQL语言的分类  数据查询语言DQL.(Data Query Language) 数据查询语言DQL基本结构是由SELECT子句，FROM子句，WHERE子句组成的查询块：SELECT &lt;字段名表&gt;FROM &lt;表或视图名&gt;WHERE &lt;查询条件&gt;  数据操纵语言DML.(Data Manipulation Language) 数据操纵语言DML主要有三种形式：">
+<meta property="og:type" content="article">
+<meta property="og:title" content="43-MySQL语法">
+<meta property="og:url" content="https://zr-java.github.io/2021/12/12/43-MySQL%E8%AF%AD%E6%B3%95/index.html">
+<meta property="og:site_name" content="ZR的小站">
+<meta property="og:description" content="SQL语言的分类  数据查询语言DQL.(Data Query Language) 数据查询语言DQL基本结构是由SELECT子句，FROM子句，WHERE子句组成的查询块：SELECT &lt;字段名表&gt;FROM &lt;表或视图名&gt;WHERE &lt;查询条件&gt;  数据操纵语言DML.(Data Manipulation Language) 数据操纵语言DML主要有三种形式：">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://zr-java.github.io/2021/12/12/43-MySQL%E8%AF%AD%E6%B3%95/%E5%86%85%E8%81%94.jpg">
+<meta property="og:image" content="https://zr-java.github.io/2021/12/12/43-MySQL%E8%AF%AD%E6%B3%95/%E5%B7%A6%E5%A4%96%E8%BF%9E%E6%8E%A5.jpg">
+<meta property="og:image" content="https://zr-java.github.io/2021/12/12/43-MySQL%E8%AF%AD%E6%B3%95/%E5%8F%B3%E5%A4%96%E8%BF%9E%E6%8E%A5.jpg">
+<meta property="og:image" content="https://zr-java.github.io/2021/12/12/43-MySQL%E8%AF%AD%E6%B3%95/%E5%85%A8%E5%A4%96%E8%BF%9E%E6%8E%A5.jpg">
+<meta property="og:image" content="https://zr-java.github.io/2021/12/12/43-MySQL%E8%AF%AD%E6%B3%95/zang.png">
+<meta property="og:image" content="https://zr-java.github.io/2021/12/12/43-MySQL%E8%AF%AD%E6%B3%95/bu.png">
+<meta property="og:image" content="https://zr-java.github.io/2021/12/12/43-MySQL%E8%AF%AD%E6%B3%95/huan.png">
+<meta property="og:image" content="https://zr-java.github.io/2021/12/12/43-MySQL%E8%AF%AD%E6%B3%95/rep.png">
+<meta property="article:published_time" content="2021-12-12T12:16:01.000Z">
+<meta property="article:modified_time" content="2022-03-14T13:27:47.622Z">
+<meta property="article:author" content="ZR">
+<meta property="article:tag" content="MySQL">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://zr-java.github.io/2021/12/12/43-MySQL%E8%AF%AD%E6%B3%95/%E5%86%85%E8%81%94.jpg"><script src="/js/ui/mode.js"></script></head><body><script defer src="https://cdn.jsdelivr.net/npm/animejs@latest"></script><script defer src="/js/ui/fireworks.js"></script><canvas class="fireworks"></canvas><div class="container"><a class="sidebar-toggle hty-icon-button" id="menu-btn"><div class="hamburger hamburger--spin" type="button"><span class="hamburger-box"><span class="hamburger-inner"></span></span></div></a><div class="sidebar-toggle sidebar-overlay"></div><aside class="sidebar"><script src="/js/sidebar.js"></script><ul class="sidebar-nav"><li class="sidebar-nav-item sidebar-nav-toc hty-icon-button sidebar-nav-active" data-target="post-toc-wrap" title="文章目录"><svg class="icon" aria-hidden="true"><use xlink:href="#icon-list-ordered"></use></svg></li><li class="sidebar-nav-item sidebar-nav-overview hty-icon-button" data-target="site-overview-wrap" title="站点概览"><svg class="icon" aria-hidden="true"><use xlink:href="#icon-passport-line"></use></svg></li></ul><div class="sidebar-panel" id="site-overview-wrap"><div class="site-info fix-top"><a class="site-author-avatar" href="/about/" title="ZR"><img width="96" loading="lazy" src="/images/avatar.jpg" alt="ZR"><span class="site-author-status" title="不想上学">😭</span></a><div class="site-author-name"><a href="/about/">ZR</a></div><span class="site-name">ZR的小站</span><sub class="site-subtitle"></sub><div class="site-desciption">高级打字员</div></div><nav class="site-state"><a class="site-state-item hty-icon-button icon-home" href="/" title="我的主页"><span class="site-state-item-icon"><svg class="icon" aria-hidden="true"><use xlink:href="#icon-home-4-line"></use></svg></span></a><div class="site-state-item"><a href="/archives/" title="归档"><span class="site-state-item-icon"><svg class="icon" aria-hidden="true"><use xlink:href="#icon-archive-line"></use></svg></span><span class="site-state-item-count">78</span></a></div><div class="site-state-item"><a href="/categories/" title="分类"><span class="site-state-item-icon"><svg class="icon" aria-hidden="true"><use xlink:href="#icon-folder-2-line"></use></svg></span><span class="site-state-item-count">8</span></a></div><div class="site-state-item"><a href="/tags/" title="标签"><span class="site-state-item-icon"><svg class="icon" aria-hidden="true"><use xlink:href="#icon-price-tag-3-line"></use></svg></span><span class="site-state-item-count">7</span></a></div><a class="site-state-item hty-icon-button" target="_blank" rel="noopener" href="https://yun.yunyoujun.cn" title="文档"><span class="site-state-item-icon"><svg class="icon" aria-hidden="true"><use xlink:href="#icon-settings-line"></use></svg></span></a></nav><hr style="margin-bottom:0.5rem"><div class="links-of-author"><a class="links-of-author-item hty-icon-button" rel="noopener" href="mailto:247132084@qq.com" title="E-Mail" target="_blank" style="color:#8E71C1"><svg class="icon" aria-hidden="true"><use xlink:href="#icon-mail-line"></use></svg></a><a class="links-of-author-item hty-icon-button" rel="noopener" href="https://github.com/ZR-java" title="GitHub" target="_blank" style="color:#181717"><svg class="icon" aria-hidden="true"><use xlink:href="#icon-github-line"></use></svg></a></div><hr style="margin:0.5rem 1rem"><div class="links"><a class="links-item hty-icon-button" href="/links/" title="我的小伙伴们" style="color:dodgerblue"><svg class="icon" aria-hidden="true"><use xlink:href="#icon-genderless-line"></use></svg></a></div><br><a class="links-item hty-icon-button" id="toggle-mode-btn" href="javascript:;" title="Mode" style="color: #f1cb64"><svg class="icon" aria-hidden="true"><use xlink:href="#icon-contrast-2-line"></use></svg></a></div><div class="sidebar-panel sidebar-panel-active" id="post-toc-wrap"><div class="post-toc"><div class="post-toc-content"><ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#SQL%E8%AF%AD%E8%A8%80%E7%9A%84%E5%88%86%E7%B1%BB"><span class="toc-number">1.</span> <span class="toc-text">SQL语言的分类</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E6%9F%A5%E8%AF%A2%E5%91%BD%E4%BB%A4"><span class="toc-number">2.</span> <span class="toc-text">查询命令</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%AE%80%E5%8D%95%E6%9F%A5%E8%AF%A2"><span class="toc-number">2.1.</span> <span class="toc-text">简单查询</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%AE%80%E5%8D%95%E6%9F%A5%E8%AF%A2%E7%BB%83%E4%B9%A0"><span class="toc-number">2.1.1.</span> <span class="toc-text">简单查询练习</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%9F%BA%E7%A1%80%E6%9F%A5%E8%AF%A2"><span class="toc-number">2.2.</span> <span class="toc-text">基础查询</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%9D%A1%E4%BB%B6%E6%9F%A5%E8%AF%A2"><span class="toc-number">2.3.</span> <span class="toc-text">条件查询</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%A8%A1%E7%B3%8A%E6%9F%A5%E8%AF%A2"><span class="toc-number">2.4.</span> <span class="toc-text">模糊查询</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%8E%92%E5%BA%8F%E8%AF%AD%E5%8F%A5"><span class="toc-number">2.5.</span> <span class="toc-text">排序语句</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%85%B3%E8%81%94%E6%9F%A5%E8%AF%A2"><span class="toc-number">3.</span> <span class="toc-text">关联查询</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%85%B3%E8%81%94%E6%9F%A5%E8%AF%A2%E7%BB%83%E4%B9%A0-%E5%86%85%E8%81%94%E6%9F%A5%E8%AF%A2"><span class="toc-number">3.1.</span> <span class="toc-text">关联查询练习 - 内联查询</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%85%B3%E8%81%94%E6%9F%A5%E8%AF%A2-%E8%BF%9E%E6%8E%A5%E7%9A%84%E6%96%B9%E5%BC%8F"><span class="toc-number">3.2.</span> <span class="toc-text">关联查询-连接的方式</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%A4%9A%E8%A1%8C%E5%87%BD%E6%95%B0"><span class="toc-number">4.</span> <span class="toc-text">多行函数</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%88%86%E7%BB%84%E6%9F%A5%E8%AF%A2"><span class="toc-number">5.</span> <span class="toc-text">分组查询</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#having-%E7%BB%84%E5%87%BD%E6%95%B0%E5%88%A4%E6%96%AD"><span class="toc-number">5.1.</span> <span class="toc-text">having 组函数判断</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%AD%90%E6%9F%A5%E8%AF%A2"><span class="toc-number">6.</span> <span class="toc-text">子查询</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%BB%83%E4%B9%A0"><span class="toc-number">6.1.</span> <span class="toc-text">练习</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%AF%BE%E5%A0%82%E7%BB%83%E4%B9%A0"><span class="toc-number">6.2.</span> <span class="toc-text">课堂练习</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%AD%90%E6%9F%A5%E8%AF%A2%E7%9A%84%E5%88%86%E7%B1%BB"><span class="toc-number">6.3.</span> <span class="toc-text">子查询的分类</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#exists%E5%92%8Cnot-exists%E7%94%A8%E6%B3%95"><span class="toc-number">7.</span> <span class="toc-text">exists和not exists用法</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E6%B1%82%E5%87%BA%E6%9F%A5%E8%AF%A2%E7%BB%93%E6%9E%9C%E7%9A%84%E5%B9%B6%E9%9B%86-%E5%B7%AE%E9%9B%86-%E4%BA%A4%E9%9B%86"><span class="toc-number">8.</span> <span class="toc-text">求出查询结果的并集,差集,交集.</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#DDL"><span class="toc-number">9.</span> <span class="toc-text">DDL</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E6%95%B0%E6%8D%AE%E5%BA%93%E7%9A%84%E8%AE%BE%E8%AE%A1"><span class="toc-number">10.</span> <span class="toc-text">数据库的设计</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%A1%A8%E4%B9%8B%E9%97%B4%E7%9A%84%E5%85%B3%E7%B3%BB"><span class="toc-number">10.1.</span> <span class="toc-text">表之间的关系</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%B8%89%E5%A4%A7%E8%8C%83%E5%BC%8F"><span class="toc-number">10.2.</span> <span class="toc-text">三大范式</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%88%9B%E5%BB%BA%E8%A1%A8"><span class="toc-number">11.</span> <span class="toc-text">创建表</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%BB%83%E4%B9%A0-1"><span class="toc-number">11.0.1.</span> <span class="toc-text">练习</span></a></li></ol></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E7%BA%A6%E6%9D%9F"><span class="toc-number">12.</span> <span class="toc-text">约束</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%88%9B%E5%BB%BA%E8%A1%A8%E6%97%B6%E6%B7%BB%E5%8A%A0%E7%BA%A6%E6%9D%9F"><span class="toc-number">12.1.</span> <span class="toc-text">创建表时添加约束</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%88%97%E7%BA%A7%E8%AF%AD%E6%B3%95%E6%B7%BB%E5%8A%A0"><span class="toc-number">12.1.1.</span> <span class="toc-text">列级语法添加</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%A1%A8%E7%BA%A7%E8%AF%AD%E6%B3%95%E6%B7%BB%E5%8A%A0"><span class="toc-number">12.1.2.</span> <span class="toc-text">表级语法添加</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%95%B0%E6%8D%AE%E5%AD%97%E5%85%B8-%E7%B3%BB%E7%BB%9F%E8%A1%A8"><span class="toc-number">12.1.3.</span> <span class="toc-text">数据字典 - 系统表</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#default"><span class="toc-number">12.1.4.</span> <span class="toc-text">default</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%A4%96%E9%94%AE%E7%BA%A6%E6%9D%9F-%E7%BB%86%E8%8A%82"><span class="toc-number">12.1.5.</span> <span class="toc-text">外键约束 - 细节</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%81%94%E5%90%88%E4%B8%BB%E9%94%AE"><span class="toc-number">12.1.6.</span> <span class="toc-text">联合主键</span></a></li></ol></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%88%A0%E9%99%A4%E8%A1%A8"><span class="toc-number">13.</span> <span class="toc-text">删除表</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#DML%E8%AF%AD%E5%8F%A5"><span class="toc-number">14.</span> <span class="toc-text">DML语句</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#insert%E8%AF%AD%E5%8F%A5"><span class="toc-number">14.1.</span> <span class="toc-text">insert语句</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%88%A9%E7%94%A8%E4%B8%80%E5%BC%A0%E8%A1%A8%E6%9D%A5%E6%9E%84%E5%BB%BA%E5%8F%A6%E5%A4%96%E4%B8%80%E5%BC%A0%E8%A1%A8"><span class="toc-number">14.1.1.</span> <span class="toc-text">利用一张表来构建另外一张表</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%88%9B%E5%BB%BA%E8%87%AA%E5%A2%9E%E5%AD%97%E6%AE%B5auto-increment"><span class="toc-number">14.1.2.</span> <span class="toc-text">创建自增字段auto_increment</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%8E%B7%E5%8F%96auto-increment%E5%80%BC"><span class="toc-number">14.1.3.</span> <span class="toc-text">获取auto_increment值</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#update%E8%AF%AD%E5%8F%A5"><span class="toc-number">14.2.</span> <span class="toc-text">update语句</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#delete%E8%AF%AD%E5%8F%A5"><span class="toc-number">14.3.</span> <span class="toc-text">delete语句</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%BA%A7%E8%81%94%E5%88%A0%E9%99%A4"><span class="toc-number">14.3.1.</span> <span class="toc-text">级联删除</span></a></li></ol></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E4%BA%8B%E5%8A%A1-DTL"><span class="toc-number">15.</span> <span class="toc-text">事务(DTL)</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BA%8B%E5%8A%A1%E6%8E%A7%E5%88%B6%E8%AF%AD%E5%8F%A5"><span class="toc-number">15.1.</span> <span class="toc-text">事务控制语句</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#MYSQL-%E4%BA%8B%E5%8A%A1%E5%A4%84%E7%90%86%E4%B8%BB%E8%A6%81%E6%9C%89%E4%B8%A4%E7%A7%8D%E6%96%B9%E6%B3%95"><span class="toc-number">15.2.</span> <span class="toc-text">MYSQL 事务处理主要有两种方法</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BA%8B%E5%8A%A1%E7%9A%84%E5%91%BD%E4%BB%A4%E7%9A%84%E6%BC%94%E7%A4%BADTL"><span class="toc-number">15.3.</span> <span class="toc-text">事务的命令的演示DTL</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%B8%BA%E4%BB%80%E4%B9%88%E9%9C%80%E8%A6%81%E4%BD%BF%E7%94%A8%E4%BA%8B%E5%8A%A1"><span class="toc-number">15.3.1.</span> <span class="toc-text">为什么需要使用事务</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%A4%9A%E4%BA%8B%E5%8A%A1%E7%9A%84%E5%B9%B6%E5%8F%91%E5%A4%84%E7%90%86%E6%9C%BA%E5%88%B6"><span class="toc-number">15.4.</span> <span class="toc-text">多事务的并发处理机制</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BA%8B%E5%8A%A1%E9%9A%94%E7%A6%BB%E7%BA%A7%E5%88%AB"><span class="toc-number">15.5.</span> <span class="toc-text">事务隔离级别</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E9%9A%94%E7%A6%BB%E7%BA%A7%E5%88%AB%E7%9A%84%E6%BC%94%E7%A4%BA"><span class="toc-number">15.6.</span> <span class="toc-text">隔离级别的演示</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%9B%BE%E7%A4%BA"><span class="toc-number">15.7.</span> <span class="toc-text">图示</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%80%BB%E7%BB%93"><span class="toc-number">15.8.</span> <span class="toc-text">总结</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E8%A7%86%E5%9B%BEView"><span class="toc-number">16.</span> <span class="toc-text">视图View</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%88%9B%E5%BB%BA%E8%A7%86%E5%9B%BE%E7%9A%84%E8%AF%AD%E6%B3%95"><span class="toc-number">16.1.</span> <span class="toc-text">创建视图的语法</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#with-check-option"><span class="toc-number">16.2.</span> <span class="toc-text">with check option</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%A4%8D%E6%9D%82%E8%A7%86%E5%9B%BE"><span class="toc-number">16.3.</span> <span class="toc-text">复杂视图</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#limit%E8%AF%AD%E5%8F%A5"><span class="toc-number">17.</span> <span class="toc-text">limit语句</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#limit%E8%AF%AD%E5%8F%A5%E7%9A%84%E6%80%A7%E8%83%BD%E9%97%AE%E9%A2%98"><span class="toc-number">17.1.</span> <span class="toc-text">limit语句的性能问题.</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E7%BB%8F%E5%85%B8%E9%A2%98"><span class="toc-number">18.</span> <span class="toc-text">经典题</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#mysql%E5%8D%95%E8%A1%8C%E5%87%BD%E6%95%B0"><span class="toc-number">19.</span> <span class="toc-text">mysql单行函数</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%AD%97%E7%AC%A6%E4%B8%B2%E5%87%BD%E6%95%B0"><span class="toc-number">19.1.</span> <span class="toc-text">字符串函数</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%BD%BF%E7%94%A8"><span class="toc-number">19.1.1.</span> <span class="toc-text">使用</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%BB%83%E4%B9%A0-2"><span class="toc-number">19.1.2.</span> <span class="toc-text">练习</span></a></li></ol></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E6%95%B0%E5%AD%97%E5%87%BD%E6%95%B0"><span class="toc-number">20.</span> <span class="toc-text">数字函数</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%BB%83%E4%B9%A0-3"><span class="toc-number">20.0.1.</span> <span class="toc-text">练习</span></a></li></ol></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E6%97%A5%E6%9C%9F%E5%87%BD%E6%95%B0"><span class="toc-number">21.</span> <span class="toc-text">日期函数</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%97%A5%E6%9C%9F%E5%87%BD%E6%95%B0%E8%A1%A5%E5%85%85"><span class="toc-number">21.1.</span> <span class="toc-text">日期函数补充</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%97%A5%E6%9C%9F%E6%A0%BC%E5%BC%8F%E5%8C%96"><span class="toc-number">21.1.1.</span> <span class="toc-text">日期格式化</span></a></li></ol></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E8%BD%AC%E6%8D%A2%E5%87%BD%E6%95%B0"><span class="toc-number">22.</span> <span class="toc-text">转换函数</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%87%BD%E6%95%B0%E7%BB%83%E4%B9%A0"><span class="toc-number">23.</span> <span class="toc-text">函数练习</span></a></li></ol></div></div></div></aside><main class="sidebar-translate" id="content"><div id="post"><article class="hty-card post-block" itemscope itemtype="https://schema.org/Article"><link itemprop="mainEntityOfPage" href="https://ZR-java.github.io/2021/12/12/43-MySQL%E8%AF%AD%E6%B3%95/"><span hidden itemprop="author" itemscope itemtype="https://schema.org/Person"><meta itemprop="name" content="ZR"><meta itemprop="description"></span><span hidden itemprop="publisher" itemscope itemtype="https://schema.org/Organization"><meta itemprop="name" content="ZR的小站"></span><header class="post-header"><h1 class="post-title" itemprop="name headline">43-MySQL语法</h1><div class="post-meta"><div class="post-time" style="display:block"><span class="post-meta-item-icon"><svg class="icon" aria-hidden="true"><use xlink:href="#icon-calendar-line"></use></svg></span> <time title="创建时间：2021-12-12 20:16:01" itemprop="dateCreated datePublished" datetime="2021-12-12T20:16:01+08:00">2021-12-12</time><span class="post-meta-divider">-</span><span class="post-meta-item-icon"><svg class="icon" aria-hidden="true"><use xlink:href="#icon-calendar-2-line"></use></svg></span> <time title="修改时间：2022-03-14 21:27:47" itemprop="dateModified" datetime="2022-03-14T21:27:47+08:00">2022-03-14</time></div><span class="post-count"><span class="post-symbolcount"><span class="post-meta-item-icon" title="本文字数"><svg class="icon" aria-hidden="true"><use xlink:href="#icon-file-word-line"></use></svg></span> <span title="本文字数">15.5k</span><span class="post-meta-divider">-</span><span class="post-meta-item-icon" title="阅读时长"><svg class="icon" aria-hidden="true"><use xlink:href="#icon-timer-line"></use></svg></span> <span title="阅读时长">68m</span></span></span><div class="post-classify"><span class="post-category"> <span class="post-meta-item-icon" style="margin-right:3px;"><svg class="icon" aria-hidden="true"><use xlink:href="#icon-folder-line"></use></svg></span><span itemprop="about" itemscope itemtype="https://schema.org/Thing"><a class="category-item" href="/categories/DataBase/" style="--text-color:var(--hty-text-color)" itemprop="url" rel="index"><span itemprop="text">DataBase</span></a></span></span><span class="post-tag"><span class="post-meta-divider">-</span><a class="tag-item" href="/tags/MySQL/" style="--text-color:var(--hty-text-color)"><span class="post-meta-item-icon"><svg class="icon" aria-hidden="true"><use xlink:href="#icon-price-tag-3-line"></use></svg></span><span class="tag-name">MySQL</span></a></span></div></div></header><section class="post-body" itemprop="articleBody"><div class="post-content markdown-body" style="--smc-primary:#0078E7;"><h1 id="SQL语言的分类"><a href="#SQL语言的分类" class="headerlink" title="SQL语言的分类"></a>SQL语言的分类</h1><blockquote>
+<ol>
+<li><p>数据查询语言<strong>DQL</strong>.(Data Query Language)</p>
+<p>数据查询语言DQL基本结构是由SELECT子句，FROM子句，WHERE子句组成的查询块：SELECT &lt;字段名表&gt;FROM &lt;表或视图名&gt;WHERE &lt;查询条件&gt;</p>
+</li>
+<li><p>数据操纵语言<strong>DML</strong>.(Data Manipulation Language)</p>
+<p>数据操纵语言DML主要有三种形式：</p>
+<ul>
+<li>插入：INSERT</li>
+<li>更新：UPDATE</li>
+<li>删除：DELETE</li>
+</ul>
+</li>
+<li><p>数据定义语言<strong>DDL</strong>.(Data Definition Language)</p>
+<p>数据定义语言DDL用来创建数据库中的各种对象—–表、视图、索引、同义词、聚簇等如：CREATE TABLE / VIEW / INDEX / SYN / CLUSTER| 表 视图 索引 同义词 簇。DDL操作是<font color="red">隐性提交</font>的！不能rollback</p>
+</li>
+<li><p>数据控制语言<strong>DCL</strong>.(Data Control Language) 了解</p>
+</li>
+</ol>
+</blockquote>
+<ul>
+<li><p>查看数据库编码</p>
+<pre class="language-msyql" data-language="msyql"><code class="language-msyql">mysql&gt; show variables like &#39;character_set%&#39;;</code></pre></li>
+<li><p>查看所有的数据库</p>
+<pre class="language-mysql" data-language="mysql"><code class="language-mysql">mysql&gt;show databases;</code></pre></li>
+<li><p>删除数据库</p>
+<pre class="language-mysql" data-language="mysql"><code class="language-mysql">mysql&gt; drop database 数据库名;</code></pre></li>
+<li><p><strong>使用数据库 - 千万不要忘记</strong></p>
+<pre class="language-mysql" data-language="mysql"><code class="language-mysql">mysql&gt;use 数据名</code></pre></li>
+<li><p>查看某个仓库下的所有的表</p>
+<pre class="language-mysql" data-language="mysql"><code class="language-mysql">mysql&gt;show tables;</code></pre></li>
+<li><p>查看某张表的表结构</p>
+<pre class="language-mysql" data-language="mysql"><code class="language-mysql">mysql&gt;desc 表名;</code></pre></li>
+</ul>
+<h1 id="查询命令"><a href="#查询命令" class="headerlink" title="查询命令"></a>查询命令</h1><h2 id="简单查询"><a href="#简单查询" class="headerlink" title="简单查询"></a>简单查询</h2><p>简介:sql的命令是大小写不敏感的，在公司中推荐使用大写。</p>
+<p>查询的本质:</p>
+<ul>
+<li>到哪里查[确定哪张表]</li>
+<li>查什么[查的列]</li>
+</ul>
+<pre class="language-mysql" data-language="mysql"><code class="language-mysql">select 列名1,列名2[,列N] from 表名;</code></pre>
+
+<h3 id="简单查询练习"><a href="#简单查询练习" class="headerlink" title="简单查询练习"></a>简单查询练习</h3><pre class="language-mysql" data-language="mysql"><code class="language-mysql">-- 找出员工的所有的信息;*代替所有的列(企业中不允许)
+mysql&gt; select * from s_emp;
+
+mysql&gt; select * from s_emp \G;
+-- 从s_emp表中查询出员工的名字,薪水,职位;
+mysql&gt; select first_name,salary,title from s_emp;
+
+-- 从s_emp表中查出员工的姓氏,名字;
+mysql&gt;select last_name,first_name from s_emp;
+
+-- 找出本公司的所有的职称(title);
+mysql&gt; select title from s_emp;
+
+-- 补充 - title发现有大量重复的,排重关键字distinct
+mysql&gt; select distinct title from s_emp;
+
+-- 找出所有员工的姓名、工资、入职日期
+mysql&gt;select first_name,salary,start_date from s_emp;
+
+-- 找出所有的客户名及他的电话号码
+mysql&gt; select name,phone from s_customer;
+-- 找出员工姓名及他的职称
+mysql&gt;
+-- 找出每个订单的费用、支付方式、出货日期
+mysql&gt;select total,payment_type,date_ordered from s_ord;</code></pre>
+
+<p><strong>提示:如果不知道表中的列名,可以再次通过desc 表名来查询表结构进行窥探</strong></p>
+<h2 id="基础查询"><a href="#基础查询" class="headerlink" title="基础查询"></a>基础查询</h2><ul>
+<li><p>sql语句具有运算的能力 - 列是可以参加计算的</p>
+<pre class="language-mysql" data-language="mysql"><code class="language-mysql">-- 查询员工的名字,他的年薪(不包含提成)
+mysql&gt;select first_name,salary*12 from s_emp;</code></pre></li>
+<li><p>sql语句具有字符串拼接能力.</p>
+<p><strong>mysql - 字符串拼接函数concat(param… p);</strong></p>
+<pre class="language-mysql" data-language="mysql"><code class="language-mysql">mysql&gt; select concat(last_name,&#39; &#39;,first_name) from s_emp;</code></pre></li>
+<li><p>给列取别名</p>
+<pre class="language-mysql" data-language="mysql"><code class="language-mysql">-- select 列名 列别名 from 表;
+mysql&gt;select concat(last_name,&#39; &#39;,first_name) 姓名 from s_emp;
+
+-- select 列名 &quot;列别名&quot; from 表
+-- mysql - &quot;&quot;包裹格式用的
+mysql&gt;select concat(last_name,&#39; &#39;,first_name) &quot;姓 名&quot; from s_emp;
+
+-- 变态需求  姓 名
+
+mysql&gt; select 列名 as 列别名 from 表;
+mysql&gt; select 列名 as &quot;列别名&quot; from 表
+
+mysql&gt;select concat(last_name,&#39; &#39;,first_name) as 姓名 from s_emp;</code></pre></li>
+<li><p>空值置换函数<strong>coalesce(m,n)相当于m==null?n:m</strong></p>
+<p>null值参与计算的结果还是null值</p>
+<pre class="language-mysql" data-language="mysql"><code class="language-mysql">-- 查询员工名字以及年薪[包含提成]
+mysql&gt;select first_name,salary*12*(1+commission_pct&#x2F;100) 年薪 from s_emp;
+
+mysql&gt;select first_name,salary*12*(1+coalesce(commission_pct,0)&#x2F;100) 年薪 from s_emp;</code></pre></li>
+</ul>
+<h2 id="条件查询"><a href="#条件查询" class="headerlink" title="条件查询"></a>条件查询</h2><p>带条件进行筛选查询.</p>
+<p>语法:</p>
+<pre class="language-mysql" data-language="mysql"><code class="language-mysql">select 列[,N列] from table_name
+where 条件表达式[如果成立,则能够顺利查询数据];
+
+表达式 - 由变量或者字面量[直接量]以及运算符组成的合法的语句
+</code></pre>
+
+<ul>
+<li><p>比较运算符</p>
+<pre class="language-java" data-language="java"><code class="language-java"><span class="token operator">=</span> <span class="token operator">!=</span> <span class="token generics"><span class="token punctuation">&lt;</span><span class="token punctuation">></span></span> <span class="token operator">></span> <span class="token generics"><span class="token punctuation">&lt;</span> <span class="token punctuation">></span></span><span class="token operator">=</span> <span class="token operator">&lt;=</span> </code></pre></li>
+<li><p>其他运算符</p>
+<pre class="language-java" data-language="java"><code class="language-java">不建议使用 <span class="token operator">-</span> 在某些情况下容易导致索引失效<span class="token punctuation">.</span>
+<span class="token function">in</span><span class="token punctuation">(</span><span class="token punctuation">.</span><span class="token punctuation">.</span><span class="token punctuation">.</span><span class="token punctuation">)</span> 在<span class="token punctuation">.</span><span class="token punctuation">.</span><span class="token punctuation">.</span>范围之内
+not in
+  
+is <span class="token keyword">null</span> 是否为空
+is not <span class="token keyword">null</span> 
+  
+between <span class="token punctuation">.</span><span class="token punctuation">.</span><span class="token punctuation">.</span> and <span class="token punctuation">.</span><span class="token punctuation">.</span><span class="token punctuation">.</span> 在<span class="token punctuation">.</span><span class="token punctuation">.</span><span class="token punctuation">.</span>到<span class="token punctuation">.</span><span class="token punctuation">.</span><span class="token punctuation">.</span>范围<span class="token punctuation">,</span> 闭区间</code></pre></li>
+<li><p>逻辑运算符</p>
+<pre class="language-mysql" data-language="mysql"><code class="language-mysql">作用:是用来连接条件表达式的
+and
+ 条件表达式1 and 条件表达式2 and ...
+ 当且仅当所有条件表达式都是true,结果才是true
+or
+ 只要出现一个true,结果就是true
+ 
+条件执行的顺序的问题
+mysql中条件表达式是从左到右的执行顺序
+oracle中条件表达式从右到左的执行顺序.</code></pre></li>
+</ul>
+<h2 id="模糊查询"><a href="#模糊查询" class="headerlink" title="模糊查询"></a>模糊查询</h2><p>不推荐使用的 - 容易导致索引失效.</p>
+<p>使用like关键字,占位符</p>
+<ul>
+<li>% - 任意多个任意字符</li>
+<li>_ 任意单个字符</li>
+</ul>
+<pre class="language-mysql" data-language="mysql"><code class="language-mysql">-- 比如查询first_name中包含c的员工.
+mysql&gt;select first_name from s_emp where first_name like &#39;%c%&#39;;
+
+
+-- 查询第三个字母是a
+mysql&gt; select first_name from s_emp where first_name like &#39;__a%&#39;;
+</code></pre>
+
+<p>mysql中也是支持转义字符 - 默认的转义字符\</p>
+<pre class="language-mysql" data-language="mysql"><code class="language-mysql">mysql&gt; update s_emp set first_name&#x3D;&#39;Car%men&#39; where id&#x3D;1;
+
+mysql&gt;select first_name from s_emp where first_name like &#39;%\%%&#39;;</code></pre>
+
+<p>通过escape关键字来定义指定的转义字符</p>
+<pre class="language-mysql" data-language="mysql"><code class="language-mysql">mysql&gt;select first_name from s_emp where first_name like &#39;%?%%&#39; escape &#39;?&#39;;</code></pre>
+
+
+
+<p>条件查询和模糊查询练习</p>
+<ol>
+<li><p>查出在41部门的员工名字,工资</p>
+<pre class="language-sql" data-language="sql"><code class="language-sql">mysql<span class="token operator">></span> <span class="token keyword">select</span> first_name<span class="token punctuation">,</span>salary<span class="token punctuation">,</span>dept_id <span class="token keyword">from</span> s_emp <span class="token keyword">where</span> dept_id<span class="token operator">=</span><span class="token number">41</span><span class="token punctuation">;</span></code></pre></li>
+<li><p>查出工资高于1500的员工的信息</p>
+<pre class="language-sql" data-language="sql"><code class="language-sql">mysql<span class="token operator">></span><span class="token keyword">select</span> first_name<span class="token punctuation">,</span>salary <span class="token keyword">from</span> s_emp <span class="token keyword">where</span> salary<span class="token operator">></span><span class="token number">1500</span><span class="token punctuation">;</span></code></pre></li>
+<li><p>找出工资大于1200元的员工全名、工资、职称</p>
+<pre class="language-sql" data-language="sql"><code class="language-sql">mysql<span class="token operator">></span><span class="token keyword">select</span> concat<span class="token punctuation">(</span>last_name<span class="token punctuation">,</span><span class="token string">' '</span><span class="token punctuation">,</span>first_name<span class="token punctuation">)</span> 姓名<span class="token punctuation">,</span>salary<span class="token punctuation">,</span>title <span class="token keyword">from</span> s_emp <span class="token keyword">where</span> salary<span class="token operator">></span><span class="token number">1200</span><span class="token punctuation">;</span></code></pre></li>
+<li><p>查出在41,42,50部门的员工名,薪水</p>
+</li>
+</ol>
+  <pre class="language-mysql" data-language="mysql"><code class="language-mysql">mysql&gt;select first_name,salary,dept_id from s_emp where dept_id in(41,42,50);
+
+mysql&gt;select first_name,salary,dept_id from s_emp where dept_id&#x3D;41 or dept_id&#x3D;42 or dept_id&#x3D;50;</code></pre>
+
+<ol start="5">
+<li><p>找出工资在1200到1500之间的员工名</p>
+<pre class="language-sql" data-language="sql"><code class="language-sql">mysql<span class="token operator">></span><span class="token keyword">select</span> first_name<span class="token punctuation">,</span>salary <span class="token keyword">from</span> s_emp <span class="token keyword">where</span> salary<span class="token operator">>=</span><span class="token number">1200</span> <span class="token operator">and</span> salary<span class="token operator">&lt;=</span><span class="token number">1500</span><span class="token punctuation">;</span>
+
+mysql<span class="token operator">></span><span class="token keyword">select</span> first_name<span class="token punctuation">,</span>salary <span class="token keyword">from</span> s_emp <span class="token keyword">where</span> salary <span class="token operator">between</span> <span class="token number">1200</span> <span class="token operator">and</span> <span class="token number">1500</span><span class="token punctuation">;</span></code></pre></li>
+<li><p>找出工资大于1500并且没有提成的员工</p>
+<pre class="language-sql" data-language="sql"><code class="language-sql">mysql<span class="token operator">></span><span class="token keyword">select</span> first_name<span class="token punctuation">,</span>salary<span class="token punctuation">,</span>commission_pct <span class="token keyword">from</span> s_emp <span class="token keyword">where</span> salary<span class="token operator">></span><span class="token number">1500</span>
+<span class="token operator">and</span> commission_pct <span class="token operator">is</span> <span class="token boolean">null</span><span class="token punctuation">;</span></code></pre></li>
+<li><p><strong>查出名字是以M打头的员工</strong></p>
+<p>%类似量词*(零次或者多次)</p>
+<pre class="language-sql" data-language="sql"><code class="language-sql">mysql<span class="token operator">></span><span class="token keyword">select</span> first_name <span class="token keyword">from</span> s_emp <span class="token keyword">where</span> first_name <span class="token operator">like</span> <span class="token string">'M%'</span><span class="token punctuation">;</span></code></pre></li>
+<li><p><strong>查出姓名中第三个字母是e的员工</strong></p>
+<pre class="language-sql" data-language="sql"><code class="language-sql">   </code></pre></li>
+<li><p>找出没有提成率的员工</p>
+<pre class="language-sql" data-language="sql"><code class="language-sql">mysql<span class="token operator">></span><span class="token keyword">select</span> first_name<span class="token punctuation">,</span>commission_pct <span class="token keyword">from</span> s_emp <span class="token keyword">where</span> salary<span class="token operator">></span><span class="token number">1500</span>
+<span class="token operator">and</span> commission_pct <span class="token operator">is</span> <span class="token boolean">null</span><span class="token punctuation">;</span></code></pre></li>
+<li><p>找出费用超过10000元的订单编号及支付方式</p>
+</li>
+</ol>
+   <pre class="language-sql" data-language="sql"><code class="language-sql">mysql<span class="token operator">></span> <span class="token keyword">select</span> id<span class="token punctuation">,</span>total<span class="token punctuation">,</span>payment_type <span class="token keyword">from</span> s_ord <span class="token keyword">where</span> total<span class="token operator">></span><span class="token number">10000</span><span class="token punctuation">;</span></code></pre>
+
+<ol start="11">
+<li><p>找出工资在950(含)至1200(含)元的员工姓名、职称</p>
+<pre class="language-sql" data-language="sql"><code class="language-sql">mysql<span class="token operator">></span></code></pre></li>
+<li><p><strong>找出名字first_name中含有字母a的员工</strong></p>
+<pre class="language-sql" data-language="sql"><code class="language-sql">mysql<span class="token operator">></span></code></pre></li>
+</ol>
+<h2 id="排序语句"><a href="#排序语句" class="headerlink" title="排序语句"></a>排序语句</h2><p>数据量大的时候,order by语句是禁止使用,性能很低很低.</p>
+<pre class="language-mysql" data-language="mysql"><code class="language-mysql">select 列 from table_name
+[where 条件查询]
+[order by 排序列] [asc|desc]
+
+asc - 升序,可以省略不写的.
+desc - 降序</code></pre>
+
+<ol>
+<li><p>查询出职称是Stock Clerk的名字、工资，并按工资降序排序</p>
+<pre class="language-sql" data-language="sql"><code class="language-sql"><span class="token comment">-- ①order by 直接跟查询出来的列的名称</span>
+mysql<span class="token operator">></span> <span class="token keyword">select</span> first_name<span class="token punctuation">,</span>salary <span class="token keyword">from</span> s_emp <span class="token keyword">where</span> title <span class="token operator">=</span> <span class="token string">'Stock Clerk'</span> <span class="token keyword">order</span> <span class="token keyword">by</span> salary<span class="token punctuation">;</span></code></pre></li>
+<li><p>查询出年薪低于25000的员工名,职称,并按年薪升序排序,如果年薪一样,继续根据first_name降序排.</p>
+<pre class="language-mysql" data-language="mysql"><code class="language-mysql">mysql&gt; select first_name,title,salary*12 from s_emp where salary*12&lt;25000 order by salary*12;
+
+--  ②order by + 列别名
+mysql&gt; select first_name,title,salary*12 _sal from s_emp where salary*12&lt;25000 order by _sal;
+
+-- ③order by + 查询列序号[从1开始] - 性能比上面的要高
+mysql&gt;select first_name,title,salary*12 _sal from s_emp where salary*12&lt;25000 order by 3;
+
+-- 最终的解题 - 多个列参与排序
+mysql&gt;select first_name,title,salary*12 _sal from s_emp where salary*12&lt;25000 order by 3,1 desc;</code></pre></li>
+</ol>
+<h1 id="关联查询"><a href="#关联查询" class="headerlink" title="关联查询"></a>关联查询</h1><p>简介:多表查询 - 开发的趋势是单表查询.</p>
+<p>第一步:确定表和表之间是否存在直接或者间接的关系.表之间的关系就是通过<em><strong>外键</strong></em>来确定的.</p>
+<ul>
+<li><p><strong>查询员工的first_name,部门的名字</strong></p>
+<ul>
+<li><p>错误❌的写法 - 笛卡尔积 - 两个表中的行记录”相乘了”.</p>
+<p>数据的冗余,并且错误的数据.</p>
+<pre class="language-mysql" data-language="mysql"><code class="language-mysql">mysql&gt; select first_name,name from s_emp,s_dept;</code></pre></li>
+<li><p>传统的写法</p>
+<pre class="language-sql" data-language="sql"><code class="language-sql">mysql<span class="token operator">></span> <span class="token keyword">select</span> first_name<span class="token punctuation">,</span>name <span class="token keyword">from</span> s_emp<span class="token punctuation">,</span>s_dept <span class="token keyword">where</span> dept_id<span class="token operator">=</span>id<span class="token punctuation">;</span>
+id是未明确的列 <span class="token operator">-</span> 因此需要给列取别名或者给表取别名<span class="token punctuation">.</span>
+
+
+mysql<span class="token operator">></span> <span class="token keyword">select</span> e<span class="token punctuation">.</span>first_name<span class="token punctuation">,</span>d<span class="token punctuation">.</span>name <span class="token keyword">from</span> s_emp e<span class="token punctuation">,</span>s_dept d 
+       <span class="token keyword">where</span> e<span class="token punctuation">.</span>dept_id <span class="token operator">=</span> d<span class="token punctuation">.</span>id<span class="token punctuation">;</span></code></pre></li>
+<li><p>关联查询使用<em><strong>join .. on</strong></em>(一定是一起使用的)</p>
+<p>表 join 表 on的目的不是进行条件筛选,就是用来去除笛卡尔积的-通过外键</p>
+<pre class="language-sql" data-language="sql"><code class="language-sql"><span class="token comment">-- 能够使用 表A join 表B on 多的一方的外键列 = 一的一方的主键列.</span>
+<span class="token comment">-- 注意是表A和表B一定是存在直接的关系的.</span>
+mysql<span class="token operator">></span> <span class="token keyword">select</span> e<span class="token punctuation">.</span>first_name<span class="token punctuation">,</span>d<span class="token punctuation">.</span>name <span class="token keyword">from</span> s_emp e
+       <span class="token keyword">join</span> s_dept d <span class="token keyword">on</span> e<span class="token punctuation">.</span>dept_id <span class="token operator">=</span> d<span class="token punctuation">.</span>id<span class="token punctuation">;</span></code></pre></li>
+<li><p>对比传统写法和关联写法的区别</p>
+<pre class="language-mysql" data-language="mysql"><code class="language-mysql">-- 查询出员工first_name以及这个员工所在的部门的name,以及这个员工所在的区域的名字.
+-- s_emp s_dept s_region
+-- 一个部门拥有多个员工
+-- 一个区域拥有多个部门
+mysql&gt;select e.first_name,d.name 部门,r.name 区域 from s_emp e
+      join s_dept d on e.dept_id &#x3D; d.id
+      join s_region r on d.region_id &#x3D; r.id;</code></pre></li>
+</ul>
+</li>
+</ul>
+<h2 id="关联查询练习-内联查询"><a href="#关联查询练习-内联查询" class="headerlink" title="关联查询练习 - 内联查询"></a>关联查询练习 - 内联查询</h2><p>**on并不是用来替代where,**上面的题中增加一个业务.找出区域’Asia’上的所有的员工的名字,部门名字,区域名字.</p>
+<pre class="language-mysql" data-language="mysql"><code class="language-mysql">mysql&gt; select e.first_name,d.name 部门,r.name 区域 from s_emp e
+      join s_dept d on e.dept_id &#x3D; d.id
+      join s_region r on d.region_id &#x3D; r.id where r.name&#x3D;&#39;Asia&#39;;</code></pre>
+
+<p>找出部门是31的部门的名称,以及该部门的所有的员工的名字和工资</p>
+<pre class="language-mysql" data-language="mysql"><code class="language-mysql">mysql&gt; select e.first_name,e.salary,e.dept_id from s_emp e join s_dept d
+       on e.dept_id &#x3D; d.id where d.id &#x3D; 31;</code></pre>
+
+<p>找出欧洲区域上所有的员工的名字,区域名称.</p>
+<pre class="language-mysql" data-language="mysql"><code class="language-mysql">mysql&gt; select e.first_name,r.name 区域 from s_emp e
+      join s_dept d on e.dept_id &#x3D; d.id
+      join s_region r on d.region_id &#x3D; r.id where r.name&#x3D;&#39;Europe&#39;;</code></pre>
+
+<p>查询所有客户的id,名称以及该客户拥有的订单的所有的信息</p>
+<pre class="language-mysql" data-language="mysql"><code class="language-mysql">mysql&gt; select c.id,c.name,o.* from s_customer c join s_ord o
+       on c.id &#x3D; o.customer_id;
+       
+结果:如果这个客户没有订单,将不会被加载出来.</code></pre>
+
+<h2 id="关联查询-连接的方式"><a href="#关联查询-连接的方式" class="headerlink" title="关联查询-连接的方式"></a>关联查询-连接的方式</h2><ul>
+<li><p><strong>内联方式</strong> - [inner] join</p>
+<pre class="language-mysql" data-language="mysql"><code class="language-mysql">-- 如果这个客户没有订单信息,那么这个客户将不会被查询出来.
+-- 如果一的一方的数据在多的一方中没有体现,那么不会被查询出来.
+mysql&gt; select c.id,c.name,o.* from s_customer c join s_ord o
+on c.id &#x3D; o.customer_id;</code></pre></li>
+</ul>
+<p> <img src="/2021/12/12/43-MySQL%E8%AF%AD%E6%B3%95/%E5%86%85%E8%81%94.jpg" loading="lazy"></p>
+<ul>
+<li><p><em><strong>左外联 - 左连接</strong></em> - left join</p>
+<p>以join左边的表为基准.在查询的时候,即使右边的表中没有与之对应的记录的时候.左边的这张表中的记录仍然也会被查询出来.</p>
+<pre class="language-mysql" data-language="mysql"><code class="language-mysql">mysql&gt; select c.id,c.name,o.* from s_customer c left join s_ord o
+on c.id &#x3D; o.customer_id;</code></pre>
+
+
+
+<p><img src="/2021/12/12/43-MySQL%E8%AF%AD%E6%B3%95/%E5%B7%A6%E5%A4%96%E8%BF%9E%E6%8E%A5.jpg" loading="lazy"></p>
+</li>
+<li><p>右连接 - right join</p>
+<p>以join右边的表为基准,如果左边的表中没有与之对应的记录的时候,也要把右边的表中的记录查询出来.</p>
+<pre class="language-sql" data-language="sql"><code class="language-sql">mysql<span class="token operator">></span><span class="token keyword">select</span> c<span class="token punctuation">.</span>id<span class="token punctuation">,</span>c<span class="token punctuation">.</span>name<span class="token punctuation">,</span>o<span class="token punctuation">.</span><span class="token operator">*</span> <span class="token keyword">from</span> s_ord o <span class="token keyword">right</span> <span class="token keyword">join</span> s_customer c
+<span class="token keyword">on</span> c<span class="token punctuation">.</span>id <span class="token operator">=</span> o<span class="token punctuation">.</span>customer_id<span class="token punctuation">;</span></code></pre>
+
+<p><img src="/2021/12/12/43-MySQL%E8%AF%AD%E6%B3%95/%E5%8F%B3%E5%A4%96%E8%BF%9E%E6%8E%A5.jpg" loading="lazy"></p>
+</li>
+</ul>
+<ul>
+<li><p>全连接</p>
+<p>A <em><strong>full outer</strong></em> join B</p>
+<p><strong><a href>mysql中不支持这个语法</a></strong></p>
+<p><img src="/2021/12/12/43-MySQL%E8%AF%AD%E6%B3%95/%E5%85%A8%E5%A4%96%E8%BF%9E%E6%8E%A5.jpg" loading="lazy"></p>
+</li>
+</ul>
+<h1 id="多行函数"><a href="#多行函数" class="headerlink" title="多行函数"></a>多行函数</h1><p>简介:<em><strong>多行函数 - 组函数.</strong></em></p>
+<ul>
+<li><p>count(n)</p>
+<p>n可以为*,可以为具体的某列.统计行数的,重复的数据也算1个.</p>
+<p>注意:如果碰到null值列,那么直接跳过了,不计数.</p>
+<pre class="language-mysql" data-language="mysql"><code class="language-mysql">-- 统计员工的个数
+mysql&gt; select count(*) from s_emp;
+
+-- 统计具体的某个非空列
+mysql&gt; select count(e.id) from s_emp e;
+
+-- 注意:如果碰到null值列,那么直接跳过了,不计数.
+mysql&gt; select count(commission_pct) from s_emp;</code></pre></li>
+<li><p>avg(n);</p>
+<p>求出某列的所有行的平均值.</p>
+<pre class="language-mysql" data-language="mysql"><code class="language-mysql">-- 求出所有员工的平均月薪
+mysql&gt; select avg(salary) from s_emp;</code></pre></li>
+<li><p>max(n),min(n)</p>
+<pre class="language-mysql" data-language="mysql"><code class="language-mysql">-- 求出员工表中工资最高的工资和最低的工资
+mysql&gt; select max(salary),min(salary) from s_emp;</code></pre></li>
+<li><p>sum(n)</p>
+<pre class="language-mysql" data-language="mysql"><code class="language-mysql">-- 求出员工表中所有的员工的工资总和
+mysql&gt; select sum(salary) from s_emp;</code></pre>
+
+<p>注意:<em><strong>使用sum进行统计的时候,如果遇到null值,忽略null</strong></em></p>
+</li>
+</ul>
+<h1 id="分组查询"><a href="#分组查询" class="headerlink" title="分组查询"></a>分组查询</h1><pre class="language-sql" data-language="sql"><code class="language-sql"><span class="token keyword">select</span> 列<span class="token number">1</span><span class="token punctuation">[</span><span class="token punctuation">,</span>列<span class="token number">2</span><span class="token punctuation">]</span><span class="token punctuation">,</span>组函数<span class="token punctuation">(</span>多行函数<span class="token punctuation">)</span>
+<span class="token keyword">where</span> 条件语句
+<span class="token keyword">group</span> <span class="token keyword">by</span> 列<span class="token number">1</span><span class="token punctuation">[</span><span class="token punctuation">,</span>列<span class="token number">2</span><span class="token punctuation">]</span>
+<span class="token keyword">having</span> 组函数的判断
+<span class="token keyword">order</span> <span class="token keyword">by</span> 排序</code></pre>
+
+<ul>
+<li><p>统计各个部门的人数(部门的id和该部门的员工的数量)</p>
+<pre class="language-sql" data-language="sql"><code class="language-sql">mysql<span class="token operator">></span> <span class="token keyword">select</span> dept_id<span class="token punctuation">,</span><span class="token function">count</span><span class="token punctuation">(</span>id<span class="token punctuation">)</span> <span class="token keyword">from</span> s_emp <span class="token keyword">group</span> <span class="token keyword">by</span> dept_id<span class="token punctuation">;</span>
+
+<span class="token comment">-- 注意点:</span>
+<span class="token keyword">select</span> <span class="token function">count</span><span class="token punctuation">(</span>id<span class="token punctuation">)</span> <span class="token keyword">from</span> s_emp <span class="token keyword">group</span> <span class="token keyword">by</span> dept_id<span class="token punctuation">;</span><span class="token comment">//ok</span>
+
+<span class="token comment">-- error</span>
+mysql<span class="token operator">></span> <span class="token keyword">select</span> first_name<span class="token punctuation">,</span>dept_id<span class="token punctuation">,</span><span class="token function">count</span><span class="token punctuation">(</span>id<span class="token punctuation">)</span> <span class="token keyword">from</span> s_emp <span class="token keyword">group</span> <span class="token keyword">by</span> dept_id<span class="token punctuation">;</span>
+
+推荐的写法
+<span class="token keyword">select</span> 分组列<span class="token number">1</span><span class="token punctuation">,</span>分组列<span class="token number">2</span><span class="token punctuation">,</span>组函数 <span class="token keyword">from</span> <span class="token keyword">table</span> <span class="token keyword">group</span> <span class="token keyword">by</span> 分组列<span class="token number">1</span><span class="token punctuation">,</span>分组列<span class="token number">2</span>
+
+mysql<span class="token operator">></span> <span class="token keyword">select</span> first_name<span class="token punctuation">,</span>dept_id<span class="token punctuation">,</span><span class="token function">count</span><span class="token punctuation">(</span>id<span class="token punctuation">)</span> <span class="token keyword">from</span> s_emp <span class="token keyword">group</span> <span class="token keyword">by</span> first_name<span class="token punctuation">,</span>dept_id<span class="token punctuation">;</span></code></pre></li>
+<li><p>统计各个职称的员工的数量</p>
+<pre class="language-mysql" data-language="mysql"><code class="language-mysql">mysql&gt; select title,count(*) from s_emp group by title;</code></pre></li>
+<li><p>统计各个区域的id和区域的部门数量</p>
+<pre class="language-sql" data-language="sql"><code class="language-sql">mysql<span class="token operator">></span> <span class="token keyword">select</span> r<span class="token punctuation">.</span>id<span class="token punctuation">,</span>r<span class="token punctuation">.</span>name<span class="token punctuation">,</span><span class="token function">count</span><span class="token punctuation">(</span>d<span class="token punctuation">.</span>id<span class="token punctuation">)</span> <span class="token keyword">from</span> s_dept d <span class="token keyword">join</span> s_region r
+       <span class="token keyword">on</span> r<span class="token punctuation">.</span>id <span class="token operator">=</span> d<span class="token punctuation">.</span>region_id <span class="token keyword">group</span> <span class="token keyword">by</span> r<span class="token punctuation">.</span>id<span class="token punctuation">,</span>r<span class="token punctuation">.</span>name<span class="token punctuation">;</span></code></pre></li>
+<li><p>统计各个区域的id,名称以及这个区域的员工的数量</p>
+<pre class="language-sql" data-language="sql"><code class="language-sql">mysql<span class="token operator">></span><span class="token keyword">select</span> r<span class="token punctuation">.</span>id<span class="token punctuation">,</span>r<span class="token punctuation">.</span>name<span class="token punctuation">,</span><span class="token function">count</span><span class="token punctuation">(</span>e<span class="token punctuation">.</span>id<span class="token punctuation">)</span> <span class="token keyword">from</span> s_emp e <span class="token keyword">join</span> s_dept d
+      <span class="token keyword">on</span> e<span class="token punctuation">.</span>dept_id <span class="token operator">=</span> d<span class="token punctuation">.</span>id <span class="token keyword">join</span> s_region r <span class="token keyword">on</span> r<span class="token punctuation">.</span>id <span class="token operator">=</span> d<span class="token punctuation">.</span>region_id
+      <span class="token keyword">group</span> <span class="token keyword">by</span> r<span class="token punctuation">.</span>id<span class="token punctuation">,</span>r<span class="token punctuation">.</span>name<span class="token punctuation">;</span></code></pre></li>
+<li><p>统计各个客户的订单的数量,没有订单的客户也要统计</p>
+<pre class="language-sql" data-language="sql"><code class="language-sql">mysql<span class="token operator">></span> <span class="token keyword">select</span> c<span class="token punctuation">.</span>id<span class="token punctuation">,</span>c<span class="token punctuation">.</span>name<span class="token punctuation">,</span><span class="token function">count</span><span class="token punctuation">(</span>o<span class="token punctuation">.</span>id<span class="token punctuation">)</span> <span class="token keyword">from</span> s_customer c
+       <span class="token keyword">left</span> <span class="token keyword">join</span> s_ord o <span class="token keyword">on</span> o<span class="token punctuation">.</span>customer_id <span class="token operator">=</span> c<span class="token punctuation">.</span>id <span class="token keyword">group</span> <span class="token keyword">by</span> c<span class="token punctuation">.</span>id<span class="token punctuation">,</span>c<span class="token punctuation">.</span>name<span class="token punctuation">;</span></code></pre></li>
+</ul>
+<h2 id="having-组函数判断"><a href="#having-组函数判断" class="headerlink" title="having 组函数判断"></a>having 组函数判断</h2><p>简介:where和having使用时候的区别</p>
+<ol>
+<li>where是条件过滤,是在分组之前的过滤,不能使用组函数.</li>
+<li>having是在分组之后的进一步过滤,允许使用组函数的.</li>
+</ol>
+<ul>
+<li><p>查询出平均工资超过1300的部门的名称和这个部门的平均工资</p>
+<pre class="language-mysql" data-language="mysql"><code class="language-mysql">mysql&gt; select d.id,d.name,avg(e.salary) from s_dept d join s_emp e
+      on d.id &#x3D; e.dept_id group by d.id,d.name having avg(e.salary)&gt;1300;</code></pre></li>
+<li><p>统计本公司的职称的数量.</p>
+<pre class="language-sql" data-language="sql"><code class="language-sql">mysql<span class="token operator">></span> <span class="token keyword">select</span> <span class="token function">count</span><span class="token punctuation">(</span><span class="token keyword">distinct</span> title<span class="token punctuation">)</span> <span class="token keyword">from</span> s_emp<span class="token punctuation">;</span></code></pre></li>
+<li><p>统计没有订单的客户信息</p>
+<pre class="language-sql" data-language="sql"><code class="language-sql">mysql<span class="token operator">></span> <span class="token keyword">select</span> c<span class="token punctuation">.</span>id<span class="token punctuation">,</span>c<span class="token punctuation">.</span>name<span class="token punctuation">,</span><span class="token function">count</span><span class="token punctuation">(</span>o<span class="token punctuation">.</span>id<span class="token punctuation">)</span> <span class="token keyword">from</span> s_customer c
+       <span class="token keyword">left</span> <span class="token keyword">join</span> s_ord o <span class="token keyword">on</span> o<span class="token punctuation">.</span>customer_id <span class="token operator">=</span> c<span class="token punctuation">.</span>id <span class="token keyword">group</span> <span class="token keyword">by</span> c<span class="token punctuation">.</span>id<span class="token punctuation">,</span>c<span class="token punctuation">.</span>name
+       <span class="token keyword">having</span> <span class="token function">count</span><span class="token punctuation">(</span>o<span class="token punctuation">.</span>id<span class="token punctuation">)</span><span class="token operator">=</span><span class="token number">0</span><span class="token punctuation">;</span></code></pre></li>
+<li><p>统计人数超过3个员工的部门编号和部门名称</p>
+<pre class="language-sql" data-language="sql"><code class="language-sql">mysql<span class="token operator">></span> <span class="token keyword">select</span> d<span class="token punctuation">.</span>id<span class="token punctuation">,</span>d<span class="token punctuation">.</span>name<span class="token punctuation">,</span><span class="token function">count</span><span class="token punctuation">(</span>e<span class="token punctuation">.</span>id<span class="token punctuation">)</span> <span class="token keyword">from</span> s_dept d <span class="token keyword">join</span> s_emp e
+       <span class="token keyword">on</span> e<span class="token punctuation">.</span>dept_id <span class="token operator">=</span> d<span class="token punctuation">.</span>id <span class="token keyword">group</span> <span class="token keyword">by</span> d<span class="token punctuation">.</span>id<span class="token punctuation">,</span>d<span class="token punctuation">.</span>name <span class="token keyword">having</span> <span class="token function">count</span><span class="token punctuation">(</span>e<span class="token punctuation">.</span>id<span class="token punctuation">)</span><span class="token operator">></span><span class="token number">3</span><span class="token punctuation">;</span></code></pre></li>
+<li><p>统计除了’Asia’之外的各个区域的id,name以及这个区域的人数(4个),并且根据r.id降序排序</p>
+<pre class="language-sql" data-language="sql"><code class="language-sql">mysql<span class="token operator">></span> <span class="token keyword">select</span> r<span class="token punctuation">.</span>id<span class="token punctuation">,</span>r<span class="token punctuation">.</span>name<span class="token punctuation">,</span><span class="token function">count</span><span class="token punctuation">(</span>e<span class="token punctuation">.</span>id<span class="token punctuation">)</span> <span class="token keyword">from</span> s_emp e <span class="token keyword">join</span> s_dept d 
+   	   <span class="token keyword">on</span> e<span class="token punctuation">.</span>dept_id <span class="token operator">=</span> d<span class="token punctuation">.</span>id <span class="token keyword">join</span> s_region r <span class="token keyword">on</span> r<span class="token punctuation">.</span>id <span class="token operator">=</span> d<span class="token punctuation">.</span>region_id
+   	   <span class="token keyword">where</span> r<span class="token punctuation">.</span>name<span class="token operator">&lt;></span><span class="token string">'Asia'</span> 
+   	   <span class="token keyword">group</span> <span class="token keyword">by</span> r<span class="token punctuation">.</span>id<span class="token punctuation">,</span>r<span class="token punctuation">.</span>name
+   	   <span class="token keyword">having</span> <span class="token function">count</span><span class="token punctuation">(</span>e<span class="token punctuation">.</span>id<span class="token punctuation">)</span><span class="token operator">=</span><span class="token number">4</span>
+   	   <span class="token keyword">order</span> <span class="token keyword">by</span> <span class="token number">1</span> <span class="token keyword">desc</span><span class="token punctuation">;</span></code></pre></li>
+<li><p>查询出各年份入职的员工情况（年份，员工人数）</p>
+<pre class="language-mysql" data-language="mysql"><code class="language-mysql">mysql&gt;select year(start_date),count(*) from s_emp group by year(start_date);</code></pre></li>
+<li><p>查询出每年每月入职的员工情况（年份月份，员工人数)</p>
+<pre class="language-mysql" data-language="mysql"><code class="language-mysql">mysql&gt; select year(start_date),month(start_date),count(*) from s_emp group by year(start_date),month(start_date);
+
+mysql&gt; select date_format(start_date,&#39;%Y%m&#39;),count(*) from s_emp group by    	date_format(start_date,&#39;%Y%m&#39;);
+
+-- 子查询</code></pre></li>
+</ul>
+<h1 id="子查询"><a href="#子查询" class="headerlink" title="子查询"></a>子查询</h1><p>定义:查询中嵌套查询.注意点:<em><strong>子查询一定要使用()括起来.</strong></em></p>
+<p>子查询可以出现的位置:</p>
+<ul>
+<li><p>作为外部查询的条件</p>
+</li>
+<li><p><em><strong>作为外部查询的列</strong></em></p>
+</li>
+<li><p>把子查询的结果作为”虚表”,一定要给”虚表”取别名</p>
+<pre class="language-mysql" data-language="mysql"><code class="language-mysql">select d.id,d.name,avg(e.salary) _avg from s_dept d join s_emp e
+on d.id &#x3D; e.dept_id group by d.id,d.name
+
+select * from (select d.id,d.name,avg(e.salary) _avg from s_dept d join s_emp e
+on d.id &#x3D; e.dept_id group by d.id,d.name) core_ where core_._avg&gt;1300;</code></pre></li>
+</ul>
+<h2 id="练习"><a href="#练习" class="headerlink" title="练习"></a>练习</h2><ul>
+<li><p><em><strong>子查询作为外部查询的条件.</strong></em></p>
+<p>查询出比Mark员工工资高的员工的名字和工资信息</p>
+<pre class="language-mysql" data-language="mysql"><code class="language-mysql">mysql&gt; select salary from s_emp where first_name&#x3D;&#39;Mark&#39;;&#x2F;&#x2F;1450</code></pre></li>
+<li><p><strong>子查询出现在外部查询的select列中</strong></p>
+<p>查询出比Mark员工工资高的员工的名字和工资信息</p>
+<pre class="language-sql" data-language="sql"><code class="language-sql">mysql<span class="token operator">></span><span class="token keyword">select</span> first_name<span class="token punctuation">,</span>salary <span class="token keyword">from</span> s_emp <span class="token keyword">where</span> salary<span class="token operator">></span><span class="token number">1450</span><span class="token punctuation">;</span></code></pre></li>
+<li><p>合并</p>
+<pre class="language-mysql" data-language="mysql"><code class="language-mysql">-- 无关子查询
+mysql&gt;select first_name,salary from s_emp where salary&gt;(select salary from s_emp where first_name&#x3D;&#39;Mark&#39;);</code></pre></li>
+</ul>
+<h2 id="课堂练习"><a href="#课堂练习" class="headerlink" title="课堂练习"></a>课堂练习</h2><ul>
+<li><p>找出各个部门的id,name以及这个部门的员工的数量</p>
+<pre class="language-sql" data-language="sql"><code class="language-sql"><span class="token comment">-- 1. 外层查询走一次,内层查询走全部</span>
+<span class="token comment">-- 相关子查询</span>
+mysql<span class="token operator">></span><span class="token keyword">select</span> d<span class="token punctuation">.</span>id<span class="token punctuation">,</span>d<span class="token punctuation">.</span>name<span class="token punctuation">,</span>
+			<span class="token punctuation">(</span><span class="token keyword">select</span> <span class="token function">count</span><span class="token punctuation">(</span>e<span class="token punctuation">.</span>id<span class="token punctuation">)</span> <span class="token keyword">from</span> s_emp e <span class="token keyword">where</span> d<span class="token punctuation">.</span>id <span class="token operator">=</span> e<span class="token punctuation">.</span>dept_id<span class="token punctuation">)</span> 
+		<span class="token keyword">from</span> s_dept d<span class="token punctuation">;</span>
+		
+<span class="token number">50</span><span class="token punctuation">,</span> Administration  <span class="token number">2</span>
+
+<span class="token keyword">select</span> <span class="token function">count</span><span class="token punctuation">(</span>e<span class="token punctuation">.</span>id<span class="token punctuation">)</span> <span class="token keyword">from</span> s_emp e <span class="token keyword">where</span> <span class="token number">50</span> <span class="token operator">=</span> e<span class="token punctuation">.</span>dept_id
+
+<span class="token operator">+</span><span class="token comment">----+----------------+-----------+</span>
+<span class="token operator">|</span> id <span class="token operator">|</span> name           <span class="token operator">|</span> region_id <span class="token operator">|</span>
+<span class="token operator">+</span><span class="token comment">----+----------------+-----------+</span>
+<span class="token operator">|</span> <span class="token number">50</span> <span class="token operator">|</span> Administration <span class="token operator">|</span>         <span class="token number">1</span> <span class="token operator">|</span>
+<span class="token operator">|</span> <span class="token number">10</span> <span class="token operator">|</span> Finance        <span class="token operator">|</span>         <span class="token number">1</span> <span class="token operator">|</span>
+
+
+<span class="token operator">+</span><span class="token comment">----+---------+</span>
+<span class="token operator">|</span> id <span class="token operator">|</span> dept_id <span class="token operator">|</span>
+<span class="token operator">+</span><span class="token comment">----+---------+</span>
+<span class="token operator">|</span>  <span class="token number">1</span> <span class="token operator">|</span>      <span class="token number">50</span> <span class="token operator">|</span>
+<span class="token operator">|</span>  <span class="token number">2</span> <span class="token operator">|</span>      <span class="token number">41</span> <span class="token operator">|</span>
+<span class="token operator">|</span>  <span class="token number">3</span> <span class="token operator">|</span>      <span class="token number">31</span> <span class="token operator">|</span>
+<span class="token operator">|</span>  <span class="token number">4</span> <span class="token operator">|</span>      <span class="token number">10</span> <span class="token operator">|</span>
+<span class="token operator">|</span>  <span class="token number">5</span> <span class="token operator">|</span>      <span class="token number">50</span> <span class="token operator">|</span>
+<span class="token operator">|</span>  <span class="token number">6</span> <span class="token operator">|</span>      <span class="token number">41</span> <span class="token operator">|</span>
+<span class="token operator">|</span>  <span class="token number">7</span> <span class="token operator">|</span>      <span class="token number">42</span> <span class="token operator">|</span>
+<span class="token operator">|</span>  <span class="token number">8</span> <span class="token operator">|</span>      <span class="token number">43</span> <span class="token operator">|</span>
+<span class="token operator">|</span>  <span class="token number">9</span> <span class="token operator">|</span>      <span class="token number">44</span> <span class="token operator">|</span>
+<span class="token operator">|</span> <span class="token number">10</span> <span class="token operator">|</span>      <span class="token number">45</span> <span class="token operator">|</span>
+<span class="token operator">|</span> <span class="token number">11</span> <span class="token operator">|</span>      <span class="token number">31</span> <span class="token operator">|</span>
+<span class="token operator">|</span> <span class="token number">12</span> <span class="token operator">|</span>      <span class="token number">32</span> <span class="token operator">|</span>
+<span class="token operator">|</span> <span class="token number">13</span> <span class="token operator">|</span>      <span class="token number">33</span> <span class="token operator">|</span>
+<span class="token operator">|</span> <span class="token number">14</span> <span class="token operator">|</span>      <span class="token number">34</span> <span class="token operator">|</span>
+<span class="token operator">|</span> <span class="token number">15</span> <span class="token operator">|</span>      <span class="token number">35</span> <span class="token operator">|</span>
+<span class="token operator">|</span> <span class="token number">16</span> <span class="token operator">|</span>      <span class="token number">41</span> <span class="token operator">|</span>
+
+
+
+</code></pre></li>
+<li><p>找出平均工资大于公司平均工资的部门编号和平均工资</p>
+<pre class="language-mysql" data-language="mysql"><code class="language-mysql">mysql&gt;select dept_id,avg(salary) from s_emp group by dept_id
+      having avg(salary)&gt;(select avg(salary) from s_emp);</code></pre></li>
+<li><p>找出与’Ben’同部门的员工和部门编号</p>
+<pre class="language-mysql" data-language="mysql"><code class="language-mysql">mysql&gt; select first_name,dept_id from s_emp where dept_id&#x3D;(select dept_id from s_emp
+                                                          where first_name&#x3D;&#39;Ben&#39;) and first_name&lt;&gt;&#39;Ben&#39;;
+                                                                                                            </code></pre></li>
+<li><p>查询出客户名,电话号码以及订单数量</p>
+<pre class="language-mysql" data-language="mysql"><code class="language-mysql">mysql&gt;select c.id,c.name,c.phone,(select count(o.id) from s_ord o where o.customer_id&#x3D;c.id) from s_customer c;</code></pre></li>
+</ul>
+<h2 id="子查询的分类"><a href="#子查询的分类" class="headerlink" title="子查询的分类"></a>子查询的分类</h2><ul>
+<li><p>相关子查询 - 子查询中使用到了外部查询的列.子查询是不能够独立运行的.</p>
+<pre class="language-sql" data-language="sql"><code class="language-sql">s</code></pre></li>
+<li><p>无关子查询 - 子查询中没有使用到外部查询的列,子查询是允许单独执行的.</p>
+<pre class="language-sql" data-language="sql"><code class="language-sql">        </code></pre></li>
+<li><p>关联查询</p>
+<pre class="language-sql" data-language="sql"><code class="language-sql"><span class="token comment">-- 写过了- 查询出客户名,电话号码以及订单数量</span>
+</code></pre></li>
+</ul>
+<p>只用原则:<em><strong>关联查询&gt;无关子查询&gt;相关子查询.</strong></em></p>
+<h1 id="exists和not-exists用法"><a href="#exists和not-exists用法" class="headerlink" title="exists和not exists用法"></a>exists和not exists用法</h1><ul>
+<li>exists 关心条件为true - 是否存在</li>
+<li>not exits 关心条件为false - 不存在</li>
+</ul>
+<p>不关心查询出来的是什么,只关心能不能查询出来</p>
+<pre class="language-sql" data-language="sql"><code class="language-sql"><span class="token comment">-- exists - 不关心你查询的是什么,只需要能够查询出行记录,代表where true - 顺利查询出数据出来</span>
+mysql<span class="token operator">></span> <span class="token keyword">select</span> <span class="token operator">*</span> <span class="token keyword">from</span> s_emp <span class="token keyword">where</span> <span class="token keyword">exists</span><span class="token punctuation">(</span><span class="token keyword">select</span> <span class="token number">1</span> <span class="token keyword">from</span> s_emp <span class="token keyword">where</span> <span class="token number">1</span><span class="token operator">=</span><span class="token number">1</span><span class="token punctuation">)</span><span class="token punctuation">;</span></code></pre>
+
+<ul>
+<li><p>找出与’Ben’同部门的员工</p>
+<pre class="language-sql" data-language="sql"><code class="language-sql">mysql<span class="token operator">></span> <span class="token keyword">select</span> e<span class="token punctuation">.</span>first_name<span class="token punctuation">,</span>e<span class="token punctuation">.</span>dept_id <span class="token keyword">from</span> s_emp e <span class="token keyword">where</span> <span class="token keyword">exists</span><span class="token punctuation">(</span>
+					<span class="token keyword">select</span> <span class="token number">1</span> <span class="token keyword">from</span> s_emp e1 <span class="token keyword">where</span> e1<span class="token punctuation">.</span>first_name<span class="token operator">=</span><span class="token string">'Ben'</span> <span class="token operator">and</span> e1<span class="token punctuation">.</span>dept_id <span class="token operator">=</span> e<span class="token punctuation">.</span>dept_id
+			 <span class="token punctuation">)</span> <span class="token operator">and</span> e<span class="token punctuation">.</span>first_name<span class="token operator">&lt;></span><span class="token string">'Ben'</span><span class="token punctuation">;</span></code></pre></li>
+<li><p>找出各个部门工资排名前二的员工</p>
+<p>前提是 - 相同工资不超过2个.</p>
+<pre class="language-sql" data-language="sql"><code class="language-sql"><span class="token comment">-- 在"我e"这个部门中,如果有人的工资比"我e"还要高,那么这个人的数量不能超过1个.</span>
+mysql<span class="token operator">></span> <span class="token keyword">select</span> e<span class="token punctuation">.</span>first_name<span class="token punctuation">,</span>e<span class="token punctuation">.</span>salary<span class="token punctuation">,</span>e<span class="token punctuation">.</span>dept_id <span class="token keyword">from</span> s_emp e <span class="token keyword">where</span> <span class="token keyword">exists</span><span class="token punctuation">(</span>
+       	   <span class="token keyword">select</span> <span class="token number">1</span> <span class="token keyword">from</span> s_emp e1 <span class="token keyword">where</span> e<span class="token punctuation">.</span>dept_id <span class="token operator">=</span> e1<span class="token punctuation">.</span>dept_id <span class="token operator">and</span> e1<span class="token punctuation">.</span>salary<span class="token operator">></span>e<span class="token punctuation">.</span>salary
+           <span class="token keyword">having</span> <span class="token function">count</span><span class="token punctuation">(</span><span class="token operator">*</span><span class="token punctuation">)</span><span class="token operator">&lt;=</span><span class="token number">1</span>
+       <span class="token punctuation">)</span> <span class="token keyword">order</span> <span class="token keyword">by</span> <span class="token number">3</span><span class="token punctuation">;</span></code></pre>
+
+<pre class="language-sql" data-language="sql"><code class="language-sql"><span class="token comment">-- 不存在,在"我e"这个部门中,有人的工资比我高,并且这个数量超过1.</span>
+mysql<span class="token operator">></span><span class="token keyword">select</span> e<span class="token punctuation">.</span>first_name<span class="token punctuation">,</span>e<span class="token punctuation">.</span>salary<span class="token punctuation">,</span>e<span class="token punctuation">.</span>dept_id <span class="token keyword">from</span> s_emp e <span class="token keyword">where</span> <span class="token operator">not</span> <span class="token keyword">exists</span><span class="token punctuation">(</span>
+       	   <span class="token keyword">select</span> <span class="token number">1</span> <span class="token keyword">from</span> s_emp e1 <span class="token keyword">where</span> e<span class="token punctuation">.</span>dept_id <span class="token operator">=</span> e1<span class="token punctuation">.</span>dept_id <span class="token operator">and</span> e1<span class="token punctuation">.</span>salary<span class="token operator">></span>e<span class="token punctuation">.</span>salary
+           <span class="token keyword">having</span> <span class="token function">count</span><span class="token punctuation">(</span><span class="token operator">*</span><span class="token punctuation">)</span><span class="token operator">></span><span class="token number">1</span>
+       <span class="token punctuation">)</span> <span class="token keyword">order</span> <span class="token keyword">by</span> <span class="token number">3</span><span class="token punctuation">;</span></code></pre></li>
+<li><p>找出各个部门中工资最高的员工.</p>
+<p>思路:本部门中比’我’工资高的员工不超过1个.</p>
+<p> 本部门中不存在比’我’工资还要高的员工(数量&gt;0)</p>
+<pre class="language-sql" data-language="sql"><code class="language-sql">mysql<span class="token operator">></span> <span class="token keyword">select</span> e<span class="token punctuation">.</span>first_name<span class="token punctuation">,</span>e<span class="token punctuation">.</span>salary<span class="token punctuation">,</span>e<span class="token punctuation">.</span>dept_id <span class="token keyword">from</span> s_emp e <span class="token keyword">where</span> <span class="token operator">not</span> <span class="token keyword">exists</span><span class="token punctuation">(</span>
+          <span class="token keyword">select</span> <span class="token number">1</span> <span class="token keyword">from</span> s_emp e1 <span class="token keyword">where</span> e<span class="token punctuation">.</span>dept_id <span class="token operator">=</span> e1<span class="token punctuation">.</span>dept_id <span class="token operator">and</span> e1<span class="token punctuation">.</span>salary<span class="token operator">></span>e<span class="token punctuation">.</span>salary
+          <span class="token keyword">having</span> <span class="token function">count</span><span class="token punctuation">(</span><span class="token operator">*</span><span class="token punctuation">)</span><span class="token operator">></span><span class="token number">0</span>
+       <span class="token punctuation">)</span><span class="token punctuation">;</span></code></pre></li>
+</ul>
+<h1 id="求出查询结果的并集-差集-交集"><a href="#求出查询结果的并集-差集-交集" class="headerlink" title="求出查询结果的并集,差集,交集."></a>求出查询结果的并集,差集,交集.</h1><ul>
+<li><p>并集 - union     union all</p>
+<pre class="language-mysql" data-language="mysql"><code class="language-mysql">create table tnum(
+	 id int(7) primary key
+);
+insert into tnum values(1),(2),(3),(4),(5);
+
+
+select id from tnum where id in(1,2)
+union
+select id from tnum where id in(2,3);
+
+
++----+
+| id |
++----+
+|  1 |
+|  2 |
+|  3 |
+
+
+select id from tnum where id in(1,2)
+union all
+select id from tnum where id in(2,3);
+
++----+
+| id |
++----+
+|  1 |
+|  2 |
+|  2 |
+|  3 |
++----+</code></pre></li>
+<li><p><strong>差集</strong></p>
+<pre class="language-mysql" data-language="mysql"><code class="language-mysql">-- oracle数据库 - 直接支持minus关键字
+-- markdown语法   md文件 - typora
+select id from tnum where id in(1,2)
+minus
+select id from tnum where id in(2,3);
+
+差集 - 1
+
+-- mysql
+-- 虚拟表core_a
+select t1.id aid from tnum t1 where t1.id in(1,2);
+
+-- 虚拟表core_b
+select t2.id bid from tnum t2 where t2.id in(2,3);
+
+-- 推荐
+-- 思路 - 俩张表进行left join 找出null的行数据
+mysql&gt;select core_a.aid from (select t1.id aid from tnum t1 where t1.id in(1,2)) core_a 
+left join (select t2.id bid from tnum t2 where t2.id in(2,3)) core_b on core_a.aid &#x3D; core_b.bid where core_b.bid is null;
+
+思考一个问题差集应用在哪里? - 写sql -&gt; 
+1 - 学生表,教师表,课程表,选课表</code></pre></li>
+</ul>
+<h1 id="DDL"><a href="#DDL" class="headerlink" title="DDL"></a>DDL</h1><p>DDL - Data  Definition Language - 数据定义语言.</p>
+<ul>
+<li><p><strong>create - 创建表(创建db,创建user,创建table,创建view,创建<em>index</em>,创建function,创建存储过程 - 创建db的基本对象)</strong></p>
+</li>
+<li><p><strong>drop - 删除db,删除db的基本对象.</strong></p>
+</li>
+<li><p>truncate - 清空表</p>
+<pre class="language-mysql" data-language="mysql"><code class="language-mysql">drop , truncate, delete三个命令的区别!</code></pre></li>
+<li><p><em><strong>alter命令 - 了解即可</strong></em>(修改列名,修改表名,修改列的属性,修改约束).</p>
+</li>
+<li><p>rename to - 重新命名[表,列]</p>
+</li>
+<li><p>comment - 创建表时给列加的注释.</p>
+</li>
+</ul>
+<h1 id="数据库的设计"><a href="#数据库的设计" class="headerlink" title="数据库的设计"></a>数据库的设计</h1><h2 id="表之间的关系"><a href="#表之间的关系" class="headerlink" title="表之间的关系"></a>表之间的关系</h2><ul>
+<li><p>1:1 - 外键列双方都是允许维护的.</p>
+<p>t_husband</p>
+<table>
+<thead>
+<tr>
+<th>id</th>
+<th>name</th>
+<th></th>
+</tr>
+</thead>
+<tbody><tr>
+<td>1</td>
+<td>小明</td>
+<td></td>
+</tr>
+<tr>
+<td>2</td>
+<td>黄小明</td>
+<td></td>
+</tr>
+<tr>
+<td>3</td>
+<td>黄大明</td>
+<td></td>
+</tr>
+</tbody></table>
+<p>t_wife</p>
+<table>
+<thead>
+<tr>
+<th>id</th>
+<th>name</th>
+<th>husband_id</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>1</td>
+<td>baby</td>
+<td>1</td>
+</tr>
+<tr>
+<td>2</td>
+<td>小baby</td>
+<td>3</td>
+</tr>
+<tr>
+<td>3</td>
+<td>老baby</td>
+<td>2</td>
+</tr>
+</tbody></table>
+</li>
+<li><p><strong><a href>1:N - 外键列必然出现在多的一方的</a></strong></p>
+<p>t_customer</p>
+<table>
+<thead>
+<tr>
+<th>id</th>
+<th>customer</th>
+<th></th>
+</tr>
+</thead>
+<tbody><tr>
+<td>1</td>
+<td>james</td>
+<td></td>
+</tr>
+<tr>
+<td>2</td>
+<td>jack</td>
+<td></td>
+</tr>
+<tr>
+<td>3</td>
+<td>gosling</td>
+<td></td>
+</tr>
+</tbody></table>
+<p>t_ord</p>
+<table>
+<thead>
+<tr>
+<th>id</th>
+<th>ordno</th>
+<th>customer_id</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>1</td>
+<td>1001</td>
+<td>1</td>
+</tr>
+<tr>
+<td>2</td>
+<td>1002</td>
+<td>1</td>
+</tr>
+<tr>
+<td>3</td>
+<td>1003</td>
+<td>1</td>
+</tr>
+<tr>
+<td>4</td>
+<td>1004</td>
+<td>2</td>
+</tr>
+</tbody></table>
+</li>
+<li><p>N:N</p>
+<p>一个用户拥有多个角色</p>
+<p>一个角色可以被多个用户占用</p>
+<p>user 用户表</p>
+<table>
+<thead>
+<tr>
+<th>id</th>
+<th>username</th>
+<th></th>
+</tr>
+</thead>
+<tbody><tr>
+<td>1</td>
+<td>王总</td>
+<td></td>
+</tr>
+<tr>
+<td>2</td>
+<td>李总</td>
+<td></td>
+</tr>
+<tr>
+<td>3</td>
+<td>孙总</td>
+<td></td>
+</tr>
+</tbody></table>
+<p>role 角色表</p>
+<table>
+<thead>
+<tr>
+<th>id</th>
+<th>rolename</th>
+<th></th>
+</tr>
+</thead>
+<tbody><tr>
+<td>1</td>
+<td>总经理</td>
+<td></td>
+</tr>
+<tr>
+<td>2</td>
+<td>销售经理</td>
+<td></td>
+</tr>
+<tr>
+<td>3</td>
+<td>客户经理</td>
+<td></td>
+</tr>
+<tr>
+<td>4</td>
+<td>渠道经理</td>
+<td></td>
+</tr>
+</tbody></table>
+<p>所以即使遇到N:N - &gt; <strong>拆分成俩个1:N</strong></p>
+</li>
+</ul>
+<p>​       user_role用户角色表</p>
+<p>​      </p>
+<table>
+<thead>
+<tr>
+<th>user_id</th>
+<th>role_id</th>
+<th></th>
+</tr>
+</thead>
+<tbody><tr>
+<td>1</td>
+<td>1</td>
+<td></td>
+</tr>
+<tr>
+<td>1</td>
+<td>2</td>
+<td></td>
+</tr>
+<tr>
+<td>2</td>
+<td>1</td>
+<td></td>
+</tr>
+<tr>
+<td>2</td>
+<td>2</td>
+<td></td>
+</tr>
+</tbody></table>
+<h2 id="三大范式"><a href="#三大范式" class="headerlink" title="三大范式"></a>三大范式</h2><p>数据库设计原则也就是指<code>数据库的三大范式</code>.</p>
+<p>作用:是用来指导数据库设计人员的一种设计思想,保证数据库的设计是具备可拓展性,无数据的冗余,结构清晰简单明了.</p>
+<ul>
+<li><p><em><strong>1NF:原子性,也就是说表中任何一个列都是唯一的,不可再拆分.</strong></em></p>
+<pre class="language-mysql" data-language="mysql"><code class="language-mysql">s_emp(id,name);&#x2F;&#x2F;不合理的,不满足原子性.
+
+name继续分割first_name,last_name
+
+student(id,sname,address);
+id sname 			address
+1   tom   江苏省苏州市高新区
+2   jack  安徽省芜湖市xx区
+
+-- 如果项目的业务中需要频繁的对address列进行查询,为了提高查询效率
+-- mysql中为给address这个列添加一个索引
+-- 但是如果索引列使用到了下面的这个模糊查询的话,那么这个索引列将会失效.
+select * from student where address like &#39;%苏州市%&#39;;
+
+
+student(id,sname,province,city,area);
+
+id sname province city area
+1    tom  江苏省    苏州市  高新区
+
+-- 精确查找 - 只要city列如果添加了索引,那么这个索引是生效的,提高查询效率的.
+select * from student where city&#x3D;&#39;苏州市&#39;;</code></pre></li>
+<li><p><strong>2NF:在1NF的基础上,不存在非关键列部分依赖于关键列,也就是说所有的非关键列都必须完全依赖于关键列.</strong></p>
+<pre class="language-mysql" data-language="mysql"><code class="language-mysql">关系型数据库 - 关系 - &gt; 表格
+关键列 - 主键列,一张表中只能存在一个主键.通常选择使用id列作为主键列. 
+        主键列特点 - 唯一的,非空的.作用 - 就是用来唯一确定元组[行]
+        
+student(sid,sname,cid,cname,score)
+
+sid	sname	cid	cname	score
+1	  凤姐   1   作妖   100
+2   芙蓉   2   java   90
+3   凤姐   1   python 80
+
+-- 表不是说设计得越少越牛逼.
+
+-- 比如凤姐干掉 - 删除凤姐的记录.
+删除凤姐的同时,也把课程信息也删除了.
+
+-- 比如学校申请了新的专业
+sid	sname	cid	cname	score
+1	  凤姐   1   作妖   100
+2   芙蓉   2   python  90
+1   凤姐   2   python 80
+          3   html
+为什么说不满足2NF?
+确定关键列是哪个?   组合关键列 - 联合主键 - (sid,cid)
+
+(sid,cid) -&gt; sname(非关键列)
+因为sname这个非关键列只需要由关键列(sid,cid)中的sid就可以确定了
+只需要依赖于关键列中的其中的一部分而已.
+
+-- 解耦合 - 软件开发的原则 - 高内聚,低耦合.
+student(sid,sname);
+1   tom
+2   jack
+
+course(cid,cname);
+1  java
+2  python
+
+score(sid,cid,score);
+1 1 100
+1 2 90
+2 1 80
+
+(sid,cid) -&gt; score</code></pre></li>
+<li><p>3NF:在2NF的基础上,<strong>不存在非关键列传递依赖于关键列</strong>,也就是说,<strong>所有的非关键列都必须直接依赖于关键列</strong></p>
+<pre class="language-mysql" data-language="mysql"><code class="language-mysql">student(sid,sname,uno,uname,adress,phone);
+
+1 tom  1001 江科大 张家港  11009
+2 jack 1002 苏科大 苏州    12009
+
+sid -&gt; uno -&gt; phone
+
+-- uno 外键列
+-- sid- &gt; uno
+student(sid,sname,uno)
+
+1  tom 1
+
+-- uno -&gt; phone
+university(uno,address,phone);
+
+1 xx 11110
+</code></pre></li>
+</ul>
+<h1 id="创建表"><a href="#创建表" class="headerlink" title="创建表"></a>创建表</h1><p>语法</p>
+<pre class="language-sql" data-language="sql"><code class="language-sql"><span class="token comment">-- 不含有约束的</span>
+<span class="token comment">-- [if not exists] 同一个数据库中不能创建同名的表,如果不加上这个,那么会报错.</span>
+<span class="token keyword">create</span> <span class="token keyword">table</span> <span class="token punctuation">[</span><span class="token keyword">if</span> <span class="token operator">not</span> <span class="token keyword">exists</span><span class="token punctuation">]</span> table_name<span class="token punctuation">(</span>
+  列名<span class="token number">1</span> 列的数据类型<span class="token punctuation">(</span>范围<span class="token punctuation">)</span><span class="token punctuation">,</span>
+  列名<span class="token number">2</span> 列的数据类型<span class="token punctuation">(</span>范围<span class="token punctuation">)</span><span class="token punctuation">,</span>
+  <span class="token punctuation">.</span><span class="token punctuation">.</span>   <span class="token punctuation">.</span><span class="token punctuation">.</span> <span class="token punctuation">,</span>
+  <span class="token punctuation">.</span><span class="token punctuation">.</span>   <span class="token punctuation">.</span><span class="token punctuation">.</span><span class="token punctuation">,</span>
+  列名n 列的数据类型<span class="token punctuation">(</span>范围<span class="token punctuation">)</span>
+<span class="token punctuation">)</span><span class="token punctuation">[</span><span class="token keyword">engine</span><span class="token operator">=</span><span class="token keyword">InnoDB</span> <span class="token keyword">default</span> <span class="token keyword">charset</span><span class="token operator">=</span>utf8<span class="token punctuation">]</span><span class="token punctuation">;</span>
+mysql5<span class="token punctuation">.</span><span class="token number">7</span>默认的存储引擎就是<span class="token keyword">InnoDB</span><span class="token punctuation">,</span>编码my<span class="token punctuation">.</span>ini文件中已经设置过了<span class="token punctuation">.</span>
+
+通过<span class="token keyword">show</span>命令来查看已存在表的建表语句<span class="token punctuation">.</span>
+mysql<span class="token operator">></span><span class="token keyword">show</span> <span class="token keyword">create</span> <span class="token keyword">table</span> 表名<span class="token punctuation">;</span>
+
+数据类型
+整数 <span class="token operator">-</span> <span class="token keyword">int</span><span class="token punctuation">(</span><span class="token number">7</span><span class="token punctuation">)</span> <span class="token operator">-</span> <span class="token number">9999999</span>
+小数 <span class="token operator">-</span> <span class="token keyword">double</span><span class="token punctuation">(</span><span class="token number">7</span><span class="token punctuation">,</span><span class="token number">2</span><span class="token punctuation">)</span> <span class="token operator">-</span> <span class="token number">99999.99</span>
+
+字符串 <span class="token operator">-</span> <span class="token keyword">varchar</span> <span class="token operator">-</span> 不定长字符串
+name <span class="token keyword">varchar</span><span class="token punctuation">(</span><span class="token number">20</span><span class="token punctuation">)</span> <span class="token operator">-</span> 比如这列存储了<span class="token string">"abc"</span>
+
+字符 <span class="token operator">-</span> <span class="token keyword">char</span> <span class="token operator">-</span> 定长字符串
+name <span class="token keyword">char</span><span class="token punctuation">(</span><span class="token number">20</span><span class="token punctuation">)</span> <span class="token operator">-</span> <span class="token string">"a"</span> <span class="token operator">-</span><span class="token operator">></span> 实际仍然占<span class="token number">20</span>个
+
+空间换时间
+
+日期
+	<span class="token keyword">date</span>    年月日
+	<span class="token keyword">datetime</span> 年月日时分秒</code></pre>
+
+<h3 id="练习-1"><a href="#练习-1" class="headerlink" title="练习"></a>练习</h3><pre class="language-mysql" data-language="mysql"><code class="language-mysql">-- drop table 表名;
+drop table t_student;
+
+create table t_student(
+	id int(7),
+  name varchar(10),
+  height double(5,2),
+  birthday date,
+  sex char(1)
+);
+
+数据类型的作用是什么? - 为了规范插入的数据的合法性!
+mysql&gt; insert into t_student values(1,&#39;tom&#39;,132.67,&#39;2020-09-08&#39;,&#39;F&#39;);
+
+mysql&gt; insert into t_student values(5,&#39;jack&#39;,132.6,&#39;2020-09-08&#39;,&#39;F&#39;);&#x2F;&#x2F;error
+
+mysql&gt; insert into t_student values(5,&#39;jack&#39;,132.6,&#39;2020-09-08&#39;,&#39;FA&#39;);
+ERROR 1406 (22001): Data too long for column &#39;sex&#39; at row 1</code></pre>
+
+
+
+<h1 id="约束"><a href="#约束" class="headerlink" title="约束"></a>约束</h1><p>简介:constraint的作用 - 为了添加数据的时候,数据的更加合法性.一旦违反了某个约束,sql语句都会执行错误.</p>
+<p>mysql中有一套异常机制.</p>
+<p><em><strong>a. primary key 主键约束 - 非空且唯一的.每张表都应该给定一个主键,通常选取id.当然也是支持组合主键.</strong></em></p>
+<p><em><strong>b. not null - 非空约束,插入数据的时候,该列的数据不允许为null.</strong></em></p>
+<p><em><strong>c. unique - 唯一性约束.插入的数据必须要保证唯一性.不能出现重复的.</strong></em></p>
+<p><em><strong>d. foreign key - 外键约束.表和表之间的关系的.</strong></em></p>
+<p><em><strong>e. default 默认值,如果插入数据的时候,没有给定列的值,则使用默认值.</strong></em></p>
+<p>主键和唯一</p>
+<ol>
+<li>区别：</li>
+</ol>
+<p>①. 一个表至多有一个主键，但可以有多个唯一</p>
+<p>②. 主键不允许为空，唯一可以为空</p>
+<ol start="2">
+<li>相同点</li>
+</ol>
+<p>①. 都具有唯一性</p>
+<p>②.  都支持组合键，但不推荐</p>
+<h2 id="创建表时添加约束"><a href="#创建表时添加约束" class="headerlink" title="创建表时添加约束"></a>创建表时添加约束</h2><pre class="language-sql" data-language="sql"><code class="language-sql"><span class="token keyword">create</span> <span class="token keyword">table</span> 表名<span class="token punctuation">(</span>
+  字段名 字段类型 <span class="token operator">not</span> <span class="token boolean">null</span><span class="token punctuation">,</span>
+  字段名 字段类型 <span class="token keyword">primary</span> <span class="token keyword">key</span><span class="token punctuation">,</span>
+  字段名 字段类型 <span class="token keyword">unique</span> <span class="token operator">not</span> <span class="token boolean">null</span><span class="token punctuation">,</span>
+  字段名 字段类型 <span class="token keyword">default</span> 值<span class="token punctuation">,</span>
+  <span class="token keyword">constraint</span> 约束名 <span class="token keyword">foreign</span> <span class="token keyword">key</span><span class="token punctuation">(</span>字段名<span class="token punctuation">)</span> <span class="token keyword">references</span> 主表（被引用列）
+<span class="token punctuation">)</span><span class="token punctuation">;</span></code></pre>
+
+<p><strong>注意：</strong></p>
+<ol>
+<li><p>列级约束： 除了外键其他类型都支持，<em><strong>不可以起约束名；</strong></em></p>
+</li>
+<li><p>表级约束： 除了非空和默认其他类型都支持，可以起约束名，但对主键无效。</p>
+</li>
+<li><p>列级约束可以在一个字段上追加多个，中间用空格隔开，没有顺序要求</p>
+</li>
+</ol>
+<h3 id="列级语法添加"><a href="#列级语法添加" class="headerlink" title="列级语法添加"></a>列级语法添加</h3><p> 边定义列,边添加约束 - 不能对约束进行命名.</p>
+<pre class="language-mysql" data-language="mysql"><code class="language-mysql">drop table t_student;
+create table t_student(
+	id int(3) primary key,
+  name varchar(10),
+  height double(5,2),
+  birthday date,
+  sex char(1)
+);
+mysql&gt; insert into t_student values(12345,&#39;tom&#39;,132.67,&#39;2020-09-08&#39;,&#39;F&#39;);
+mysql&gt; insert into t_student values(1,&#39;tom&#39;,132.67,&#39;2020-09-08&#39;,&#39;F&#39;);
+ERROR 1062 (23000): Duplicate entry &#39;1&#39; for key &#39;PRIMARY&#39;
+
+说明primary key - 唯一性
+mysql&gt; insert into t_student values(null,&#39;tom&#39;,132.67,&#39;2020-09-08&#39;,&#39;F&#39;);
+ERROR 1048 (23000): Column &#39;id&#39; cannot be null
+说明primary key - 非空性
+
+
+unique - 唯一性,可以为空
+drop table t_student;
+create table t_student(
+	id int(7) primary key,
+  name varchar(10) unique,
+  height double(5,2),
+  birthday date,
+  sex char(1)
+);
+insert into t_student values(1,&#39;tom&#39;,132.67,&#39;2020-09-08&#39;,&#39;F&#39;);
+insert into t_student values(2,&#39;tom&#39;,132.67,&#39;2020-09-08&#39;,&#39;F&#39;);
+ERROR 1062 (23000): Duplicate entry &#39;tom&#39; for key &#39;name&#39;
+
+insert into t_student values(2,&#39;t&#39;,132.67,&#39;2020-09-08&#39;,&#39;F&#39;);
+
+insert into t_student values(3,null,132.67,&#39;2020-09-08&#39;,&#39;F&#39;);
+insert into t_student values(4,null,132.67,&#39;2020-09-08&#39;,&#39;F&#39;);
+
+not null - 非空
+drop table t_student;
+create table t_student(
+	id int(7) primary key,
+  name varchar(10) unique,
+  height double(5,2) not null,
+  birthday date,
+  sex char(1)
+);
+insert into t_student(id,name,birthday,sex) values(5,&#39;ss&#39;,&#39;2020-09-08&#39;,&#39;F&#39;);
+ERROR 1364 (HY000): Field &#39;height&#39; doesn&#39;t have a default value
+
+-- 某个列同时添加非空和唯一俩个约束呢????
+drop table t_student;
+create table t_student(
+	id int(7) primary key,
+  name varchar(10) unique not null,
+  height double(5,2) not null,
+  birthday date,
+  sex char(1)
+);</code></pre>
+
+
+
+<h3 id="表级语法添加"><a href="#表级语法添加" class="headerlink" title="表级语法添加"></a>表级语法添加</h3><p>先定义列,然后再添加约束</p>
+<p><em><strong>[constraint 约束名称] 约束类型(列名)</strong></em></p>
+<p>约束命名规范 - 表名_列名_约束缩写</p>
+<pre class="language-mysql" data-language="mysql"><code class="language-mysql">-- 不支持not null和default.可以对约束进行命名,提高错误的可读性.
+-- pk列不需要另取约束的名称,始终使用默认的约束名称 - PRIMARY 
+
+-- 列级添加约束的时候,不允许自定义约束的名称
+-- 表级添加约束的时候,是允许自定义约束的名称
+-- 约束的名称推荐 - 表名_列名_约束类型的缩写
+drop table t_student;
+create table t_student(
+	id int(7),
+  name varchar(10),
+  height double(5,2) not null,
+  birthday date,
+  sex char(1),
+  primary key(id),
+  constraint t_student_name_uq unique(name)
+);
+
+insert into t_student values(1,&#39;tom&#39;,132.67,&#39;2020-09-08&#39;,&#39;F&#39;);
+insert into t_student values(2,&#39;tom&#39;,132.67,&#39;2020-09-08&#39;,&#39;F&#39;);
+ERROR 1062 (23000): Duplicate entry &#39;tom&#39; for key &#39;t_student_name_uq&#39;</code></pre>
+
+<h3 id="数据字典-系统表"><a href="#数据字典-系统表" class="headerlink" title="数据字典 - 系统表"></a>数据字典 - 系统表</h3><p>我们用户所有的操作都会被保存在数据字典中.<em><strong>数据字典</strong></em>就是系统表来保存用户表的信息的.</p>
+<pre class="language-mysql" data-language="mysql"><code class="language-mysql">-- 查询出t_student表中的约束类型和约束名称以及约束的列
+
+-- 到哪里查 - 系统表
+-- 查什么
+use information_schema 
+
+desc table_constraints
+
+select constraint_name,constraint_type,table_name from table_constraints where table_name&#x3D;&#39;t_student&#39;;
+</code></pre>
+
+<h3 id="default"><a href="#default" class="headerlink" title="default"></a>default</h3><pre class="language-mysql" data-language="mysql"><code class="language-mysql">primary key - 可以支持表级添加,不允许重新定义约束名
+not null - 仅仅添加列级添加
+unique - 可以支持表级添加,支持重新定义约束名
+foreign key - 仅仅支持表级添加,重新定义约束名
+default - 仅仅支持列级添加,给定一个默认值
+
+drop table t_student;
+create table t_student(
+	id int(7) primary key,
+  name varchar(10) unique,
+  height double(5,2) default 3.14,
+  birthday datetime default now(),
+  sex char(1)
+);
+insert into t_student(id,name,sex) values(1,&#39;xx&#39;,&#39;f&#39;);</code></pre>
+
+
+
+<h3 id="外键约束-细节"><a href="#外键约束-细节" class="headerlink" title="外键约束 - 细节"></a>外键约束 - 细节</h3><p>外键约束不支持列级添加,仅仅支持表级添加.</p>
+<pre class="language-mysql" data-language="mysql"><code class="language-mysql">create table cus(
+	id int(7) primary key,
+  cname varchar(20)
+);
+
+create table ords(
+	id int(7) primary key,
+  ordno varchar(20),
+  cus_id int(7),
+  constraint ords_cus_id_fk foreign key(cus_id) references cus(id)
+);
+
+insert into cus values(1,&#39;tom&#39;),(2,&#39;jack&#39;);
+
+insert into ords values(1,&#39;1001&#39;,1);
+insert into ords values(2,&#39;1002&#39;,1);
+
+-- 外键列在引用的那个表中一定要存在记录的.否则插入失败.
+insert into ords values(3,&#39;1003&#39;,3);
+
+-- 外键列允许为空...
+insert into ords(id,ordno) values(4,&#39;1004&#39;);
+
+-- 执行DML操作
+delete from cus where id&#x3D;1;
+删除失败,由于外键约束的作用 - 由于id&#x3D;1的客户存在订单子记录
+
+正确的删除 - 先删除这个客户的所有的订单信息,然后才能够删除客户信息
+
+注意删除的顺序 - 先删除多的一方,然后删除一定方法.
+为了数据的安全....
+
+
+但是在实际开发中创建表的时候,绝对不要创建外键约束 - 增加表之间的耦合性.
+
+驰星emp表
+1   success 0
+2   tao     1
+
+
+驰星student
+id name  teacherid
+1  tom     1
+2  jack    1
+
+success被开除了...
+
+① - 必须要创建约束 - 并不会真的进行删除操作  -  1-&gt;0
+
+② - 不许不要创建外键约束
+     
+     表与表之间的关系是在程序员的心里中.....
+</code></pre>
+
+<h3 id="联合主键"><a href="#联合主键" class="headerlink" title="联合主键"></a>联合主键</h3><pre class="language-mysql" data-language="mysql"><code class="language-mysql">drop table user_role;
+drop table user;
+drop table role;
+
+create table user(
+	id int(7) primary key,
+  username varchar(20)
+);
+
+create table role(
+	id int(7) primary key,
+  rolename varchar(20)
+);
+
+create table user_role(
+	 user_id int(7),
+   role_id int(7),
+   primary key(user_id,role_id),
+   constraint user_role_user_id foreign key(user_id) references user(id),
+   constraint user_role_role_id foreign key(role_id) references role(id)
+);</code></pre>
+
+<h1 id="删除表"><a href="#删除表" class="headerlink" title="删除表"></a>删除表</h1><p><em><strong>DROP TABLE 表名</strong></em></p>
+<p><strong>注意:删除时候注意外键约束的影响，需要先删除多的一方,才能够去删除一的一方</strong></p>
+<h1 id="DML语句"><a href="#DML语句" class="headerlink" title="DML语句"></a>DML语句</h1><p>DML - Data Manipulation Language - 数据操纵语言.</p>
+<p>都是对表中的记录进行操作</p>
+<p><em><strong>(insert,update,delete)</strong></em></p>
+<h2 id="insert语句"><a href="#insert语句" class="headerlink" title="insert语句"></a>insert语句</h2><blockquote>
+<ol>
+<li>插入数据</li>
+</ol>
+</blockquote>
+<pre class="language-mysql" data-language="mysql"><code class="language-mysql">-- 给表中的所有的列全部插入指定的顺序
+-- 插入数据的时候一定要注意数据类型,约束条件以及和表中的列的顺序要一一对应
+insert into table_name values(value1,value2,value3,valueN);
+
+-- 插入指定列,不是所有的列都插入了数据
+insert into table_name(列1,列3,列5) values(value1,value2,value3);
+
+-- 批量插入
+insert into table_name values(value1,value2),(value1,value2),(value1,value2);</code></pre>
+
+<h3 id="利用一张表来构建另外一张表"><a href="#利用一张表来构建另外一张表" class="headerlink" title="利用一张表来构建另外一张表"></a>利用一张表来构建另外一张表</h3><ul>
+<li><p>创建一张表,不仅仅是保留表的结构,还保留表的数据</p>
+<pre class="language-mysql" data-language="mysql"><code class="language-mysql">mysql&gt;create table dept_copy as select * from s_dept;
+
+mysql&gt;create table emp_copy as select id,first_name,salary from s_emp;</code></pre></li>
+<li><p>创建一张表,但是仅仅是保留表的结构,不需要保留表的数据</p>
+<pre class="language-mysql" data-language="mysql"><code class="language-mysql">mysql&gt;create table emp_copy as select id,first_name,salary from s_emp where 1&#x3D;2;
+
+补充: select语句 where 1&#x3D;1 恒成立...
+
+口睡觉    口玩游戏   口做梦
+
+select * from hobbbies where xx&#x3D;&#39;sleeping&#39; and yy &#x3D; &#39;games&#39; and dd &#x3D; &#39;zuomeng&#39;;
+
+多重组合条件查询的时候?
+String str &#x3D; &quot;select * from hobbies where 1&#x3D;1&quot;;
+if(&quot;睡觉&quot;不为空)&#123;
+	
+	str+&#x3D;&quot; and xx&#x3D;&#39;sleeping&#39;&quot;;
+&#125;else if(玩游戏不为空)&#123;
+  str+&#x3D;&quot; and xx&#x3D;&#39;games&#39;&quot;;
+&#125;</code></pre></li>
+</ul>
+<h3 id="创建自增字段auto-increment"><a href="#创建自增字段auto-increment" class="headerlink" title="创建自增字段auto_increment"></a>创建自增字段auto_increment</h3><p>mysql中主键列id列自增的策略(主键生长策略) - 默认是从1开始,步长是1.</p>
+<pre class="language-mysql" data-language="mysql"><code class="language-mysql">-- alter table emp auto_increment&#x3D;5;
+
+mysql - auto_increment
+oralce - sequence
+主键的生成策略 - 插入数据的时候,主键列[id列]的数据是自动生成的.
+
+打开网页 - 出现一个注册的表单页面
+
+user(id,username,password);
+用户名:   tom
+密码:     123
+			  提交按钮
+
+前台的数据tom,123就会发送到java的后台,java的后台接受到tom,123的
+后台经过代码处理 - 最终调用到insert into user(?,&#39;tom&#39;,&#39;123&#39;);
+
+drop table t3;
+create table t3(
+	id int(7) primary key auto_increment,
+  name varchar(20),
+  pwd varchar(20)
+);
+mysql&gt; insert into t3 values(1,&#39;tom&#39;,&#39;123&#39;);
+
+mysql&gt; insert into t3 values(2,&#39;tom&#39;,&#39;123&#39;);
+
+mysql&gt; insert into t3 values(3,&#39;tom&#39;,&#39;123&#39;);
+
+默认是从1开始,并且步长是1
+
+mysql&gt; insert into t3(name,pwd) values(&#39;jack&#39;,&#39;123&#39;);
+
+-- 查询最后一个插入的主键值
+mysql&gt; select last_insert_id();</code></pre>
+
+<h3 id="获取auto-increment值"><a href="#获取auto-increment值" class="headerlink" title="获取auto_increment值"></a>获取auto_increment值</h3><p>可以通过mysql中的last_insert_id()函数来实现</p>
+<h2 id="update语句"><a href="#update语句" class="headerlink" title="update语句"></a>update语句</h2><p>update 表名 set 列名=新列值[,列名2 = 新列值2] [where条件语句]</p>
+<ul>
+<li><p>更新所有行</p>
+<pre class="language-mysql" data-language="mysql"><code class="language-mysql">mysql&gt; update table_name set 列名&#x3D;新的列值[,列名2&#x3D;新的列N];
+
+mysql&gt; update t3 set name&#x3D;&#39;james&#39;,pwd&#x3D;&#39;000&#39;;</code></pre></li>
+<li><p>更新指定行 - 带where条件</p>
+<pre class="language-mysql" data-language="mysql"><code class="language-mysql">mysql&gt; update语句 where 条件
+
+mysql&gt; update t3 set name&#x3D;&#39;jack&#39; where id&#x3D;5;</code></pre></li>
+</ul>
+<h2 id="delete语句"><a href="#delete语句" class="headerlink" title="delete语句"></a>delete语句</h2><p>delete考虑外键约束.先delete多的,再delete一的.</p>
+<ul>
+<li><p>删除所有行</p>
+<pre class="language-sql" data-language="sql"><code class="language-sql">mysql<span class="token operator">></span> <span class="token keyword">delete</span> <span class="token keyword">from</span> table_name<span class="token punctuation">;</span></code></pre></li>
+<li><p>删除指定行 - where条件</p>
+<pre class="language-sql" data-language="sql"><code class="language-sql">mysql<span class="token operator">></span> <span class="token keyword">delete</span> <span class="token keyword">from</span> table_name <span class="token keyword">where</span>语句<span class="token punctuation">;</span>
+
+mysql<span class="token operator">></span> <span class="token keyword">delete</span> <span class="token keyword">from</span> t3 <span class="token keyword">where</span> id<span class="token operator">=</span><span class="token number">100</span><span class="token punctuation">;</span></code></pre></li>
+<li><p>truncate 表名;//清空表</p>
+</li>
+</ul>
+<h3 id="级联删除"><a href="#级联删除" class="headerlink" title="级联删除"></a>级联删除</h3><p>使用的比较少,不安全.也可以用<em><strong>触发器</strong></em>来代替.</p>
+<p>constraint t_ord_cid_fk foreign key(cid) references t_customer(id) <strong>ON DELETE CASCADE;</strong></p>
+<pre class="language-mysql" data-language="mysql"><code class="language-mysql">drop table ords;
+drop table cus;
+create table cus(
+	id int(7) primary key,
+  cname varchar(20)
+);
+
+create table ords(
+	id int(7) primary key,
+  ordno varchar(20),
+  cus_id int(7),
+  constraint ords_cus_id_fk foreign key(cus_id) references cus(id) on delete cascade
+);
+
+insert into cus values(1,&#39;tom&#39;),(2,&#39;jack&#39;);
+
+insert into ords values(1,&#39;1001&#39;,1);
+insert into ords values(2,&#39;1002&#39;,1);
+
+mysql&gt; delete from cus where id&#x3D;1;
+Query OK, 1 row affected (0.00 sec)
+
+进行级联删除的操作,本质上还是先删除id&#x3D;1这个客户的所有的订单信息之后,再去自己.</code></pre>
+
+
+
+<h1 id="事务-DTL"><a href="#事务-DTL" class="headerlink" title="事务(DTL)"></a>事务(DTL)</h1><p>在MYSQL中,<em><strong>所有的DML(insert,update,delete)操作</strong></em>在执行之后都会有一个<strong>commit操作</strong>[隐式的]</p>
+<p>commit的意思就是用来<strong>提交事务[结束当前事务].</strong></p>
+<p>oracle数据库中执行所有的DML操作之后,是需要手动执行<em><strong>commit</strong></em><em><strong>提交事务</strong></em>的操作的.</p>
+<p>补充:如何区分DDL(create,alter,drop,<em><strong>truncate</strong></em>)和DML(insert,update,delete),看执行完毕之后</p>
+<p>是否可以进行回滚操作(撤销操作),如果可以进行事务的回滚,属于DML操作.</p>
+<p><strong>DTL,数据事务语言</strong></p>
+<p><strong>事务的定义:</strong></p>
+<p>就是指一组<strong>相关的SQL操作</strong>,我们所有的操作都是处在事务中的.</p>
+<p>控制事务 - 就是控制事务的边界(事务的开始(begin) - 事务的结束(commit,rollback))</p>
+<p><em><strong>一个事务的结束,代表着下一个事务的开始.</strong></em></p>
+<p><strong>注意:</strong></p>
+<ol>
+<li><p>在数据库中**,执行业务的基本单位是事务,不是以某一条SQL**</p>
+</li>
+<li><p>数据库在默认情况下,事务都是打开的,也就是说它是一直</p>
+</li>
+<li><p>处在事务中的,一个事务的结束,代表着下一个事务的开启</p>
+</li>
+<li><p>执行commit或者rollback指令时,<strong>会结束当前事务</strong></p>
+<p><strong>[已经提交的事务将不能够被回滚 - 已经不处于同一个事务中了,而事务与事务之间是隔离的]</strong></p>
+</li>
+</ol>
+<p><strong>作用:用来保证数据的平稳性和可预测性.</strong></p>
+<p><strong>事务的四大特性(ACID):</strong></p>
+<ol>
+<li><p><strong>Atomicity,原子性</strong>,事务是不可再分割的,要么同时成功,要么同时失败.</p>
+<p>转账业务(账户+money,账户-money - 一组sql - 至于一个事务当中,并且要保证原子性.)</p>
+</li>
+<li><p><strong>Consistency,一致性</strong>,事务一旦结束,内存中的数据和数据库中的数据是保持一致的</p>
+<p>example：A用户和B用户进行转账1000元，A账户减少1000和B账户增加1000的sql语句必须全部执行成功，不存在一半成功，一半失败。<br>但是无论如何执行，两个账户金额的改变加起来一定1000元，<strong>这就是一致性(完整性)。</strong></p>
+</li>
+<li><p><strong>Isolation,隔离性</strong>,事务之间互不干扰,一多个用户并发访问数据库，比如同时操作一张表。数据库为每一个用户开启事务。<strong>每个事务相互独立，互不干扰。</strong></p>
+</li>
+<li><p><strong>Durability,持久性</strong>,事务一旦提交,则数据持久化到数据库中,<strong>永久保存</strong></p>
+<p>[涉及到数据库的备份和恢复的一些技术,冷备份,热备份…]</p>
+</li>
+</ol>
+<h2 id="事务控制语句"><a href="#事务控制语句" class="headerlink" title="事务控制语句"></a>事务控制语句</h2><p>DTL - 事务控制语言.</p>
+<ol>
+<li><p><strong>BEGIN或START TRANSACTION</strong>；显式地开启一个事务；</p>
+</li>
+<li><p><strong>COMMIT；</strong>也可以使用COMMIT WORK，不过二者是等价的。COMMIT会提交事务，并使已对数据库进行的所有修改成为永久性的；</p>
+</li>
+<li><p><strong>ROLLBACK；</strong>有可以使用ROLLBACK WORK，不过二者是等价的。回滚会结束用户的事务，并撤销正在进行的所有未提交的修改；</p>
+</li>
+<li><p>SAVEPOINT identifier；SAVEPOINT允许在事务中创建一个保存点，一个事务中可以有多个SAVEPOINT；</p>
+</li>
+<li><p>RELEASE SAVEPOINT identifier；删除一个事务的保存点，当没有指定的保存点时，执行该语句会抛出一个异常；</p>
+</li>
+<li><p>ROLLBACK TO identifier；把事务回滚到标记点；</p>
+<pre class="language-mysql" data-language="mysql"><code class="language-mysql">-- 测试
+mysql&gt; begin;
+Query OK, 0 rows affected (0.00 sec)
+
+mysql&gt; update account set balance&#x3D;balance+1000 where id&#x3D;1;
+Query OK, 1 row affected (0.00 sec)
+Rows matched: 1  Changed: 1  Warnings: 0
+
+mysql&gt; update account set balance&#x3D;balance+1000 where id&#x3D;1;
+Query OK, 1 row affected (0.00 sec)
+Rows matched: 1  Changed: 1  Warnings: 0
+
+mysql&gt; savepoint ss1;
+Query OK, 0 rows affected (0.00 sec)
+
+mysql&gt; update account set balance&#x3D;balance+1000 where id&#x3D;1;
+Query OK, 1 row affected (0.00 sec)
+Rows matched: 1  Changed: 1  Warnings: 0
+
+mysql&gt; update account set balance&#x3D;balance+1000 where id&#x3D;1;
+Query OK, 1 row affected (0.00 sec)
+Rows matched: 1  Changed: 1  Warnings: 0
+
+mysql&gt; rollback to ss1;
+Query OK, 0 rows affected (0.00 sec)
+
+mysql&gt; select * from account;
++----+---------+
+| id | balance |
++----+---------+
+|  1 | 8000.00 |
+|  2 | 5000.00 |
++----+---------+
+2 rows in set (0.00 sec)</code></pre></li>
+<li><p>SET TRANSACTION；用来设置事务的隔离级别。InnoDB存储引擎提供事务的隔离级别有<em><strong>READ UNCOMMITTED、READ COMMITTED、REPEATABLE READ和SERIALIZABLE。</strong></em></p>
+</li>
+</ol>
+<h2 id="MYSQL-事务处理主要有两种方法"><a href="#MYSQL-事务处理主要有两种方法" class="headerlink" title="MYSQL 事务处理主要有两种方法"></a>MYSQL 事务处理主要有两种方法</h2><ol>
+<li><p>用 BEGIN, ROLLBACK, COMMIT来实现</p>
+<p>1-1. <strong>BEGIN 开始一个事务</strong></p>
+<p>1-2. <strong>start transaction - 手动开始一个事务</strong></p>
+</li>
+</ol>
+<p>1-2. ROLLBACK 事务回滚<br>    1-3. COMMIT 事务确认</p>
+<ol start="2">
+<li><p>直接用 SET 来改变 MySQL 的自动提交模式: </p>
+<p>2-1. <strong>SET AUTOCOMMIT=0 禁止自动提交</strong></p>
+<p>2-2. SET AUTOCOMMIT=1 开启自动提交</p>
+<p>注意:设置成禁止自动提交的操作的话,这个操作仅仅是针对当前的会话窗口有效.</p>
+</li>
+</ol>
+<h2 id="事务的命令的演示DTL"><a href="#事务的命令的演示DTL" class="headerlink" title="事务的命令的演示DTL"></a>事务的命令的演示DTL</h2><p>DTL - Data Transaction Language - 数据事务语言 - commit,begin,rollback</p>
+<pre class="language-mysql" data-language="mysql"><code class="language-mysql">-- mysql中事务是默认自动提交的.
+create table account(
+	 id int(7) primary key,
+   balance double(7,2)
+);
+insert into account values(1,5000.0);
+insert into account values(2,5000.0);</code></pre>
+
+<h3 id="为什么需要使用事务"><a href="#为什么需要使用事务" class="headerlink" title="为什么需要使用事务"></a>为什么需要使用事务</h3><pre class="language-java" data-language="java"><code class="language-java"><span class="token operator">--</span> 级联删除<span class="token punctuation">.</span><span class="token punctuation">.</span><span class="token punctuation">.</span>
+
+java代码中
+
+<span class="token keyword">public</span> <span class="token keyword">static</span> <span class="token keyword">void</span> <span class="token function">main</span><span class="token punctuation">(</span><span class="token class-name">String</span><span class="token punctuation">[</span><span class="token punctuation">]</span> args<span class="token punctuation">)</span><span class="token punctuation">&#123;</span>
+   <span class="token comment">//俩个操作是需要保证事务的原子性 - 事务要么同时成功,要么同时失败.</span>
+  
+   <span class="token keyword">try</span><span class="token punctuation">&#123;</span>
+    <span class="token class-name">String</span> str2 <span class="token operator">=</span> <span class="token string">"delete from ords where cus_id=1"</span><span class="token punctuation">;</span>
+  
+    <span class="token comment">// mysql事务默认是自动</span>
+    <span class="token comment">// 执行str2的sql语句 - 如果事务是自动提交的 - 数据已经发生改变了.</span>
+  
+  	<span class="token comment">//其他代码.. -> 发生了意外 - 发生了异常</span>
+    <span class="token comment">//一旦此行发生了异常,下面的代码将不会执行了...</span>
+  
+		<span class="token class-name">String</span> str<span class="token operator">=</span><span class="token string">"delete from cus where id=1"</span><span class="token punctuation">;</span>
+   <span class="token comment">// 执行str的sql语句</span>
+   <span class="token comment">// 更新db</span>
+   <span class="token punctuation">&#125;</span><span class="token keyword">catch</span><span class="token punctuation">(</span><span class="token class-name">Exception</span> e<span class="token punctuation">)</span><span class="token punctuation">&#123;</span>
+     
+     <span class="token comment">//一旦try括号中出现了异常,那么就会自动进入到catch块中去执行</span>
+     <span class="token comment">//事务的回滚,事务的撤销 - 前提一定是手动提交的</span>
+   <span class="token punctuation">&#125;</span>
+
+<span class="token punctuation">&#125;</span>
+
+
+<span class="token operator">--</span> rollback是不能够撤销已经提交的事务<span class="token punctuation">,</span>但是可以撤销尚未提交的事务<span class="token punctuation">.</span>
+           也是用来结束当前事务的<span class="token punctuation">.</span></code></pre>
+
+
+
+<h2 id="多事务的并发处理机制"><a href="#多事务的并发处理机制" class="headerlink" title="多事务的并发处理机制"></a>多事务的并发处理机制</h2><p>原因:多个事务同时操作一个表中的<strong>同一行数据(争抢临界资源)</strong>,如果这些操作是.修改操作的话,就会产生并发问题,如果不处理,则会造成数据不一致的情况.</p>
+<p>数据库可能产生的并发问题包括:</p>
+<blockquote>
+<ol>
+<li><code>脏读</code></li>
+</ol>
+<p> 简介:一个事务读取到了另外一个事务中尚未提交的数据.</p>
+<blockquote>
+<p>是指一个事务正在访问数据,并且对这个数据进行修改,而这种修改<br>还没有提交到数据库中,而另一个事务也访问了这个数据,并且使用了这个数据<br>解决方法:一个事务在修改数据时,该数据不能被其他事务访问</p>
+</blockquote>
+</blockquote>
+<blockquote>
+<ol start="2">
+<li><code>不可重复读</code></li>
+</ol>
+<blockquote>
+<p>是指一个事务多次读取同一条记录,如果此时另一个事务也访问并且<br>修改了该数据,则就会出现多次读取出现数据不一致的情况,原来的<br>数据变成了不可重复读取的数据<br>解决方法:只有在修改事务完全提交过后才可以读取到数据</p>
+</blockquote>
+</blockquote>
+<blockquote>
+<ol start="3">
+<li><code>幻读</code></li>
+</ol>
+<blockquote>
+<p>是指一个事务修改表中的多行记录,但是此时另一个事务对该表格进行<br>了插入数据的操作,则第一个事务会发现表格中会出现没有被修改的行<br>就像发生了幻觉一样<br>解决方法:在一个事务提交数据之前,其他事务不能添加数据</p>
+</blockquote>
+</blockquote>
+<p><strong>不可重复读的重点是修改，同样的条件，你读取过的数据，再次读取出来发现值不一样了幻读的重点在于新增或者删除</strong></p>
+<h2 id="事务隔离级别"><a href="#事务隔离级别" class="headerlink" title="事务隔离级别"></a>事务隔离级别</h2><blockquote>
+<ol>
+<li>READ UNCOMMITTED - 读未提交</li>
+</ol>
+<blockquote>
+<p>这是事务最低的隔离级别，它充许另外一个事务可以看到这个事务未提交的数据。<br>解决第一类丢失更新的问题，但是会出现脏读、不可重复读.</p>
+</blockquote>
+</blockquote>
+<blockquote>
+<ol start="2">
+<li>READ COMMITTED</li>
+</ol>
+<blockquote>
+<p>保证一个事务修改的数据提交后才能被另外一个事务读取，即另外一个事务不能读取该事务未提交的数据。<br>解决第一类丢失更新和脏读的问题，但会出现不可重复读.</p>
+</blockquote>
+</blockquote>
+<blockquote>
+<ol start="3">
+<li>REPEATABLE READ</li>
+</ol>
+<p> 简介:mysql默认的事务的隔离级别.</p>
+<blockquote>
+<p>保证一个事务相同条件下前后两次获取的数据是一致的<br>解决第一类丢失更新，脏读、不可重复读.</p>
+</blockquote>
+</blockquote>
+<blockquote>
+<ol start="4">
+<li>SERIALIZABLE</li>
+</ol>
+<blockquote>
+<p>事务被处理为顺序执行。解决所有问题 - 有点类似于<strong>锁表.</strong></p>
+</blockquote>
+<blockquote>
+<p>性能及其低下.</p>
+</blockquote>
+</blockquote>
+<p><strong>提醒：</strong><br><strong>Mysql默认的事务隔离级别为repeatable_read</strong></p>
+<h2 id="隔离级别的演示"><a href="#隔离级别的演示" class="headerlink" title="隔离级别的演示"></a>隔离级别的演示</h2><h2 id="图示"><a href="#图示" class="headerlink" title="图示"></a>图示</h2><ul>
+<li><p>读未提交 - 产生脏读</p>
+<p>一个事务能够读取到另外一个事务尚未提交的数据.</p>
+<p><img src="/2021/12/12/43-MySQL%E8%AF%AD%E6%B3%95/zang.png" loading="lazy"></p>
+<pre class="language-sql" data-language="sql"><code class="language-sql"><span class="token comment">-- 设置当前的会话窗口的mysql的事务的隔离级别设置读未提交.</span>
+<span class="token comment">-- read uncommitted 一个事务可以读取到另外一个事务尚未提交的数据 - "脏读"</span>
+<span class="token comment">-- db中session代表的是一次会话,mysql-client和mysql-server进行一次连接</span>
+mysql<span class="token operator">></span><span class="token keyword">set</span> <span class="token keyword">session</span> <span class="token keyword">transaction</span> <span class="token keyword">isolation</span> <span class="token keyword">level</span> <span class="token keyword">read</span> <span class="token keyword">uncommitted</span><span class="token punctuation">;</span>
+mysql<span class="token operator">></span><span class="token keyword">select</span> @<span class="token variable">@tx_isolation</span><span class="token punctuation">;</span>
+
+再打开一个窗口
+mysql<span class="token operator">></span><span class="token keyword">set</span> <span class="token keyword">session</span> <span class="token keyword">transaction</span> <span class="token keyword">isolation</span> <span class="token keyword">level</span> <span class="token keyword">read</span> <span class="token keyword">uncommitted</span><span class="token punctuation">;</span></code></pre></li>
+<li><p>读已提交 - 不可重复读(同一个事务中多次读取到的数据不一样)</p>
+<ul>
+<li><p>不可重复读 - 侧重于一个事务在多次读同一个数据,另外一个事务在进行<strong>修改并且提交了</strong></p>
+<p><em><strong>不可重复读</strong></em> - 一个事务在<em><strong>读</strong></em>,另外一个事务在<em><strong>修改.</strong></em></p>
+<p><img src="/2021/12/12/43-MySQL%E8%AF%AD%E6%B3%95/bu.png" loading="lazy"></p>
+</li>
+<li><p>幻读 - 一个事务在进行<strong>更新操作</strong>,另外一个事务在进行<strong>新增或者删除</strong>并且提交了.</p>
+<p>对于更新的事务而言,就像发生了幻觉一样. 侧<strong>重新增或者删除.</strong></p>
+<p><img src="/2021/12/12/43-MySQL%E8%AF%AD%E6%B3%95/huan.png" loading="lazy"></p>
+</li>
+</ul>
+</li>
+<li><p>可重复读</p>
+<p><em><strong>同一个事务中多</strong></em>次读取到的数据是一样的.</p>
+<p><img src="/2021/12/12/43-MySQL%E8%AF%AD%E6%B3%95/rep.png" loading="lazy"></p>
+<pre class="language-sql" data-language="sql"><code class="language-sql"><span class="token comment">-- 这也是mysql默认的事务的隔离级别</span>
+mysql<span class="token operator">></span><span class="token keyword">set</span> <span class="token keyword">session</span> <span class="token keyword">transaction</span> <span class="token keyword">isolation</span> <span class="token keyword">level</span> <span class="token keyword">repeatable</span> <span class="token keyword">read</span><span class="token punctuation">;</span></code></pre></li>
+<li><p>串行化</p>
+<p>属于隔离级别是最高的,效率是最低的 - <em><strong>“锁表”</strong></em> - 保证数据的完整性(多并发)</p>
+<pre class="language-mysql" data-language="mysql"><code class="language-mysql">mysql&gt;set session transaction isolation level serializable;
+一个事务在查询,另外一个事务在执行dml操作(阻塞状态),因为第一个事务相当于&quot;锁表&quot;</code></pre></li>
+</ul>
+<h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2><table>
+<thead>
+<tr>
+<th>事务隔离级别</th>
+<th>脏读</th>
+<th>不可重复读</th>
+<th>幻读</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>读未提交(read uncommitted)</td>
+<td>√</td>
+<td>√</td>
+<td>√</td>
+</tr>
+<tr>
+<td>读已提交-(read committed)  - 不可重复读</td>
+<td>×</td>
+<td>√</td>
+<td>√</td>
+</tr>
+<tr>
+<td>可重复读(repeatable read)</td>
+<td>×</td>
+<td>×</td>
+<td>√</td>
+</tr>
+<tr>
+<td>串行化(serializable)</td>
+<td>×</td>
+<td>×</td>
+<td>×</td>
+</tr>
+</tbody></table>
+<p>框架 - mybatis[持久层框架],hibernate</p>
+<p>Spring全家桶 - Spring,SpringMVC,SpringBoot,Alibaba Spring Cloud,SpringDataJPA,Spring Security…</p>
+<p>使用,框架的底层代码以及设计思想 - corejava核心</p>
+<h1 id="视图View"><a href="#视图View" class="headerlink" title="视图View"></a>视图View</h1><p>数据的基本对象:table,index,view,<em><strong>函数,存储过程</strong></em></p>
+<p>视图的本质是一张**”虚拟表”** , 实际上就是一条简单的或者复杂的sql.视图就是对查询语句的封装.</p>
+<p>视图的分类:</p>
+<ul>
+<li>简单视图 - 视图来自于单张表的查询 - 支持DML操作</li>
+<li>复杂视图 - 视图来自于多张表的关联查询 - 不支持DML操作</li>
+</ul>
+<p>视图的好处:</p>
+<ul>
+<li>保证一些数据的安全性.</li>
+<li>保证数据的清晰的结构,去除一些冗余的不需要的一些数据.</li>
+<li>封装一些复杂的关联查询 - 多次进行调用.</li>
+</ul>
+<h2 id="创建视图的语法"><a href="#创建视图的语法" class="headerlink" title="创建视图的语法"></a>创建视图的语法</h2><pre class="language-mysql" data-language="mysql"><code class="language-mysql">create view 视图名称
+as select语句;
+
+删除视图
+drop view 视图的名称
+
+查询视图
+select * from 视图名称;</code></pre>
+
+<pre class="language-mysql" data-language="mysql"><code class="language-mysql">create view emp_view
+as select id,name,start_date from emp;
+
+select * from emp_view;
+
+-- 更新原表emp,看是否对视图emp_view产生影响
+update emp set name &#x3D; &#39;aaa&#39; where id&#x3D;1;
+-- 查询视图(&quot;镜像&quot;)
+select * from emp_view;
+
+-- 结论1 - 修改原表,对视图造成影响
+
+-- 更新视图 - 简单视图支持DML操作
+update emp_view set name &#x3D; &#39;小小&#39; where id &#x3D; 1;
+-- 查看原来的表
+select * from emp;
+
+-- 结论2: 更新视图,也会对原表产生影响.
+
+-- 关于视图的查询,DML操作和对table的操作一模一样.</code></pre>
+
+<h2 id="with-check-option"><a href="#with-check-option" class="headerlink" title="with check option"></a>with check option</h2><p>禁止更新视图的时候,去update它的来源的原表的条件列.</p>
+<pre class="language-mysql" data-language="mysql"><code class="language-mysql">-- 删除视图
+drop view emp_view;
+-- 创建视图
+create view emp_view
+as select id,name,start_date from emp where id&#x3D;1;
+-- 查询视图
+mysql&gt; select * from emp_view;
++----+--------+------------+
+| id | name   | start_date |
++----+--------+------------+
+|  1 | 小小   | 2020-08-24 |
++----+--------+------------+
+1 row in set (0.00 sec)
+
+-- 更新视图
+update emp_view set id &#x3D; 10 where id&#x3D;1;
+
+mysql&gt; select * from emp_view;
+Empty set (0.00 sec)</code></pre>
+
+<pre class="language-mysql" data-language="mysql"><code class="language-mysql">with check option一定是配合where语句使用.
+如果创建视图的时候没有出现where语句,就没有必要出现它.
+
+-- 删除视图
+drop view emp_view;
+-- 创建视图
+create view emp_view
+as select id,name,start_date from emp where id&#x3D;1 with check option;
+
+-- 更新视图 - 禁止更新视图中的视图来源的select语句的条件列
+update emp_view set id &#x3D; 10 where id&#x3D;1;
+ERROR 1369 (HY000): CHECK OPTION failed &#39;j08.emp_view&#39;</code></pre>
+
+
+
+<h2 id="复杂视图"><a href="#复杂视图" class="headerlink" title="复杂视图"></a>复杂视图</h2><p>复杂视图:视图来源于多表查询,<em><strong>不支持DML操作的</strong></em></p>
+<pre class="language-mysql" data-language="mysql"><code class="language-mysql">create view emp_dept_region
+as select d.id,d.name,r.name 区域名 from s_dept d join s_region r on d.region_id &#x3D; r.id where r.name&#x3D;&#39;Asia&#39;;
+
+mysql&gt; select * from emp_dept_region;
++----+------------+-----------+
+| id | name       | 区域名    |
++----+------------+-----------+
+| 44 | Operations | Asia      |
+| 34 | Sales      | Asia      |
++----+------------+-----------+
+2 rows in set (0.00 sec)</code></pre>
+
+
+
+<h1 id="limit语句"><a href="#limit语句" class="headerlink" title="limit语句"></a>limit语句</h1><p>项目中只要涉及到查询的业务 - 涉及到分页的业务.</p>
+<pre class="language-mysql" data-language="mysql"><code class="language-mysql">select * from s_emp limit 5;&#x2F;&#x2F;前5行的数据
+
+limit m,n  m从0开始,第一行,n取多少条出来.
+select * from s_emp limit 0,2;&#x2F;&#x2F;第一行和第二行</code></pre>
+
+<pre class="language-java" data-language="java"><code class="language-java"><span class="token keyword">public</span> <span class="token class-name">List</span><span class="token generics"><span class="token punctuation">&lt;</span><span class="token class-name">User</span><span class="token punctuation">></span></span> <span class="token function">findAll</span><span class="token punctuation">(</span><span class="token class-name">Integer</span> pageNow<span class="token punctuation">,</span><span class="token class-name">Integer</span> pageSize<span class="token punctuation">)</span><span class="token punctuation">&#123;</span>
+  <span class="token comment">//伪代码</span>
+  
+  <span class="token comment">//1,3</span>
+  
+  <span class="token comment">//第一行~第三行数据, limit 0,3</span>
+  
+  <span class="token comment">//pageNow = 2, pageSize=3</span>
+  <span class="token comment">//第一页 limit 0,3</span>
+  <span class="token comment">//第二页 limit 3,3</span>
+  
+  <span class="token comment">//limit (pageNow-1)*pageSize,pageSize;</span>
+<span class="token punctuation">&#125;</span></code></pre>
+
+<h2 id="limit语句的性能问题"><a href="#limit语句的性能问题" class="headerlink" title="limit语句的性能问题."></a>limit语句的性能问题.</h2><p>sql优化操作.</p>
+<pre class="language-mysql" data-language="mysql"><code class="language-mysql">select * from xx where name &#x3D; &#39;xxx&#39;;&#x2F;&#x2F;全表扫描.
+如果name是一个唯一性的值.
+
+select * from xx where name &#x3D; &#39;xxx&#39; limit 1;&#x2F;&#x2F;避免全表扫描了.</code></pre>
+
+<pre class="language-mysql" data-language="mysql"><code class="language-mysql">偏移量如果过大,会导致limit语句性能极其低下
+select * from xxx limit 100000,5;
+
+
+select * from xxx where id&gt;100000 limit 5;</code></pre>
+
+
+
+
+
+<h1 id="经典题"><a href="#经典题" class="headerlink" title="经典题"></a>经典题</h1><pre class="language-mysql" data-language="mysql"><code class="language-mysql">drop table purcase;
+drop table customer;
+drop table product;
+
+create table product(
+	  productid int(12) primary key,
+	  productname varchar(20) not null,
+	  unitprice double(11,2),
+	  category varchar(28),
+	  provider varchar(48)
+);
+
+create table customer(
+		customerid int(12) primary key,
+		name varchar(48),
+		location varchar(128)
+);
+
+create table purcase(
+		customerid int(12),
+		productid int(12),
+		quantity int(7)
+);
+
+insert into product values(1,&#39;佳洁士&#39;,8.00,&#39;牙膏&#39;,&#39;宝洁&#39;);
+insert into product values(2,&#39;高露洁&#39;,6.50,&#39;牙膏&#39;,&#39;高露洁&#39;);
+insert into product values(3,&#39;洁诺&#39;,5.00,&#39;牙膏&#39;,&#39;联合利华&#39;);
+insert into product values(4,&#39;舒肤佳&#39;,3.00,&#39;香皂&#39;,&#39;宝洁&#39;);
+insert into product values(5,&#39;夏士莲&#39;,5.00,&#39;香皂&#39;,&#39;联合利华&#39;);
+insert into product values(6,&#39;雕牌&#39;,2.50,&#39;洗衣粉&#39;,&#39;纳爱斯&#39;);
+insert into product values(7,&#39;中华&#39;,3.50,&#39;牙膏&#39;,&#39;联合利华&#39;);
+insert into product values(8,&#39;汰渍&#39;,3.00,&#39;洗衣粉&#39;,&#39;宝洁&#39;);
+insert into product values(9,&#39;碧浪&#39;,4.00,&#39;洗衣粉&#39;,&#39;宝洁&#39;);
+
+insert into customer values(1,&#39;Dennis&#39;,&#39;黄浦区&#39;);
+insert into customer values(2,&#39;John&#39;,&#39;徐家汇&#39;);
+insert into customer values(3,&#39;Tom&#39;,&#39;闸北&#39;);
+insert into customer values(4,&#39;Jenny&#39;,&#39;静安&#39;);
+insert into customer values(5,&#39;Rick&#39;,&#39;浦东&#39;);
+
+insert into purcase values(1,1,3);
+insert into purcase values(1,5,2);
+insert into purcase values(1,8,2);
+insert into purcase values(2,1,5);
+insert into purcase values(2,5,4);
+insert into purcase values(2,8,3);
+insert into purcase values(3,1,1);
+insert into purcase values(3,5,1);
+insert into purcase values(3,6,3);
+insert into purcase values(3,8,1);
+insert into purcase values(4,1,7);
+insert into purcase values(4,5,3);
+insert into purcase values(4,8,3);
+insert into purcase values(5,6,2);
+insert into purcase values(5,7,8);
+
+commit;
+
+求购买的商品包含了顾客&quot;Dennis&quot;所购买的所有商品的顾客（姓名）
+-- 求选的课程包含了学生&quot;Dennis&quot;所选的所有课程的学生
+
+-- 找出Dennis购买的商品的id
+mysql&gt; select pur.productid aid from purcase pur join customer c on c.customerid &#x3D; pur.customerid where c.name&#x3D;&#39;Dennis&#39;;
+
+-- 模拟任意一个顾客购买的商品的id
+-- 5顾客不是目标客户
+mysql&gt; select p1.productid bid from purcase p1 where p1.customerid&#x3D;5;
+
+
+-- 3 目标客户
+mysql&gt; select p1.productid bid from purcase p1 where p1.customerid&#x3D;3;
+
+-- 确定的就是(1,5,8)每个商品id是否存在另外一个客户的(n1,n2,n3....)
+
+mysql&gt; select 1 from(select pur.productid aid from purcase pur join customer c on c.customerid &#x3D; pur.customerid where c.name&#x3D;&#39;Dennis&#39;) core_ where core_.aid not in(
+	select p1.productid bid from purcase p1 where p1.customerid&#x3D;3
+)
+
+-- 进一步的整合
+mysql&gt; select c1.name from customer c1 where not exists(
+					select 1 from(select pur.productid aid from purcase pur join customer c on 	  	c.customerid &#x3D; pur.customerid where c.name&#x3D;&#39;Dennis&#39;) core_ where core_.aid not in(
+	select p1.productid bid from purcase p1 where p1.customerid&#x3D;c1.customerid
+)
+			) and c1.name&lt;&gt;&#39;Dennis&#39;;
+
+
+-- 思路: Dennis购买的商品的id全部找出来(1,5,8)当中.
+
+-- 如何确定另外一个顾客是目标客户
+   ① 商品id(1,3,5);
+   ② 商品id(1,5,7,8);
+   
+   如果记录为空 - 是目标的.
+   
+-- 求购买的商品和顾客&quot;Dennis&quot;所购买的所有商品一模一样[个数也一样]
+
+-- 分解01
+ select c1.customerid,c1.name from customer c1 where not exists(
+					select 1 from(select pur.productid aid from purcase pur join customer c on 	  	c.customerid &#x3D; pur.customerid where c.name&#x3D;&#39;Dennis&#39;) core_ where core_.aid not in(
+	select p1.productid bid from purcase p1 where p1.customerid&#x3D;c1.customerid
+)
+			) and c1.name&lt;&gt;&#39;Dennis&#39;;
+
+-- 查询出Dennis购买的商品的个数
+mysql&gt; select count(*) from purcase pur where pur.customerid &#x3D; (select c2.customerid from customer c2 where c2.name&#x3D;&#39;Dennis&#39;);
+
+-- 继续找出购买的商品的个数也是3的所有的客户...
+mysql&gt; select p3.customerid,count(*) from purcase p3 group by p3.customerid having count(*)&#x3D;(select count(*) from purcase pur where pur.customerid &#x3D; (select c2.customerid from customer c2 where c2.name&#x3D;&#39;Dennis&#39;));
+
+-- 找出俩张虚拟表中的交集数据
+select * from(
+	 select c1.customerid xxid,c1.name from customer c1 where not exists(
+					select 1 from(select pur.productid aid from purcase pur join customer c on 	  	c.customerid &#x3D; pur.customerid where c.name&#x3D;&#39;Dennis&#39;) core_ where core_.aid not in(
+	select p1.productid bid from purcase p1 where p1.customerid&#x3D;c1.customerid
+)
+			) and c1.name&lt;&gt;&#39;Dennis&#39;
+) xx where xx.xxid in(
+		select p3.customerid from purcase p3 group by p3.customerid having count(*)&#x3D;(select count(*) from purcase pur where pur.customerid &#x3D; (select c2.customerid from customer c2 where c2.name&#x3D;&#39;Dennis&#39;))
+);
+</code></pre>
+
+
+
+
+
+
+
+
+
+
+
+<h1 id="mysql单行函数"><a href="#mysql单行函数" class="headerlink" title="mysql单行函数"></a>mysql单行函数</h1><p>简介:<font color="red">100%不会用.了解</font>.</p>
+<h2 id="字符串函数"><a href="#字符串函数" class="headerlink" title="字符串函数"></a>字符串函数</h2><ol>
+<li><p>instr(str,substr) - 返回字符串substr在字符串str第一次出现的位置(str不包含substr时返回0)</p>
+<pre class="language-mysql" data-language="mysql"><code class="language-mysql">mysql&gt;select instr(&#39;ppopo&#39;,&#39;o&#39;);&#x2F;&#x2F;3,找不到则返回0</code></pre></li>
+<li><p>lpad(str,len,padstr) - 用字符串padstr填补str左端直到字串长度为len并返回 </p>
+</li>
+<li><p>rpad(str,len,padstr) - 用字符串padstr填补str右端直到字串长度为len并返回</p>
+<pre class="language-mysql" data-language="mysql"><code class="language-mysql">mysql&gt;select rpad(&#39;abc&#39;,6,&#39;do&#39;);&#x2F;&#x2F;abcdod</code></pre></li>
+<li><p>left(str,len) - 返回字符串str的左端len个字符 </p>
+</li>
+<li><p>right(str,len) - 返回字符串str的右端len个字符 </p>
+</li>
+<li><p>substring(str,pos,len) - 返回字符串str的位置pos起len个字符</p>
+<pre class="language-mysql" data-language="mysql"><code class="language-mysql">mysql&gt;select substring(&#39;hello&#39;,1,1);</code></pre></li>
+<li><p>substring(str,pos) - 返回字符串str的位置pos起后面的子串 </p>
+</li>
+<li><p>ltrim(str) - 返回删除了左空格的字符串str  </p>
+</li>
+<li><p>rtrim(str)  - 返回删除了右空格的字符串str  </p>
+</li>
+<li><p>space(n) - 返回由n个空格字符组成的一个字符串  </p>
+</li>
+<li><p><em><strong>replace(str,from_str,to_str)  - 用字符串to_str替换字符串str中的子串from_str并返回</strong></em> </p>
+</li>
+<li><p>reverse(str) - 颠倒字符串str的字符顺序并返回</p>
+</li>
+<li><p>insert(str,pos,len,newstr) - 把字符串str由位置pos起len个字符长的子串替换为字符串</p>
+<pre class="language-mysql" data-language="mysql"><code class="language-mysql">mysql&gt;select insert(&#39;Carmen&#39;,2,5,&#39;*****&#39;);</code></pre></li>
+<li><p>lower(str) - 返回小写的字符串str  </p>
+</li>
+<li><p>upper(str) - 返回大写的字符串str</p>
+</li>
+<li><p>char_length(str) -  不管汉字还是数字或者是字母都算是一个字符。</p>
+</li>
+<li><p>length(str);//汉字占3个,其他占1个.</p>
+</li>
+</ol>
+<p>结合实际的表来进行操作.</p>
+<p>把所有的first_name全部转换成大写</p>
+<pre class="language-mysql" data-language="mysql"><code class="language-mysql">mysql&gt;select upper(first_name) from s_emp;</code></pre>
+
+
+
+<p>函数是可以嵌套函数使用的.</p>
+<pre class="language-mysql" data-language="mysql"><code class="language-mysql">mysql&gt;select upper(substring(first_name,1,1)) from s_emp;</code></pre>
+
+<h3 id="使用"><a href="#使用" class="headerlink" title="使用"></a>使用</h3><ul>
+<li><p>单独测试</p>
+<pre class="language-mysql" data-language="mysql"><code class="language-mysql">-- utf8下一个汉字占3个字节,字母数字符号占1个字节
+-- gbk下一个汉字占2个字节,字母数字符号占1个字节
+mysql&gt; select length(&#39;abc&#39;);</code></pre></li>
+<li><p>函数和表结合如何使用</p>
+<p>函数(列)</p>
+<pre class="language-mysql" data-language="mysql"><code class="language-mysql">mysql&gt;select first_name,length(first_name) from s_emp;</code></pre></li>
+<li><p><em><strong>函数是可以嵌套使用的</strong></em></p>
+</li>
+</ul>
+<h3 id="练习-2"><a href="#练习-2" class="headerlink" title="练习"></a>练习</h3><ul>
+<li><p>模拟银行的first_name模糊显示</p>
+<pre class="language-mysql" data-language="mysql"><code class="language-mysql">Carmen C*****
+张三    张*
+李四儿  李**
+
+-- 思路 - 先截取first_name的第一个字符 - substring(str,pos,len)
+       -- 第一个字符后面继续拼接 (原字符长度-1)个* - rpad
+       -- concat
+mysql&gt; select first_name,concat(substring(first_name,1,1),rpad(&#39;*&#39;,char_length(first_name)-1,&#39;*&#39;)) from s_emp;
+
+-- 直接使用rpad函数 rpad(str,总长度,拼接的str);
+mysql&gt; select first_name,rpad(substring(first_name,1,1),char_length(first_name),&#39;*&#39;) from s_emp;
+
+-- 使用replace替换 replace(原字符串,原字符串即将被替代的字符串,新的字符串);
+mysql&gt; select first_name,replace(first_name,substring(first_name,2),rpad(&#39;*&#39;,char_length(first_name)-1,&#39;*&#39;)) from s_emp;
+
+-- insert(str,pos,len,newstr)
+mysql&gt; select first_name,insert(first_name,2,char_length(first_name)-1,rpad(&#39;*&#39;,char_length(first_name)-1,&#39;*&#39;)) from s_emp;</code></pre></li>
+</ul>
+<h1 id="数字函数"><a href="#数字函数" class="headerlink" title="数字函数"></a>数字函数</h1><ol>
+<li><p>abs(n) - 求绝对值</p>
+</li>
+<li><p>mod(n,m) - 取模运算,返回n被m除的余数(同%操作符)</p>
+<pre class="language-java" data-language="java"><code class="language-java">应用<span class="token operator">:</span> 利用取整和取余来获取某个数字的任意位上的某个数字
+<span class="token number">2018</span> <span class="token operator">-</span> <span class="token number">8</span>
+技巧 <span class="token operator">-</span> 只要获取某个数字的最末尾的单个数字 <span class="token operator">-</span> <span class="token operator">%</span><span class="token number">10</span>
+  
+获取<span class="token number">2018</span>中的<span class="token number">1</span>
+<span class="token number">2018</span><span class="token operator">/</span><span class="token number">10</span> <span class="token operator">=</span> <span class="token number">201</span>
+  
+select <span class="token function">mod</span><span class="token punctuation">(</span><span class="token function">floor</span><span class="token punctuation">(</span><span class="token number">2018</span><span class="token operator">/</span><span class="token number">10</span><span class="token punctuation">)</span><span class="token punctuation">,</span><span class="token number">10</span><span class="token punctuation">)</span><span class="token punctuation">;</span></code></pre></li>
+<li><p><strong>floor(n) - 返回不大于n的最大整数值</strong> - 向下取整  </p>
+</li>
+<li><p><strong>ceiling(n) - 返回不小于n的最小整数值</strong>  - 向上取整 </p>
+</li>
+<li><p>round(n[,d]) - 返回n的四舍五入值,保留d位小数(d的默认值为0)</p>
+<pre class="language-mysql" data-language="mysql"><code class="language-mysql">mysql&gt;select round(3.5);
+
+mysql&gt;select round(3.456,2);&#x2F;&#x2F;3.46</code></pre></li>
+<li><p>pow(x,y) - 返回值x的y次幂  </p>
+</li>
+<li><p>sqrt(n) - 返回非负数n的平方根</p>
+</li>
+<li><p>pi() - 返回圆周率  </p>
+</li>
+<li><p>rand() - 返回在范围[0到1.0)内的随机浮点值</p>
+</li>
+<li><p>truncate(n,d) - 保留数字n的d位小数并返回  - 直接截取</p>
+</li>
+</ol>
+   <pre class="language-mysql" data-language="mysql"><code class="language-mysql">mysql&gt;select truncate(3.56,0);&#x2F;&#x2F;3</code></pre>
+
+<h3 id="练习-3"><a href="#练习-3" class="headerlink" title="练习"></a>练习</h3><pre class="language-sql" data-language="sql"><code class="language-sql"><span class="token comment">-- 求1-3之间的随机整数</span>
+mysql<span class="token operator">></span> <span class="token keyword">select</span> floor<span class="token punctuation">(</span>rand<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token operator">*</span><span class="token number">3</span><span class="token operator">+</span><span class="token number">1</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+mysql<span class="token operator">></span> <span class="token keyword">select</span> <span class="token keyword">truncate</span><span class="token punctuation">(</span>rand<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token operator">*</span><span class="token number">3</span><span class="token operator">+</span><span class="token number">1</span><span class="token punctuation">,</span><span class="token number">0</span><span class="token punctuation">)</span><span class="token punctuation">;</span></code></pre>
+
+<h1 id="日期函数"><a href="#日期函数" class="headerlink" title="日期函数"></a>日期函数</h1><p>查询当前系统的日期 - select now();</p>
+<ol>
+<li><p>dayofweek(date) - 返回日期date是星期几(1=星期天,2=星期一,……7=星期六,odbc标准)  </p>
+</li>
+<li><p>weekday(date) - 返回日期date是星期几(0=星期一,1=星期二,……6= 星期天)</p>
+</li>
+<li><p>year(date) - 返回date的年份(范围在1000到9999)    </p>
+</li>
+<li><p>month(date)  - 返回date中的月份数值   </p>
+</li>
+<li><p>dayofmonth(date) - 返回date是一月中的第几日(在1到31范围内)   </p>
+</li>
+<li><p>hour(time) - 返回time的小时数(范围是0到23)  </p>
+</li>
+<li><p>minute(time) - 返回time的分钟数(范围是0到59) </p>
+</li>
+<li><p>second(time) - 返回time的秒数(范围是0到59) </p>
+</li>
+<li><p>period_add(p,n) - 增加n个月到时期p并返回(p的格式yymm或yyyymm) </p>
+<p>mysql&gt;select period_add(‘202008’,3) ;</p>
+<p>注意:p可以是字符串,一定要满足一定的格式,或者可以直接使用date类型.</p>
+</li>
+<li><p>period_diff(p1,p2) - 返回在时期p1和p2之间月数(p1和p2的格式yymm或yyyymm)  p1-p2</p>
+</li>
+<li><p>curdate() - 以’yyyy-mm-dd’或yyyymmdd格式返回当前日期值(根据返回值所处上下文是字符串或数字) </p>
+</li>
+<li><p>curtime() - 以’hh:mm:ss’或hhmmss格式返回当前时间值(根据返回值所处上下文是字符串或数字)</p>
+</li>
+<li><p>now() - 以’yyyy-mm-dd hh:mm:ss’或yyyymmddhhmmss格式返回当前日期时间(根据返回值所处上下文是字符串或数字)     </p>
+</li>
+<li><p>last_day(date) - date日期所在月的最后一天是什么时候</p>
+</li>
+<li><p>datediff(d1,d2) - 两个日期d1,d2之间相差的天数</p>
+</li>
+<li><p>timestampdiff(type,d1,d2) - type是YEAR,d1和d2相差的年份,MONTH,月份</p>
+<p>d1,d2 - yyyymmdd</p>
+</li>
+</ol>
+<p>mysql中,虽然日期date_format函数来转成字符串类型的,mysql内部为了简化我们的写法,有的时候有的函数.</p>
+<p>只要你传入的字符串满足一定的格式,那么它就会自动被转成日期函数.</p>
+<h2 id="日期函数补充"><a href="#日期函数补充" class="headerlink" title="日期函数补充"></a>日期函数补充</h2><ul>
+<li>date_add(date,interval 数字 type)</li>
+<li>date_sub(date,interval 数字 type)</li>
+</ul>
+<pre class="language-sql" data-language="sql"><code class="language-sql"><span class="token keyword">type</span>:
+<span class="token keyword">year</span>
+<span class="token keyword">month</span>
+<span class="token keyword">day</span>
+<span class="token keyword">hour</span>
+<span class="token keyword">minute</span>
+<span class="token keyword">second</span></code></pre>
+
+
+
+
+<h3 id="日期格式化"><a href="#日期格式化" class="headerlink" title="日期格式化"></a>日期格式化</h3><p>date_format(date,format)    </p>
+<pre class="language-java" data-language="java"><code class="language-java">根据format字符串格式化date值  
+　<span class="token punctuation">(</span>在format字符串中可用标志符<span class="token operator">:</span>  
+　<span class="token operator">%</span>m 月名字<span class="token punctuation">(</span>january……december<span class="token punctuation">)</span>    
+　<span class="token operator">%</span>w 星期名字<span class="token punctuation">(</span>sunday……saturday<span class="token punctuation">)</span>    
+　<span class="token operator">%</span>d 有英语前缀的月份的日期<span class="token punctuation">(</span><span class="token number">1</span>st<span class="token punctuation">,</span> <span class="token number">2</span>nd<span class="token punctuation">,</span> <span class="token number">3</span>rd<span class="token punctuation">,</span> 等等。）    
+　<span class="token operator">%</span><span class="token class-name">Y</span> 年<span class="token punctuation">,</span> 数字<span class="token punctuation">,</span> <span class="token number">4</span> 位    
+　<span class="token operator">%</span>y 年<span class="token punctuation">,</span> 数字<span class="token punctuation">,</span> <span class="token number">2</span> 位    
+　<span class="token operator">%</span>a 缩写的星期名字<span class="token punctuation">(</span>sun……sat<span class="token punctuation">)</span>    
+　<span class="token operator">%</span>d 月份中的天数<span class="token punctuation">,</span> 数字<span class="token punctuation">(</span><span class="token number">00</span>……<span class="token number">31</span><span class="token punctuation">)</span>    
+　<span class="token operator">%</span>e 月份中的天数<span class="token punctuation">,</span> 数字<span class="token punctuation">(</span><span class="token number">0</span>……<span class="token number">31</span><span class="token punctuation">)</span>    
+　<span class="token operator">%</span>m 月<span class="token punctuation">,</span> 数字<span class="token punctuation">(</span><span class="token number">01</span>……<span class="token number">12</span><span class="token punctuation">)</span>    
+　<span class="token operator">%</span>c 月<span class="token punctuation">,</span> 数字<span class="token punctuation">(</span><span class="token number">1</span>……<span class="token number">12</span><span class="token punctuation">)</span>    
+　<span class="token operator">%</span>b 缩写的月份名字<span class="token punctuation">(</span>jan……dec<span class="token punctuation">)</span>    
+　<span class="token operator">%</span>j 一年中的天数<span class="token punctuation">(</span><span class="token number">001</span>……<span class="token number">366</span><span class="token punctuation">)</span>    
+　<span class="token operator">%</span><span class="token class-name">H</span> <span class="token number">24</span>时制小时<span class="token punctuation">(</span><span class="token number">00</span>……<span class="token number">23</span><span class="token punctuation">)</span>    
+　<span class="token operator">%</span>k 小时<span class="token punctuation">(</span><span class="token number">0</span>……<span class="token number">23</span><span class="token punctuation">)</span>    
+　<span class="token operator">%</span>h <span class="token number">12</span>时小时<span class="token punctuation">(</span><span class="token number">01</span>……<span class="token number">12</span><span class="token punctuation">)</span>    
+　<span class="token operator">%</span>i 小时<span class="token punctuation">(</span><span class="token number">01</span>……<span class="token number">12</span><span class="token punctuation">)</span>    
+　<span class="token operator">%</span>l 小时<span class="token punctuation">(</span><span class="token number">1</span>……<span class="token number">12</span><span class="token punctuation">)</span>    
+　<span class="token operator">%</span>i 分钟<span class="token punctuation">,</span> 数字<span class="token punctuation">(</span><span class="token number">00</span>……<span class="token number">59</span><span class="token punctuation">)</span>    
+　<span class="token operator">%</span>r 时间<span class="token punctuation">,</span><span class="token number">12</span> 小时<span class="token punctuation">(</span>hh<span class="token operator">:</span>mm<span class="token operator">:</span>ss <span class="token punctuation">[</span>ap<span class="token punctuation">]</span>m<span class="token punctuation">)</span>    
+　<span class="token operator">%</span>t 时间<span class="token punctuation">,</span><span class="token number">24</span> 小时<span class="token punctuation">(</span>hh<span class="token operator">:</span>mm<span class="token operator">:</span>ss<span class="token punctuation">)</span>    
+　<span class="token operator">%</span>s 秒<span class="token punctuation">(</span><span class="token number">00</span>……<span class="token number">59</span><span class="token punctuation">)</span>       
+　<span class="token operator">%</span>p am或pm    
+　<span class="token operator">%</span>w 一个星期中的天数<span class="token punctuation">(</span><span class="token number">0</span><span class="token operator">=</span>sunday ……<span class="token number">6</span><span class="token operator">=</span>saturday ）                </code></pre>
+
+
+
+<h1 id="转换函数"><a href="#转换函数" class="headerlink" title="转换函数"></a>转换函数</h1><p>字符串,数字|日期之间的相互转换问题 - 必须掌握.</p>
+<ul>
+<li><p>字符串和数字之间转换</p>
+<pre class="language-sql" data-language="sql"><code class="language-sql"><span class="token comment">-- 字符串转换成数字</span>
+mysql<span class="token operator">></span> <span class="token keyword">select</span> <span class="token string">'10'</span><span class="token operator">+</span><span class="token number">0</span><span class="token punctuation">;</span>
+
+<span class="token comment">-- 数字->字符串</span>
+mysql<span class="token operator">></span> <span class="token keyword">select</span> concat<span class="token punctuation">(</span><span class="token number">10</span><span class="token punctuation">,</span><span class="token string">''</span><span class="token punctuation">)</span><span class="token punctuation">;</span></code></pre></li>
+<li><p>字符串与日期之间转换</p>
+<pre class="language-mysql" data-language="mysql"><code class="language-mysql">create table tt(
+	id int(7) primary key,
+  birthday date
+);
+-- DML操作 - insert,update,delete
+  
+-- 支持自动转换
+-- mysql中insert语句中,只要的字符串满足&#39;yyyy-mm-dd&#39;
+  ,&#39;yyyy&#x2F;mm&#x2F;dd&#39;,&#39;yyyymmdd&#39;
+-- mysql底层会自动将这个字符串转换成日期类型
+insert into tt values(1,&#39;2020-09-08&#39;);
+insert into tt values(2,&#39;2020&#x2F;09&#x2F;08&#39;);
+insert into tt values(3,&#39;20200908&#39;);
+
+mysql&gt; insert into tt values(3,&#39;08&#x2F;09&#x2F;2013&#39;);&#x2F;&#x2F;error
+需要将字符串&#39;08&#x2F;09&#x2F;2013&#39; - date类型[年月日]
+  
+日期转换成字符串使用date_format函数
+mysql&gt; select date_format(now(),&#39;%y&#x2F;%m&#x2F;%d&#39;);
+
+mysql&gt; select first_name,date_format(start_date,&#39;%Y&#39;) from s_emp;
+ 
+
+字符串转换成日期str_to_date(str,format)；注:format格式必须和str的格式相同，否则返回空
+%Y  %m  %d  %H   %i  %s
+
+select str_to_date(&#39;08&#x2F;09&#x2F;2013&#39;,&#39;%d&#x2F;%m&#x2F;%Y&#39;);
+
+为了证明是对的
+mysql&gt; insert into tt values(4,str_to_date(&#39;08&#x2F;09&#x2F;2013&#39;,&#39;%d&#x2F;%m&#x2F;%Y&#39;));</code></pre>
+<h1 id="函数练习"><a href="#函数练习" class="headerlink" title="函数练习"></a>函数练习</h1></li>
+</ul>
+<ol>
+<li><p>找出名字长度超过5的员工</p>
+<pre class="language-sql" data-language="sql"><code class="language-sql">mysql<span class="token operator">></span> <span class="token keyword">select</span> char_length<span class="token punctuation">(</span>first_name<span class="token punctuation">)</span> <span class="token keyword">from</span> s_emp <span class="token keyword">where</span> char_length<span class="token punctuation">(</span>first_name<span class="token punctuation">)</span><span class="token operator">></span><span class="token number">5</span><span class="token punctuation">;</span></code></pre></li>
+<li><p>找出员工的工作月数</p>
+<pre class="language-sql" data-language="sql"><code class="language-sql">mysql<span class="token operator">></span> <span class="token keyword">select</span> <span class="token keyword">month</span><span class="token punctuation">(</span>start_date<span class="token punctuation">)</span> <span class="token keyword">from</span> s_emp<span class="token punctuation">;</span></code></pre></li>
+<li><p>查询员工的工作天数</p>
+<pre class="language-sql" data-language="sql"><code class="language-sql">mysql<span class="token operator">></span> <span class="token keyword">select</span> timestampdiff<span class="token punctuation">(</span><span class="token keyword">DAY</span><span class="token punctuation">,</span>start_date<span class="token punctuation">,</span><span class="token function">now</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span> <span class="token keyword">from</span> s_emp<span class="token punctuation">;</span>
+
+mysql<span class="token operator">></span> <span class="token keyword">select</span> datediff<span class="token punctuation">(</span><span class="token function">now</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">,</span>start_date<span class="token punctuation">)</span> <span class="token keyword">from</span> s_emp<span class="token punctuation">;</span></code></pre></li>
+<li><p>计算一年前,当前,一年后的时间:</p>
+<pre class="language-sql" data-language="sql"><code class="language-sql">mysql<span class="token operator">></span> <span class="token keyword">select</span> date_sub<span class="token punctuation">(</span><span class="token function">now</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">,</span><span class="token keyword">interval</span> <span class="token number">1</span> <span class="token keyword">year</span><span class="token punctuation">)</span><span class="token punctuation">,</span><span class="token function">now</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">,</span>date_add<span class="token punctuation">(</span><span class="token function">now</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">,</span><span class="token keyword">interval</span> <span class="token number">1</span> <span class="token keyword">year</span><span class="token punctuation">)</span><span class="token punctuation">;</span></code></pre></li>
+<li><p>当前日期前六个月的最后一天;</p>
+<p>```sql<br>mysql&gt; select last_day(date_sub(now(),interval 6 month));</p>
+</li>
+<li><p>把员工的入职日期格式化为年/月/日</p>
+<p>```sql<br>mysql&gt; select date_format(start_date,’%Y年%m月%d日’) from s_emp;</p>
+</li>
+<li><p>找出5月份入职的员工</p>
+<p>```sql<br>mysql&gt; select first_name,start_date from s_emp where month(start_date)=5;</p>
+</li>
+</ol>
+</div><ul class="post-copyright"><li class="post-copyright-author"><strong>本文作者：</strong>ZR</li><li class="post-copyright-link"><strong>本文链接：</strong><a href="https://zr-java.github.io/2021/12/12/43-MySQL%E8%AF%AD%E6%B3%95/" title="43-MySQL语法">https://zr-java.github.io/2021/12/12/43-MySQL%E8%AF%AD%E6%B3%95/</a></li><li class="post-copyright-license"><strong>版权声明：</strong>本博客所有文章除特别声明外，均默认采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh" target="_blank" rel="noopener" title="CC BY-NC-SA 4.0 "><svg class="icon"><use xlink:href="#icon-creative-commons-line"></use></svg><svg class="icon"><use xlink:href="#icon-creative-commons-by-line"></use></svg><svg class="icon"><use xlink:href="#icon-creative-commons-nc-line"></use></svg><svg class="icon"><use xlink:href="#icon-creative-commons-sa-line"></use></svg></a> 许可协议。</li></ul></section></article><div class="post-nav"><div class="post-nav-item"><a class="post-nav-prev" href="/2022/02/18/44-JDBC%E7%BA%A7%E8%81%94%E6%93%8D%E4%BD%9C/" rel="prev" title="43-JDBC级联操作"><svg class="icon" aria-hidden="true"><use xlink:href="#icon-arrow-left-s-line"></use></svg><span class="post-nav-text">43-JDBC级联操作</span></a></div><div class="post-nav-item"><a class="post-nav-next" href="/2021/12/12/42-MySQL/" rel="next" title="42-MySQL"><span class="post-nav-text">42-MySQL</span><svg class="icon" aria-hidden="true"><use xlink:href="#icon-arrow-right-s-line"></use></svg></a></div></div></div><div class="hty-card" id="comment"><div class="comment-tooltip text-center"><span>要不要和我说些什么？</span><br></div></div></main><footer class="sidebar-translate" id="footer"><div class="copyright"><span>&copy; 2021 – 2022 </span><span class="with-love" id="animate" title="敲啊敲,点啊点就是没有用"><svg class="icon" aria-hidden="true"><use xlink:href="#icon-cloud-line"></use></svg></span><span class="author"> ZR</span></div><div class="powered"><span>由 <a href="https://hexo.io" target="_blank" rel="noopener">Hexo</a> 驱动 v5.4.0</span><span class="footer-separator">|</span><span>主题 - <a rel="noopener" href="https://github.com/YunYouJun/hexo-theme-yun" target="_blank"><span>Yun</span></a> v1.6.1</span></div><div class="live_time"><span>本博客已萌萌哒地运行</span><span id="display_live_time"></span><span class="moe-text">(●'◡'●)</span><script>function blog_live_time() {
+  setTimeout(blog_live_time, 1000);
+  const start = new Date('2021-07-19T00:00:00');
+  const now = new Date();
+  const timeDiff = (now.getTime() - start.getTime());
+  const msPerMinute = 60 * 1000;
+  const msPerHour = 60 * msPerMinute;
+  const msPerDay = 24 * msPerHour;
+  const passDay = Math.floor(timeDiff / msPerDay);
+  const passHour = Math.floor((timeDiff % msPerDay) / 60 / 60 / 1000);
+  const passMinute = Math.floor((timeDiff % msPerHour) / 60 / 1000);
+  const passSecond = Math.floor((timeDiff % msPerMinute) / 1000);
+  display_live_time.innerHTML = " " + passDay + " 天 " + passHour + " 小时 " + passMinute + " 分 " + passSecond + " 秒";
+}
+blog_live_time();
+</script></div></footer><a class="hty-icon-button" id="back-to-top" aria-label="back-to-top" href="#"><svg class="icon" aria-hidden="true"><use xlink:href="#icon-arrow-up-s-line"></use></svg><svg class="progress-circle-container" viewBox="0 0 100 100"><circle class="progress-circle" id="progressCircle" cx="50" cy="50" r="48" fill="none" stroke="#0078E7" stroke-width="2" stroke-linecap="round"></circle></svg></a><a class="popup-trigger hty-icon-button icon-search" id="search" href="javascript:;" title="搜索"><span class="site-state-item-icon"><svg class="icon" aria-hidden="true"><use xlink:href="#icon-search-line"></use></svg></span></a><script>window.addEventListener("DOMContentLoaded", () => {
+  // Handle and trigger popup window
+  document.querySelector(".popup-trigger").addEventListener("click", () => {
+    document.querySelector(".popup").classList.add("show");
+    setTimeout(() => {
+      document.querySelector(".search-input").focus();
+    }, 100);
+  });
+
+  // Monitor main search box
+  const onPopupClose = () => {
+    document.querySelector(".popup").classList.remove("show");
+  };
+
+  document.querySelector(".popup-btn-close").addEventListener("click", () => {
+    onPopupClose();
+  });
+
+  window.addEventListener("keyup", event => {
+    if (event.key === "Escape") {
+      onPopupClose();
+    }
+  });
+});
+</script><script src="/js/search/local-search.js" defer></script><div class="popup search-popup"><div class="search-header"><span class="popup-btn-close close-icon hty-icon-button"><svg class="icon" aria-hidden="true"><use xlink:href="#icon-close-line"></use></svg></span></div><div class="search-input-container"><input class="search-input" id="local-search-input" type="text" placeholder="搜索..." value=""></div><div id="local-search-result"></div></div></div><!-- hexo injector body_end start --><script src="https://cdn.jsdelivr.net/npm/hexo-widget-tree@0.1.1/js/index.js"></script><div id="widget-tree">
+      <ul><li class="tree-list-item"><i class="toggle-post-icon gg-folder-add"></i><a class="tree-list-link" href="/categories/DataBase/">DataBase</a><ul class="tree-list-children"><li class="tree-list-item"><a class="tree-list-post-link" href="/2021/12/12/42-MySQL/" title="42-MySQL"><i class="post-icon gg-file-document"></i>42-MySQL</a></li><li class="tree-list-item"><a class="tree-list-post-link" href="/2021/12/12/43-MySQL%E8%AF%AD%E6%B3%95/" title="43-MySQL语法"><i class="post-icon gg-file-document"></i>43-MySQL语法</a></li></ul></li><li class="tree-list-item"><i class="toggle-post-icon gg-folder-add"></i><a class="tree-list-link" href="/categories/Homework/">Homework</a><ul class="tree-list-children"><li class="tree-list-item"><a class="tree-list-post-link" href="/2021/08/05/%E5%88%A4%E6%96%AD%E5%BE%AA%E7%8E%AF%E4%BD%9C%E4%B8%9A/" title="判断循环作业"><i class="post-icon gg-file-document"></i>判断循环作业</a></li><li class="tree-list-item"><a class="tree-list-post-link" href="/2021/11/23/%E6%8E%A5%E5%8F%A3%E4%B8%8E%E5%A4%9A%E6%80%81%E4%BD%9C%E4%B8%9A/" title="接口与多态作业"><i class="post-icon gg-file-document"></i>接口与多态作业</a></li><li class="tree-list-item"><a class="tree-list-post-link" href="/2021/08/16/%E6%95%B0%E7%BB%84%E4%BD%9C%E4%B8%9A/" title="数组作业"><i class="post-icon gg-file-document"></i>数组作业</a></li></ul></li><li class="tree-list-item"><i class="toggle-post-icon gg-folder-add"></i><a class="tree-list-link" href="/categories/JDBC/">JDBC</a><ul class="tree-list-children"><li class="tree-list-item"><a class="tree-list-post-link" href="/2021/12/12/40-JDBC/" title="40-JDBC"><i class="post-icon gg-file-document"></i>40-JDBC</a></li><li class="tree-list-item"><a class="tree-list-post-link" href="/2021/12/12/41-JDBC%E5%B8%B8%E7%94%A8%E6%95%B0%E6%8D%AE%E5%BA%93%E8%BF%9E%E6%8E%A5%E4%BF%A1%E6%81%AF/" title="41-JDBC常用数据库连接信息"><i class="post-icon gg-file-document"></i>41-JDBC常用数据库连接信息</a></li><li class="tree-list-item"><a class="tree-list-post-link" href="/2022/02/18/44-JDBC%E7%BA%A7%E8%81%94%E6%93%8D%E4%BD%9C/" title="43-JDBC级联操作"><i class="post-icon gg-file-document"></i>43-JDBC级联操作</a></li><li class="tree-list-item"><a class="tree-list-post-link" href="/2022/02/23/47-JDBC%E8%BF%9E%E6%8E%A5%E6%B1%A0/" title="47-JDBC连接池"><i class="post-icon gg-file-document"></i>47-JDBC连接池</a></li><li class="tree-list-item"><a class="tree-list-post-link" href="/2022/02/22/45-JDBC%E4%BA%8B%E5%8A%A1%E5%A4%84%E7%90%86/" title="45-JDBC事务处理"><i class="post-icon gg-file-document"></i>45-JDBC事务处理</a></li><li class="tree-list-item"><a class="tree-list-post-link" href="/2022/02/22/46-JDBC%E6%89%B9%E9%87%8F%E6%9B%B4%E6%96%B0/" title="46-JDBC批量更新"><i class="post-icon gg-file-document"></i>46-JDBC批量更新</a></li></ul></li><li class="tree-list-item"><i class="toggle-post-icon gg-folder-add"></i><a class="tree-list-link" href="/categories/JavaEE/">JavaEE</a><ul class="tree-list-children"><li class="tree-list-item"><a class="tree-list-post-link" href="/2022/03/09/54-JavaEE%E7%9A%84%E6%A6%82%E8%BF%B0/" title="54-JavaEE的概述"><i class="post-icon gg-file-document"></i>54-JavaEE的概述</a></li><li class="tree-list-item"><a class="tree-list-post-link" href="/2022/03/09/58-Servlet%E7%9A%84%E8%AF%B7%E6%B1%82%E4%B8%8E%E5%93%8D%E5%BA%94/" title="58-Servlet的请求与响应"><i class="post-icon gg-file-document"></i>58-Servlet的请求与响应</a></li><li class="tree-list-item"><a class="tree-list-post-link" href="/2022/03/09/55-Maven%E7%9A%84%E6%A6%82%E8%BF%B0/" title="55-Maven的概述"><i class="post-icon gg-file-document"></i>55-Maven的概述</a></li><li class="tree-list-item"><a class="tree-list-post-link" href="/2022/03/09/56-Tomcat/" title="56-Tomcat"><i class="post-icon gg-file-document"></i>56-Tomcat</a></li><li class="tree-list-item"><a class="tree-list-post-link" href="/2022/03/09/57-Servlet%E5%9F%BA%E7%A1%80%E5%8F%8A%E7%94%9F%E5%91%BD%E5%91%A8%E6%9C%9F/" title="57-Servlet基础及生命周期"><i class="post-icon gg-file-document"></i>57-Servlet基础及生命周期</a></li><li class="tree-list-item"><a class="tree-list-post-link" href="/2022/03/09/60-Servlet%E7%9A%84%E8%BF%87%E6%BB%A4%E5%99%A8%E4%B8%8E%E7%9B%91%E5%90%AC%E5%99%A8/" title="60-Servlet的过滤器与监听器"><i class="post-icon gg-file-document"></i>60-Servlet的过滤器与监听器</a></li><li class="tree-list-item"><a class="tree-list-post-link" href="/2022/03/09/59-Servlet%E9%AB%98%E7%BA%A7/" title="59-Servlet高级"><i class="post-icon gg-file-document"></i>59-Servlet高级</a></li><li class="tree-list-item"><a class="tree-list-post-link" href="/2022/03/09/61-JSP%E5%9F%BA%E7%A1%80/" title="61-JSP基础"><i class="post-icon gg-file-document"></i>61-JSP基础</a></li><li class="tree-list-item"><a class="tree-list-post-link" href="/2022/03/10/62-JSP%E7%BC%96%E8%AF%91%E4%B8%8E%E5%8A%A8%E4%BD%9C%E6%8C%87%E4%BB%A4/" title="62-JSP编译与动作指令"><i class="post-icon gg-file-document"></i>62-JSP编译与动作指令</a></li><li class="tree-list-item"><a class="tree-list-post-link" href="/2022/03/13/63-JSP%E5%86%85%E7%BD%AE%E5%AF%B9%E8%B1%A1/" title="63-JSP内置对象"><i class="post-icon gg-file-document"></i>63-JSP内置对象</a></li><li class="tree-list-item"><a class="tree-list-post-link" href="/2022/03/13/64-JSP%E7%9A%84EL%E8%A1%A8%E8%BE%BE%E5%BC%8F%E5%92%8CJSTL/" title="64-JSP的EL表达式和JSTL"><i class="post-icon gg-file-document"></i>64-JSP的EL表达式和JSTL</a></li><li class="tree-list-item"><a class="tree-list-post-link" href="/2022/03/14/65-jQuery/" title="65-jQuery"><i class="post-icon gg-file-document"></i>65-jQuery</a></li></ul></li><li class="tree-list-item"><i class="toggle-post-icon gg-folder-add"></i><a class="tree-list-link" href="/categories/JavaSE/">JavaSE</a><ul class="tree-list-children"><li class="tree-list-item"><a class="tree-list-post-link" href="/2021/07/19/01-Java%E8%AF%AD%E8%A8%80%E4%BB%8B%E7%BB%8D%E5%8F%8A%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA/" title="01-Java语言介绍及环境搭建"><i class="post-icon gg-file-document"></i>01-Java语言介绍及环境搭建</a></li><li class="tree-list-item"><a class="tree-list-post-link" href="/2021/07/19/02-%E5%9F%BA%E6%9C%AC%E8%AF%AD%E6%B3%95%E5%8D%95%E4%BD%8D/" title="02-基本语法单位"><i class="post-icon gg-file-document"></i>02-基本语法单位</a></li><li class="tree-list-item"><a class="tree-list-post-link" href="/2021/07/19/03-Java%E5%9F%BA%E6%9C%AC%E6%95%B0%E6%8D%AE%E7%B1%BB%E5%9E%8B/" title="03-Java基本数据类型"><i class="post-icon gg-file-document"></i>03-Java基本数据类型</a></li><li class="tree-list-item"><a class="tree-list-post-link" href="/2021/07/19/04-Java%E8%A1%A8%E8%BE%BE%E5%BC%8F/" title="04-Java表达式"><i class="post-icon gg-file-document"></i>04-Java表达式</a></li><li class="tree-list-item"><a class="tree-list-post-link" href="/2021/07/19/05-%E9%9D%A2%E5%90%91%E5%AF%B9%E8%B1%A1%E7%9A%84%E6%A6%82%E8%BF%B0/" title="05-面向对象的概述"><i class="post-icon gg-file-document"></i>05-面向对象的概述</a></li><li class="tree-list-item"><a class="tree-list-post-link" href="/2021/07/19/06-%E8%87%AA%E5%AE%9A%E4%B9%89%E7%B1%BB%E5%92%8C%E5%AF%B9%E8%B1%A1%E7%9A%84%E5%88%9B%E5%BB%BA/" title="06-自定义类和对象的创建"><i class="post-icon gg-file-document"></i>06-自定义类和对象的创建</a></li><li class="tree-list-item"><a class="tree-list-post-link" href="/2021/07/22/07-%E6%95%B0%E7%BB%84/" title="07-数组"><i class="post-icon gg-file-document"></i>07-数组</a></li><li class="tree-list-item"><a class="tree-list-post-link" href="/2021/07/31/08-String%E5%B8%B8%E7%94%A8%E6%96%B9%E6%B3%95%E8%AE%B2%E8%A7%A3/" title="08-String常用方法讲解"><i class="post-icon gg-file-document"></i>08-String常用方法讲解</a></li><li class="tree-list-item"><a class="tree-list-post-link" href="/2021/08/08/09-%E4%BA%8C%E7%BB%B4%E6%95%B0%E7%BB%84/" title="09-二维数组"><i class="post-icon gg-file-document"></i>09-二维数组</a></li><li class="tree-list-item"><a class="tree-list-post-link" href="/2021/08/08/10-%E5%AF%B9%E8%B1%A1%E7%9A%84%E7%94%9F%E5%91%BD%E5%91%A8%E6%9C%9F/" title="10-对象的生命周期"><i class="post-icon gg-file-document"></i>10-对象的生命周期</a></li><li class="tree-list-item"><a class="tree-list-post-link" href="/2021/08/11/11-PowerDesigner%E7%94%BB%E7%B1%BB%E5%9B%BE/" title="11-PowerDesigner画类图"><i class="post-icon gg-file-document"></i>11-PowerDesigner画类图</a></li><li class="tree-list-item"><a class="tree-list-post-link" href="/2021/08/11/12-%E4%BD%BF%E7%94%A8%E7%8E%B0%E6%9C%89%E7%B1%BB%E5%92%8C%E8%87%AA%E5%AE%9A%E4%B9%89%E7%B1%BB/" title="12-使用现有类和自定义类"><i class="post-icon gg-file-document"></i>12-使用现有类和自定义类</a></li><li class="tree-list-item"><a class="tree-list-post-link" href="/2021/08/28/13-%E5%AF%B9%E8%B1%A1%E6%9E%84%E9%80%A0%E5%92%8C%E6%88%90%E5%91%98%E5%8F%98%E9%87%8F%E3%80%81%E5%B1%80%E9%83%A8%E5%8F%98%E9%87%8F/" title="13-对象构造和成员变量、局部变量"><i class="post-icon gg-file-document"></i>13-对象构造和成员变量、局部变量</a></li><li class="tree-list-item"><a class="tree-list-post-link" href="/2021/09/07/14-%E6%96%B9%E6%B3%95%E7%9A%84%E5%8F%AF%E5%8F%98%E9%95%BF%E5%8F%82%E6%95%B0/" title="14-方法的可变长参数"><i class="post-icon gg-file-document"></i>14-方法的可变长参数</a></li><li class="tree-list-item"><a class="tree-list-post-link" href="/2021/09/23/15-%E6%96%B9%E6%B3%95%E7%9A%84%E9%87%8D%E8%BD%BD%E5%92%8C%E9%80%92%E5%BD%92/" title="15-方法的重载和递归"><i class="post-icon gg-file-document"></i>15-方法的重载和递归</a></li><li class="tree-list-item"><a class="tree-list-post-link" href="/2021/09/24/16-this%E5%92%8Cstatic%E5%85%B3%E9%94%AE%E5%AD%97/" title="16-this和static关键字"><i class="post-icon gg-file-document"></i>16-this和static关键字</a></li><li class="tree-list-item"><a class="tree-list-post-link" href="/2021/09/25/17-package/" title="17-package"><i class="post-icon gg-file-document"></i>17-package</a></li><li class="tree-list-item"><a class="tree-list-post-link" href="/2021/09/25/18-%E5%8D%95%E4%BE%8B%E6%A8%A1%E5%BC%8F/" title="18-单例模式"><i class="post-icon gg-file-document"></i>18-单例模式</a></li><li class="tree-list-item"><a class="tree-list-post-link" href="/2021/09/26/19-%E5%B0%81%E8%A3%85%E4%B8%8E%E7%BB%A7%E6%89%BF/" title="19-封装与继承"><i class="post-icon gg-file-document"></i>19-封装与继承</a></li><li class="tree-list-item"><a class="tree-list-post-link" href="/2021/09/26/20-%E6%96%B9%E6%B3%95%E7%9A%84%E8%A6%86%E7%9B%96(%E9%87%8D%E5%86%99)%E5%92%8Cinstanceof/" title="20-方法的覆盖(重写)和instanceof"><i class="post-icon gg-file-document"></i>20-方法的覆盖(重写)和instanceof</a></li><li class="tree-list-item"><a class="tree-list-post-link" href="/2021/09/27/21-Java%E7%9A%84%E6%8A%BD%E8%B1%A1%E7%B1%BB%E5%92%8Cfinal/" title="21-Java的抽象类和final"><i class="post-icon gg-file-document"></i>21-Java的抽象类和final</a></li><li class="tree-list-item"><a class="tree-list-post-link" href="/2021/09/28/22-%E5%8C%85%E8%A3%85%E7%B1%BB%E5%92%8CObject%E7%B1%BB/" title="22-包装类和Object类"><i class="post-icon gg-file-document"></i>22-包装类和Object类</a></li><li class="tree-list-item"><a class="tree-list-post-link" href="/2021/10/09/23-Java%E5%B8%B8%E7%94%A8%E7%B1%BB/" title="23-Java常用类"><i class="post-icon gg-file-document"></i>23-Java常用类</a></li><li class="tree-list-item"><a class="tree-list-post-link" href="/2021/10/28/24-%E6%8E%A5%E5%8F%A3/" title="24-接口"><i class="post-icon gg-file-document"></i>24-接口</a></li><li class="tree-list-item"><a class="tree-list-post-link" href="/2021/11/19/25-%E5%A4%9A%E6%80%81/" title="25-多态"><i class="post-icon gg-file-document"></i>25-多态</a></li><li class="tree-list-item"><a class="tree-list-post-link" href="/2021/11/22/26-Java%E5%86%85%E9%83%A8%E7%B1%BB/" title="26-Java内部类"><i class="post-icon gg-file-document"></i>26-Java内部类</a></li><li class="tree-list-item"><a class="tree-list-post-link" href="/2021/11/22/27-%E5%BC%82%E5%B8%B8/" title="27-异常"><i class="post-icon gg-file-document"></i>27-异常</a></li><li class="tree-list-item"><a class="tree-list-post-link" href="/2021/11/23/28-%E6%9E%9A%E4%B8%BE/" title="28-枚举"><i class="post-icon gg-file-document"></i>28-枚举</a></li><li class="tree-list-item"><a class="tree-list-post-link" href="/2021/11/23/29-%E6%B3%A8%E8%A7%A3/" title="29-注解"><i class="post-icon gg-file-document"></i>29-注解</a></li><li class="tree-list-item"><a class="tree-list-post-link" href="/2021/11/24/30-%E9%9B%86%E5%90%88ArrayList/" title="30-集合ArrayList"><i class="post-icon gg-file-document"></i>30-集合ArrayList</a></li><li class="tree-list-item"><a class="tree-list-post-link" href="/2021/11/26/31-%E9%9B%86%E5%90%88Set/" title="31-集合Set"><i class="post-icon gg-file-document"></i>31-集合Set</a></li><li class="tree-list-item"><a class="tree-list-post-link" href="/2021/11/29/33-%E9%9B%86%E5%90%88Collections/" title="33-集合Collections"><i class="post-icon gg-file-document"></i>33-集合Collections</a></li><li class="tree-list-item"><a class="tree-list-post-link" href="/2021/11/28/32-%E9%9B%86%E5%90%88Map/" title="32-集合Map"><i class="post-icon gg-file-document"></i>32-集合Map</a></li><li class="tree-list-item"><a class="tree-list-post-link" href="/2021/11/29/34-%E9%9B%86%E5%90%88Properties/" title="34-集合Properties"><i class="post-icon gg-file-document"></i>34-集合Properties</a></li><li class="tree-list-item"><a class="tree-list-post-link" href="/2021/11/29/35-JavaIO%E6%B5%81/" title="35-JavaIO流"><i class="post-icon gg-file-document"></i>35-JavaIO流</a></li><li class="tree-list-item"><a class="tree-list-post-link" href="/2021/12/06/37-%E7%BD%91%E7%BB%9C%E7%BC%96%E7%A8%8B/" title="37-网络编程"><i class="post-icon gg-file-document"></i>37-网络编程</a></li><li class="tree-list-item"><a class="tree-list-post-link" href="/2021/12/03/36-Java%E7%BA%BF%E7%A8%8B/" title="36-Java线程"><i class="post-icon gg-file-document"></i>36-Java线程</a></li><li class="tree-list-item"><a class="tree-list-post-link" href="/2021/12/10/39-JDK8.0%E6%96%B0%E7%89%B9%E6%80%A7/" title="39-JDK8.0新特性"><i class="post-icon gg-file-document"></i>39-JDK8.0新特性</a></li><li class="tree-list-item"><a class="tree-list-post-link" href="/2021/12/06/38-Java%E5%8F%8D%E5%B0%84/" title="38-Java反射"><i class="post-icon gg-file-document"></i>38-Java反射</a></li></ul></li><li class="tree-list-item"><i class="toggle-post-icon gg-folder-add"></i><a class="tree-list-link" href="/categories/Markdown/">Markdown</a><ul class="tree-list-children"><li class="tree-list-item"><a class="tree-list-post-link" href="/2021/07/19/Markdown%E8%8F%9C%E9%B8%9F%E7%AC%94%E8%AE%B0/" title="Markdown菜鸟笔记"><i class="post-icon gg-file-document"></i>Markdown菜鸟笔记</a></li><li class="tree-list-item"><a class="tree-list-post-link" href="/2021/08/02/Markdown%E9%A2%9C%E8%89%B2%E5%AD%97%E4%BD%93/" title="Markdown颜色字体"><i class="post-icon gg-file-document"></i>Markdown颜色字体</a></li><li class="tree-list-item"><a class="tree-list-post-link" href="/2021/07/19/Mermaid%E6%B5%81%E7%A8%8B%E5%9B%BE%E5%BF%AB%E9%80%9F%E5%85%A5%E9%97%A8/" title="Mermaid流程图快速入门"><i class="post-icon gg-file-document"></i>Mermaid流程图快速入门</a></li></ul></li><li class="tree-list-item"><i class="toggle-post-icon gg-folder-add"></i><a class="tree-list-link" href="/categories/Web/">Web</a><ul class="tree-list-children"><li class="tree-list-item"><a class="tree-list-post-link" href="/2022/02/24/48-HTML/" title="48-HTML"><i class="post-icon gg-file-document"></i>48-HTML</a></li><li class="tree-list-item"><a class="tree-list-post-link" href="/2022/02/28/50-CSS/" title="50-CSS"><i class="post-icon gg-file-document"></i>50-CSS</a></li><li class="tree-list-item"><a class="tree-list-post-link" href="/2022/02/26/49-HTML%E6%A1%86%E6%9E%B6%E5%92%8C%E8%A1%A8%E5%8D%95/" title="49-HTML框架和表单"><i class="post-icon gg-file-document"></i>49-HTML框架和表单</a></li><li class="tree-list-item"><a class="tree-list-post-link" href="/2022/03/03/52-JS%E7%9A%84DOM%E7%BC%96%E7%A8%8B/" title="52-JS的DOM编程"><i class="post-icon gg-file-document"></i>52-JS的DOM编程</a></li><li class="tree-list-item"><a class="tree-list-post-link" href="/2022/03/04/53-JS%E5%B8%B8%E7%94%A8%E8%A1%A8%E5%8D%95%E9%AA%8C%E8%AF%81/" title="53-JS常用表单验证"><i class="post-icon gg-file-document"></i>53-JS常用表单验证</a></li><li class="tree-list-item"><a class="tree-list-post-link" href="/2022/03/02/51-JavaScript/" title="51-JavaScript"><i class="post-icon gg-file-document"></i>51-JavaScript</a></li></ul></li><li class="tree-list-item"><i class="toggle-post-icon gg-folder-add"></i><a class="tree-list-link" href="/categories/tools/">tools</a><ul class="tree-list-children"><li class="tree-list-item"><a class="tree-list-post-link" href="/2021/08/02/ASCll%E5%AF%B9%E7%85%A7%E8%A1%A8/" title="ASCll对照表"><i class="post-icon gg-file-document"></i>ASCll对照表</a></li><li class="tree-list-item"><a class="tree-list-post-link" href="/2021/07/19/Aplayer%E6%92%AD%E6%94%BE%E5%99%A8/" title="Aplayer播放器"><i class="post-icon gg-file-document"></i>Aplayer播放器</a></li><li class="tree-list-item"><a class="tree-list-post-link" href="/2021/08/19/Github-token/" title="Github_token"><i class="post-icon gg-file-document"></i>Github_token</a></li><li class="tree-list-item"><a class="tree-list-post-link" href="/2021/07/19/hexo-theme-pure/" title="hexo-theme-pure"><i class="post-icon gg-file-document"></i>hexo-theme-pure</a></li><li class="tree-list-item"><a class="tree-list-post-link" href="/2021/12/12/%E5%B8%B8%E7%94%A8%E7%AB%AF%E5%8F%A3/" title="常用端口"><i class="post-icon gg-file-document"></i>常用端口</a></li><li class="tree-list-item"><a class="tree-list-post-link" href="/2022/03/10/%E5%B8%B8%E7%94%A8%E6%B3%A8%E9%87%8A/" title="常用注释"><i class="post-icon gg-file-document"></i>常用注释</a></li><li class="tree-list-item"><a class="tree-list-post-link" href="/2021/11/28/idea%E5%BF%AB%E6%8D%B7%E9%94%AE/" title="idea快捷键"><i class="post-icon gg-file-document"></i>idea快捷键</a></li></ul></li></ul>
+        <div id="widget-tree-button">
+          <i class="gg-chevron-right"></i>
+        </div>
+      </div><!-- hexo injector body_end end --></body></html>
