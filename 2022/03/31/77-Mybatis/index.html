@@ -14,32 +14,33 @@
 <meta property="og:description" content="一、MyBatis简介1、MyBatis历史MyBatis最初是Apache的一个开源项目iBatis, 2010年6月这个项目由Apache Software Foundation迁 移到了Google Code。随着开发团队转投Google Code旗下， iBatis3.x正式更名为MyBatis。代码于 2013年11月迁移到Github。  iBatis一词来源于“internet”和“">
 <meta property="og:locale" content="zh_CN">
 <meta property="og:image" content="https://zr-java.github.io/2022/03/31/77-Mybatis/MyBatis%E4%B8%8B%E8%BD%BD.png">
-<meta property="og:image" content="https://zr-java.github.io/2022/03/31/77-Mybatis/hexo/zr.github.io/source_posts/77-Mybatis/mapper接口和mapper映射文件在同一包下.png">
-<meta property="og:image" content="https://zr-java.github.io/2022/03/31/77-Mybatis/hexo/zr.github.io/source_posts/77-Mybatis/默认的类型别名1.png">
-<meta property="og:image" content="https://zr-java.github.io/2022/03/31/77-Mybatis/hexo/zr.github.io/source_posts/77-Mybatis/默认的类型别名2.png">
-<meta property="og:image" content="https://zr-java.github.io/2022/03/31/77-Mybatis/hexo/zr.github.io/source_posts/77-Mybatis/延迟加载测试1.png">
-<meta property="og:image" content="https://zr-java.github.io/2022/03/31/77-Mybatis/hexo/zr.github.io/source_posts/77-Mybatis/延迟加载测试2.png">
-<meta property="og:image" content="https://zr-java.github.io/2022/03/31/77-Mybatis/hexo/zr.github.io/source_posts/77-Mybatis/延迟加载测试3.png">
-<meta property="og:image" content="https://zr-java.github.io/2022/03/31/77-Mybatis/hexo/zr.github.io/source_posts/77-Mybatis/trim测试结果.png">
-<meta property="og:image" content="https://zr-java.github.io/2022/03/31/77-Mybatis/hexo/zr.github.io/source_posts/77-Mybatis/choose测试结果.png">
-<meta property="og:image" content="https://zr-java.github.io/2022/03/31/77-Mybatis/foreach%E6%B5%8B%E8%AF%95%E7%BB%93%E6%9E%9C1.png">
+<meta property="og:image" content="https://zr-java.github.io/2022/03/31/77-Mybatis/mapper%E6%8E%A5%E5%8F%A3%E5%92%8Cmapper%E6%98%A0%E5%B0%84%E6%96%87%E4%BB%B6%E5%9C%A8%E5%90%8C%E4%B8%80%E5%8C%85%E4%B8%8B.png">
+<meta property="og:image" content="https://zr-java.github.io/2022/03/31/77-Mybatis/%E9%BB%98%E8%AE%A4%E7%9A%84%E7%B1%BB%E5%9E%8B%E5%88%AB%E5%90%8D1.png">
+<meta property="og:image" content="https://zr-java.github.io/2022/03/31/77-Mybatis/%E9%BB%98%E8%AE%A4%E7%9A%84%E7%B1%BB%E5%9E%8B%E5%88%AB%E5%90%8D2.png">
+<meta property="og:image" content="https://zr-java.github.io/2022/03/31/77-Mybatis/%E5%BB%B6%E8%BF%9F%E5%8A%A0%E8%BD%BD%E6%B5%8B%E8%AF%951.png">
+<meta property="og:image" content="https://zr-java.github.io/2022/03/31/77-Mybatis/%E5%BB%B6%E8%BF%9F%E5%8A%A0%E8%BD%BD%E6%B5%8B%E8%AF%952.png">
+<meta property="og:image" content="https://zr-java.github.io/2022/03/31/77-Mybatis/%E5%BB%B6%E8%BF%9F%E5%8A%A0%E8%BD%BD%E6%B5%8B%E8%AF%953.png">
+<meta property="og:image" content="https://zr-java.github.io/2022/03/31/77-Mybatis/trim%E6%B5%8B%E8%AF%95%E7%BB%93%E6%9E%9C.png">
+<meta property="og:image" content="https://zr-java.github.io/2022/03/31/77-Mybatis/choose%E6%B5%8B%E8%AF%95%E7%BB%93%E6%9E%9C.png">
+<meta property="og:image" content="https://zr-java.github.io/2022/03/31/77-Mybatis/foreach%E6%B5%8B%E8%AF%95%E7%BB%93%E6%9E%9C01.png">
+<meta property="og:image" content="https://zr-java.github.io/2022/03/31/77-Mybatis/image-20220402233917573.png">
 <meta property="og:image" content="https://zr-java.github.io/2022/03/31/77-Mybatis/foreach%E6%B5%8B%E8%AF%95%E7%BB%93%E6%9E%9C2.png">
-<meta property="og:image" content="https://zr-java.github.io/2022/03/31/77-Mybatis/hexo/zr.github.io/source_posts/77-Mybatis/执行MBG插件的generate目标.png">
-<meta property="og:image" content="https://zr-java.github.io/2022/03/31/77-Mybatis/hexo/zr.github.io/source_posts/77-Mybatis/dependency中的驱动.png">
-<meta property="og:image" content="https://zr-java.github.io/2022/03/31/77-Mybatis/hexo/zr.github.io/source_posts/77-Mybatis/插件中的驱动.png">
-<meta property="og:image" content="https://zr-java.github.io/2022/03/31/77-Mybatis/hexo/zr.github.io/source_posts/77-Mybatis/逆向执行结果.png">
-<meta property="og:image" content="https://zr-java.github.io/2022/03/31/77-Mybatis/hexo/zr.github.io/source_posts/77-Mybatis/example的方法.png">
-<meta property="og:image" content="https://zr-java.github.io/2022/03/31/77-Mybatis/hexo/zr.github.io/source_posts/77-Mybatis/example测试结果.png">
-<meta property="og:image" content="https://zr-java.github.io/2022/03/31/77-Mybatis/hexo/zr.github.io/source_posts/77-Mybatis/增删改测试结果1.png">
-<meta property="og:image" content="https://zr-java.github.io/2022/03/31/77-Mybatis/hexo/zr.github.io/source_posts/77-Mybatis/增删改测试结果2.png">
-<meta property="og:image" content="https://zr-java.github.io/2022/03/31/77-Mybatis/hexo/zr.github.io/source_posts/77-Mybatis/配置分页插件.png">
-<meta property="og:image" content="https://zr-java.github.io/2022/03/31/77-Mybatis/hexo/zr.github.io/source_posts/77-Mybatis/分页测试结果.png">
+<meta property="og:image" content="https://zr-java.github.io/2022/03/31/77-Mybatis/%E6%89%A7%E8%A1%8CMBG%E6%8F%92%E4%BB%B6%E7%9A%84generate%E7%9B%AE%E6%A0%87.png">
+<meta property="og:image" content="https://zr-java.github.io/2022/03/31/77-Mybatis/dependency%E4%B8%AD%E7%9A%84%E9%A9%B1%E5%8A%A8.png">
+<meta property="og:image" content="https://zr-java.github.io/2022/03/31/77-Mybatis/%E6%8F%92%E4%BB%B6%E4%B8%AD%E7%9A%84%E9%A9%B1%E5%8A%A8.png">
+<meta property="og:image" content="https://zr-java.github.io/2022/03/31/77-Mybatis/%E9%80%86%E5%90%91%E6%89%A7%E8%A1%8C%E7%BB%93%E6%9E%9C.png">
+<meta property="og:image" content="https://zr-java.github.io/2022/03/31/77-Mybatis/example%E7%9A%84%E6%96%B9%E6%B3%95.png">
+<meta property="og:image" content="https://zr-java.github.io/2022/03/31/77-Mybatis/example%E6%B5%8B%E8%AF%95%E7%BB%93%E6%9E%9C.png">
+<meta property="og:image" content="https://zr-java.github.io/2022/03/31/77-Mybatis/%E5%A2%9E%E5%88%A0%E6%94%B9%E6%B5%8B%E8%AF%95%E7%BB%93%E6%9E%9C1.png">
+<meta property="og:image" content="https://zr-java.github.io/2022/03/31/77-Mybatis/%E5%A2%9E%E5%88%A0%E6%94%B9%E6%B5%8B%E8%AF%95%E7%BB%93%E6%9E%9C2.png">
+<meta property="og:image" content="https://zr-java.github.io/2022/03/31/77-Mybatis/%E9%85%8D%E7%BD%AE%E5%88%86%E9%A1%B5%E6%8F%92%E4%BB%B6.png">
+<meta property="og:image" content="https://zr-java.github.io/2022/03/31/77-Mybatis/%E5%88%86%E9%A1%B5%E6%B5%8B%E8%AF%95%E7%BB%93%E6%9E%9C.png">
 <meta property="article:published_time" content="2022-03-31T04:42:50.000Z">
-<meta property="article:modified_time" content="2022-03-31T14:12:48.344Z">
+<meta property="article:modified_time" content="2022-04-04T13:31:36.748Z">
 <meta property="article:author" content="ZR">
 <meta property="article:tag" content="mybatis">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:image" content="https://zr-java.github.io/2022/03/31/77-Mybatis/MyBatis%E4%B8%8B%E8%BD%BD.png"><script src="/js/ui/mode.js"></script></head><body><script defer src="https://cdn.jsdelivr.net/npm/animejs@latest"></script><script defer src="/js/ui/fireworks.js"></script><canvas class="fireworks"></canvas><div class="container"><a class="sidebar-toggle hty-icon-button" id="menu-btn"><div class="hamburger hamburger--spin" type="button"><span class="hamburger-box"><span class="hamburger-inner"></span></span></div></a><div class="sidebar-toggle sidebar-overlay"></div><aside class="sidebar"><script src="/js/sidebar.js"></script><ul class="sidebar-nav"><li class="sidebar-nav-item sidebar-nav-toc hty-icon-button sidebar-nav-active" data-target="post-toc-wrap" title="文章目录"><svg class="icon" aria-hidden="true"><use xlink:href="#icon-list-ordered"></use></svg></li><li class="sidebar-nav-item sidebar-nav-overview hty-icon-button" data-target="site-overview-wrap" title="站点概览"><svg class="icon" aria-hidden="true"><use xlink:href="#icon-passport-line"></use></svg></li></ul><div class="sidebar-panel" id="site-overview-wrap"><div class="site-info fix-top"><a class="site-author-avatar" href="/about/" title="ZR"><img width="96" loading="lazy" src="/images/avatar.jpg" alt="ZR"><span class="site-author-status" title="不想上学">😭</span></a><div class="site-author-name"><a href="/about/">ZR</a></div><span class="site-name">ZR的小站</span><sub class="site-subtitle"></sub><div class="site-desciption">高级打字员</div></div><nav class="site-state"><a class="site-state-item hty-icon-button icon-home" href="/" title="我的主页"><span class="site-state-item-icon"><svg class="icon" aria-hidden="true"><use xlink:href="#icon-home-4-line"></use></svg></span></a><div class="site-state-item"><a href="/archives/" title="归档"><span class="site-state-item-icon"><svg class="icon" aria-hidden="true"><use xlink:href="#icon-archive-line"></use></svg></span><span class="site-state-item-count">90</span></a></div><div class="site-state-item"><a href="/categories/" title="分类"><span class="site-state-item-icon"><svg class="icon" aria-hidden="true"><use xlink:href="#icon-folder-2-line"></use></svg></span><span class="site-state-item-count">10</span></a></div><div class="site-state-item"><a href="/tags/" title="标签"><span class="site-state-item-icon"><svg class="icon" aria-hidden="true"><use xlink:href="#icon-price-tag-3-line"></use></svg></span><span class="site-state-item-count">10</span></a></div><a class="site-state-item hty-icon-button" target="_blank" rel="noopener" href="https://yun.yunyoujun.cn" title="文档"><span class="site-state-item-icon"><svg class="icon" aria-hidden="true"><use xlink:href="#icon-settings-line"></use></svg></span></a></nav><hr style="margin-bottom:0.5rem"><div class="links-of-author"><a class="links-of-author-item hty-icon-button" rel="noopener" href="mailto:247132084@qq.com" title="E-Mail" target="_blank" style="color:#8E71C1"><svg class="icon" aria-hidden="true"><use xlink:href="#icon-mail-line"></use></svg></a><a class="links-of-author-item hty-icon-button" rel="noopener" href="https://github.com/ZR-java" title="GitHub" target="_blank" style="color:#181717"><svg class="icon" aria-hidden="true"><use xlink:href="#icon-github-line"></use></svg></a></div><hr style="margin:0.5rem 1rem"><div class="links"><a class="links-item hty-icon-button" href="/links/" title="我的小伙伴们" style="color:dodgerblue"><svg class="icon" aria-hidden="true"><use xlink:href="#icon-genderless-line"></use></svg></a></div><br><a class="links-item hty-icon-button" id="toggle-mode-btn" href="javascript:;" title="Mode" style="color: #f1cb64"><svg class="icon" aria-hidden="true"><use xlink:href="#icon-contrast-2-line"></use></svg></a></div><div class="sidebar-panel sidebar-panel-active" id="post-toc-wrap"><div class="post-toc"><div class="post-toc-content"><ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#%E4%B8%80%E3%80%81MyBatis%E7%AE%80%E4%BB%8B"><span class="toc-number">1.</span> <span class="toc-text">一、MyBatis简介</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#1%E3%80%81MyBatis%E5%8E%86%E5%8F%B2"><span class="toc-number">1.0.1.</span> <span class="toc-text">1、MyBatis历史</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2%E3%80%81MyBatis%E7%89%B9%E6%80%A7"><span class="toc-number">1.0.2.</span> <span class="toc-text">2、MyBatis特性</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3%E3%80%81MyBatis%E4%B8%8B%E8%BD%BD"><span class="toc-number">1.0.3.</span> <span class="toc-text">3、MyBatis下载</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#4%E3%80%81%E5%92%8C%E5%85%B6%E5%AE%83%E6%8C%81%E4%B9%85%E5%8C%96%E5%B1%82%E6%8A%80%E6%9C%AF%E5%AF%B9%E6%AF%94"><span class="toc-number">1.0.4.</span> <span class="toc-text">4、和其它持久化层技术对比</span></a></li></ol></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E4%BA%8C%E3%80%81%E6%90%AD%E5%BB%BAMyBatis"><span class="toc-number">2.</span> <span class="toc-text">二、搭建MyBatis</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#1%E3%80%81%E5%BC%80%E5%8F%91%E7%8E%AF%E5%A2%83"><span class="toc-number">2.0.1.</span> <span class="toc-text">1、开发环境</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2%E3%80%81%E5%88%9B%E5%BB%BAmaven%E5%B7%A5%E7%A8%8B"><span class="toc-number">2.0.2.</span> <span class="toc-text">2、创建maven工程</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#%E6%89%93%E5%8C%85%E6%96%B9%E5%BC%8F%EF%BC%9Ajar"><span class="toc-number">2.0.2.0.1.</span> <span class="toc-text">打包方式：jar</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#%E5%BC%95%E5%85%A5%E4%BE%9D%E8%B5%96"><span class="toc-number">2.0.2.0.2.</span> <span class="toc-text">引入依赖</span></a></li></ol></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3%E3%80%81%E5%88%9B%E5%BB%BAMyBatis%E7%9A%84%E6%A0%B8%E5%BF%83%E9%85%8D%E7%BD%AE%E6%96%87%E4%BB%B6"><span class="toc-number">2.0.3.</span> <span class="toc-text">3、创建MyBatis的核心配置文件</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#4%E3%80%81%E5%88%9B%E5%BB%BAmapper%E6%8E%A5%E5%8F%A3"><span class="toc-number">2.0.4.</span> <span class="toc-text">4、创建mapper接口</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#5%E3%80%81%E5%88%9B%E5%BB%BAMyBatis%E7%9A%84%E6%98%A0%E5%B0%84%E6%96%87%E4%BB%B6"><span class="toc-number">2.0.5.</span> <span class="toc-text">5、创建MyBatis的映射文件</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#6%E3%80%81%E9%80%9A%E8%BF%87junit%E6%B5%8B%E8%AF%95%E5%8A%9F%E8%83%BD"><span class="toc-number">2.0.6.</span> <span class="toc-text">6、通过junit测试功能</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#7%E3%80%81%E5%8A%A0%E5%85%A5log4j%E6%97%A5%E5%BF%97%E5%8A%9F%E8%83%BD"><span class="toc-number">2.0.7.</span> <span class="toc-text">7、加入log4j日志功能</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#%E5%8A%A0%E5%85%A5%E4%BE%9D%E8%B5%96"><span class="toc-number">2.0.7.0.1.</span> <span class="toc-text">加入依赖</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#%E5%8A%A0%E5%85%A5log4j%E7%9A%84%E9%85%8D%E7%BD%AE%E6%96%87%E4%BB%B6"><span class="toc-number">2.0.7.0.2.</span> <span class="toc-text">加入log4j的配置文件</span></a></li></ol></li></ol></li></ol></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E4%B8%89%E3%80%81%E6%A0%B8%E5%BF%83%E9%85%8D%E7%BD%AE%E6%96%87%E4%BB%B6%E8%AF%A6%E8%A7%A3"><span class="toc-number">3.</span> <span class="toc-text">三、核心配置文件详解</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E9%BB%98%E8%AE%A4%E7%9A%84%E7%B1%BB%E5%9E%8B%E5%88%AB%E5%90%8D"><span class="toc-number">3.0.1.</span> <span class="toc-text">默认的类型别名</span></a></li></ol></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%9B%9B%E3%80%81MyBatis%E7%9A%84%E5%A2%9E%E5%88%A0%E6%94%B9%E6%9F%A5"><span class="toc-number">4.</span> <span class="toc-text">四、MyBatis的增删改查</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E4%BA%94%E3%80%81MyBatis%E8%8E%B7%E5%8F%96%E5%8F%82%E6%95%B0%E5%80%BC%E7%9A%84%E4%B8%A4%E7%A7%8D%E6%96%B9%E5%BC%8F%EF%BC%88%E9%87%8D%E7%82%B9%EF%BC%89"><span class="toc-number">5.</span> <span class="toc-text">五、MyBatis获取参数值的两种方式（重点）</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%8D%95%E4%B8%AA%E5%AD%97%E9%9D%A2%E9%87%8F%E7%B1%BB%E5%9E%8B%E7%9A%84%E5%8F%82%E6%95%B0"><span class="toc-number">5.1.</span> <span class="toc-text">单个字面量类型的参数</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%A4%9A%E4%B8%AA%E5%AD%97%E9%9D%A2%E9%87%8F%E7%B1%BB%E5%9E%8B%E7%9A%84%E5%8F%82%E6%95%B0"><span class="toc-number">5.2.</span> <span class="toc-text">多个字面量类型的参数</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#map%E9%9B%86%E5%90%88%E7%B1%BB%E5%9E%8B%E7%9A%84%E5%8F%82%E6%95%B0"><span class="toc-number">5.3.</span> <span class="toc-text">map集合类型的参数</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%AE%9E%E4%BD%93%E7%B1%BB%E7%B1%BB%E5%9E%8B%E7%9A%84%E5%8F%82%E6%95%B0"><span class="toc-number">5.4.</span> <span class="toc-text">实体类类型的参数</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BD%BF%E7%94%A8-Param%E6%A0%87%E8%AF%86%E5%8F%82%E6%95%B0"><span class="toc-number">5.5.</span> <span class="toc-text">使用@Param标识参数</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%80%BB%E7%BB%93"><span class="toc-number">5.6.</span> <span class="toc-text">总结</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#MyBatis%E7%9A%84%E5%90%84%E7%A7%8D%E6%9F%A5%E8%AF%A2%E5%8A%9F%E8%83%BD"><span class="toc-number">6.</span> <span class="toc-text">MyBatis的各种查询功能</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%9F%A5%E8%AF%A2%E4%B8%80%E4%B8%AA%E5%AE%9E%E4%BD%93%E7%B1%BB%E5%AF%B9%E8%B1%A1"><span class="toc-number">6.1.</span> <span class="toc-text">查询一个实体类对象</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%9F%A5%E8%AF%A2%E4%B8%80%E4%B8%AAList%E9%9B%86%E5%90%88"><span class="toc-number">6.2.</span> <span class="toc-text">查询一个List集合</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%9F%A5%E8%AF%A2%E5%8D%95%E4%B8%AA%E6%95%B0%E6%8D%AE"><span class="toc-number">6.3.</span> <span class="toc-text">查询单个数据</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%9F%A5%E8%AF%A2%E4%B8%80%E6%9D%A1%E6%95%B0%E6%8D%AE%E4%B8%BAmap%E9%9B%86%E5%90%88"><span class="toc-number">6.4.</span> <span class="toc-text">查询一条数据为map集合</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%9F%A5%E8%AF%A2%E5%A4%9A%E6%9D%A1%E6%95%B0%E6%8D%AE%E4%B8%BAmap%E9%9B%86%E5%90%88"><span class="toc-number">6.5.</span> <span class="toc-text">查询多条数据为map集合</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%96%B9%E6%B3%95%E4%B8%80"><span class="toc-number">6.5.1.</span> <span class="toc-text">方法一</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%96%B9%E6%B3%95%E4%BA%8C"><span class="toc-number">6.5.2.</span> <span class="toc-text">方法二</span></a></li></ol></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E7%89%B9%E6%AE%8ASQL%E7%9A%84%E6%89%A7%E8%A1%8C"><span class="toc-number">7.</span> <span class="toc-text">特殊SQL的执行</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%A8%A1%E7%B3%8A%E6%9F%A5%E8%AF%A2"><span class="toc-number">7.1.</span> <span class="toc-text">模糊查询</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%89%B9%E9%87%8F%E5%88%A0%E9%99%A4"><span class="toc-number">7.2.</span> <span class="toc-text">批量删除</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%8A%A8%E6%80%81%E8%AE%BE%E7%BD%AE%E8%A1%A8%E5%90%8D"><span class="toc-number">7.3.</span> <span class="toc-text">动态设置表名</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%B7%BB%E5%8A%A0%E5%8A%9F%E8%83%BD%E8%8E%B7%E5%8F%96%E8%87%AA%E5%A2%9E%E7%9A%84%E4%B8%BB%E9%94%AE"><span class="toc-number">7.4.</span> <span class="toc-text">添加功能获取自增的主键</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E8%87%AA%E5%AE%9A%E4%B9%89%E6%98%A0%E5%B0%84resultMap"><span class="toc-number">8.</span> <span class="toc-text">自定义映射resultMap</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#resultMap%E5%A4%84%E7%90%86%E5%AD%97%E6%AE%B5%E5%92%8C%E5%B1%9E%E6%80%A7%E7%9A%84%E6%98%A0%E5%B0%84%E5%85%B3%E7%B3%BB"><span class="toc-number">8.1.</span> <span class="toc-text">resultMap处理字段和属性的映射关系</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%A4%9A%E5%AF%B9%E4%B8%80%E6%98%A0%E5%B0%84%E5%A4%84%E7%90%86"><span class="toc-number">8.2.</span> <span class="toc-text">多对一映射处理</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%BA%A7%E8%81%94%E6%96%B9%E5%BC%8F%E5%A4%84%E7%90%86%E6%98%A0%E5%B0%84%E5%85%B3%E7%B3%BB"><span class="toc-number">8.2.1.</span> <span class="toc-text">级联方式处理映射关系</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%BD%BF%E7%94%A8association%E5%A4%84%E7%90%86%E6%98%A0%E5%B0%84%E5%85%B3%E7%B3%BB"><span class="toc-number">8.2.2.</span> <span class="toc-text">使用association处理映射关系</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%88%86%E6%AD%A5%E6%9F%A5%E8%AF%A2"><span class="toc-number">8.2.3.</span> <span class="toc-text">分步查询</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#1-%E6%9F%A5%E8%AF%A2%E5%91%98%E5%B7%A5%E4%BF%A1%E6%81%AF"><span class="toc-number">8.2.3.1.</span> <span class="toc-text">1. 查询员工信息</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#2-%E6%9F%A5%E8%AF%A2%E9%83%A8%E9%97%A8%E4%BF%A1%E6%81%AF"><span class="toc-number">8.2.3.2.</span> <span class="toc-text">2. 查询部门信息</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%B8%80%E5%AF%B9%E5%A4%9A%E6%98%A0%E5%B0%84%E5%A4%84%E7%90%86"><span class="toc-number">8.3.</span> <span class="toc-text">一对多映射处理</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#collection"><span class="toc-number">8.3.1.</span> <span class="toc-text">collection</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%88%86%E6%AD%A5%E6%9F%A5%E8%AF%A2-1"><span class="toc-number">8.3.2.</span> <span class="toc-text">分步查询</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#1-%E6%9F%A5%E8%AF%A2%E9%83%A8%E9%97%A8%E4%BF%A1%E6%81%AF"><span class="toc-number">8.3.2.1.</span> <span class="toc-text">1. 查询部门信息</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#2-%E6%A0%B9%E6%8D%AE%E9%83%A8%E9%97%A8id%E6%9F%A5%E8%AF%A2%E9%83%A8%E9%97%A8%E4%B8%AD%E7%9A%84%E6%89%80%E6%9C%89%E5%91%98%E5%B7%A5"><span class="toc-number">8.3.2.2.</span> <span class="toc-text">2. 根据部门id查询部门中的所有员工</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%BB%B6%E8%BF%9F%E5%8A%A0%E8%BD%BD"><span class="toc-number">8.4.</span> <span class="toc-text">延迟加载</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%8A%A8%E6%80%81SQL"><span class="toc-number">9.</span> <span class="toc-text">动态SQL</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#if"><span class="toc-number">9.1.</span> <span class="toc-text">if</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#where"><span class="toc-number">9.2.</span> <span class="toc-text">where</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#trim"><span class="toc-number">9.3.</span> <span class="toc-text">trim</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#choose%E3%80%81when%E3%80%81otherwise"><span class="toc-number">9.4.</span> <span class="toc-text">choose、when、otherwise</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#foreach"><span class="toc-number">9.5.</span> <span class="toc-text">foreach</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#SQL%E7%89%87%E6%AE%B5"><span class="toc-number">9.6.</span> <span class="toc-text">SQL片段</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#MyBatis%E7%9A%84%E7%BC%93%E5%AD%98"><span class="toc-number">10.</span> <span class="toc-text">MyBatis的缓存</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#MyBatis%E7%9A%84%E4%B8%80%E7%BA%A7%E7%BC%93%E5%AD%98"><span class="toc-number">10.1.</span> <span class="toc-text">MyBatis的一级缓存</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#MyBatis%E7%9A%84%E4%BA%8C%E7%BA%A7%E7%BC%93%E5%AD%98"><span class="toc-number">10.2.</span> <span class="toc-text">MyBatis的二级缓存</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BA%8C%E7%BA%A7%E7%BC%93%E5%AD%98%E7%9A%84%E7%9B%B8%E5%85%B3%E9%85%8D%E7%BD%AE"><span class="toc-number">10.3.</span> <span class="toc-text">二级缓存的相关配置</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#MyBatis%E7%BC%93%E5%AD%98%E6%9F%A5%E8%AF%A2%E7%9A%84%E9%A1%BA%E5%BA%8F"><span class="toc-number">10.4.</span> <span class="toc-text">MyBatis缓存查询的顺序</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%95%B4%E5%90%88%E7%AC%AC%E4%B8%89%E6%96%B9%E7%BC%93%E5%AD%98EHCache%EF%BC%88%E4%BA%86%E8%A7%A3%EF%BC%89"><span class="toc-number">10.5.</span> <span class="toc-text">整合第三方缓存EHCache（了解）</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%B7%BB%E5%8A%A0%E4%BE%9D%E8%B5%96"><span class="toc-number">10.5.1.</span> <span class="toc-text">添加依赖</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%90%84%E4%B8%AAjar%E5%8C%85%E7%9A%84%E5%8A%9F%E8%83%BD"><span class="toc-number">10.5.2.</span> <span class="toc-text">各个jar包的功能</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%88%9B%E5%BB%BAEHCache%E7%9A%84%E9%85%8D%E7%BD%AE%E6%96%87%E4%BB%B6ehcache-xml"><span class="toc-number">10.5.3.</span> <span class="toc-text">创建EHCache的配置文件ehcache.xml</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%AE%BE%E7%BD%AE%E4%BA%8C%E7%BA%A7%E7%BC%93%E5%AD%98%E7%9A%84%E7%B1%BB%E5%9E%8B"><span class="toc-number">10.5.4.</span> <span class="toc-text">设置二级缓存的类型</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%8A%A0%E5%85%A5logback%E6%97%A5%E5%BF%97"><span class="toc-number">10.5.5.</span> <span class="toc-text">加入logback日志</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#EHCache%E9%85%8D%E7%BD%AE%E6%96%87%E4%BB%B6%E8%AF%B4%E6%98%8E"><span class="toc-number">10.5.6.</span> <span class="toc-text">EHCache配置文件说明</span></a></li></ol></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#MyBatis%E7%9A%84%E9%80%86%E5%90%91%E5%B7%A5%E7%A8%8B"><span class="toc-number">11.</span> <span class="toc-text">MyBatis的逆向工程</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%88%9B%E5%BB%BA%E9%80%86%E5%90%91%E5%B7%A5%E7%A8%8B%E7%9A%84%E6%AD%A5%E9%AA%A4"><span class="toc-number">11.1.</span> <span class="toc-text">创建逆向工程的步骤</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%B7%BB%E5%8A%A0%E4%BE%9D%E8%B5%96%E5%92%8C%E6%8F%92%E4%BB%B6"><span class="toc-number">11.1.1.</span> <span class="toc-text">添加依赖和插件</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%88%9B%E5%BB%BAMyBatis%E7%9A%84%E6%A0%B8%E5%BF%83%E9%85%8D%E7%BD%AE%E6%96%87%E4%BB%B6"><span class="toc-number">11.1.2.</span> <span class="toc-text">创建MyBatis的核心配置文件</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%88%9B%E5%BB%BA%E9%80%86%E5%90%91%E5%B7%A5%E7%A8%8B%E7%9A%84%E9%85%8D%E7%BD%AE%E6%96%87%E4%BB%B6"><span class="toc-number">11.1.3.</span> <span class="toc-text">创建逆向工程的配置文件</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%89%A7%E8%A1%8CMBG%E6%8F%92%E4%BB%B6%E7%9A%84generate%E7%9B%AE%E6%A0%87"><span class="toc-number">11.1.4.</span> <span class="toc-text">执行MBG插件的generate目标</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#QBC"><span class="toc-number">11.2.</span> <span class="toc-text">QBC</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%9F%A5%E8%AF%A2"><span class="toc-number">11.2.1.</span> <span class="toc-text">查询</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%A2%9E%E6%94%B9"><span class="toc-number">11.2.2.</span> <span class="toc-text">增改</span></a></li></ol></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%88%86%E9%A1%B5%E6%8F%92%E4%BB%B6"><span class="toc-number">12.</span> <span class="toc-text">分页插件</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%88%86%E9%A1%B5%E6%8F%92%E4%BB%B6%E4%BD%BF%E7%94%A8%E6%AD%A5%E9%AA%A4"><span class="toc-number">12.1.</span> <span class="toc-text">分页插件使用步骤</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%B7%BB%E5%8A%A0%E4%BE%9D%E8%B5%96-1"><span class="toc-number">12.1.1.</span> <span class="toc-text">添加依赖</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E9%85%8D%E7%BD%AE%E5%88%86%E9%A1%B5%E6%8F%92%E4%BB%B6"><span class="toc-number">12.1.2.</span> <span class="toc-text">配置分页插件</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%88%86%E9%A1%B5%E6%8F%92%E4%BB%B6%E7%9A%84%E4%BD%BF%E7%94%A8"><span class="toc-number">12.2.</span> <span class="toc-text">分页插件的使用</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%BC%80%E5%90%AF%E5%88%86%E9%A1%B5%E5%8A%9F%E8%83%BD"><span class="toc-number">12.2.1.</span> <span class="toc-text">开启分页功能</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%88%86%E9%A1%B5%E7%9B%B8%E5%85%B3%E6%95%B0%E6%8D%AE"><span class="toc-number">12.2.2.</span> <span class="toc-text">分页相关数据</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E6%96%B9%E6%B3%95%E4%B8%80%EF%BC%9A%E7%9B%B4%E6%8E%A5%E8%BE%93%E5%87%BA"><span class="toc-number">12.2.2.1.</span> <span class="toc-text">方法一：直接输出</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E6%96%B9%E6%B3%95%E4%BA%8C%E4%BD%BF%E7%94%A8PageInfo"><span class="toc-number">12.2.2.2.</span> <span class="toc-text">方法二使用PageInfo</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%B8%B8%E7%94%A8%E6%95%B0%E6%8D%AE%EF%BC%9A"><span class="toc-number">12.2.2.3.</span> <span class="toc-text">常用数据：</span></a></li></ol></li></ol></li></ol></li></ol></div></div></div></aside><main class="sidebar-translate" id="content"><div id="post"><article class="hty-card post-block" itemscope itemtype="https://schema.org/Article"><link itemprop="mainEntityOfPage" href="https://ZR-java.github.io/2022/03/31/77-Mybatis/"><span hidden itemprop="author" itemscope itemtype="https://schema.org/Person"><meta itemprop="name" content="ZR"><meta itemprop="description"></span><span hidden itemprop="publisher" itemscope itemtype="https://schema.org/Organization"><meta itemprop="name" content="ZR的小站"></span><header class="post-header"><h1 class="post-title" itemprop="name headline">77-Mybatis</h1><div class="post-meta"><div class="post-time" style="display:block"><span class="post-meta-item-icon"><svg class="icon" aria-hidden="true"><use xlink:href="#icon-calendar-line"></use></svg></span> <time title="创建时间：2022-03-31 12:42:50" itemprop="dateCreated datePublished" datetime="2022-03-31T12:42:50+08:00">2022-03-31</time></div><span class="post-count"><span class="post-symbolcount"><span class="post-meta-item-icon" title="本文字数"><svg class="icon" aria-hidden="true"><use xlink:href="#icon-file-word-line"></use></svg></span> <span title="本文字数">11.7k</span><span class="post-meta-divider">-</span><span class="post-meta-item-icon" title="阅读时长"><svg class="icon" aria-hidden="true"><use xlink:href="#icon-timer-line"></use></svg></span> <span title="阅读时长">53m</span></span></span><div class="post-classify"><span class="post-category"> <span class="post-meta-item-icon" style="margin-right:3px;"><svg class="icon" aria-hidden="true"><use xlink:href="#icon-folder-line"></use></svg></span><span itemprop="about" itemscope itemtype="https://schema.org/Thing"><a class="category-item" href="/categories/Mybatis/" style="--text-color:var(--hty-text-color)" itemprop="url" rel="index"><span itemprop="text">Mybatis</span></a></span></span><span class="post-tag"><span class="post-meta-divider">-</span><a class="tag-item" href="/tags/mybatis/" style="--text-color:var(--hty-text-color)"><span class="post-meta-item-icon"><svg class="icon" aria-hidden="true"><use xlink:href="#icon-price-tag-3-line"></use></svg></span><span class="tag-name">mybatis</span></a></span></div></div></header><section class="post-body" itemprop="articleBody"><div class="post-content markdown-body" style="--smc-primary:#0078E7;"><h1 id="一、MyBatis简介"><a href="#一、MyBatis简介" class="headerlink" title="一、MyBatis简介"></a>一、MyBatis简介</h1><h3 id="1、MyBatis历史"><a href="#1、MyBatis历史" class="headerlink" title="1、MyBatis历史"></a>1、MyBatis历史</h3><p>MyBatis最初是Apache的一个开源项目iBatis, 2010年6月这个项目由Apache Software Foundation迁 移到了Google Code。随着开发团队转投Google Code旗下， iBatis3.x正式更名为MyBatis。代码于 2013年11月迁移到Github。 </p>
+<meta name="twitter:image" content="https://zr-java.github.io/2022/03/31/77-Mybatis/MyBatis%E4%B8%8B%E8%BD%BD.png"><script src="/js/ui/mode.js"></script></head><body><script defer src="https://cdn.jsdelivr.net/npm/animejs@latest"></script><script defer src="/js/ui/fireworks.js"></script><canvas class="fireworks"></canvas><div class="container"><a class="sidebar-toggle hty-icon-button" id="menu-btn"><div class="hamburger hamburger--spin" type="button"><span class="hamburger-box"><span class="hamburger-inner"></span></span></div></a><div class="sidebar-toggle sidebar-overlay"></div><aside class="sidebar"><script src="/js/sidebar.js"></script><ul class="sidebar-nav"><li class="sidebar-nav-item sidebar-nav-toc hty-icon-button sidebar-nav-active" data-target="post-toc-wrap" title="文章目录"><svg class="icon" aria-hidden="true"><use xlink:href="#icon-list-ordered"></use></svg></li><li class="sidebar-nav-item sidebar-nav-overview hty-icon-button" data-target="site-overview-wrap" title="站点概览"><svg class="icon" aria-hidden="true"><use xlink:href="#icon-passport-line"></use></svg></li></ul><div class="sidebar-panel" id="site-overview-wrap"><div class="site-info fix-top"><a class="site-author-avatar" href="/about/" title="ZR"><img width="96" loading="lazy" src="/images/avatar.jpg" alt="ZR"><span class="site-author-status" title="不想上学">😭</span></a><div class="site-author-name"><a href="/about/">ZR</a></div><span class="site-name">ZR的小站</span><sub class="site-subtitle"></sub><div class="site-desciption">高级打字员</div></div><nav class="site-state"><a class="site-state-item hty-icon-button icon-home" href="/" title="我的主页"><span class="site-state-item-icon"><svg class="icon" aria-hidden="true"><use xlink:href="#icon-home-4-line"></use></svg></span></a><div class="site-state-item"><a href="/archives/" title="归档"><span class="site-state-item-icon"><svg class="icon" aria-hidden="true"><use xlink:href="#icon-archive-line"></use></svg></span><span class="site-state-item-count">90</span></a></div><div class="site-state-item"><a href="/categories/" title="分类"><span class="site-state-item-icon"><svg class="icon" aria-hidden="true"><use xlink:href="#icon-folder-2-line"></use></svg></span><span class="site-state-item-count">10</span></a></div><div class="site-state-item"><a href="/tags/" title="标签"><span class="site-state-item-icon"><svg class="icon" aria-hidden="true"><use xlink:href="#icon-price-tag-3-line"></use></svg></span><span class="site-state-item-count">10</span></a></div><a class="site-state-item hty-icon-button" target="_blank" rel="noopener" href="https://yun.yunyoujun.cn" title="文档"><span class="site-state-item-icon"><svg class="icon" aria-hidden="true"><use xlink:href="#icon-settings-line"></use></svg></span></a></nav><hr style="margin-bottom:0.5rem"><div class="links-of-author"><a class="links-of-author-item hty-icon-button" rel="noopener" href="mailto:247132084@qq.com" title="E-Mail" target="_blank" style="color:#8E71C1"><svg class="icon" aria-hidden="true"><use xlink:href="#icon-mail-line"></use></svg></a><a class="links-of-author-item hty-icon-button" rel="noopener" href="https://github.com/ZR-java" title="GitHub" target="_blank" style="color:#181717"><svg class="icon" aria-hidden="true"><use xlink:href="#icon-github-line"></use></svg></a></div><hr style="margin:0.5rem 1rem"><div class="links"><a class="links-item hty-icon-button" href="/links/" title="我的小伙伴们" style="color:dodgerblue"><svg class="icon" aria-hidden="true"><use xlink:href="#icon-genderless-line"></use></svg></a></div><br><a class="links-item hty-icon-button" id="toggle-mode-btn" href="javascript:;" title="Mode" style="color: #f1cb64"><svg class="icon" aria-hidden="true"><use xlink:href="#icon-contrast-2-line"></use></svg></a></div><div class="sidebar-panel sidebar-panel-active" id="post-toc-wrap"><div class="post-toc"><div class="post-toc-content"><ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#%E4%B8%80%E3%80%81MyBatis%E7%AE%80%E4%BB%8B"><span class="toc-number">1.</span> <span class="toc-text">一、MyBatis简介</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#1%E3%80%81MyBatis%E5%8E%86%E5%8F%B2"><span class="toc-number">1.0.1.</span> <span class="toc-text">1、MyBatis历史</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2%E3%80%81MyBatis%E7%89%B9%E6%80%A7"><span class="toc-number">1.0.2.</span> <span class="toc-text">2、MyBatis特性</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3%E3%80%81MyBatis%E4%B8%8B%E8%BD%BD"><span class="toc-number">1.0.3.</span> <span class="toc-text">3、MyBatis下载</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#4%E3%80%81%E5%92%8C%E5%85%B6%E5%AE%83%E6%8C%81%E4%B9%85%E5%8C%96%E5%B1%82%E6%8A%80%E6%9C%AF%E5%AF%B9%E6%AF%94"><span class="toc-number">1.0.4.</span> <span class="toc-text">4、和其它持久化层技术对比</span></a></li></ol></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E4%BA%8C%E3%80%81%E6%90%AD%E5%BB%BAMyBatis"><span class="toc-number">2.</span> <span class="toc-text">二、搭建MyBatis</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#1%E3%80%81%E5%BC%80%E5%8F%91%E7%8E%AF%E5%A2%83"><span class="toc-number">2.0.1.</span> <span class="toc-text">1、开发环境</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2%E3%80%81%E5%88%9B%E5%BB%BAmaven%E5%B7%A5%E7%A8%8B"><span class="toc-number">2.0.2.</span> <span class="toc-text">2、创建maven工程</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#%E6%89%93%E5%8C%85%E6%96%B9%E5%BC%8F%EF%BC%9Ajar"><span class="toc-number">2.0.2.0.1.</span> <span class="toc-text">打包方式：jar</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#%E5%BC%95%E5%85%A5%E4%BE%9D%E8%B5%96"><span class="toc-number">2.0.2.0.2.</span> <span class="toc-text">引入依赖</span></a></li></ol></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3%E3%80%81%E5%88%9B%E5%BB%BAMyBatis%E7%9A%84%E6%A0%B8%E5%BF%83%E9%85%8D%E7%BD%AE%E6%96%87%E4%BB%B6"><span class="toc-number">2.0.3.</span> <span class="toc-text">3、创建MyBatis的核心配置文件</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#4%E3%80%81%E5%88%9B%E5%BB%BAmapper%E6%8E%A5%E5%8F%A3"><span class="toc-number">2.0.4.</span> <span class="toc-text">4、创建mapper接口</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#5%E3%80%81%E5%88%9B%E5%BB%BAMyBatis%E7%9A%84%E6%98%A0%E5%B0%84%E6%96%87%E4%BB%B6"><span class="toc-number">2.0.5.</span> <span class="toc-text">5、创建MyBatis的映射文件</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#6%E3%80%81%E9%80%9A%E8%BF%87junit%E6%B5%8B%E8%AF%95%E5%8A%9F%E8%83%BD"><span class="toc-number">2.0.6.</span> <span class="toc-text">6、通过junit测试功能</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#7%E3%80%81%E5%8A%A0%E5%85%A5log4j%E6%97%A5%E5%BF%97%E5%8A%9F%E8%83%BD"><span class="toc-number">2.0.7.</span> <span class="toc-text">7、加入log4j日志功能</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#%E5%8A%A0%E5%85%A5%E4%BE%9D%E8%B5%96"><span class="toc-number">2.0.7.0.1.</span> <span class="toc-text">加入依赖</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#%E5%8A%A0%E5%85%A5log4j%E7%9A%84%E9%85%8D%E7%BD%AE%E6%96%87%E4%BB%B6"><span class="toc-number">2.0.7.0.2.</span> <span class="toc-text">加入log4j的配置文件</span></a></li></ol></li></ol></li></ol></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E4%B8%89%E3%80%81%E6%A0%B8%E5%BF%83%E9%85%8D%E7%BD%AE%E6%96%87%E4%BB%B6%E8%AF%A6%E8%A7%A3"><span class="toc-number">3.</span> <span class="toc-text">三、核心配置文件详解</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E9%BB%98%E8%AE%A4%E7%9A%84%E7%B1%BB%E5%9E%8B%E5%88%AB%E5%90%8D"><span class="toc-number">3.0.1.</span> <span class="toc-text">默认的类型别名</span></a></li></ol></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%9B%9B%E3%80%81MyBatis%E7%9A%84%E5%A2%9E%E5%88%A0%E6%94%B9%E6%9F%A5"><span class="toc-number">4.</span> <span class="toc-text">四、MyBatis的增删改查</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E4%BA%94%E3%80%81MyBatis%E8%8E%B7%E5%8F%96%E5%8F%82%E6%95%B0%E5%80%BC%E7%9A%84%E4%B8%A4%E7%A7%8D%E6%96%B9%E5%BC%8F%EF%BC%88%E9%87%8D%E7%82%B9%EF%BC%89"><span class="toc-number">5.</span> <span class="toc-text">五、MyBatis获取参数值的两种方式（重点）</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#1%E3%80%81%E5%8D%95%E4%B8%AA%E5%AD%97%E9%9D%A2%E9%87%8F%E7%B1%BB%E5%9E%8B%E7%9A%84%E5%8F%82%E6%95%B0"><span class="toc-number">5.0.1.</span> <span class="toc-text">1、单个字面量类型的参数</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2%E3%80%81%E5%A4%9A%E4%B8%AA%E5%AD%97%E9%9D%A2%E9%87%8F%E7%B1%BB%E5%9E%8B%E7%9A%84%E5%8F%82%E6%95%B0"><span class="toc-number">5.0.2.</span> <span class="toc-text">2、多个字面量类型的参数</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3%E3%80%81map%E9%9B%86%E5%90%88%E7%B1%BB%E5%9E%8B%E7%9A%84%E5%8F%82%E6%95%B0"><span class="toc-number">5.0.3.</span> <span class="toc-text">3、map集合类型的参数</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#4%E3%80%81%E5%AE%9E%E4%BD%93%E7%B1%BB%E7%B1%BB%E5%9E%8B%E7%9A%84%E5%8F%82%E6%95%B0"><span class="toc-number">5.0.4.</span> <span class="toc-text">4、实体类类型的参数</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#5%E3%80%81%E4%BD%BF%E7%94%A8-Param%E6%A0%87%E8%AF%86%E5%8F%82%E6%95%B0"><span class="toc-number">5.0.5.</span> <span class="toc-text">5、使用@Param标识参数</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%80%BB%E7%BB%93"><span class="toc-number">5.0.6.</span> <span class="toc-text">总结</span></a></li></ol></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%85%AD%E3%80%81MyBatis%E7%9A%84%E5%90%84%E7%A7%8D%E6%9F%A5%E8%AF%A2%E5%8A%9F%E8%83%BD"><span class="toc-number">6.</span> <span class="toc-text">六、MyBatis的各种查询功能</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#1%E3%80%81%E6%9F%A5%E8%AF%A2%E4%B8%80%E4%B8%AA%E5%AE%9E%E4%BD%93%E7%B1%BB%E5%AF%B9%E8%B1%A1"><span class="toc-number">6.0.1.</span> <span class="toc-text">1、查询一个实体类对象</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2%E3%80%81%E6%9F%A5%E8%AF%A2%E4%B8%80%E4%B8%AAList%E9%9B%86%E5%90%88"><span class="toc-number">6.0.2.</span> <span class="toc-text">2、查询一个List集合</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3%E3%80%81%E6%9F%A5%E8%AF%A2%E5%8D%95%E4%B8%AA%E6%95%B0%E6%8D%AE"><span class="toc-number">6.0.3.</span> <span class="toc-text">3、查询单个数据</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#4%E3%80%81%E6%9F%A5%E8%AF%A2%E4%B8%80%E6%9D%A1%E6%95%B0%E6%8D%AE%E4%B8%BAmap%E9%9B%86%E5%90%88"><span class="toc-number">6.0.4.</span> <span class="toc-text">4、查询一条数据为map集合</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#5%E3%80%81%E6%9F%A5%E8%AF%A2%E5%A4%9A%E6%9D%A1%E6%95%B0%E6%8D%AE%E4%B8%BAmap%E9%9B%86%E5%90%88"><span class="toc-number">6.0.5.</span> <span class="toc-text">5、查询多条数据为map集合</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#%E6%96%B9%E6%B3%95%E4%B8%80"><span class="toc-number">6.0.5.0.1.</span> <span class="toc-text">方法一</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#%E6%96%B9%E6%B3%95%E4%BA%8C"><span class="toc-number">6.0.5.0.2.</span> <span class="toc-text">方法二</span></a></li></ol></li></ol></li></ol></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E4%B8%83%E3%80%81%E7%89%B9%E6%AE%8ASQL%E7%9A%84%E6%89%A7%E8%A1%8C"><span class="toc-number">7.</span> <span class="toc-text">七、特殊SQL的执行</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#1%E3%80%81%E6%A8%A1%E7%B3%8A%E6%9F%A5%E8%AF%A2"><span class="toc-number">7.0.1.</span> <span class="toc-text">1、模糊查询</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2%E3%80%81%E6%89%B9%E9%87%8F%E5%88%A0%E9%99%A4"><span class="toc-number">7.0.2.</span> <span class="toc-text">2、批量删除</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3%E3%80%81%E5%8A%A8%E6%80%81%E8%AE%BE%E7%BD%AE%E8%A1%A8%E5%90%8D"><span class="toc-number">7.0.3.</span> <span class="toc-text">3、动态设置表名</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#4%E3%80%81%E6%B7%BB%E5%8A%A0%E5%8A%9F%E8%83%BD%E8%8E%B7%E5%8F%96%E8%87%AA%E5%A2%9E%E7%9A%84%E4%B8%BB%E9%94%AE"><span class="toc-number">7.0.4.</span> <span class="toc-text">4、添加功能获取自增的主键</span></a></li></ol></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%85%AB%E3%80%81%E8%87%AA%E5%AE%9A%E4%B9%89%E6%98%A0%E5%B0%84resultMap"><span class="toc-number">8.</span> <span class="toc-text">八、自定义映射resultMap</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#1%E3%80%81resultMap%E5%A4%84%E7%90%86%E5%AD%97%E6%AE%B5%E5%92%8C%E5%B1%9E%E6%80%A7%E7%9A%84%E6%98%A0%E5%B0%84%E5%85%B3%E7%B3%BB"><span class="toc-number">8.0.1.</span> <span class="toc-text">1、resultMap处理字段和属性的映射关系</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2%E3%80%81%E5%85%A8%E5%B1%80%E9%85%8D%E7%BD%AE%E6%96%87%E4%BB%B6-lt-settings-gt"><span class="toc-number">8.0.2.</span> <span class="toc-text">2、全局配置文件&lt;settings&gt;</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3%E3%80%81%E5%A4%9A%E5%AF%B9%E4%B8%80%E6%98%A0%E5%B0%84%E5%A4%84%E7%90%86"><span class="toc-number">8.0.3.</span> <span class="toc-text">3、多对一映射处理</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#a-gt-%E7%BA%A7%E8%81%94%E6%96%B9%E5%BC%8F%E5%A4%84%E7%90%86%E6%98%A0%E5%B0%84%E5%85%B3%E7%B3%BB"><span class="toc-number">8.0.3.0.1.</span> <span class="toc-text">a&gt;级联方式处理映射关系</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#b-gt-%E4%BD%BF%E7%94%A8association%E5%A4%84%E7%90%86%E6%98%A0%E5%B0%84%E5%85%B3%E7%B3%BB"><span class="toc-number">8.0.3.0.2.</span> <span class="toc-text">b&gt;使用association处理映射关系</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#c-gt-%E5%88%86%E6%AD%A5%E6%9F%A5%E8%AF%A2"><span class="toc-number">8.0.3.0.3.</span> <span class="toc-text">c&gt;分步查询</span></a><ol class="toc-child"><li class="toc-item toc-level-6"><a class="toc-link" href="#%E6%9F%A5%E8%AF%A2%E5%91%98%E5%B7%A5%E4%BF%A1%E6%81%AF"><span class="toc-number">8.0.3.0.3.1.</span> <span class="toc-text">查询员工信息</span></a></li><li class="toc-item toc-level-6"><a class="toc-link" href="#%E6%9F%A5%E8%AF%A2%E9%83%A8%E9%97%A8%E4%BF%A1%E6%81%AF"><span class="toc-number">8.0.3.0.3.2.</span> <span class="toc-text">查询部门信息</span></a></li></ol></li></ol></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#4%E3%80%81%E4%B8%80%E5%AF%B9%E5%A4%9A%E6%98%A0%E5%B0%84%E5%A4%84%E7%90%86"><span class="toc-number">8.0.4.</span> <span class="toc-text">4、一对多映射处理</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#a-gt-collection"><span class="toc-number">8.0.4.0.1.</span> <span class="toc-text">a&gt;collection</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#b-gt-%E5%88%86%E6%AD%A5%E6%9F%A5%E8%AF%A2"><span class="toc-number">8.0.4.0.2.</span> <span class="toc-text">b&gt;分步查询</span></a><ol class="toc-child"><li class="toc-item toc-level-6"><a class="toc-link" href="#1-%E6%9F%A5%E8%AF%A2%E9%83%A8%E9%97%A8%E4%BF%A1%E6%81%AF"><span class="toc-number">8.0.4.0.2.1.</span> <span class="toc-text">1. 查询部门信息</span></a></li><li class="toc-item toc-level-6"><a class="toc-link" href="#2-%E6%A0%B9%E6%8D%AE%E9%83%A8%E9%97%A8id%E6%9F%A5%E8%AF%A2%E9%83%A8%E9%97%A8%E4%B8%AD%E7%9A%84%E6%89%80%E6%9C%89%E5%91%98%E5%B7%A5"><span class="toc-number">8.0.4.0.2.2.</span> <span class="toc-text">2. 根据部门id查询部门中的所有员工</span></a></li></ol></li></ol></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%BB%B6%E8%BF%9F%E5%8A%A0%E8%BD%BD"><span class="toc-number">8.0.5.</span> <span class="toc-text">延迟加载</span></a></li></ol></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E4%B9%9D%E3%80%81%E5%8A%A8%E6%80%81SQL"><span class="toc-number">9.</span> <span class="toc-text">九、动态SQL</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#1%E3%80%81if"><span class="toc-number">9.0.1.</span> <span class="toc-text">1、if</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2%E3%80%81where"><span class="toc-number">9.0.2.</span> <span class="toc-text">2、where</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3%E3%80%81trim"><span class="toc-number">9.0.3.</span> <span class="toc-text">3、trim</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#4%E3%80%81choose%E3%80%81when%E3%80%81otherwise"><span class="toc-number">9.0.4.</span> <span class="toc-text">4、choose、when、otherwise</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#5%E3%80%81foreach"><span class="toc-number">9.0.5.</span> <span class="toc-text">5、foreach</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#6%E3%80%81SQL%E7%89%87%E6%AE%B5"><span class="toc-number">9.0.6.</span> <span class="toc-text">6、SQL片段</span></a></li></ol></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%8D%81%E3%80%81MyBatis%E7%9A%84%E7%BC%93%E5%AD%98"><span class="toc-number">10.</span> <span class="toc-text">十、MyBatis的缓存</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#1%E3%80%81MyBatis%E7%9A%84%E4%B8%80%E7%BA%A7%E7%BC%93%E5%AD%98"><span class="toc-number">10.0.1.</span> <span class="toc-text">1、MyBatis的一级缓存</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2%E3%80%81MyBatis%E7%9A%84%E4%BA%8C%E7%BA%A7%E7%BC%93%E5%AD%98"><span class="toc-number">10.0.2.</span> <span class="toc-text">2、MyBatis的二级缓存</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3%E3%80%81%E4%BA%8C%E7%BA%A7%E7%BC%93%E5%AD%98%E7%9A%84%E7%9B%B8%E5%85%B3%E9%85%8D%E7%BD%AE"><span class="toc-number">10.0.3.</span> <span class="toc-text">3、二级缓存的相关配置</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#4%E3%80%81MyBatis%E7%BC%93%E5%AD%98%E6%9F%A5%E8%AF%A2%E7%9A%84%E9%A1%BA%E5%BA%8F"><span class="toc-number">10.0.4.</span> <span class="toc-text">4、MyBatis缓存查询的顺序</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#5%E3%80%81%E6%95%B4%E5%90%88%E7%AC%AC%E4%B8%89%E6%96%B9%E7%BC%93%E5%AD%98EHCache%EF%BC%88%E4%BA%86%E8%A7%A3%EF%BC%89"><span class="toc-number">10.0.5.</span> <span class="toc-text">5、整合第三方缓存EHCache（了解）</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#a-gt-%E6%B7%BB%E5%8A%A0%E4%BE%9D%E8%B5%96"><span class="toc-number">10.0.5.0.1.</span> <span class="toc-text">a&gt;添加依赖</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#b-gt-%E5%90%84%E4%B8%AAjar%E5%8C%85%E7%9A%84%E5%8A%9F%E8%83%BD"><span class="toc-number">10.0.5.0.2.</span> <span class="toc-text">b&gt;各个jar包的功能</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#c-gt-%E5%88%9B%E5%BB%BAEHCache%E7%9A%84%E9%85%8D%E7%BD%AE%E6%96%87%E4%BB%B6ehcache-xml"><span class="toc-number">10.0.5.0.3.</span> <span class="toc-text">c&gt;创建EHCache的配置文件ehcache.xml</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#d-gt-%E8%AE%BE%E7%BD%AE%E4%BA%8C%E7%BA%A7%E7%BC%93%E5%AD%98%E7%9A%84%E7%B1%BB%E5%9E%8B"><span class="toc-number">10.0.5.0.4.</span> <span class="toc-text">d&gt;设置二级缓存的类型</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#e-gt-%E5%8A%A0%E5%85%A5logback%E6%97%A5%E5%BF%97"><span class="toc-number">10.0.5.0.5.</span> <span class="toc-text">e&gt;加入logback日志</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#f-gt-EHCache%E9%85%8D%E7%BD%AE%E6%96%87%E4%BB%B6%E8%AF%B4%E6%98%8E"><span class="toc-number">10.0.5.0.6.</span> <span class="toc-text">f&gt;EHCache配置文件说明</span></a></li></ol></li></ol></li></ol></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%8D%81%E4%B8%80%E3%80%81MyBatis%E7%9A%84%E9%80%86%E5%90%91%E5%B7%A5%E7%A8%8B"><span class="toc-number">11.</span> <span class="toc-text">十一、MyBatis的逆向工程</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#1%E3%80%81%E5%88%9B%E5%BB%BA%E9%80%86%E5%90%91%E5%B7%A5%E7%A8%8B%E7%9A%84%E6%AD%A5%E9%AA%A4"><span class="toc-number">11.0.1.</span> <span class="toc-text">1、创建逆向工程的步骤</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#a-gt-%E6%B7%BB%E5%8A%A0%E4%BE%9D%E8%B5%96%E5%92%8C%E6%8F%92%E4%BB%B6"><span class="toc-number">11.0.1.0.1.</span> <span class="toc-text">a&gt;添加依赖和插件</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#b-gt-%E5%88%9B%E5%BB%BAMyBatis%E7%9A%84%E6%A0%B8%E5%BF%83%E9%85%8D%E7%BD%AE%E6%96%87%E4%BB%B6"><span class="toc-number">11.0.1.0.2.</span> <span class="toc-text">b&gt;创建MyBatis的核心配置文件</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#c-gt-%E5%88%9B%E5%BB%BA%E9%80%86%E5%90%91%E5%B7%A5%E7%A8%8B%E7%9A%84%E9%85%8D%E7%BD%AE%E6%96%87%E4%BB%B6"><span class="toc-number">11.0.1.0.3.</span> <span class="toc-text">c&gt;创建逆向工程的配置文件</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#d-gt-%E6%89%A7%E8%A1%8CMBG%E6%8F%92%E4%BB%B6%E7%9A%84generate%E7%9B%AE%E6%A0%87"><span class="toc-number">11.0.1.0.4.</span> <span class="toc-text">d&gt;执行MBG插件的generate目标</span></a></li></ol></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2%E3%80%81QBC"><span class="toc-number">11.0.2.</span> <span class="toc-text">2、QBC</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#%E6%9F%A5%E8%AF%A2"><span class="toc-number">11.0.2.0.1.</span> <span class="toc-text">查询</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#%E5%A2%9E%E6%94%B9"><span class="toc-number">11.0.2.0.2.</span> <span class="toc-text">增改</span></a></li></ol></li></ol></li></ol></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%8D%81%E4%BA%8C%E3%80%81%E5%88%86%E9%A1%B5%E6%8F%92%E4%BB%B6"><span class="toc-number">12.</span> <span class="toc-text">十二、分页插件</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%88%86%E9%A1%B5%E6%8F%92%E4%BB%B6%E4%BD%BF%E7%94%A8%E6%AD%A5%E9%AA%A4"><span class="toc-number">12.0.1.</span> <span class="toc-text">分页插件使用步骤</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#%E6%B7%BB%E5%8A%A0%E4%BE%9D%E8%B5%96"><span class="toc-number">12.0.1.0.1.</span> <span class="toc-text">添加依赖</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#%E9%85%8D%E7%BD%AE%E5%88%86%E9%A1%B5%E6%8F%92%E4%BB%B6"><span class="toc-number">12.0.1.0.2.</span> <span class="toc-text">配置分页插件</span></a></li></ol></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%88%86%E9%A1%B5%E6%8F%92%E4%BB%B6%E7%9A%84%E4%BD%BF%E7%94%A8"><span class="toc-number">12.0.2.</span> <span class="toc-text">分页插件的使用</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#%E5%BC%80%E5%90%AF%E5%88%86%E9%A1%B5%E5%8A%9F%E8%83%BD"><span class="toc-number">12.0.2.0.1.</span> <span class="toc-text">开启分页功能</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#%E5%88%86%E9%A1%B5%E7%9B%B8%E5%85%B3%E6%95%B0%E6%8D%AE"><span class="toc-number">12.0.2.0.2.</span> <span class="toc-text">分页相关数据</span></a><ol class="toc-child"><li class="toc-item toc-level-6"><a class="toc-link" href="#%E6%96%B9%E6%B3%95%E4%B8%80%EF%BC%9A%E7%9B%B4%E6%8E%A5%E8%BE%93%E5%87%BA"><span class="toc-number">12.0.2.0.2.1.</span> <span class="toc-text">方法一：直接输出</span></a></li><li class="toc-item toc-level-6"><a class="toc-link" href="#%E6%96%B9%E6%B3%95%E4%BA%8C%E4%BD%BF%E7%94%A8PageInfo"><span class="toc-number">12.0.2.0.2.2.</span> <span class="toc-text">方法二使用PageInfo</span></a></li></ol></li><li class="toc-item toc-level-5"><a class="toc-link" href="#%E5%B8%B8%E7%94%A8%E6%95%B0%E6%8D%AE%EF%BC%9A"><span class="toc-number">12.0.2.0.3.</span> <span class="toc-text">常用数据：</span></a></li></ol></li></ol></li></ol></li></ol></li></ol></div></div></div></aside><main class="sidebar-translate" id="content"><div id="post"><article class="hty-card post-block" itemscope itemtype="https://schema.org/Article"><link itemprop="mainEntityOfPage" href="https://ZR-java.github.io/2022/03/31/77-Mybatis/"><span hidden itemprop="author" itemscope itemtype="https://schema.org/Person"><meta itemprop="name" content="ZR"><meta itemprop="description"></span><span hidden itemprop="publisher" itemscope itemtype="https://schema.org/Organization"><meta itemprop="name" content="ZR的小站"></span><header class="post-header"><h1 class="post-title" itemprop="name headline">77-Mybatis</h1><div class="post-meta"><div class="post-time" style="display:block"><span class="post-meta-item-icon"><svg class="icon" aria-hidden="true"><use xlink:href="#icon-calendar-line"></use></svg></span> <time title="创建时间：2022-03-31 12:42:50" itemprop="dateCreated datePublished" datetime="2022-03-31T12:42:50+08:00">2022-03-31</time><span class="post-meta-divider">-</span><span class="post-meta-item-icon"><svg class="icon" aria-hidden="true"><use xlink:href="#icon-calendar-2-line"></use></svg></span> <time title="修改时间：2022-04-04 21:31:36" itemprop="dateModified" datetime="2022-04-04T21:31:36+08:00">2022-04-04</time></div><span class="post-count"><span class="post-symbolcount"><span class="post-meta-item-icon" title="本文字数"><svg class="icon" aria-hidden="true"><use xlink:href="#icon-file-word-line"></use></svg></span> <span title="本文字数">11.9k</span><span class="post-meta-divider">-</span><span class="post-meta-item-icon" title="阅读时长"><svg class="icon" aria-hidden="true"><use xlink:href="#icon-timer-line"></use></svg></span> <span title="阅读时长">54m</span></span></span><div class="post-classify"><span class="post-category"> <span class="post-meta-item-icon" style="margin-right:3px;"><svg class="icon" aria-hidden="true"><use xlink:href="#icon-folder-line"></use></svg></span><span itemprop="about" itemscope itemtype="https://schema.org/Thing"><a class="category-item" href="/categories/Mybatis/" style="--text-color:var(--hty-text-color)" itemprop="url" rel="index"><span itemprop="text">Mybatis</span></a></span></span><span class="post-tag"><span class="post-meta-divider">-</span><a class="tag-item" href="/tags/mybatis/" style="--text-color:var(--hty-text-color)"><span class="post-meta-item-icon"><svg class="icon" aria-hidden="true"><use xlink:href="#icon-price-tag-3-line"></use></svg></span><span class="tag-name">mybatis</span></a></span></div></div></header><section class="post-body" itemprop="articleBody"><div class="post-content markdown-body" style="--smc-primary:#0078E7;"><h1 id="一、MyBatis简介"><a href="#一、MyBatis简介" class="headerlink" title="一、MyBatis简介"></a>一、MyBatis简介</h1><h3 id="1、MyBatis历史"><a href="#1、MyBatis历史" class="headerlink" title="1、MyBatis历史"></a>1、MyBatis历史</h3><p>MyBatis最初是Apache的一个开源项目iBatis, 2010年6月这个项目由Apache Software Foundation迁 移到了Google Code。随着开发团队转投Google Code旗下， iBatis3.x正式更名为MyBatis。代码于 2013年11月迁移到Github。 </p>
 <p>iBatis一词来源于“internet”和“abatis”的组合，是一个基于Java的持久层框架。 iBatis提供的持久层框架 包括SQL Maps和Data Access Objects（DAO）。</p>
 <h3 id="2、MyBatis特性"><a href="#2、MyBatis特性" class="headerlink" title="2、MyBatis特性"></a>2、MyBatis特性</h3><ol>
 <li>MyBatis 是支持定制化 SQL、存储过程以及高级映射的优秀的持久层框架</li>
@@ -264,7 +265,7 @@
     <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>root</span><span class="token punctuation">></span></span>
 <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span><span class="token namespace">log4j:</span>configuration</span><span class="token punctuation">></span></span></code></pre></li>
 </ol>
-<h1 id="三、核心配置文件详解"><a href="#三、核心配置文件详解" class="headerlink" title="三、核心配置文件详解"></a>三、核心配置文件详解</h1><blockquote>
+<h1 id="三、核心配置文件详解"><a href="#三、核心配置文件详解" class="headerlink" title="三、核心配置文件详解"></a>三、<span id="1">核心配置文件详解</span></h1><blockquote>
 <p>核心配置文件中的标签必须按照固定的顺序(有的标签可以不写，但顺序一定不能乱)：<br>properties、settings、typeAliases、typeHandlers、objectFactory、objectWrapperFactory、reflectorFactory、plugins、environments、databaseIdProvider、mappers</p>
 </blockquote>
 <pre class="language-xml" data-language="xml"><code class="language-xml"><span class="token prolog">&lt;?xml version="1.0" encoding="UTF-8" ?></span>
@@ -347,9 +348,9 @@
 <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>configuration</span><span class="token punctuation">></span></span></code></pre>
 
 <ul>
-<li><img src="/2022/03/31/77-Mybatis/hexo\zr.github.io\source_posts\77-Mybatis\mapper接口和mapper映射文件在同一包下.png" loading="lazy"></li>
+<li><img src="/2022/03/31/77-Mybatis/mapper%E6%8E%A5%E5%8F%A3%E5%92%8Cmapper%E6%98%A0%E5%B0%84%E6%96%87%E4%BB%B6%E5%9C%A8%E5%90%8C%E4%B8%80%E5%8C%85%E4%B8%8B.png" loading="lazy"></li>
 </ul>
-<h3 id="默认的类型别名"><a href="#默认的类型别名" class="headerlink" title="默认的类型别名"></a>默认的类型别名</h3><p><img src="/2022/03/31/77-Mybatis/hexo\zr.github.io\source_posts\77-Mybatis\默认的类型别名1.png" loading="lazy"><br><img src="/2022/03/31/77-Mybatis/hexo\zr.github.io\source_posts\77-Mybatis\默认的类型别名2.png" loading="lazy"></p>
+<h3 id="默认的类型别名"><a href="#默认的类型别名" class="headerlink" title="默认的类型别名"></a>默认的类型别名</h3><p><img src="/2022/03/31/77-Mybatis/%E9%BB%98%E8%AE%A4%E7%9A%84%E7%B1%BB%E5%9E%8B%E5%88%AB%E5%90%8D1.png" loading="lazy"><br><img src="/2022/03/31/77-Mybatis/%E9%BB%98%E8%AE%A4%E7%9A%84%E7%B1%BB%E5%9E%8B%E5%88%AB%E5%90%8D2.png" loading="lazy"></p>
 <h1 id="四、MyBatis的增删改查"><a href="#四、MyBatis的增删改查" class="headerlink" title="四、MyBatis的增删改查"></a>四、MyBatis的增删改查</h1><ol>
 <li><p>添加</p>
 <pre class="language-xml" data-language="xml"><code class="language-xml"><span class="token comment">&lt;!--int insertUser();--></span>
@@ -394,7 +395,7 @@
 <li>${}的本质就是字符串拼接，#{}的本质就是占位符赋值  </li>
 <li>${}使用字符串拼接的方式拼接sql，若为字符串类型或日期类型的字段进行赋值时，需要手动加单引号；但是#{}使用占位符赋值的方式拼接sql，此时为字符串类型或日期类型的字段进行赋值时，可以自动添加单引号</li>
 </ul>
-<h2 id="单个字面量类型的参数"><a href="#单个字面量类型的参数" class="headerlink" title="单个字面量类型的参数"></a>单个字面量类型的参数</h2><ul>
+<h3 id="1、单个字面量类型的参数"><a href="#1、单个字面量类型的参数" class="headerlink" title="1、单个字面量类型的参数"></a>1、单个字面量类型的参数</h3><ul>
 <li>若mapper接口中的方法参数为单个的字面量类型，此时可以使用${}和#{}以任意的名称（最好见名识意）获取参数的值，注意${}需要手动加单引号</li>
 </ul>
 <pre class="language-xml" data-language="xml"><code class="language-xml"><span class="token comment">&lt;!--User getUserByUsername(String username);--></span>
@@ -407,7 +408,7 @@
 	select * from t_user where username = '$&#123;username&#125;'  
 <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>select</span><span class="token punctuation">></span></span></code></pre>
 
-<h2 id="多个字面量类型的参数"><a href="#多个字面量类型的参数" class="headerlink" title="多个字面量类型的参数"></a>多个字面量类型的参数</h2><ul>
+<h3 id="2、多个字面量类型的参数"><a href="#2、多个字面量类型的参数" class="headerlink" title="2、多个字面量类型的参数"></a>2、多个字面量类型的参数</h3><ul>
 <li><p>若mapper接口中的方法参数为多个时，此时MyBatis会自动将这些参数放在一个map集合中</p>
 <ol>
 <li>以arg0,arg1…为键，以参数为值；</li>
@@ -429,7 +430,7 @@
 	select * from t_user where username = '$&#123;param1&#125;' and password = '$&#123;param2&#125;'
 <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>select</span><span class="token punctuation">></span></span></code></pre>
 
-<h2 id="map集合类型的参数"><a href="#map集合类型的参数" class="headerlink" title="map集合类型的参数"></a>map集合类型的参数</h2><ul>
+<h3 id="3、map集合类型的参数"><a href="#3、map集合类型的参数" class="headerlink" title="3、map集合类型的参数"></a>3、map集合类型的参数</h3><ul>
 <li>若mapper接口中的方法需要的参数为多个时，此时可以手动创建map集合，将这些数据放在map中只需要通过${}和#{}访问map集合的键就可以获取相对应的值，注意${}需要手动加单引号</li>
 </ul>
 <pre class="language-xml" data-language="xml"><code class="language-xml"><span class="token comment">&lt;!--User checkLoginByMap(Map&lt;String,Object> map);--></span>
@@ -448,7 +449,7 @@
 	<span class="token class-name">System</span><span class="token punctuation">.</span>out<span class="token punctuation">.</span><span class="token function">println</span><span class="token punctuation">(</span>user<span class="token punctuation">)</span><span class="token punctuation">;</span>
 <span class="token punctuation">&#125;</span></code></pre>
 
-<h2 id="实体类类型的参数"><a href="#实体类类型的参数" class="headerlink" title="实体类类型的参数"></a>实体类类型的参数</h2><ul>
+<h3 id="4、实体类类型的参数"><a href="#4、实体类类型的参数" class="headerlink" title="4、实体类类型的参数"></a>4、实体类类型的参数</h3><ul>
 <li>若mapper接口中的方法参数为实体类对象时此时可以使用${}和#{}，通过访问实体类对象中的属性名获取属性值，注意${}需要手动加单引号</li>
 </ul>
 <pre class="language-xml" data-language="xml"><code class="language-xml"><span class="token comment">&lt;!--int insertUser(User user);--></span>
@@ -464,7 +465,7 @@
 	mapper<span class="token punctuation">.</span><span class="token function">insertUser</span><span class="token punctuation">(</span>user<span class="token punctuation">)</span><span class="token punctuation">;</span>
 <span class="token punctuation">&#125;</span></code></pre>
 
-<h2 id="使用-Param标识参数"><a href="#使用-Param标识参数" class="headerlink" title="使用@Param标识参数"></a>使用@Param标识参数</h2><ul>
+<h3 id="5、使用-Param标识参数"><a href="#5、使用-Param标识参数" class="headerlink" title="5、使用@Param标识参数"></a>5、使用@Param标识参数</h3><ul>
 <li><p>可以通过@Param注解标识mapper接口中的方法参数，此时，会将这些参数放在map集合中 </p>
 <ol>
 <li>以@Param注解的value属性值为键，以参数为值；</li>
@@ -486,7 +487,7 @@
 	<span class="token class-name"><span class="token namespace">mapper<span class="token punctuation">.</span></span>CheckLoginByParam</span><span class="token punctuation">(</span><span class="token string">"admin"</span><span class="token punctuation">,</span><span class="token string">"123456"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
 <span class="token punctuation">&#125;</span></code></pre>
 
-<h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2><ul>
+<h3 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h3><ul>
 <li><p>建议分成两种情况进行处理</p>
 <ol>
 <li>实体类类型的参数</li>
@@ -494,7 +495,7 @@
 </ol>
 </li>
 </ul>
-<h1 id="MyBatis的各种查询功能"><a href="#MyBatis的各种查询功能" class="headerlink" title="MyBatis的各种查询功能"></a>MyBatis的各种查询功能</h1><ol>
+<h1 id="六、MyBatis的各种查询功能"><a href="#六、MyBatis的各种查询功能" class="headerlink" title="六、MyBatis的各种查询功能"></a>六、MyBatis的各种查询功能</h1><ol>
 <li>如果查询出的数据只有一条，可以通过<ol>
 <li>实体类对象接收</li>
 <li>List集合接收</li>
@@ -508,7 +509,7 @@
 </ol>
 </li>
 </ol>
-<h2 id="查询一个实体类对象"><a href="#查询一个实体类对象" class="headerlink" title="查询一个实体类对象"></a>查询一个实体类对象</h2><pre class="language-java" data-language="java"><code class="language-java"><span class="token comment">/**
+<h3 id="1、查询一个实体类对象"><a href="#1、查询一个实体类对象" class="headerlink" title="1、查询一个实体类对象"></a>1、查询一个实体类对象</h3><pre class="language-java" data-language="java"><code class="language-java"><span class="token comment">/**
  * 根据用户id查询用户信息
  * @param id
  * @return
@@ -520,7 +521,7 @@
 	select * from t_user where id = #&#123;id&#125;
 <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>select</span><span class="token punctuation">></span></span></code></pre>
 
-<h2 id="查询一个List集合"><a href="#查询一个List集合" class="headerlink" title="查询一个List集合"></a>查询一个List集合</h2><pre class="language-java" data-language="java"><code class="language-java"><span class="token comment">/**
+<h3 id="2、查询一个List集合"><a href="#2、查询一个List集合" class="headerlink" title="2、查询一个List集合"></a>2、查询一个List集合</h3><pre class="language-java" data-language="java"><code class="language-java"><span class="token comment">/**
  * 查询所有用户信息
  * @return
  */</span>
@@ -531,7 +532,7 @@
 	select * from t_user
 <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>select</span><span class="token punctuation">></span></span></code></pre>
 
-<h2 id="查询单个数据"><a href="#查询单个数据" class="headerlink" title="查询单个数据"></a>查询单个数据</h2><pre class="language-java" data-language="java"><code class="language-java"><span class="token comment">/**  
+<h3 id="3、查询单个数据"><a href="#3、查询单个数据" class="headerlink" title="3、查询单个数据"></a>3、查询单个数据</h3><pre class="language-java" data-language="java"><code class="language-java"><span class="token comment">/**  
  * 查询用户的总记录数  
  * @return  
  * 在MyBatis中，对于Java中常用的类型都设置了类型别名  
@@ -546,7 +547,7 @@
 	select count(id) from t_user
 <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>select</span><span class="token punctuation">></span></span></code></pre>
 
-<h2 id="查询一条数据为map集合"><a href="#查询一条数据为map集合" class="headerlink" title="查询一条数据为map集合"></a>查询一条数据为map集合</h2><pre class="language-java" data-language="java"><code class="language-java"><span class="token comment">/**  
+<h3 id="4、查询一条数据为map集合"><a href="#4、查询一条数据为map集合" class="headerlink" title="4、查询一条数据为map集合"></a>4、查询一条数据为map集合</h3><pre class="language-java" data-language="java"><code class="language-java"><span class="token comment">/**  
  * 根据用户id查询用户信息为map集合  
  * @param id  
  * @return  
@@ -559,7 +560,7 @@
 <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>select</span><span class="token punctuation">></span></span>
 <span class="token comment">&lt;!--结果：&#123;password=123456, sex=男, id=1, age=23, username=admin&#125;--></span></code></pre>
 
-<h2 id="查询多条数据为map集合"><a href="#查询多条数据为map集合" class="headerlink" title="查询多条数据为map集合"></a>查询多条数据为map集合</h2><h3 id="方法一"><a href="#方法一" class="headerlink" title="方法一"></a>方法一</h3><pre class="language-java" data-language="java"><code class="language-java"><span class="token comment">/**  
+<h3 id="5、查询多条数据为map集合"><a href="#5、查询多条数据为map集合" class="headerlink" title="5、查询多条数据为map集合"></a>5、查询多条数据为map集合</h3><h5 id="方法一"><a href="#方法一" class="headerlink" title="方法一"></a>方法一</h5><pre class="language-java" data-language="java"><code class="language-java"><span class="token comment">/**  
  * 查询所有用户信息为map集合  
  * @return  
  * 将表中的数据以map集合的方式查询，一条数据对应一个map；若有多条数据，就会产生多个map集合，此时可以将这些map放在一个list集合中获取  
@@ -577,7 +578,7 @@
 	&#123;password=123456, sex=男, id=3, age=23, username=张三&#125;]
 --></span></code></pre>
 
-<h3 id="方法二"><a href="#方法二" class="headerlink" title="方法二"></a>方法二</h3><pre class="language-java" data-language="java"><code class="language-java"><span class="token comment">/**
+<h5 id="方法二"><a href="#方法二" class="headerlink" title="方法二"></a>方法二</h5><pre class="language-java" data-language="java"><code class="language-java"><span class="token comment">/**
  * 查询所有用户信息为map集合
  * @return
  * 将表中的数据以map集合的方式查询，一条数据对应一个map；若有多条数据，就会产生多个map集合，并且最终要以一个map的方式返回数据，此时需要通过@MapKey注解设置map集合的键，值是每条数据所对应的map集合
@@ -598,7 +599,7 @@
 	&#125;
 --></span></code></pre>
 
-<h1 id="特殊SQL的执行"><a href="#特殊SQL的执行" class="headerlink" title="特殊SQL的执行"></a>特殊SQL的执行</h1><h2 id="模糊查询"><a href="#模糊查询" class="headerlink" title="模糊查询"></a>模糊查询</h2><pre class="language-java" data-language="java"><code class="language-java"><span class="token comment">/**
+<h1 id="七、特殊SQL的执行"><a href="#七、特殊SQL的执行" class="headerlink" title="七、特殊SQL的执行"></a>七、特殊SQL的执行</h1><h3 id="1、模糊查询"><a href="#1、模糊查询" class="headerlink" title="1、模糊查询"></a>1、模糊查询</h3><pre class="language-java" data-language="java"><code class="language-java"><span class="token comment">/**
  * 根据用户名进行模糊查询
  * @param username 
  * @return java.util.List&lt;com.atguigu.mybatis.pojo.User>
@@ -616,7 +617,7 @@
 <ul>
 <li>其中<code>select * from t_user where username like &quot;%&quot;#&#123;mohu&#125;&quot;%&quot;</code>是最常用的</li>
 </ul>
-<h2 id="批量删除"><a href="#批量删除" class="headerlink" title="批量删除"></a>批量删除</h2><ul>
+<h3 id="2、批量删除"><a href="#2、批量删除" class="headerlink" title="2、批量删除"></a>2、批量删除</h3><ul>
 <li>只能使用${}，如果使用#{}，则解析后的sql语句为<code>delete from t_user where id in (&#39;1,2,3&#39;)</code>，这样是将<code>1,2,3</code>看做是一个整体，只有id为<code>1,2,3</code>的数据会被删除。正确的语句应该是<code>delete from t_user where id in (1,2,3)</code>，或者<code>delete from t_user where id in (&#39;1&#39;,&#39;2&#39;,&#39;3&#39;)</code></li>
 </ul>
 <pre class="language-java" data-language="java"><code class="language-java"><span class="token comment">/**
@@ -640,7 +641,7 @@
 	<span class="token class-name">System</span><span class="token punctuation">.</span>out<span class="token punctuation">.</span><span class="token function">println</span><span class="token punctuation">(</span>result<span class="token punctuation">)</span><span class="token punctuation">;</span>
 <span class="token punctuation">&#125;</span></code></pre>
 
-<h2 id="动态设置表名"><a href="#动态设置表名" class="headerlink" title="动态设置表名"></a>动态设置表名</h2><ul>
+<h3 id="3、动态设置表名"><a href="#3、动态设置表名" class="headerlink" title="3、动态设置表名"></a>3、动态设置表名</h3><ul>
 <li>只能使用${}，因为表名不能加单引号</li>
 </ul>
 <pre class="language-java" data-language="java"><code class="language-java"><span class="token comment">/**
@@ -656,24 +657,22 @@
 	select * from $&#123;tableName&#125;
 <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>select</span><span class="token punctuation">></span></span></code></pre>
 
-<h2 id="添加功能获取自增的主键"><a href="#添加功能获取自增的主键" class="headerlink" title="添加功能获取自增的主键"></a>添加功能获取自增的主键</h2><ul>
+<h3 id="4、添加功能获取自增的主键"><a href="#4、添加功能获取自增的主键" class="headerlink" title="4、添加功能获取自增的主键"></a>4、添加功能获取自增的主键</h3><ul>
 <li><p>使用场景</p>
-</li>
-<li><p>t_clazz(clazz_id,clazz_name)  </p>
 <ul>
+<li>t_clazz(clazz_id,clazz_name)  </li>
 <li>t_student(student_id,student_name,clazz_id)  </li>
 </ul>
 <ol>
 <li>添加班级信息  </li>
 <li>获取新添加的班级的id  </li>
-<li>为班级分配学生，即将某学的班级id修改为新添加的班级的id</li>
+<li>为班级分配学生，即将某学生的班级id修改为新添加的班级的id</li>
 </ol>
 </li>
 <li><p>在mapper.xml中设置两个属性</p>
-</li>
-<li><p>useGeneratedKeys：设置使用自增的主键  </p>
 <ul>
-<li>keyProperty：因为增删改有统一的返回值是受影响的行数，因此只能将获取的自增的主键放在传输的参数user对象的某个属性中</li>
+<li>useGeneratedKeys：设置使用自增的主键  </li>
+<li>keyProperty：因为增删改有统一的返回值是受影响的行数，因此只能将获取的自增的主键放在传输的参数user对象的某个属性中 (比如id属性中)</li>
 </ul>
 </li>
 </ul>
@@ -700,16 +699,16 @@
 	<span class="token comment">//输出：user&#123;id=10, username='ton', password='123', age=23, sex='男', email='123@321.com'&#125;，自增主键存放到了user的id属性中</span>
 <span class="token punctuation">&#125;</span></code></pre>
 
-<h1 id="自定义映射resultMap"><a href="#自定义映射resultMap" class="headerlink" title="自定义映射resultMap"></a>自定义映射resultMap</h1><h2 id="resultMap处理字段和属性的映射关系"><a href="#resultMap处理字段和属性的映射关系" class="headerlink" title="resultMap处理字段和属性的映射关系"></a>resultMap处理字段和属性的映射关系</h2><ul>
+<h1 id="八、自定义映射resultMap"><a href="#八、自定义映射resultMap" class="headerlink" title="八、自定义映射resultMap"></a>八、自定义映射resultMap</h1><h3 id="1、resultMap处理字段和属性的映射关系"><a href="#1、resultMap处理字段和属性的映射关系" class="headerlink" title="1、resultMap处理字段和属性的映射关系"></a>1、resultMap处理字段和属性的映射关系</h3><ul>
 <li>resultMap：设置自定义映射  </li>
 <li>属性：  <ul>
 <li>id：表示自定义映射的唯一标识，不能重复</li>
 <li>type：查询的数据要映射的实体类的类型  </li>
-<li>子标签：  </li>
-<li>id：设置主键的映射关系  <ul>
-<li>result：设置普通字段的映射关系  </li>
+<li>子标签：  <ul>
+<li>id：设置主键的映射关系  </li>
+<li>result：设置普通字段的映射关系  <ul>
 <li>子标签属性：  </li>
-<li>property：设置映射关系中实体类中的属性名  <ul>
+<li>property：设置映射关系中实体类中的属性名  </li>
 <li>column：设置映射关系中表中的字段名</li>
 </ul>
 </li>
@@ -731,20 +730,20 @@
 	select * from t_emp
 <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>select</span><span class="token punctuation">></span></span></code></pre>
 
-<ul>
+<h3 id="2、全局配置文件-lt-settings-gt"><a href="#2、全局配置文件-lt-settings-gt" class="headerlink" title="2、全局配置文件&lt;settings&gt;"></a>2、全局配置文件<code>&lt;settings&gt;</code></h3><ul>
 <li><p>若字段名和实体类中的属性名不一致，但是字段名符合数据库的规则（使用_），实体类中的属性名符合Java的规则（使用驼峰）。此时也可通过以下两种方式处理字段名和实体类中的属性的映射关系  </p>
 <ol>
 <li>可以通过为字段起别名的方式，保证和实体类中的属性名保持一致   <pre class="language-xml" data-language="xml"><code class="language-xml"><span class="token comment">&lt;!--List&lt;Emp> getAllEmp();--></span>
 <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>select</span> <span class="token attr-name">id</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>getAllEmp<span class="token punctuation">"</span></span> <span class="token attr-name">resultType</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>Emp<span class="token punctuation">"</span></span><span class="token punctuation">></span></span>
 	select eid,emp_name empName,age,sex,email from t_emp
 <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>select</span><span class="token punctuation">></span></span></code></pre></li>
-<li>可以在MyBatis的核心配置文件中的<code>setting</code>标签中，设置一个全局配置信息mapUnderscoreToCamelCase，可以在查询表中数据时，自动将_类型的字段名转换为驼峰，例如：字段名user_name，设置了mapUnderscoreToCamelCase，此时字段名就会转换为userName。<a href="#%E6%A0%B8%E5%BF%83%E9%85%8D%E7%BD%AE%E6%96%87%E4%BB%B6%E8%AF%A6%E8%A7%A3">核心配置文件详解</a> <pre class="language-xml" data-language="xml"><code class="language-xml"><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>settings</span><span class="token punctuation">></span></span>
-   <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>setting</span> <span class="token attr-name">name</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>mapUnderscoreToCamelCase<span class="token punctuation">"</span></span> <span class="token attr-name">value</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>true<span class="token punctuation">"</span></span><span class="token punctuation">/></span></span>
+<li>可以在MyBatis的核心配置文件中的<code>setting</code>标签中，设置一个全局配置信息mapUnderscoreToCamelCase，可以在查询表中数据时，自动将_类型的字段名转换为驼峰，例如：字段名user_name，设置了mapUnderscoreToCamelCase，此时字段名就会转换为userName。<a href="#1">核心配置文件详解</a> <pre class="language-xml" data-language="xml"><code class="language-xml"><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>settings</span><span class="token punctuation">></span></span>
+  	<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>setting</span> <span class="token attr-name">name</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>mapUnderscoreToCamelCase<span class="token punctuation">"</span></span> <span class="token attr-name">value</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>true<span class="token punctuation">"</span></span><span class="token punctuation">/></span></span>
 <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>settings</span><span class="token punctuation">></span></span></code></pre></li>
 </ol>
 </li>
 </ul>
-<h2 id="多对一映射处理"><a href="#多对一映射处理" class="headerlink" title="多对一映射处理"></a>多对一映射处理</h2><blockquote>
+<h3 id="3、多对一映射处理"><a href="#3、多对一映射处理" class="headerlink" title="3、多对一映射处理"></a>3、多对一映射处理</h3><blockquote>
 <p>查询员工信息以及员工所对应的部门信息</p>
 </blockquote>
 <pre class="language-java" data-language="java"><code class="language-java"><span class="token keyword">public</span> <span class="token keyword">class</span> <span class="token class-name">Emp</span> <span class="token punctuation">&#123;</span>  
@@ -757,7 +756,7 @@
 	<span class="token comment">//...构造器、get、set方法等</span>
 <span class="token punctuation">&#125;</span></code></pre>
 
-<h3 id="级联方式处理映射关系"><a href="#级联方式处理映射关系" class="headerlink" title="级联方式处理映射关系"></a>级联方式处理映射关系</h3><pre class="language-xml" data-language="xml"><code class="language-xml"><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>resultMap</span> <span class="token attr-name">id</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>empAndDeptResultMapOne<span class="token punctuation">"</span></span> <span class="token attr-name">type</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>Emp<span class="token punctuation">"</span></span><span class="token punctuation">></span></span>
+<h5 id="a-gt-级联方式处理映射关系"><a href="#a-gt-级联方式处理映射关系" class="headerlink" title="a&gt;级联方式处理映射关系"></a>a&gt;级联方式处理映射关系</h5><pre class="language-xml" data-language="xml"><code class="language-xml"><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>resultMap</span> <span class="token attr-name">id</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>empAndDeptResultMapOne<span class="token punctuation">"</span></span> <span class="token attr-name">type</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>Emp<span class="token punctuation">"</span></span><span class="token punctuation">></span></span>
 	<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>id</span> <span class="token attr-name">property</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>eid<span class="token punctuation">"</span></span> <span class="token attr-name">column</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>eid<span class="token punctuation">"</span></span><span class="token punctuation">></span></span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>id</span><span class="token punctuation">></span></span>
 	<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>result</span> <span class="token attr-name">property</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>empName<span class="token punctuation">"</span></span> <span class="token attr-name">column</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>emp_name<span class="token punctuation">"</span></span><span class="token punctuation">></span></span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>result</span><span class="token punctuation">></span></span>
 	<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>result</span> <span class="token attr-name">property</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>age<span class="token punctuation">"</span></span> <span class="token attr-name">column</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>age<span class="token punctuation">"</span></span><span class="token punctuation">></span></span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>result</span><span class="token punctuation">></span></span>
@@ -771,7 +770,7 @@
 	select * from t_emp left join t_dept on t_emp.eid = t_dept.did where t_emp.eid = #&#123;eid&#125;
 <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>select</span><span class="token punctuation">></span></span></code></pre>
 
-<h3 id="使用association处理映射关系"><a href="#使用association处理映射关系" class="headerlink" title="使用association处理映射关系"></a>使用association处理映射关系</h3><ul>
+<h5 id="b-gt-使用association处理映射关系"><a href="#b-gt-使用association处理映射关系" class="headerlink" title="b&gt;使用association处理映射关系"></a>b&gt;使用association处理映射关系</h5><ul>
 <li>association：处理多对一的映射关系</li>
 <li>property：需要处理多对的映射关系的属性名</li>
 <li>javaType：该属性的类型</li>
@@ -792,7 +791,10 @@
 	select * from t_emp left join t_dept on t_emp.eid = t_dept.did where t_emp.eid = #&#123;eid&#125;
 <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>select</span><span class="token punctuation">></span></span></code></pre>
 
-<h3 id="分步查询"><a href="#分步查询" class="headerlink" title="分步查询"></a>分步查询</h3><h4 id="1-查询员工信息"><a href="#1-查询员工信息" class="headerlink" title="1. 查询员工信息"></a>1. 查询员工信息</h4><ul>
+<h5 id="c-gt-分步查询"><a href="#c-gt-分步查询" class="headerlink" title="c&gt;分步查询"></a>c&gt;分步查询</h5><ol>
+<li><h6 id="查询员工信息"><a href="#查询员工信息" class="headerlink" title="查询员工信息"></a>查询员工信息</h6></li>
+</ol>
+<ul>
 <li>select：设置分布查询的sql的唯一标识（namespace.SQLId或mapper接口的全类名.方法名）</li>
 <li>column：设置分步查询的条件</li>
 </ul>
@@ -812,6 +814,10 @@
 	<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>result</span> <span class="token attr-name">property</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>age<span class="token punctuation">"</span></span> <span class="token attr-name">column</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>age<span class="token punctuation">"</span></span><span class="token punctuation">></span></span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>result</span><span class="token punctuation">></span></span>
 	<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>result</span> <span class="token attr-name">property</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>sex<span class="token punctuation">"</span></span> <span class="token attr-name">column</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>sex<span class="token punctuation">"</span></span><span class="token punctuation">></span></span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>result</span><span class="token punctuation">></span></span>
 	<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>result</span> <span class="token attr-name">property</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>email<span class="token punctuation">"</span></span> <span class="token attr-name">column</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>email<span class="token punctuation">"</span></span><span class="token punctuation">></span></span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>result</span><span class="token punctuation">></span></span>
+    <span class="token comment">&lt;!--
+        select: 设置分步查询的sql的唯一标识 (namespace.SQLId或mapper接口的全类名.方法名)
+        column: 设置分步查询的条件
+    --></span>
 	<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>association</span> <span class="token attr-name">property</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>dept<span class="token punctuation">"</span></span>
 				 <span class="token attr-name">select</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>com.atguigu.mybatis.mapper.DeptMapper.getEmpAndDeptByStepTwo<span class="token punctuation">"</span></span>
 				 <span class="token attr-name">column</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>did<span class="token punctuation">"</span></span><span class="token punctuation">></span></span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>association</span><span class="token punctuation">></span></span>
@@ -821,7 +827,10 @@
 	select * from t_emp where eid = #&#123;eid&#125;
 <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>select</span><span class="token punctuation">></span></span></code></pre>
 
-<h4 id="2-查询部门信息"><a href="#2-查询部门信息" class="headerlink" title="2. 查询部门信息"></a>2. 查询部门信息</h4><pre class="language-java" data-language="java"><code class="language-java"><span class="token comment">//DeptMapper里的方法</span>
+<ol start="2">
+<li><h6 id="查询部门信息"><a href="#查询部门信息" class="headerlink" title="查询部门信息"></a>查询部门信息</h6></li>
+</ol>
+<pre class="language-java" data-language="java"><code class="language-java"><span class="token comment">//DeptMapper里的方法</span>
 <span class="token comment">/**
  * 通过分步查询，员工及所对应的部门信息
  * 分步查询第二步：通过did查询员工对应的部门信息
@@ -831,7 +840,7 @@
  */</span>
 <span class="token class-name">Dept</span> <span class="token function">getEmpAndDeptByStepTwo</span><span class="token punctuation">(</span><span class="token annotation punctuation">@Param</span><span class="token punctuation">(</span><span class="token string">"did"</span><span class="token punctuation">)</span> <span class="token class-name">Integer</span> did<span class="token punctuation">)</span><span class="token punctuation">;</span></code></pre>
 
-<pre class="language-xml" data-language="xml"><code class="language-xml"><span class="token comment">&lt;!--此处的resultMap仅是处理字段和属性的映射关系--></span>
+<pre class="language-xml" data-language="xml"><code class="language-xml"><span class="token comment">&lt;!--此处的resultMap仅是处理字段和属性的映射关系,完全可以使用全局配置setting,resultType--></span>
 <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>resultMap</span> <span class="token attr-name">id</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>EmpAndDeptByStepTwoResultMap<span class="token punctuation">"</span></span> <span class="token attr-name">type</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>Dept<span class="token punctuation">"</span></span><span class="token punctuation">></span></span>
 	<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>id</span> <span class="token attr-name">property</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>did<span class="token punctuation">"</span></span> <span class="token attr-name">column</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>did<span class="token punctuation">"</span></span><span class="token punctuation">></span></span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>id</span><span class="token punctuation">></span></span>
 	<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>result</span> <span class="token attr-name">property</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>deptName<span class="token punctuation">"</span></span> <span class="token attr-name">column</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>dept_name<span class="token punctuation">"</span></span><span class="token punctuation">></span></span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>result</span><span class="token punctuation">></span></span>
@@ -841,16 +850,16 @@
 	select * from t_dept where did = #&#123;did&#125;
 <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>select</span><span class="token punctuation">></span></span></code></pre>
 
-<h2 id="一对多映射处理"><a href="#一对多映射处理" class="headerlink" title="一对多映射处理"></a>一对多映射处理</h2><pre class="language-java" data-language="java"><code class="language-java"><span class="token keyword">public</span> <span class="token keyword">class</span> <span class="token class-name">Dept</span> <span class="token punctuation">&#123;</span>
+<h3 id="4、一对多映射处理"><a href="#4、一对多映射处理" class="headerlink" title="4、一对多映射处理"></a>4、一对多映射处理</h3><pre class="language-java" data-language="java"><code class="language-java"><span class="token keyword">public</span> <span class="token keyword">class</span> <span class="token class-name">Dept</span> <span class="token punctuation">&#123;</span>
     <span class="token keyword">private</span> <span class="token class-name">Integer</span> did<span class="token punctuation">;</span>
     <span class="token keyword">private</span> <span class="token class-name">String</span> deptName<span class="token punctuation">;</span>
     <span class="token keyword">private</span> <span class="token class-name">List</span><span class="token generics"><span class="token punctuation">&lt;</span><span class="token class-name">Emp</span><span class="token punctuation">></span></span> emps<span class="token punctuation">;</span>
 	<span class="token comment">//...构造器、get、set方法等</span>
 <span class="token punctuation">&#125;</span></code></pre>
 
-<h3 id="collection"><a href="#collection" class="headerlink" title="collection"></a>collection</h3><ul>
+<h5 id="a-gt-collection"><a href="#a-gt-collection" class="headerlink" title="a&gt;collection"></a>a&gt;collection</h5><ul>
 <li>collection：用来处理一对多的映射关系</li>
-<li>ofType：表示该属性对饮的集合中存储的数据的类型</li>
+<li>ofType：表示该属性对应的集合中存储的数据的类型</li>
 </ul>
 <pre class="language-xml" data-language="xml"><code class="language-xml"><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>resultMap</span> <span class="token attr-name">id</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>DeptAndEmpResultMap<span class="token punctuation">"</span></span> <span class="token attr-name">type</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>Dept<span class="token punctuation">"</span></span><span class="token punctuation">></span></span>
 	<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>id</span> <span class="token attr-name">property</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>did<span class="token punctuation">"</span></span> <span class="token attr-name">column</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>did<span class="token punctuation">"</span></span><span class="token punctuation">></span></span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>id</span><span class="token punctuation">></span></span>
@@ -868,7 +877,7 @@
 	select * from t_dept left join t_emp on t_dept.did = t_emp.did where t_dept.did = #&#123;did&#125;
 <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>select</span><span class="token punctuation">></span></span></code></pre>
 
-<h3 id="分步查询-1"><a href="#分步查询-1" class="headerlink" title="分步查询"></a>分步查询</h3><h4 id="1-查询部门信息"><a href="#1-查询部门信息" class="headerlink" title="1. 查询部门信息"></a>1. 查询部门信息</h4><pre class="language-java" data-language="java"><code class="language-java"><span class="token comment">/**
+<h5 id="b-gt-分步查询"><a href="#b-gt-分步查询" class="headerlink" title="b&gt;分步查询"></a>b&gt;分步查询</h5><h6 id="1-查询部门信息"><a href="#1-查询部门信息" class="headerlink" title="1. 查询部门信息"></a>1. 查询部门信息</h6><pre class="language-java" data-language="java"><code class="language-java"><span class="token comment">/**
  * 通过分步查询，查询部门及对应的所有员工信息
  * 分步查询第一步：查询部门信息
  * @param did 
@@ -889,7 +898,7 @@
 	select * from t_dept where did = #&#123;did&#125;
 <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>select</span><span class="token punctuation">></span></span></code></pre>
 
-<h4 id="2-根据部门id查询部门中的所有员工"><a href="#2-根据部门id查询部门中的所有员工" class="headerlink" title="2. 根据部门id查询部门中的所有员工"></a>2. 根据部门id查询部门中的所有员工</h4><pre class="language-java" data-language="java"><code class="language-java"><span class="token comment">/**
+<h6 id="2-根据部门id查询部门中的所有员工"><a href="#2-根据部门id查询部门中的所有员工" class="headerlink" title="2. 根据部门id查询部门中的所有员工"></a>2. 根据部门id查询部门中的所有员工</h6><pre class="language-java" data-language="java"><code class="language-java"><span class="token comment">/**
  * 通过分步查询，查询部门及对应的所有员工信息
  * 分步查询第二步：根据部门id查询部门中的所有员工
  * @param did
@@ -903,13 +912,17 @@
 	select * from t_emp where did = #&#123;did&#125;
 <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>select</span><span class="token punctuation">></span></span></code></pre>
 
-<h2 id="延迟加载"><a href="#延迟加载" class="headerlink" title="延迟加载"></a>延迟加载</h2><ul>
-<li>分步查询的优点：可以实现延迟加载，但是必须在核心配置文件中设置全局配置信息：</li>
-<li>lazyLoadingEnabled：延迟加载的全局开关。当开启时，所有关联对象都会延迟加载  <ul>
-<li>aggressiveLazyLoading：当开启时，任何方法的调用都会加载该对象的所有属性。 否则，每个属性会按需加载  </li>
-</ul>
+<h3 id="延迟加载"><a href="#延迟加载" class="headerlink" title="延迟加载"></a><em>延迟加载</em></h3><ul>
+<li><p>分步查询的优点：可以实现延迟加载，但是必须在核心配置文件中设置全局配置信息：</p>
 </li>
-<li>此时就可以实现按需加载，获取的数据是什么，就只会执行相应的sql。此时可通过association和collection中的fetchType属性设置当前的分步查询是否使用延迟加载，fetchType=”lazy(延迟加载)|eager(立即加载)”</li>
+<li><p>lazyLoadingEnabled：延迟加载的全局开关。当开启时，所有关联对象都会延迟加</p>
+</li>
+<li><p>aggressiveLazyLoading：当开启时，任何方法的调用都会加载该对象的所有属性。 否则，每个属性会按需加载  </p>
+</li>
+<li><p>此时就可以实现按需加载，获取的数据是什么，就只会执行相应的sql。</p>
+<p>此时可通过association和collection中的fetchType属性设置当前的分步查询是否使用延迟加载，当开启了全局的延迟加载后, 可通过此属性手动控制延迟加载的效果。</p>
+<p>fetchType=”lazy(延迟加载，默认的)|eager(立即加载)”</p>
+</li>
 </ul>
 <pre class="language-xml" data-language="xml"><code class="language-xml"><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>settings</span><span class="token punctuation">></span></span>
 	<span class="token comment">&lt;!--开启延迟加载--></span>
@@ -925,8 +938,8 @@
 <span class="token punctuation">&#125;</span></code></pre>
 
 <ul>
-<li>关闭延迟加载，两条SQL语句都运行了<img src="/2022/03/31/77-Mybatis/hexo\zr.github.io\source_posts\77-Mybatis\延迟加载测试1.png" loading="lazy"></li>
-<li>开启延迟加载，只运行获取emp的SQL语句<br><img src="/2022/03/31/77-Mybatis/hexo\zr.github.io\source_posts\77-Mybatis\延迟加载测试2.png" loading="lazy"></li>
+<li>关闭延迟加载，两条SQL语句都运行了<img src="/2022/03/31/77-Mybatis/%E5%BB%B6%E8%BF%9F%E5%8A%A0%E8%BD%BD%E6%B5%8B%E8%AF%951.png" loading="lazy"></li>
+<li>开启延迟加载，只运行获取emp的SQL语句<br><img src="/2022/03/31/77-Mybatis/%E5%BB%B6%E8%BF%9F%E5%8A%A0%E8%BD%BD%E6%B5%8B%E8%AF%952.png" loading="lazy"></li>
 </ul>
 <pre class="language-java" data-language="java"><code class="language-java"><span class="token annotation punctuation">@Test</span>
 <span class="token keyword">public</span> <span class="token keyword">void</span> <span class="token function">getEmpAndDeptByStepOne</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
@@ -939,9 +952,9 @@
 <span class="token punctuation">&#125;</span></code></pre>
 
 <ul>
-<li><p>开启后，需要用到查询dept的时候才会调用相应的SQL语句<img src="/2022/03/31/77-Mybatis/hexo\zr.github.io\source_posts\77-Mybatis\延迟加载测试3.png" loading="lazy"></p>
+<li><p>开启后，需要用到查询dept的时候才会调用相应的SQL语句<img src="/2022/03/31/77-Mybatis/%E5%BB%B6%E8%BF%9F%E5%8A%A0%E8%BD%BD%E6%B5%8B%E8%AF%953.png" loading="lazy"></p>
 </li>
-<li><p>fetchType：当开启了全局的延迟加载之后，可以通过该属性手动控制延迟加载的效果，fetchType=”lazy(延迟加载)|eager(立即加载)”</p>
+<li><p>fetchType：当开启了全局的延迟加载之后，可以通过该属性手动控制延迟加载的效果，fetchType=”lazy(延迟加载，默认的)|eager(立即加载)”</p>
   <pre class="language-xml" data-language="xml"><code class="language-xml"><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>resultMap</span> <span class="token attr-name">id</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>empAndDeptByStepResultMap<span class="token punctuation">"</span></span> <span class="token attr-name">type</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>Emp<span class="token punctuation">"</span></span><span class="token punctuation">></span></span>
 	<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>id</span> <span class="token attr-name">property</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>eid<span class="token punctuation">"</span></span> <span class="token attr-name">column</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>eid<span class="token punctuation">"</span></span><span class="token punctuation">></span></span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>id</span><span class="token punctuation">></span></span>
 	<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>result</span> <span class="token attr-name">property</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>empName<span class="token punctuation">"</span></span> <span class="token attr-name">column</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>emp_name<span class="token punctuation">"</span></span><span class="token punctuation">></span></span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>result</span><span class="token punctuation">></span></span>
@@ -954,15 +967,15 @@
 				 <span class="token attr-name">fetchType</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>lazy<span class="token punctuation">"</span></span><span class="token punctuation">></span></span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>association</span><span class="token punctuation">></span></span>
 <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>resultMap</span><span class="token punctuation">></span></span></code></pre></li>
 </ul>
-<h1 id="动态SQL"><a href="#动态SQL" class="headerlink" title="动态SQL"></a>动态SQL</h1><ul>
+<h1 id="九、动态SQL"><a href="#九、动态SQL" class="headerlink" title="九、动态SQL"></a>九、动态SQL</h1><ul>
 <li>Mybatis框架的动态SQL技术是一种根据特定条件动态拼装SQL语句的功能，它存在的意义是为了解决拼接SQL语句字符串时的痛点问题</li>
 </ul>
-<h2 id="if"><a href="#if" class="headerlink" title="if"></a>if</h2><ul>
+<h3 id="1、if"><a href="#1、if" class="headerlink" title="1、if"></a>1、if</h3><ul>
 <li>if标签可通过test属性（即传递过来的数据）的表达式进行判断，若表达式的结果为true，则标签中的内容会执行；反之标签中的内容不会执行</li>
 <li>在where后面添加一个恒成立条件<code>1=1</code></li>
 <li>这个恒成立条件并不会影响查询的结果<ul>
-<li>这个<code>1=1</code>可以用来拼接<code>and</code>语句，例如：当empName为null时</li>
-<li>如果不加上恒成立条件，则SQL语句为<code>select * from t_emp where and age = ? and sex = ? and email = ?</code>，此时<code>where</code>会与<code>and</code>连用，SQL语句会报错<ul>
+<li>这个<code>1=1</code>可以用来拼接<code>and</code>语句，例如：当empName为null时<ul>
+<li>如果不加上恒成立条件，则SQL语句为<code>select * from t_emp where and age = ? and sex = ? and email = ?</code>，此时<code>where</code>会与<code>and</code>连用，SQL语句会报错</li>
 <li>如果加上一个恒成立条件，则SQL语句为<code>select * from t_emp where 1= 1 and age = ? and sex = ? and email = ?</code>，此时不报错</li>
 </ul>
 </li>
@@ -986,7 +999,7 @@
 	<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>if</span><span class="token punctuation">></span></span>
 <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>select</span><span class="token punctuation">></span></span></code></pre>
 
-<h2 id="where"><a href="#where" class="headerlink" title="where"></a>where</h2><ul>
+<h3 id="2、where"><a href="#2、where" class="headerlink" title="2、where"></a>2、where</h3><ul>
 <li>where和if一般结合使用：</li>
 <li>若where标签中的if条件都不满足，则where标签没有任何功能，即不会添加where关键字  <ul>
 <li>若where标签中的if条件满足，则where标签会自动添加where关键字，并将条件最前方多余的and/or去掉  </li>
@@ -1022,10 +1035,10 @@ emp_name = #&#123;empName&#125; and
 	age = #&#123;age&#125;
 <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>if</span><span class="token punctuation">></span></span></code></pre></li>
 </ul>
-<h2 id="trim"><a href="#trim" class="headerlink" title="trim"></a>trim</h2><ul>
+<h3 id="3、trim"><a href="#3、trim" class="headerlink" title="3、trim"></a>3、trim</h3><ul>
 <li>trim用于去掉或添加标签中的内容  </li>
-<li>常用属性</li>
-<li>prefix：在trim标签中的内容的前面添加某些内容  <ul>
+<li>常用属性<ul>
+<li>prefix：在trim标签中的内容的前面添加某些内容  </li>
 <li>suffix：在trim标签中的内容的后面添加某些内容 </li>
 <li>prefixOverrides：在trim标签中的内容的前面去掉某些内容  </li>
 <li>suffixOverrides：在trim标签中的内容的后面去掉某些内容</li>
@@ -1061,8 +1074,8 @@ emp_name = #&#123;empName&#125; and
 	<span class="token class-name">System</span><span class="token punctuation">.</span>out<span class="token punctuation">.</span><span class="token function">println</span><span class="token punctuation">(</span>emps<span class="token punctuation">)</span><span class="token punctuation">;</span>
 <span class="token punctuation">&#125;</span></code></pre>
 
-<p><img src="/2022/03/31/77-Mybatis/hexo\zr.github.io\source_posts\77-Mybatis\trim测试结果.png" loading="lazy"></p>
-<h2 id="choose、when、otherwise"><a href="#choose、when、otherwise" class="headerlink" title="choose、when、otherwise"></a>choose、when、otherwise</h2><ul>
+<p><img src="/2022/03/31/77-Mybatis/trim%E6%B5%8B%E8%AF%95%E7%BB%93%E6%9E%9C.png" loading="lazy"></p>
+<h3 id="4、choose、when、otherwise"><a href="#4、choose、when、otherwise" class="headerlink" title="4、choose、when、otherwise"></a>4、choose、when、otherwise</h3><ul>
 <li><code>choose、when、otherwise</code>相当于<code>if...else if..else</code></li>
 <li>when至少要有一个，otherwise至多只有一个</li>
 </ul>
@@ -1097,15 +1110,14 @@ emp_name = #&#123;empName&#125; and
 	<span class="token class-name">System</span><span class="token punctuation">.</span>out<span class="token punctuation">.</span><span class="token function">println</span><span class="token punctuation">(</span>emps<span class="token punctuation">)</span><span class="token punctuation">;</span>
 <span class="token punctuation">&#125;</span></code></pre>
 
-<p><img src="/2022/03/31/77-Mybatis/hexo\zr.github.io\source_posts\77-Mybatis\choose测试结果.png" loading="lazy"></p>
+<p><img src="/2022/03/31/77-Mybatis/choose%E6%B5%8B%E8%AF%95%E7%BB%93%E6%9E%9C.png" loading="lazy"></p>
 <ul>
 <li>相当于<code>if a else if b else if c else d</code>，只会执行其中一个</li>
 </ul>
-<h2 id="foreach"><a href="#foreach" class="headerlink" title="foreach"></a>foreach</h2><ul>
+<h3 id="5、foreach"><a href="#5、foreach" class="headerlink" title="5、foreach"></a>5、foreach</h3><ul>
 <li><p>属性：  </p>
-</li>
-<li><p>collection：设置要循环的数组或集合  </p>
 <ul>
+<li>collection：设置要循环的数组或集合  </li>
 <li>item：表示集合或数组中的每一个数据  </li>
 <li>separator：设置循环体之间的分隔符，分隔符前后默认有一个空格，如<code>,</code></li>
 <li>open：设置foreach标签中的内容的开始符  </li>
@@ -1113,21 +1125,35 @@ emp_name = #&#123;empName&#125; and
 </ul>
 </li>
 <li><p>批量删除</p>
-  <pre class="language-xml" data-language="xml"><code class="language-xml"><span class="token comment">&lt;!--int deleteMoreByArray(Integer[] eids);--></span>
+<blockquote>
+<p>第一种方法:</p>
+<pre class="language-xml" data-language="xml"><code class="language-xml"><span class="token comment">&lt;!--int deleteMoreByArray(@Param("eids")Integer[] eids);--></span>
 <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>delete</span> <span class="token attr-name">id</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>deleteMoreByArray<span class="token punctuation">"</span></span><span class="token punctuation">></span></span>
 	delete from t_emp where eid in
 	<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>foreach</span> <span class="token attr-name">collection</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>eids<span class="token punctuation">"</span></span> <span class="token attr-name">item</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>eid<span class="token punctuation">"</span></span> <span class="token attr-name">separator</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>,<span class="token punctuation">"</span></span> <span class="token attr-name">open</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>(<span class="token punctuation">"</span></span> <span class="token attr-name">close</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>)<span class="token punctuation">"</span></span><span class="token punctuation">></span></span>
 		#&#123;eid&#125;
 	<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>foreach</span><span class="token punctuation">></span></span>
 <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>delete</span><span class="token punctuation">></span></span></code></pre>
-  <pre class="language-java" data-language="java"><code class="language-java"><span class="token annotation punctuation">@Test</span>
+
+<pre class="language-java" data-language="java"><code class="language-java"><span class="token annotation punctuation">@Test</span>
 <span class="token keyword">public</span> <span class="token keyword">void</span> <span class="token function">deleteMoreByArray</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
 	<span class="token class-name">SqlSession</span> sqlSession <span class="token operator">=</span> <span class="token class-name">SqlSessionUtils</span><span class="token punctuation">.</span><span class="token function">getSqlSession</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
 	<span class="token class-name">DynamicSQLMapper</span> mapper <span class="token operator">=</span> sqlSession<span class="token punctuation">.</span><span class="token function">getMapper</span><span class="token punctuation">(</span><span class="token class-name">DynamicSQLMapper</span><span class="token punctuation">.</span><span class="token keyword">class</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
 	<span class="token keyword">int</span> result <span class="token operator">=</span> mapper<span class="token punctuation">.</span><span class="token function">deleteMoreByArray</span><span class="token punctuation">(</span><span class="token keyword">new</span> <span class="token class-name">Integer</span><span class="token punctuation">[</span><span class="token punctuation">]</span><span class="token punctuation">&#123;</span><span class="token number">6</span><span class="token punctuation">,</span> <span class="token number">7</span><span class="token punctuation">,</span> <span class="token number">8</span><span class="token punctuation">,</span> <span class="token number">9</span><span class="token punctuation">&#125;</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
 	<span class="token class-name">System</span><span class="token punctuation">.</span>out<span class="token punctuation">.</span><span class="token function">println</span><span class="token punctuation">(</span>result<span class="token punctuation">)</span><span class="token punctuation">;</span>
 <span class="token punctuation">&#125;</span></code></pre>
-<p>  <img src="/2022/03/31/77-Mybatis/foreach%E6%B5%8B%E8%AF%95%E7%BB%93%E6%9E%9C1.png" loading="lazy"></p>
+
+<p><img src="/2022/03/31/77-Mybatis/foreach%E6%B5%8B%E8%AF%95%E7%BB%93%E6%9E%9C01.png" loading="lazy"></p>
+<p>第二种方法:</p>
+<pre class="language-xml" data-language="xml"><code class="language-xml"><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>delete</span> <span class="token attr-name">id</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>deleteMoreByArray<span class="token punctuation">"</span></span><span class="token punctuation">></span></span>
+    delete from t_emp where
+    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>foreach</span> <span class="token attr-name">collection</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>eids<span class="token punctuation">"</span></span> <span class="token attr-name">item</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>eid<span class="token punctuation">"</span></span> <span class="token attr-name">separator</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>or<span class="token punctuation">"</span></span><span class="token punctuation">></span></span>
+        eid = #&#123;eid&#125;
+    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>foreach</span><span class="token punctuation">></span></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>delete</span><span class="token punctuation">></span></span></code></pre>
+
+<p><img src="/2022/03/31/77-Mybatis/image-20220402233917573.png" loading="lazy"></p>
+</blockquote>
 </li>
 <li><p>批量添加</p>
   <pre class="language-xml" data-language="xml"><code class="language-xml"><span class="token comment">&lt;!--int insertMoreByList(@Param("emps") List&lt;Emp> emps);--></span>
@@ -1151,7 +1177,7 @@ emp_name = #&#123;empName&#125; and
 <p>  <img src="/2022/03/31/77-Mybatis/foreach%E6%B5%8B%E8%AF%95%E7%BB%93%E6%9E%9C2.png" loading="lazy"></p>
 </li>
 </ul>
-<h2 id="SQL片段"><a href="#SQL片段" class="headerlink" title="SQL片段"></a>SQL片段</h2><ul>
+<h3 id="6、SQL片段"><a href="#6、SQL片段" class="headerlink" title="6、SQL片段"></a>6、SQL片段</h3><ul>
 <li>sql片段，可以记录一段公共sql片段，在使用的地方通过include标签进行引入</li>
 <li>声明sql片段：<code>&lt;sql&gt;</code>标签</li>
 </ul>
@@ -1165,7 +1191,7 @@ emp_name = #&#123;empName&#125; and
 	select <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>include</span> <span class="token attr-name">refid</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>empColumns<span class="token punctuation">"</span></span><span class="token punctuation">></span></span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>include</span><span class="token punctuation">></span></span> from t_emp
 <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>select</span><span class="token punctuation">></span></span></code></pre>
 
-<h1 id="MyBatis的缓存"><a href="#MyBatis的缓存" class="headerlink" title="MyBatis的缓存"></a>MyBatis的缓存</h1><h2 id="MyBatis的一级缓存"><a href="#MyBatis的一级缓存" class="headerlink" title="MyBatis的一级缓存"></a>MyBatis的一级缓存</h2><ul>
+<h1 id="十、MyBatis的缓存"><a href="#十、MyBatis的缓存" class="headerlink" title="十、MyBatis的缓存"></a>十、MyBatis的缓存</h1><h3 id="1、MyBatis的一级缓存"><a href="#1、MyBatis的一级缓存" class="headerlink" title="1、MyBatis的一级缓存"></a>1、MyBatis的一级缓存</h3><ul>
 <li><p>一级缓存是SqlSession级别的，通过同一个SqlSession查询的数据会被缓存，下次查询相同的数据，就会从缓存中直接获取，不会从数据库重新访问  </p>
 </li>
 <li><p>使一级缓存失效的四种情况：  </p>
@@ -1173,51 +1199,58 @@ emp_name = #&#123;empName&#125; and
 <li>不同的SqlSession对应不同的一级缓存  </li>
 <li>同一个SqlSession但是查询条件不同</li>
 <li>同一个SqlSession两次查询期间执行了任何一次增删改操作</li>
-<li>同一个SqlSession两次查询期间手动清空了缓存</li>
+<li>同一个SqlSession两次查询期间手动清空了缓存(<code>sqlSession.clearCache();</code>)</li>
 </ol>
 </li>
 </ul>
-<h2 id="MyBatis的二级缓存"><a href="#MyBatis的二级缓存" class="headerlink" title="MyBatis的二级缓存"></a>MyBatis的二级缓存</h2><ul>
+<h3 id="2、MyBatis的二级缓存"><a href="#2、MyBatis的二级缓存" class="headerlink" title="2、MyBatis的二级缓存"></a>2、MyBatis的二级缓存</h3><ul>
 <li><p>二级缓存是SqlSessionFactory级别，通过同一个SqlSessionFactory创建的SqlSession查询的结果会被缓存；此后若再次执行相同的查询语句，结果就会从缓存中获取  </p>
 </li>
 <li><p>二级缓存开启的条件</p>
 <ol>
 <li>在核心配置文件中，设置全局配置属性cacheEnabled=”true”，默认为true，不需要设置</li>
-<li>在映射文件中设置标签<cache></cache></li>
+<li>在映射文件中设置标签<code>&lt;cache /&gt;</code></li>
 <li>二级缓存必须在SqlSession关闭或提交之后有效</li>
 <li>查询的数据所转换的实体类类型必须实现序列化的接口</li>
 </ol>
 </li>
-<li><p>使二级缓存失效的情况：两次查询之间执行了任意的增删改，会使一级和二级缓存同时失效</p>
+<li><p>使二级缓存失效的情况：</p>
+<ul>
+<li>两次查询之间执行了任意的增删改，会使一级和二级缓存同时失效</li>
+</ul>
 </li>
 </ul>
-<h2 id="二级缓存的相关配置"><a href="#二级缓存的相关配置" class="headerlink" title="二级缓存的相关配置"></a>二级缓存的相关配置</h2><ul>
-<li>在mapper配置文件中添加的cache标签可以设置一些属性</li>
-<li>eviction属性：缓存回收策略  </li>
-<li>LRU（Least Recently Used） – 最近最少使用的：移除最长时间不被使用的对象。  <ul>
+<h3 id="3、二级缓存的相关配置"><a href="#3、二级缓存的相关配置" class="headerlink" title="3、二级缓存的相关配置"></a>3、二级缓存的相关配置</h3><p>在mapper配置文件中添加的cache标签可以设置一些属性</p>
+<ul>
+<li><p>eviction属性：缓存回收策略  </p>
+<ul>
+<li>LRU（Least Recently Used） – 最近最少使用的：移除最长时间不被使用的对象。  </li>
 <li>FIFO（First in First out） – 先进先出：按对象进入缓存的顺序来移除它们。  </li>
 <li>SOFT – 软引用：移除基于垃圾回收器状态和软引用规则的对象。  </li>
 <li>WEAK – 弱引用：更积极地移除基于垃圾收集器状态和弱引用规则的对象。</li>
 <li>默认的是 LRU</li>
 </ul>
 </li>
-<li>flushInterval属性：刷新间隔，单位毫秒</li>
-<li>默认情况是不设置，也就是没有刷新间隔，缓存仅仅调用语句（增删改）时刷新</li>
-<li>size属性：引用数目，正整数</li>
-<li>代表缓存最多可以存储多少个对象，太大容易导致内存溢出</li>
-<li>readOnly属性：只读，true/false</li>
-<li>true：只读缓存；会给所有调用者返回缓存对象的相同实例。因此这些对象不能被修改。这提供了很重要的性能优势。  <ul>
+<li><p>flushInterval属性：刷新间隔，单位毫秒</p>
+<p>默认情况是不设置，也就是没有刷新间隔，缓存仅仅调用语句（增删改）时刷新</p>
+</li>
+<li><p>size属性：引用数目，正整数</p>
+<p>代表缓存最多可以存储多少个对象，太大容易导致内存溢出</p>
+</li>
+<li><p>readOnly属性：只读，true/false</p>
+<ul>
+<li>true：只读缓存；会给所有调用者返回缓存对象的相同实例。因此这些对象不能被修改。这提供了很重要的性能优势。  </li>
 <li>false：读写缓存；会返回缓存对象的拷贝（通过序列化）。这会慢一些，但是安全，因此默认是false</li>
 </ul>
 </li>
 </ul>
-<h2 id="MyBatis缓存查询的顺序"><a href="#MyBatis缓存查询的顺序" class="headerlink" title="MyBatis缓存查询的顺序"></a>MyBatis缓存查询的顺序</h2><ul>
+<h3 id="4、MyBatis缓存查询的顺序"><a href="#4、MyBatis缓存查询的顺序" class="headerlink" title="4、MyBatis缓存查询的顺序"></a>4、MyBatis缓存查询的顺序</h3><ul>
 <li>先查询二级缓存，因为二级缓存中可能会有其他程序已经查出来的数据，可以拿来直接使用  </li>
 <li>如果二级缓存没有命中，再查询一级缓存  </li>
 <li>如果一级缓存也没有命中，则查询数据库  </li>
 <li>SqlSession关闭之后，一级缓存中的数据会写入二级缓存</li>
 </ul>
-<h2 id="整合第三方缓存EHCache（了解）"><a href="#整合第三方缓存EHCache（了解）" class="headerlink" title="整合第三方缓存EHCache（了解）"></a>整合第三方缓存EHCache（了解）</h2><h3 id="添加依赖"><a href="#添加依赖" class="headerlink" title="添加依赖"></a>添加依赖</h3><pre class="language-xml" data-language="xml"><code class="language-xml"><span class="token comment">&lt;!-- Mybatis EHCache整合包 --></span>
+<h3 id="5、整合第三方缓存EHCache（了解）"><a href="#5、整合第三方缓存EHCache（了解）" class="headerlink" title="5、整合第三方缓存EHCache（了解）"></a>5、整合第三方缓存EHCache（了解）</h3><h5 id="a-gt-添加依赖"><a href="#a-gt-添加依赖" class="headerlink" title="a&gt;添加依赖"></a>a&gt;添加依赖</h5><pre class="language-xml" data-language="xml"><code class="language-xml"><span class="token comment">&lt;!-- Mybatis EHCache整合包 --></span>
 <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>dependency</span><span class="token punctuation">></span></span>
 	<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>groupId</span><span class="token punctuation">></span></span>org.mybatis.caches<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>groupId</span><span class="token punctuation">></span></span>
 	<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>artifactId</span><span class="token punctuation">></span></span>mybatis-ehcache<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>artifactId</span><span class="token punctuation">></span></span>
@@ -1230,7 +1263,7 @@ emp_name = #&#123;empName&#125; and
 	<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>version</span><span class="token punctuation">></span></span>1.2.3<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>version</span><span class="token punctuation">></span></span>
 <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>dependency</span><span class="token punctuation">></span></span></code></pre>
 
-<h3 id="各个jar包的功能"><a href="#各个jar包的功能" class="headerlink" title="各个jar包的功能"></a>各个jar包的功能</h3><table>
+<h5 id="b-gt-各个jar包的功能"><a href="#b-gt-各个jar包的功能" class="headerlink" title="b&gt;各个jar包的功能"></a>b&gt;各个jar包的功能</h5><table>
 <thead>
 <tr>
 <th>jar包名称</th>
@@ -1254,7 +1287,7 @@ emp_name = #&#123;empName&#125; and
 <td>支持SLF4J门面接口的一个具体实现</td>
 </tr>
 </tbody></table>
-<h3 id="创建EHCache的配置文件ehcache-xml"><a href="#创建EHCache的配置文件ehcache-xml" class="headerlink" title="创建EHCache的配置文件ehcache.xml"></a>创建EHCache的配置文件ehcache.xml</h3><ul>
+<h5 id="c-gt-创建EHCache的配置文件ehcache-xml"><a href="#c-gt-创建EHCache的配置文件ehcache-xml" class="headerlink" title="c&gt;创建EHCache的配置文件ehcache.xml"></a>c&gt;创建EHCache的配置文件ehcache.xml</h5><ul>
 <li>名字必须叫<code>ehcache.xml</code></li>
 </ul>
 <pre class="language-xml" data-language="xml"><code class="language-xml"><span class="token prolog">&lt;?xml version="1.0" encoding="utf-8" ?></span>
@@ -1274,12 +1307,12 @@ emp_name = #&#123;empName&#125; and
     <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>defaultCache</span><span class="token punctuation">></span></span>
 <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>ehcache</span><span class="token punctuation">></span></span></code></pre>
 
-<h3 id="设置二级缓存的类型"><a href="#设置二级缓存的类型" class="headerlink" title="设置二级缓存的类型"></a>设置二级缓存的类型</h3><ul>
+<h5 id="d-gt-设置二级缓存的类型"><a href="#d-gt-设置二级缓存的类型" class="headerlink" title="d&gt;设置二级缓存的类型"></a>d&gt;设置二级缓存的类型</h5><ul>
 <li>在xxxMapper.xml文件中设置二级缓存类型</li>
 </ul>
 <pre class="language-xml" data-language="xml"><code class="language-xml"><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>cache</span> <span class="token attr-name">type</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>org.mybatis.caches.ehcache.EhcacheCache<span class="token punctuation">"</span></span><span class="token punctuation">/></span></span></code></pre>
 
-<h3 id="加入logback日志"><a href="#加入logback日志" class="headerlink" title="加入logback日志"></a>加入logback日志</h3><ul>
+<h5 id="e-gt-加入logback日志"><a href="#e-gt-加入logback日志" class="headerlink" title="e&gt;加入logback日志"></a>e&gt;加入logback日志</h5><ul>
 <li>存在SLF4J时，作为简易日志的log4j将失效，此时我们需要借助SLF4J的具体实现logback来打印日志。创建logback的配置文件<code>logback.xml</code>，名字固定，不可改变</li>
 </ul>
 <pre class="language-xml" data-language="xml"><code class="language-xml"><span class="token prolog">&lt;?xml version="1.0" encoding="UTF-8"?></span>
@@ -1303,7 +1336,7 @@ emp_name = #&#123;empName&#125; and
     <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>logger</span> <span class="token attr-name">name</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>com.atguigu.crowd.mapper<span class="token punctuation">"</span></span> <span class="token attr-name">level</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>DEBUG<span class="token punctuation">"</span></span><span class="token punctuation">/></span></span>
 <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>configuration</span><span class="token punctuation">></span></span></code></pre>
 
-<h3 id="EHCache配置文件说明"><a href="#EHCache配置文件说明" class="headerlink" title="EHCache配置文件说明"></a>EHCache配置文件说明</h3><table>
+<h5 id="f-gt-EHCache配置文件说明"><a href="#f-gt-EHCache配置文件说明" class="headerlink" title="f&gt;EHCache配置文件说明"></a>f&gt;EHCache配置文件说明</h5><table>
 <thead>
 <tr>
 <th>属性名</th>
@@ -1362,7 +1395,7 @@ emp_name = #&#123;empName&#125; and
 <td>当内存缓存达到最大，有新的element加入的时候， 移除缓存中element的策略。 默认是LRU（最近最少使用），可选的有LFU（最不常使用）和FIFO（先进先出</td>
 </tr>
 </tbody></table>
-<h1 id="MyBatis的逆向工程"><a href="#MyBatis的逆向工程" class="headerlink" title="MyBatis的逆向工程"></a>MyBatis的逆向工程</h1><ul>
+<h1 id="十一、MyBatis的逆向工程"><a href="#十一、MyBatis的逆向工程" class="headerlink" title="十一、MyBatis的逆向工程"></a>十一、MyBatis的逆向工程</h1><ul>
 <li>正向工程：先创建Java实体类，由框架负责根据实体类生成数据库表。Hibernate是支持正向工程的</li>
 <li>逆向工程：先创建数据库表，由框架负责根据数据库表，反向生成如下资源：  </li>
 <li>Java实体类  <ul>
@@ -1371,18 +1404,18 @@ emp_name = #&#123;empName&#125; and
 </ul>
 </li>
 </ul>
-<h2 id="创建逆向工程的步骤"><a href="#创建逆向工程的步骤" class="headerlink" title="创建逆向工程的步骤"></a>创建逆向工程的步骤</h2><h3 id="添加依赖和插件"><a href="#添加依赖和插件" class="headerlink" title="添加依赖和插件"></a>添加依赖和插件</h3><pre class="language-xml" data-language="xml"><code class="language-xml"><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>dependencies</span><span class="token punctuation">></span></span>
+<h3 id="1、创建逆向工程的步骤"><a href="#1、创建逆向工程的步骤" class="headerlink" title="1、创建逆向工程的步骤"></a>1、创建逆向工程的步骤</h3><h5 id="a-gt-添加依赖和插件"><a href="#a-gt-添加依赖和插件" class="headerlink" title="a&gt;添加依赖和插件"></a>a&gt;添加依赖和插件</h5><pre class="language-xml" data-language="xml"><code class="language-xml"><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>dependencies</span><span class="token punctuation">></span></span>
 	<span class="token comment">&lt;!-- MyBatis核心依赖包 --></span>
 	<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>dependency</span><span class="token punctuation">></span></span>
 		<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>groupId</span><span class="token punctuation">></span></span>org.mybatis<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>groupId</span><span class="token punctuation">></span></span>
 		<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>artifactId</span><span class="token punctuation">></span></span>mybatis<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>artifactId</span><span class="token punctuation">></span></span>
-		<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>version</span><span class="token punctuation">></span></span>3.5.9<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>version</span><span class="token punctuation">></span></span>
+		<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>version</span><span class="token punctuation">></span></span>3.5.7<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>version</span><span class="token punctuation">></span></span>
 	<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>dependency</span><span class="token punctuation">></span></span>
 	<span class="token comment">&lt;!-- junit测试 --></span>
 	<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>dependency</span><span class="token punctuation">></span></span>
 		<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>groupId</span><span class="token punctuation">></span></span>junit<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>groupId</span><span class="token punctuation">></span></span>
 		<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>artifactId</span><span class="token punctuation">></span></span>junit<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>artifactId</span><span class="token punctuation">></span></span>
-		<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>version</span><span class="token punctuation">></span></span>4.13.2<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>version</span><span class="token punctuation">></span></span>
+		<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>version</span><span class="token punctuation">></span></span>4.12<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>version</span><span class="token punctuation">></span></span>
 		<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>scope</span><span class="token punctuation">></span></span>test<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>scope</span><span class="token punctuation">></span></span>
 	<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>dependency</span><span class="token punctuation">></span></span>
 	<span class="token comment">&lt;!-- MySQL驱动 --></span>
@@ -1432,7 +1465,7 @@ emp_name = #&#123;empName&#125; and
 	<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>plugins</span><span class="token punctuation">></span></span>
 <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>build</span><span class="token punctuation">></span></span></code></pre>
 
-<h3 id="创建MyBatis的核心配置文件"><a href="#创建MyBatis的核心配置文件" class="headerlink" title="创建MyBatis的核心配置文件"></a>创建MyBatis的核心配置文件</h3><pre class="language-xml" data-language="xml"><code class="language-xml"><span class="token prolog">&lt;?xml version="1.0" encoding="UTF-8" ?></span>
+<h5 id="b-gt-创建MyBatis的核心配置文件"><a href="#b-gt-创建MyBatis的核心配置文件" class="headerlink" title="b&gt;创建MyBatis的核心配置文件"></a>b&gt;创建MyBatis的核心配置文件</h5><pre class="language-xml" data-language="xml"><code class="language-xml"><span class="token prolog">&lt;?xml version="1.0" encoding="UTF-8" ?></span>
 <span class="token doctype"><span class="token punctuation">&lt;!</span><span class="token doctype-tag">DOCTYPE</span> <span class="token name">configuration</span>
         <span class="token name">PUBLIC</span> <span class="token string">"-//mybatis.org//DTD Config 3.0//EN"</span>
         <span class="token string">"http://mybatis.org/dtd/mybatis-3-config.dtd"</span><span class="token punctuation">></span></span>
@@ -1457,7 +1490,7 @@ emp_name = #&#123;empName&#125; and
     <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>mappers</span><span class="token punctuation">></span></span>
 <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>configuration</span><span class="token punctuation">></span></span></code></pre>
 
-<h3 id="创建逆向工程的配置文件"><a href="#创建逆向工程的配置文件" class="headerlink" title="创建逆向工程的配置文件"></a>创建逆向工程的配置文件</h3><ul>
+<h5 id="c-gt-创建逆向工程的配置文件"><a href="#c-gt-创建逆向工程的配置文件" class="headerlink" title="c&gt;创建逆向工程的配置文件"></a>c&gt;创建逆向工程的配置文件</h5><ul>
 <li>文件名必须是：<code>generatorConfig.xml</code></li>
 </ul>
 <pre class="language-xml" data-language="xml"><code class="language-xml"><span class="token prolog">&lt;?xml version="1.0" encoding="UTF-8"?></span>
@@ -1500,20 +1533,20 @@ emp_name = #&#123;empName&#125; and
     <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>context</span><span class="token punctuation">></span></span>
 <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>generatorConfiguration</span><span class="token punctuation">></span></span></code></pre>
 
-<h3 id="执行MBG插件的generate目标"><a href="#执行MBG插件的generate目标" class="headerlink" title="执行MBG插件的generate目标"></a>执行MBG插件的generate目标</h3><ul>
-<li><img src="/2022/03/31/77-Mybatis/hexo\zr.github.io\source_posts\77-Mybatis\执行MBG插件的generate目标.png" loading="lazy"></li>
+<h5 id="d-gt-执行MBG插件的generate目标"><a href="#d-gt-执行MBG插件的generate目标" class="headerlink" title="d&gt;执行MBG插件的generate目标"></a>d&gt;执行MBG插件的generate目标</h5><ul>
+<li><img src="/2022/03/31/77-Mybatis/%E6%89%A7%E8%A1%8CMBG%E6%8F%92%E4%BB%B6%E7%9A%84generate%E7%9B%AE%E6%A0%87.png" loading="lazy"></li>
 <li>如果出现报错：<code>Exception getting JDBC Driver</code>，可能是pom.xml中，数据库驱动配置错误</li>
-<li>dependency中的驱动<img src="/2022/03/31/77-Mybatis/hexo\zr.github.io\source_posts\77-Mybatis\dependency中的驱动.png" loading="lazy"><ul>
-<li>mybatis-generator-maven-plugin插件中的驱动<img src="/2022/03/31/77-Mybatis/hexo\zr.github.io\source_posts\77-Mybatis\插件中的驱动.png" loading="lazy"></li>
+<li>dependency中的驱动<img src="/2022/03/31/77-Mybatis/dependency%E4%B8%AD%E7%9A%84%E9%A9%B1%E5%8A%A8.png" loading="lazy"><ul>
+<li>mybatis-generator-maven-plugin插件中的驱动<img src="/2022/03/31/77-Mybatis/%E6%8F%92%E4%BB%B6%E4%B8%AD%E7%9A%84%E9%A9%B1%E5%8A%A8.png" loading="lazy"></li>
 <li>两者的驱动版本应该相同</li>
 </ul>
 </li>
-<li>执行结果<img src="/2022/03/31/77-Mybatis/hexo\zr.github.io\source_posts\77-Mybatis\逆向执行结果.png" loading="lazy"></li>
+<li>执行结果<img src="/2022/03/31/77-Mybatis/%E9%80%86%E5%90%91%E6%89%A7%E8%A1%8C%E7%BB%93%E6%9E%9C.png" loading="lazy"></li>
 </ul>
-<h2 id="QBC"><a href="#QBC" class="headerlink" title="QBC"></a>QBC</h2><h3 id="查询"><a href="#查询" class="headerlink" title="查询"></a>查询</h3><ul>
+<h3 id="2、QBC"><a href="#2、QBC" class="headerlink" title="2、QBC"></a>2、QBC</h3><h5 id="查询"><a href="#查询" class="headerlink" title="查询"></a>查询</h5><ul>
 <li><code>selectByExample</code>：按条件查询，需要传入一个example对象或者null；如果传入一个null，则表示没有条件，也就是查询所有数据</li>
 <li><code>example.createCriteria().xxx</code>：创建条件对象，通过andXXX方法为SQL添加查询添加，每个条件之间是and关系</li>
-<li><code>example.or().xxx</code>：将之前添加的条件通过or拼接其他条件<br><img src="/2022/03/31/77-Mybatis/hexo\zr.github.io\source_posts\77-Mybatis\example的方法.png" loading="lazy"></li>
+<li><code>example.or().xxx</code>：将之前添加的条件通过or拼接其他条件<br><img src="/2022/03/31/77-Mybatis/example%E7%9A%84%E6%96%B9%E6%B3%95.png" loading="lazy"></li>
 </ul>
 <pre class="language-java" data-language="java"><code class="language-java"><span class="token annotation punctuation">@Test</span> <span class="token keyword">public</span> <span class="token keyword">void</span> <span class="token function">testMBG</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token keyword">throws</span> <span class="token class-name">IOException</span> <span class="token punctuation">&#123;</span>
 	<span class="token class-name">InputStream</span> is <span class="token operator">=</span> <span class="token class-name">Resources</span><span class="token punctuation">.</span><span class="token function">getResourceAsStream</span><span class="token punctuation">(</span><span class="token string">"mybatis-config.xml"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
@@ -1530,38 +1563,38 @@ emp_name = #&#123;empName&#125; and
 	emps<span class="token punctuation">.</span><span class="token function">forEach</span><span class="token punctuation">(</span><span class="token class-name">System</span><span class="token punctuation">.</span>out<span class="token operator">::</span><span class="token function">println</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
 <span class="token punctuation">&#125;</span></code></pre>
 
-<p><img src="/2022/03/31/77-Mybatis/hexo\zr.github.io\source_posts\77-Mybatis\example测试结果.png" loading="lazy"></p>
-<h3 id="增改"><a href="#增改" class="headerlink" title="增改"></a>增改</h3><ul>
+<p><img src="/2022/03/31/77-Mybatis/example%E6%B5%8B%E8%AF%95%E7%BB%93%E6%9E%9C.png" loading="lazy"></p>
+<h5 id="增改"><a href="#增改" class="headerlink" title="增改"></a>增改</h5><ul>
 <li><code>updateByPrimaryKey</code>：通过主键进行数据修改，如果某一个值为null，也会将对应的字段改为null</li>
 <li><code>mapper.updateByPrimaryKey(new Emp(1,&quot;admin&quot;,22,null,&quot;456@qq.com&quot;,3));</code><ul>
-<li><img src="/2022/03/31/77-Mybatis/hexo\zr.github.io\source_posts\77-Mybatis\增删改测试结果1.png" loading="lazy"></li>
+<li><img src="/2022/03/31/77-Mybatis/%E5%A2%9E%E5%88%A0%E6%94%B9%E6%B5%8B%E8%AF%95%E7%BB%93%E6%9E%9C1.png" loading="lazy"></li>
 </ul>
 </li>
 <li><code>updateByPrimaryKeySelective()</code>：通过主键进行选择性数据修改，如果某个值为null，则不修改这个字段</li>
 <li><code>mapper.updateByPrimaryKeySelective(new Emp(2,&quot;admin2&quot;,22,null,&quot;456@qq.com&quot;,3));</code><ul>
-<li><img src="/2022/03/31/77-Mybatis/hexo\zr.github.io\source_posts\77-Mybatis\增删改测试结果2.png" loading="lazy"></li>
+<li><img src="/2022/03/31/77-Mybatis/%E5%A2%9E%E5%88%A0%E6%94%B9%E6%B5%8B%E8%AF%95%E7%BB%93%E6%9E%9C2.png" loading="lazy"></li>
 </ul>
 </li>
 </ul>
-<h1 id="分页插件"><a href="#分页插件" class="headerlink" title="分页插件"></a>分页插件</h1><h2 id="分页插件使用步骤"><a href="#分页插件使用步骤" class="headerlink" title="分页插件使用步骤"></a>分页插件使用步骤</h2><h3 id="添加依赖-1"><a href="#添加依赖-1" class="headerlink" title="添加依赖"></a>添加依赖</h3><pre class="language-xml" data-language="xml"><code class="language-xml"><span class="token comment">&lt;!-- https://mvnrepository.com/artifact/com.github.pagehelper/pagehelper --></span>
+<h1 id="十二、分页插件"><a href="#十二、分页插件" class="headerlink" title="十二、分页插件"></a>十二、分页插件</h1><h3 id="分页插件使用步骤"><a href="#分页插件使用步骤" class="headerlink" title="分页插件使用步骤"></a>分页插件使用步骤</h3><h5 id="添加依赖"><a href="#添加依赖" class="headerlink" title="添加依赖"></a>添加依赖</h5><pre class="language-xml" data-language="xml"><code class="language-xml"><span class="token comment">&lt;!-- https://mvnrepository.com/artifact/com.github.pagehelper/pagehelper --></span>
 <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>dependency</span><span class="token punctuation">></span></span>
 	<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>groupId</span><span class="token punctuation">></span></span>com.github.pagehelper<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>groupId</span><span class="token punctuation">></span></span>
 	<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>artifactId</span><span class="token punctuation">></span></span>pagehelper<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>artifactId</span><span class="token punctuation">></span></span>
 	<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>version</span><span class="token punctuation">></span></span>5.2.0<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>version</span><span class="token punctuation">></span></span>
 <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>dependency</span><span class="token punctuation">></span></span></code></pre>
 
-<h3 id="配置分页插件"><a href="#配置分页插件" class="headerlink" title="配置分页插件"></a>配置分页插件</h3><ul>
+<h5 id="配置分页插件"><a href="#配置分页插件" class="headerlink" title="配置分页插件"></a>配置分页插件</h5><ul>
 <li>在MyBatis的核心配置文件（mybatis-config.xml）中配置插件</li>
-<li><img src="/2022/03/31/77-Mybatis/hexo\zr.github.io\source_posts\77-Mybatis\配置分页插件.png" loading="lazy"></li>
+<li><img src="/2022/03/31/77-Mybatis/%E9%85%8D%E7%BD%AE%E5%88%86%E9%A1%B5%E6%8F%92%E4%BB%B6.png" loading="lazy"></li>
 </ul>
 <pre class="language-xml" data-language="xml"><code class="language-xml"><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>plugins</span><span class="token punctuation">></span></span>
 	<span class="token comment">&lt;!--设置分页插件--></span>
 	<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>plugin</span> <span class="token attr-name">interceptor</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>com.github.pagehelper.PageInterceptor<span class="token punctuation">"</span></span><span class="token punctuation">></span></span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>plugin</span><span class="token punctuation">></span></span>
 <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>plugins</span><span class="token punctuation">></span></span></code></pre>
 
-<h2 id="分页插件的使用"><a href="#分页插件的使用" class="headerlink" title="分页插件的使用"></a>分页插件的使用</h2><h3 id="开启分页功能"><a href="#开启分页功能" class="headerlink" title="开启分页功能"></a>开启分页功能</h3><ul>
-<li>在查询功能之前使用<code>PageHelper.startPage(int pageNum, int pageSize)</code>开启分页功能</li>
-<li>pageNum：当前页的页码  <ul>
+<h3 id="分页插件的使用"><a href="#分页插件的使用" class="headerlink" title="分页插件的使用"></a>分页插件的使用</h3><h5 id="开启分页功能"><a href="#开启分页功能" class="headerlink" title="开启分页功能"></a>开启分页功能</h5><ul>
+<li>在查询功能之前使用<code>PageHelper.startPage(int pageNum, int pageSize)</code>开启分页功能<ul>
+<li>pageNum：当前页的页码  </li>
 <li>pageSize：每页显示的条数</li>
 </ul>
 </li>
@@ -1579,8 +1612,8 @@ emp_name = #&#123;empName&#125; and
 	emps<span class="token punctuation">.</span><span class="token function">forEach</span><span class="token punctuation">(</span><span class="token class-name">System</span><span class="token punctuation">.</span>out<span class="token operator">::</span><span class="token function">println</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
 <span class="token punctuation">&#125;</span></code></pre>
 
-<p><img src="/2022/03/31/77-Mybatis/hexo\zr.github.io\source_posts\77-Mybatis\分页测试结果.png" loading="lazy"></p>
-<h3 id="分页相关数据"><a href="#分页相关数据" class="headerlink" title="分页相关数据"></a>分页相关数据</h3><h4 id="方法一：直接输出"><a href="#方法一：直接输出" class="headerlink" title="方法一：直接输出"></a>方法一：直接输出</h4><pre class="language-java" data-language="java"><code class="language-java"><span class="token annotation punctuation">@Test</span>
+<p><img src="/2022/03/31/77-Mybatis/%E5%88%86%E9%A1%B5%E6%B5%8B%E8%AF%95%E7%BB%93%E6%9E%9C.png" loading="lazy"></p>
+<h5 id="分页相关数据"><a href="#分页相关数据" class="headerlink" title="分页相关数据"></a>分页相关数据</h5><h6 id="方法一：直接输出"><a href="#方法一：直接输出" class="headerlink" title="方法一：直接输出"></a>方法一：直接输出</h6><pre class="language-java" data-language="java"><code class="language-java"><span class="token annotation punctuation">@Test</span>
 <span class="token keyword">public</span> <span class="token keyword">void</span> <span class="token function">testPageHelper</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token keyword">throws</span> <span class="token class-name">IOException</span> <span class="token punctuation">&#123;</span>
 	<span class="token class-name">InputStream</span> is <span class="token operator">=</span> <span class="token class-name">Resources</span><span class="token punctuation">.</span><span class="token function">getResourceAsStream</span><span class="token punctuation">(</span><span class="token string">"mybatis-config.xml"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
 	<span class="token class-name">SqlSessionFactoryBuilder</span> sqlSessionFactoryBuilder <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">SqlSessionFactoryBuilder</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
@@ -1598,7 +1631,7 @@ emp_name = #&#123;empName&#125; and
 <li><p>分页相关数据：</p>
   <pre class="language-none"><code class="language-none">Page&#123;count&#x3D;true, pageNum&#x3D;1, pageSize&#x3D;4, startRow&#x3D;0, endRow&#x3D;4, total&#x3D;8, pages&#x3D;2, reasonable&#x3D;false, pageSizeZero&#x3D;false&#125;[Emp&#123;eid&#x3D;1, empName&#x3D;&#39;admin&#39;, age&#x3D;22, sex&#x3D;&#39;男&#39;, email&#x3D;&#39;456@qq.com&#39;, did&#x3D;3&#125;, Emp&#123;eid&#x3D;2, empName&#x3D;&#39;admin2&#39;, age&#x3D;22, sex&#x3D;&#39;男&#39;, email&#x3D;&#39;456@qq.com&#39;, did&#x3D;3&#125;, Emp&#123;eid&#x3D;3, empName&#x3D;&#39;王五&#39;, age&#x3D;12, sex&#x3D;&#39;女&#39;, email&#x3D;&#39;123@qq.com&#39;, did&#x3D;3&#125;, Emp&#123;eid&#x3D;4, empName&#x3D;&#39;赵六&#39;, age&#x3D;32, sex&#x3D;&#39;男&#39;, email&#x3D;&#39;123@qq.com&#39;, did&#x3D;1&#125;]</code></pre></li>
 </ul>
-<h4 id="方法二使用PageInfo"><a href="#方法二使用PageInfo" class="headerlink" title="方法二使用PageInfo"></a>方法二使用PageInfo</h4><ul>
+<h6 id="方法二使用PageInfo"><a href="#方法二使用PageInfo" class="headerlink" title="方法二使用PageInfo"></a>方法二使用PageInfo</h6><ul>
 <li>在查询获取list集合之后，使用<code>PageInfo&lt;T&gt; pageInfo = new PageInfo&lt;&gt;(List&lt;T&gt; list, intnavigatePages)</code>获取分页相关数据</li>
 <li>list：分页之后的数据  <ul>
 <li>navigatePages：导航分页的页码数</li>
@@ -1627,7 +1660,7 @@ prePage&#x3D;0, nextPage&#x3D;2, isFirstPage&#x3D;true, isLastPage&#x3D;false, h
 <li><p>其中list中的数据等同于方法一中直接输出的page数据</p>
 </li>
 </ul>
-<h4 id="常用数据："><a href="#常用数据：" class="headerlink" title="常用数据："></a>常用数据：</h4><ul>
+<h5 id="常用数据："><a href="#常用数据：" class="headerlink" title="常用数据："></a>常用数据：</h5><ul>
 <li>pageNum：当前页的页码  </li>
 <li>pageSize：每页显示的条数  </li>
 <li>size：当前页显示的真实条数  </li>
